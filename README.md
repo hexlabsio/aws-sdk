@@ -7,7 +7,7 @@ All Responses have the same format, The array of results is extracted for you an
 type Response<T> = { member: T[]; totalItems: T['length']; next?: string };
 ```
 
-#Install
+# Install
 ```
 npm install -S @hexlabs/aws-sdk
 ```
