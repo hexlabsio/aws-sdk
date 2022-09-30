@@ -139,7 +139,7 @@ ${info.mappedFunctions.map(it => this.funcFrom(info.serviceKey, it)).join('\n\n'
         console.warn(e.message);
       }
     });
-    console.log(errors);
+    fs.writeFileSync(`src/client/index.ts`, all.map(service => `export * from './${service!.serviceKey.toLowerCase()}'`).join('\n'))
   }
 }
 
