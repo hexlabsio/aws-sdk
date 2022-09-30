@@ -136,7 +136,7 @@ ${info.mappedFunctions.map(it => this.typedFuncFrom(info.serviceKey, it)).join('
 export class ${info.serviceKey} implements ClientType {
   private constructor(private readonly client: AWS${info.serviceKey}) {}
   
-  public readonly signingRegion = ${info.signingRegion ? `'${info.signingRegion}` : undefined};
+  public readonly signingRegion = ${info.signingRegion ? `'${info.signingRegion}'` : undefined};
   public readonly service = '${this.serviceFromHost(info.serviceHost)}';
   public readonly global = ${info.isGlobalEndpoint};
   public readonly category = '${this.categoryfor(this.serviceFromHost(info.serviceHost))}';
