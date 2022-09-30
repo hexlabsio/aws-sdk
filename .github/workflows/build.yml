@@ -40,4 +40,5 @@ jobs:
         run: |
           cd dist
           mv ../package.json .
+          cp -r ../.git .
           npm publish --access public
