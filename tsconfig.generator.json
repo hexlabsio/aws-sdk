@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "rootDir": "src",
-    "baseUrl": "src",
-    "outDir": "./dist",
+    "rootDir": ".",
+    "baseUrl": ".",
+    "outDir": "./dist2",
     "noUnusedLocals": true,
     "allowSyntheticDefaultImports": false,
     "noImplicitAny": true,
@@ -17,11 +17,11 @@
     "pretty": true,
     "inlineSourceMap": true,
     "inlineSources": true,
-    "types": ["node"],
+    "types": [],
     "esModuleInterop": true
   },
   "include": [
-    "src/**/*"
+    "generator.ts"
   ],
   "exclude": ["node_modules"]
 }

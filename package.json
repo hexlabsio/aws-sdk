@@ -1,16 +1,15 @@
 {
-  "name": "",
+  "name": "@hexlabs/aws-sdk",
   "version": "1.0.0",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
     "prepare": "husky install",
+    "prebuild": "ts-node --project tsconfig.generator.json generator.ts",
+    "build": "tsc --project tsconfig.json",
     "test": "jest --ci --runInBand --coverage --reporters=default --reporters=jest-junit",
     "lint": "eslint **/*.ts"
   },
-  "eslintIgnore": [
-    "webpack.config.js"
-  ],
   "eslintConfig": {
     "extends": [
       "eslint:recommended",
@@ -24,7 +23,7 @@
     },
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-      "ecmaVersion": 2019,
+      "ecmaVersion": 2021,
       "sourceType": "module"
     },
     "plugins": [
@@ -36,7 +35,8 @@
       "@typescript-eslint/no-non-null-assertion": 0,
       "@typescript-eslint/no-empty-function": 0,
       "@typescript-eslint/explicit-function-return-type": 0,
-      "jest/expect-expect": 0
+      "jest/expect-expect": 0,
+      "@typescript-eslint/ban-ts-comment": 0
     }
   },
   "repository": {
@@ -69,7 +69,7 @@
   "homepage": "",
   "devDependencies": {
     "@types/jest": "^26.0.23",
-    "@types/node": "^15.6.1",
+    "@types/node": "^18.7.23",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
     "eslint": "^7.27.0",
@@ -77,12 +77,12 @@
     "husky": "^6.0.0",
     "jest": "^27.0.3",
     "jest-junit": "^10.0.0",
-    "json-loader": "^0.5.7",
-    "node-loader": "^0.6.0",
     "ts-jest": "^27.0.2",
     "ts-loader": "^6.2.2",
-    "typescript": "^4.3.2",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^4.7.0"
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1226.0"
   }
 }
