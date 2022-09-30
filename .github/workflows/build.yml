@@ -32,7 +32,8 @@ jobs:
         run: npm run build
 
       - name: Package
-        run: npm pack
+        run:
+
 
       - name: Authenticate with NPM registry
         if: github.ref == 'refs/heads/master'
@@ -40,4 +41,7 @@ jobs:
 
       - name: Publish NPM package
         if: github.ref == 'refs/heads/master'
-        run: npm publish --access public
+        run: |
+          cd dist
+          mv ../package.json .
+          npm publish --access public
