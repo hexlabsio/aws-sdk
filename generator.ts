@@ -116,7 +116,9 @@ type ReturnTypeFrom<K extends keyof AWS${info.serviceKey}> = AWS${info.serviceKe
 type FunctionTypeFrom<K extends keyof AWS${info.serviceKey}> = AWS${info.serviceKey}[K] extends {
   (param: infer P, callback: (...args: any) => void): Request<infer R, any>;
   (callback: (...args: any) => void): any;
-} ? (params?: P) => Promise<R> : never;
+} ? (params?: P) => Promise<R> : AWS${info.serviceKey}[K] extends {
+  (callback: (...args: any) => void): Request<infer R, any>;
+} ? () => Promise<R> : never;
 // @ts-ignore
 type ParamsFrom<K extends keyof AWS${info.serviceKey}, Extras> = AWS${info.serviceKey}[K] extends {
   (param: infer P, callback: (...args: any) => void): Request<infer R, any>;
@@ -145,11 +147,11 @@ export class ${info.serviceKey} implements ClientType {
 ${info.mappedFunctions.map(it => this.funcFrom(info.serviceKey, it)).join('\n\n')}
   
   static fromClient(client: AWS${info.serviceKey}): ClientType {
-    return new ${info.serviceKey}(client);
+    return new ${info.serviceKey}(client) as any;
   }
   
   static client(options?: AWS${info.serviceKey}.Types.ClientConfiguration): ClientType {
-    return new ${info.serviceKey}(new AWS${info.serviceKey}(options));
+    return new ${info.serviceKey}(new AWS${info.serviceKey}(options)) as any;
   }
 }  
 `;
