@@ -6,6 +6,13 @@ import * as fs from 'fs';
 import * as AWSRuntime from 'aws-sdk';
 import { serviceCategories } from './src/types';
 
+type ResultInfo = {
+  inputToken?: string;
+  limitKey?: string;
+  outputToken?: string;
+  resultKey: string
+};
+
 export default class Generator {
 
   private extractParameter(e: AWSError): string {
@@ -13,19 +20,25 @@ export default class Generator {
   }
 
   private requiredParams(request: Request<any, any>): string[] {
-    try {
-      const validation = ((request as any)._events.validate ?? []).find((it: any) => it.name === 'VALIDATE_PARAMETERS');
-      validation?.(request);
-      return [];
-    } catch(e) {
-      if(e.code === 'MultipleValidationErrors') {
-        return e.errors.filter((it: any) => it.code === 'MissingRequiredParameter').map((it: any) => this.extractParameter(it));
-      } else if(e.code === 'MissingRequiredParameter') {
-        return [this.extractParameter(e)];
+    const validationFns = ((request as any)._events.validate ?? []).filter((it: any) => it.name === 'VALIDATE_PARAMETERS' || it.name.startsWith('validate'));
+    return validationFns.flatMap((validation: any) => {
+      try {
+        validation?.(request);
+        return [];
+      } catch (e) {
+        if (e.code === 'MultipleValidationErrors') {
+          const otherErrors = e.errors.filter((it: any) => it.code !== 'MissingRequiredParameter');
+          if (otherErrors.length) {
+            console.log('Validation issue', otherErrors);
+          }
+          return e.errors.filter((it: any) => it.code === 'MissingRequiredParameter').map((it: any) => this.extractParameter(it));
+        } else if (e.code === 'MissingRequiredParameter') {
+          return [this.extractParameter(e)];
+        }
+        console.log('Validation issue', e.code, e.message);
       }
-      console.log('Validation issue', e.code, e.message);
-    }
-    return [];
+      return [];
+    });
   }
 
   private fromService(serviceKey: string, service: Service) {
@@ -34,15 +47,15 @@ export default class Generator {
       try {
         const request: Request<any, any> = (service as any)[name]();
         const requiredParams = this.requiredParams(request);
-        if(serviceKey === 'Lambda' ){
-          console.log(serviceKey, name, requiredParams);
-        }
+        const inputs = (request as any).service.api.operations[(request as any).operation].input;
+        const outputs = (request as any).service.api.operations[(request as any).operation].output;
         const s = (request as any).service;
         const o = (request as any).operation;
         try {
           return {
             name,
             requiredParams,
+            inputs, outputs,
             info: s.paginationConfig(o, true)
           };
         } catch (e) {
@@ -65,31 +78,51 @@ export default class Generator {
     return Object.keys(serviceCategories).find(category => (serviceCategories as any)[category].includes(service)) ?? 'Other';
   }
 
-  private funcFrom(service: string, it: {name: string, requiredParams: string[]; info?: {"inputToken"?: string,"limitKey"?: string, "outputToken"?: string, "resultKey": string}}): string {
-    if(it.info && it.info.resultKey && typeof it.info.resultKey === 'string' && !it.info?.outputToken?.includes('[') && !Array.isArray(it.info?.inputToken ?? [])) {
-      const parts = it.info.resultKey.split('.');
-      const dig = parts.length > 1 ? `.${parts.slice(0, parts.length - 1).join('.')}` : ''
-      const tokenParts = it.info.outputToken?.split?.('.');
+  private getElement(part: string, index: number, parts: string[]): string {
+    const start = part.indexOf('[');
+    const end = part.lastIndexOf(']');
+    const inside = part.substring(start + 1, end);
+    const prefix = part.substring(0, part.indexOf('['));
+    if (inside === '-1') {
+      return `${prefix}?.[result.${this.extract([...parts.slice(0, index), prefix])}?.length - 1]`;
+    }
+    return `${prefix}?.[${inside}]`;
+  }
+
+  private extract(parts: string[]): string {
+    return parts.map((part, index, arr) => part.includes('[') ? `${this.getElement(part, index, arr)}` : part).join('?.');
+  }
+
+  private funcFrom(service: string, it: {name: string, requiredParams: string[]; inputs: string[]; outputs: string[]; info?: ResultInfo}): string {
+    if(it.info && it.info.resultKey && typeof it.info.resultKey === 'string' && !Array.isArray(it.info?.inputToken ?? [])) {
+      const parts = it.info.resultKey?.split('.') ?? [];
+      const dig = parts.length ? `.${this.extract(parts)}` : '';
+      const tokenParts = it.info.outputToken?.split?.('.') ?? [];
+      const digToken = tokenParts.length ? `.${this.extract(tokenParts)}` : '';
       return `  async ${it.name}(...args: any): Promise<any> {
-    // ${JSON.stringify(it.requiredParams)}
-    const {next, limit, ...rest} = args?.length ? args[0] : {} as any;
-    const params = args?.length ? [{ ...rest${it.info.inputToken ? `, ${it.info.inputToken}: next`: ''}${it.info.limitKey ? `, ${it.info.limitKey}: limit`: ''}, ...args.slice(1) }] : args;
-    const {${[parts[parts.length - 1], tokenParts?.[tokenParts.length - 1]].filter(it => !!it).join(', ')}, ...metadata} = (await this.client.${it.name}(...params).promise())${dig} ?? {};
-    const member = ${parts[parts.length - 1]} ?? [];
+    // ${JSON.stringify(it.info)}
+    const [initialParams, ...restArgs] = args ?? [];
+    const {next, limit, ...otherParams} = initialParams ?? {};
+    const nextTokenPart = ${it.info?.inputToken ? `next ? { ${it.info?.inputToken}: next } : {}`: '{}'};
+    const limitTokenPart = ${it.info?.limitKey ? `limit ? { ${it.info?.limitKey}: limit } : {}`: '{}'};
+    const result = await this.client.${it.name}(...(args?.length ? [{...nextTokenPart, ...limitTokenPart, ...otherParams}, ...restArgs] : [])).promise();
+    const nextToken = result${digToken};
+    const member = result${dig} ?? [];
     return {
-      totalCount: member.length,${tokenParts ? `\n      next: ${tokenParts?.[tokenParts.length - 1]},` : ''}
+      totalItems: member.length,
       member,
-      metadata
+      next: nextToken
     }
   }`
     }
     return `  async ${it.name}(...args: any): Promise<any> {
+  // ${JSON.stringify(it.info)}
     return this.client.${it.name}(...args).promise()
   }`
   }
 
-  private typedFuncFrom(service: string, it: {name: string; requiredParams: string[]; info: any}): string {
-    if(it.info && it.info.resultKey && typeof it.info.resultKey === 'string' && !it.info?.outputToken?.includes('[') && !Array.isArray(it.info?.inputToken ?? [])) {
+  private typedFuncFrom(service: string, it: {name: string; requiredParams: string[]; info: ResultInfo}): string {
+    if(it.info && it.info.resultKey && typeof it.info.resultKey === 'string' && !Array.isArray(it.info?.inputToken ?? [])) {
       const {inputToken, limitKey} = it.info;
       const omits = [inputToken, limitKey].filter(it => !!it).map(it => `'${it}'`);
       const omitPrefix = omits.length > 0 ? 'Omit<' : '';
@@ -108,7 +141,7 @@ export default class Generator {
     return parts[0];
   }
 
-  private fileFrom(info: {serviceHost: string; isGlobalEndpoint: boolean, signingRegion: string, serviceKey: string, mappedFunctions: {name: string, requiredParams: string[], info: any}[]}): string {
+  private fileFrom(info: {serviceHost: string; isGlobalEndpoint: boolean, signingRegion: string, serviceKey: string, mappedFunctions: {inputs: string[]; outputs: string[]; name: string, requiredParams: string[], info: ResultInfo}[]}): string {
     return `import { Request, ${info.serviceKey} as AWS${info.serviceKey} } from 'aws-sdk';
 // @ts-ignore
 type ReturnTypeFrom<K extends keyof AWS${info.serviceKey}> = AWS${info.serviceKey}[K] extends (...args: any) => Request<infer R, any> ? R : never;
