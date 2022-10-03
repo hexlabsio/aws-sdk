@@ -95,23 +95,28 @@ export default class Generator {
 
   private funcFrom(service: string, it: {name: string, requiredParams: string[]; inputs: string[]; outputs: string[]; info?: ResultInfo}): string {
     if(it.info && it.info.resultKey && typeof it.info.resultKey === 'string' && !Array.isArray(it.info?.inputToken ?? [])) {
+      const {inputToken, limitKey} = it.info;
+      const omits = [inputToken, limitKey].filter(key => !!key && key !== it.info?.inputToken && key !== it.info?.limitKey).map(it => `'${it}'`);
+      const omitPrefix = omits.length > 0 ? 'Omit<' : '';
+      const omitPostFix = omits.length > 0 ? `, ${omits.join(' | ')}>` : '';
+      const digger = it.info.resultKey.split('.').map((it: any) => `['${it}']`).join('')
+      const extras = (inputToken || limitKey) ? `{ ${inputToken ? `next?: string${limitKey ? ', ' : ''}${limitKey ? `limit?: number`: ''}`: ''} }`: '{}';
       const parts = it.info.resultKey?.split('.') ?? [];
       const dig = parts.length ? `.${this.extract(parts)}` : '';
       const tokenParts = it.info.outputToken?.split?.('.') ?? [];
       const digToken = tokenParts.length ? `.${this.extract(tokenParts)}` : '';
-      return `  async ${it.name}(...args: any): Promise<any> {
+      return `  async ${it.name}(params: { [K in keyof ${omitPrefix}ParamsFrom<'${it.name}', ${extras}>${omitPostFix}]: ParamsFrom<'${it.name}', ${extras}>[K]}): Promise<{ next?: string | number; totalItems: number; member: { [K in keyof ReturnTypeFrom<'${it.name}'>]-?: ReturnTypeFrom<'${it.name}'>[K]}${digger} }> {
     // ${JSON.stringify(it.info)}
-    const [initialParams, ...restArgs] = args ?? [];
-    const {next, limit, ...otherParams} = initialParams ?? {};
-    const nextTokenPart = ${it.info?.inputToken ? `next ? { ${it.info?.inputToken}: next } : {}`: '{}'};
+    const {${it.info?.inputToken ? 'next' : ''}${it.info?.limitKey ? it.info?.inputToken ? ', limit, ' : 'limit, ' : it.info?.inputToken ? ', ': ''} ...otherParams} = params ?? {};
+    const nextTokenPart = ${it.info?.inputToken ? `next ? { ${it.info?.inputToken}: JSON.parse(next) } : {}`: '{}'};
     const limitTokenPart = ${it.info?.limitKey ? `limit ? { ${it.info?.limitKey}: limit } : {}`: '{}'};
-    const result = await this.client.${it.name}(...(args?.length ? [{...nextTokenPart, ...limitTokenPart, ...otherParams}, ...restArgs] : [])).promise();
+    const result = await this.client.${it.name}({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
     const nextToken = result${digToken};
-    const member = result${dig} ?? [];
+    const member = (Array.isArray(result${dig} ?? []) ? (result${dig} ?? []) : [result${dig}]) as any;
     return {
       totalItems: member.length,
       member,
-      next: nextToken
+      next: JSON.stringify(nextToken)
     }
   }`
     }
@@ -121,19 +126,19 @@ export default class Generator {
   }`
   }
 
-  private typedFuncFrom(service: string, it: {name: string; requiredParams: string[]; info: ResultInfo}): string {
-    if(it.info && it.info.resultKey && typeof it.info.resultKey === 'string' && !Array.isArray(it.info?.inputToken ?? [])) {
-      const {inputToken, limitKey} = it.info;
-      const omits = [inputToken, limitKey].filter(it => !!it).map(it => `'${it}'`);
-      const omitPrefix = omits.length > 0 ? 'Omit<' : '';
-      const omitPostFix = omits.length > 0 ? `, ${omits.join(' | ')}>` : '';
-      const digger = it.info.resultKey.split('.').map((it: any) => `['${it}']`).join('')
-      const extras = (inputToken || limitKey) ? `{ ${inputToken ? `next?: string${limitKey ? ', ' : ''}${limitKey ? `limit?: number`: ''}`: ''} }`: '{}';
-      return `  ${it.name}(params: { [K in keyof ${omitPrefix}ParamsFrom<'${it.name}', ${extras}>${omitPostFix}]: ParamsFrom<'${it.name}', ${extras}>[K]}): Promise<{ next?: string; totalItems: number; member: { [K in keyof ReturnTypeFrom<'${it.name}'>]-?: ReturnTypeFrom<'${it.name}'>[K]}${digger} }>
-  ${it.requiredParams.length === 0 ? `${it.name}(): Promise<{ next?: string; totalItems: number; member: { [K in keyof ReturnTypeFrom<'${it.name}'>]-?: ReturnTypeFrom<'${it.name}'>[K]}${digger} }>` : ''}`
-    }
-    return `  ${it.name}: FunctionTypeFrom<'${it.name}'>`;
-  }
+  // private typedFuncFrom(service: string, it: {name: string; requiredParams: string[]; info: ResultInfo}): string {
+  //   if(it.info && it.info.resultKey && typeof it.info.resultKey === 'string' && !Array.isArray(it.info?.inputToken ?? [])) {
+  //     const {inputToken, limitKey} = it.info;
+  //     const omits = [inputToken, limitKey].filter(it => !!it).map(it => `'${it}'`);
+  //     const omitPrefix = omits.length > 0 ? 'Omit<' : '';
+  //     const omitPostFix = omits.length > 0 ? `, ${omits.join(' | ')}>` : '';
+  //     const digger = it.info.resultKey.split('.').map((it: any) => `['${it}']`).join('')
+  //     const extras = (inputToken || limitKey) ? `{ ${inputToken ? `next?: string${limitKey ? ', ' : ''}${limitKey ? `limit?: number`: ''}`: ''} }`: '{}';
+  //     return `  ${it.name}(params: { [K in keyof ${omitPrefix}ParamsFrom<'${it.name}', ${extras}>${omitPostFix}]: ParamsFrom<'${it.name}', ${extras}>[K]}): Promise<{ next?: string; totalItems: number; member: { [K in keyof ReturnTypeFrom<'${it.name}'>]-?: ReturnTypeFrom<'${it.name}'>[K]}${digger} }>
+  // ${it.requiredParams.length === 0 ? `${it.name}(): Promise<{ next?: string; totalItems: number; member: { [K in keyof ReturnTypeFrom<'${it.name}'>]-?: ReturnTypeFrom<'${it.name}'>[K]}${digger} }>` : ''}`
+  //   }
+  //   return `  ${it.name}: FunctionTypeFrom<'${it.name}'>`;
+  // }
 
   private serviceFromHost(host: string): string {
     const parts = host.split('.');
@@ -141,7 +146,7 @@ export default class Generator {
     return parts[0];
   }
 
-  private fileFrom(info: {serviceHost: string; isGlobalEndpoint: boolean, signingRegion: string, serviceKey: string, mappedFunctions: {inputs: string[]; outputs: string[]; name: string, requiredParams: string[], info: ResultInfo}[]}): string {
+  private fileFrom(info: {serviceHost: string; isGlobalEndpoint: boolean, signingRegion: string, serviceKey: string, mappedFunctions: {inputs: any[]; outputs: any[]; name: string, requiredParams: string[], info: ResultInfo}[]}): string {
     return `import { Request, ${info.serviceKey} as AWS${info.serviceKey} } from 'aws-sdk';
 // @ts-ignore
 type ReturnTypeFrom<K extends keyof AWS${info.serviceKey}> = AWS${info.serviceKey}[K] extends (...args: any) => Request<infer R, any> ? R : never;
@@ -157,33 +162,23 @@ type ParamsFrom<K extends keyof AWS${info.serviceKey}, Extras> = AWS${info.servi
   (param: infer P, callback: (...args: any) => void): Request<infer R, any>;
   (callback: (...args: any) => void): any;
 } ? P & Extras: never;
-
- interface ClientType {
-    signingRegion: string | undefined;
-    service: '${this.serviceFromHost(info.serviceHost)}';
-    global: ${info.isGlobalEndpoint};
-    category: '${this.categoryfor(this.serviceFromHost(info.serviceHost))}'
-    topLevelCalls: readonly ${JSON.stringify(info.mappedFunctions.filter(it => it.requiredParams?.length === 0).map(it => it.name))};
-    
-${info.mappedFunctions.map(it => this.typedFuncFrom(info.serviceKey, it)).join(';\n\n')}
-}
  
-export class ${info.serviceKey} implements ClientType {
+export class ${info.serviceKey} {
   private constructor(private readonly client: AWS${info.serviceKey}) {}
   
   public readonly signingRegion = ${info.signingRegion ? `'${info.signingRegion}'` : undefined};
-  public readonly service = '${this.serviceFromHost(info.serviceHost)}';
-  public readonly global = ${info.isGlobalEndpoint};
-  public readonly category = '${this.categoryfor(this.serviceFromHost(info.serviceHost))}';
+  public readonly service = '${this.serviceFromHost(info.serviceHost)}' as const;
+  public readonly global = ${info.isGlobalEndpoint} as const;
+  public readonly category = '${this.categoryfor(this.serviceFromHost(info.serviceHost))}' as const;
   public readonly topLevelCalls = ${JSON.stringify(info.mappedFunctions.filter(it => it.requiredParams?.length === 0).map(it => it.name))} as const;
   
 ${info.mappedFunctions.map(it => this.funcFrom(info.serviceKey, it)).join('\n\n')}
   
-  static fromClient(client: AWS${info.serviceKey}): ClientType {
+  static fromClient(client: AWS${info.serviceKey}): ${info.serviceKey} {
     return new ${info.serviceKey}(client) as any;
   }
   
-  static client(options?: AWS${info.serviceKey}.Types.ClientConfiguration): ClientType {
+  static client(options?: AWS${info.serviceKey}.Types.ClientConfiguration): ${info.serviceKey} {
     return new ${info.serviceKey}(new AWS${info.serviceKey}(options)) as any;
   }
 }  
