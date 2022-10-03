@@ -120,9 +120,9 @@ export default class Generator {
     }
   }`
     }
-    return `  async ${it.name}(...args: any): Promise<any> {
+    return `  ${it.name}: (params: ParamsFrom<'${it.name}', Record<string, never>>) => Promise<ReturnTypeFrom<'${it.name}'>>  = async params => {
   // ${JSON.stringify(it.info)}
-    return this.client.${it.name}(...args).promise()
+    return this.client.${it.name}(params as any).promise();
   }`
   }
 
