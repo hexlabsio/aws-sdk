@@ -120,7 +120,7 @@ export default class Generator {
     }
   }`
     }
-    return `  ${it.name}: (params: ParamsFrom<'${it.name}', Record<string, never>>) => Promise<ReturnTypeFrom<'${it.name}'>>  = async params => {
+    return `  ${it.name}: (params: RawParamsFrom<'${it.name}'>) => Promise<ReturnTypeFrom<'${it.name}'>>  = async params => {
   // ${JSON.stringify(it.info)}
     return this.client.${it.name}(params as any).promise();
   }`
@@ -162,6 +162,11 @@ type ParamsFrom<K extends keyof AWS${info.serviceKey}, Extras> = AWS${info.servi
   (param: infer P, callback: (...args: any) => void): Request<infer R, any>;
   (callback: (...args: any) => void): any;
 } ? P & Extras: never;
+// @ts-ignore
+type RawParamsFrom<K extends keyof AWS${info.serviceKey}> = AWS${info.serviceKey}[K] extends {
+  (param: infer P, callback: (...args: any) => void): Request<infer R, any>;
+  (callback: (...args: any) => void): any;
+} ? P: never;
  
 export class ${info.serviceKey} {
   private constructor(private readonly client: AWS${info.serviceKey}) {}
