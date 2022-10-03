@@ -94,7 +94,7 @@ export default class Generator {
   }
 
   private funcFrom(service: string, it: {name: string, requiredParams: string[]; inputs: string[]; outputs: string[]; info?: ResultInfo}): string {
-    if(it.info && it.info.resultKey && typeof it.info.resultKey === 'string' && !Array.isArray(it.info?.inputToken ?? [])) {
+    if(it.info && it.info.resultKey && typeof it.info.resultKey === 'string' && !Array.isArray(it.info?.inputToken)) {
       const {inputToken, limitKey} = it.info;
       const omits = [inputToken, limitKey].filter(key => !!key && key !== it.info?.inputToken && key !== it.info?.limitKey).map(it => `'${it}'`);
       const omitPrefix = omits.length > 0 ? 'Omit<' : '';
