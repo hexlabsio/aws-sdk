@@ -105,7 +105,7 @@ export default class Generator {
       const dig = parts.length ? `.${this.extract(parts)}` : '';
       const tokenParts = it.info.outputToken?.split?.('.') ?? [];
       const digToken = tokenParts.length ? `.${this.extract(tokenParts)}` : '';
-      return `  async ${it.name}(params: { [K in keyof ${omitPrefix}ParamsFrom<'${it.name}', ${extras}>${omitPostFix}]: ParamsFrom<'${it.name}', ${extras}>[K]}): Promise<{ next?: string | number; totalItems: number; member: { [K in keyof ReturnTypeFrom<'${it.name}'>]-?: ReturnTypeFrom<'${it.name}'>[K]}${digger} }> {
+      return `  async ${it.name}(params: { [K in keyof ${omitPrefix}ParamsFrom<'${it.name}', ${extras}>${omitPostFix}]: ParamsFrom<'${it.name}', ${extras}>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'${it.name}'>]-?: ReturnTypeFrom<'${it.name}'>[K]}${digger}, undefined>}> {
     // ${JSON.stringify(it.info)}
     const {${it.info?.inputToken ? 'next' : ''}${it.info?.limitKey ? it.info?.inputToken ? ', limit, ' : 'limit, ' : it.info?.inputToken ? ', ': ''} ...otherParams} = params ?? {};
     const nextTokenPart = ${it.info?.inputToken ? `next ? { ${it.info?.inputToken}: JSON.parse(next) } : {}`: '{}'};
