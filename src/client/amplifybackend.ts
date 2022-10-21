@@ -141,15 +141,15 @@ export class AmplifyBackend {
   async listBackendJobs(params: { [K in keyof ParamsFrom<'listBackendJobs', { next?: string, limit?: number }>]: ParamsFrom<'listBackendJobs', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listBackendJobs'>]-?: ReturnTypeFrom<'listBackendJobs'>[K]}['Jobs'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"Jobs"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listBackendJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBackendJobs' })).toString('base64');
     const member = (Array.isArray(result.Jobs ?? []) ? (result.Jobs ?? []) : [result.Jobs]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

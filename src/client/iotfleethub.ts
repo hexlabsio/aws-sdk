@@ -46,15 +46,15 @@ export class IoTFleetHub {
   async listApplications(params: { [K in keyof ParamsFrom<'listApplications', { next?: string }>]: ParamsFrom<'listApplications', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listApplications'>]-?: ReturnTypeFrom<'listApplications'>[K]}['applicationSummaries'], undefined>}> {
     // {"inputToken":"nextToken","outputToken":"nextToken","resultKey":"applicationSummaries"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listApplications({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listApplications' })).toString('base64');
     const member = (Array.isArray(result.applicationSummaries ?? []) ? (result.applicationSummaries ?? []) : [result.applicationSummaries]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

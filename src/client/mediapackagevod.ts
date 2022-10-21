@@ -81,45 +81,45 @@ export class MediaPackageVod {
   async listAssets(params: { [K in keyof ParamsFrom<'listAssets', { next?: string, limit?: number }>]: ParamsFrom<'listAssets', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listAssets'>]-?: ReturnTypeFrom<'listAssets'>[K]}['Assets'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"Assets"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listAssets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAssets' })).toString('base64');
     const member = (Array.isArray(result.Assets ?? []) ? (result.Assets ?? []) : [result.Assets]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listPackagingConfigurations(params: { [K in keyof ParamsFrom<'listPackagingConfigurations', { next?: string, limit?: number }>]: ParamsFrom<'listPackagingConfigurations', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listPackagingConfigurations'>]-?: ReturnTypeFrom<'listPackagingConfigurations'>[K]}['PackagingConfigurations'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"PackagingConfigurations"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPackagingConfigurations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPackagingConfigurations' })).toString('base64');
     const member = (Array.isArray(result.PackagingConfigurations ?? []) ? (result.PackagingConfigurations ?? []) : [result.PackagingConfigurations]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listPackagingGroups(params: { [K in keyof ParamsFrom<'listPackagingGroups', { next?: string, limit?: number }>]: ParamsFrom<'listPackagingGroups', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listPackagingGroups'>]-?: ReturnTypeFrom<'listPackagingGroups'>[K]}['PackagingGroups'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"PackagingGroups"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPackagingGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPackagingGroups' })).toString('base64');
     const member = (Array.isArray(result.PackagingGroups ?? []) ? (result.PackagingGroups ?? []) : [result.PackagingGroups]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

@@ -161,15 +161,15 @@ export class Location {
   async getDevicePositionHistory(params: { [K in keyof ParamsFrom<'getDevicePositionHistory', { next?: string, limit?: number }>]: ParamsFrom<'getDevicePositionHistory', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getDevicePositionHistory'>]-?: ReturnTypeFrom<'getDevicePositionHistory'>[K]}['DevicePositions'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"DevicePositions"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getDevicePositionHistory({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getDevicePositionHistory' })).toString('base64');
     const member = (Array.isArray(result.DevicePositions ?? []) ? (result.DevicePositions ?? []) : [result.DevicePositions]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -206,90 +206,90 @@ export class Location {
   async listDevicePositions(params: { [K in keyof ParamsFrom<'listDevicePositions', { next?: string, limit?: number }>]: ParamsFrom<'listDevicePositions', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listDevicePositions'>]-?: ReturnTypeFrom<'listDevicePositions'>[K]}['Entries'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"Entries"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDevicePositions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDevicePositions' })).toString('base64');
     const member = (Array.isArray(result.Entries ?? []) ? (result.Entries ?? []) : [result.Entries]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listGeofenceCollections(params: { [K in keyof ParamsFrom<'listGeofenceCollections', { next?: string, limit?: number }>]: ParamsFrom<'listGeofenceCollections', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listGeofenceCollections'>]-?: ReturnTypeFrom<'listGeofenceCollections'>[K]}['Entries'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"Entries"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listGeofenceCollections({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGeofenceCollections' })).toString('base64');
     const member = (Array.isArray(result.Entries ?? []) ? (result.Entries ?? []) : [result.Entries]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listGeofences(params: { [K in keyof ParamsFrom<'listGeofences', { next?: string, limit?: number }>]: ParamsFrom<'listGeofences', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listGeofences'>]-?: ReturnTypeFrom<'listGeofences'>[K]}['Entries'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"Entries"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listGeofences({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGeofences' })).toString('base64');
     const member = (Array.isArray(result.Entries ?? []) ? (result.Entries ?? []) : [result.Entries]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listMaps(params: { [K in keyof ParamsFrom<'listMaps', { next?: string, limit?: number }>]: ParamsFrom<'listMaps', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listMaps'>]-?: ReturnTypeFrom<'listMaps'>[K]}['Entries'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"Entries"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listMaps({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMaps' })).toString('base64');
     const member = (Array.isArray(result.Entries ?? []) ? (result.Entries ?? []) : [result.Entries]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listPlaceIndexes(params: { [K in keyof ParamsFrom<'listPlaceIndexes', { next?: string, limit?: number }>]: ParamsFrom<'listPlaceIndexes', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listPlaceIndexes'>]-?: ReturnTypeFrom<'listPlaceIndexes'>[K]}['Entries'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"Entries"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPlaceIndexes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPlaceIndexes' })).toString('base64');
     const member = (Array.isArray(result.Entries ?? []) ? (result.Entries ?? []) : [result.Entries]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listRouteCalculators(params: { [K in keyof ParamsFrom<'listRouteCalculators', { next?: string, limit?: number }>]: ParamsFrom<'listRouteCalculators', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listRouteCalculators'>]-?: ReturnTypeFrom<'listRouteCalculators'>[K]}['Entries'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"Entries"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listRouteCalculators({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRouteCalculators' })).toString('base64');
     const member = (Array.isArray(result.Entries ?? []) ? (result.Entries ?? []) : [result.Entries]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -301,30 +301,30 @@ export class Location {
   async listTrackerConsumers(params: { [K in keyof ParamsFrom<'listTrackerConsumers', { next?: string, limit?: number }>]: ParamsFrom<'listTrackerConsumers', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listTrackerConsumers'>]-?: ReturnTypeFrom<'listTrackerConsumers'>[K]}['ConsumerArns'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"ConsumerArns"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listTrackerConsumers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTrackerConsumers' })).toString('base64');
     const member = (Array.isArray(result.ConsumerArns ?? []) ? (result.ConsumerArns ?? []) : [result.ConsumerArns]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listTrackers(params: { [K in keyof ParamsFrom<'listTrackers', { next?: string, limit?: number }>]: ParamsFrom<'listTrackers', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listTrackers'>]-?: ReturnTypeFrom<'listTrackers'>[K]}['Entries'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"Entries"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listTrackers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTrackers' })).toString('base64');
     const member = (Array.isArray(result.Entries ?? []) ? (result.Entries ?? []) : [result.Entries]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

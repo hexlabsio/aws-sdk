@@ -199,12 +199,12 @@ export class StorageGateway {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeCachediSCSIVolumes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.CachediSCSIVolumes ?? []) ? (result.CachediSCSIVolumes ?? []) : [result.CachediSCSIVolumes]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -254,57 +254,57 @@ export class StorageGateway {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeStorediSCSIVolumes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.StorediSCSIVolumes ?? []) ? (result.StorediSCSIVolumes ?? []) : [result.StorediSCSIVolumes]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeTapeArchives(params: { [K in keyof ParamsFrom<'describeTapeArchives', { next?: string, limit?: number }>]: ParamsFrom<'describeTapeArchives', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeTapeArchives'>]-?: ReturnTypeFrom<'describeTapeArchives'>[K]}['TapeArchives'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"Limit","outputToken":"Marker","resultKey":"TapeArchives"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeTapeArchives({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeTapeArchives' })).toString('base64');
     const member = (Array.isArray(result.TapeArchives ?? []) ? (result.TapeArchives ?? []) : [result.TapeArchives]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeTapeRecoveryPoints(params: { [K in keyof ParamsFrom<'describeTapeRecoveryPoints', { next?: string, limit?: number }>]: ParamsFrom<'describeTapeRecoveryPoints', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeTapeRecoveryPoints'>]-?: ReturnTypeFrom<'describeTapeRecoveryPoints'>[K]}['TapeRecoveryPointInfos'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"Limit","outputToken":"Marker","resultKey":"TapeRecoveryPointInfos"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeTapeRecoveryPoints({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeTapeRecoveryPoints' })).toString('base64');
     const member = (Array.isArray(result.TapeRecoveryPointInfos ?? []) ? (result.TapeRecoveryPointInfos ?? []) : [result.TapeRecoveryPointInfos]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeTapes(params: { [K in keyof ParamsFrom<'describeTapes', { next?: string, limit?: number }>]: ParamsFrom<'describeTapes', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeTapes'>]-?: ReturnTypeFrom<'describeTapes'>[K]}['Tapes'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"Limit","outputToken":"Marker","resultKey":"Tapes"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeTapes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeTapes' })).toString('base64');
     const member = (Array.isArray(result.Tapes ?? []) ? (result.Tapes ?? []) : [result.Tapes]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -316,15 +316,15 @@ export class StorageGateway {
   async describeVTLDevices(params: { [K in keyof ParamsFrom<'describeVTLDevices', { next?: string, limit?: number }>]: ParamsFrom<'describeVTLDevices', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeVTLDevices'>]-?: ReturnTypeFrom<'describeVTLDevices'>[K]}['VTLDevices'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"Limit","outputToken":"Marker","resultKey":"VTLDevices"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeVTLDevices({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeVTLDevices' })).toString('base64');
     const member = (Array.isArray(result.VTLDevices ?? []) ? (result.VTLDevices ?? []) : [result.VTLDevices]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -361,45 +361,45 @@ export class StorageGateway {
   async listFileShares(params: { [K in keyof ParamsFrom<'listFileShares', { next?: string, limit?: number }>]: ParamsFrom<'listFileShares', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listFileShares'>]-?: ReturnTypeFrom<'listFileShares'>[K]}['FileShareInfoList'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"Limit","outputToken":"NextMarker","resultKey":"FileShareInfoList"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listFileShares({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listFileShares' })).toString('base64');
     const member = (Array.isArray(result.FileShareInfoList ?? []) ? (result.FileShareInfoList ?? []) : [result.FileShareInfoList]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listFileSystemAssociations(params: { [K in keyof ParamsFrom<'listFileSystemAssociations', { next?: string, limit?: number }>]: ParamsFrom<'listFileSystemAssociations', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listFileSystemAssociations'>]-?: ReturnTypeFrom<'listFileSystemAssociations'>[K]}['FileSystemAssociationSummaryList'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"Limit","outputToken":"NextMarker","resultKey":"FileSystemAssociationSummaryList"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listFileSystemAssociations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listFileSystemAssociations' })).toString('base64');
     const member = (Array.isArray(result.FileSystemAssociationSummaryList ?? []) ? (result.FileSystemAssociationSummaryList ?? []) : [result.FileSystemAssociationSummaryList]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listGateways(params: { [K in keyof ParamsFrom<'listGateways', { next?: string, limit?: number }>]: ParamsFrom<'listGateways', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listGateways'>]-?: ReturnTypeFrom<'listGateways'>[K]}['Gateways'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"Limit","outputToken":"Marker","resultKey":"Gateways"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listGateways({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listGateways' })).toString('base64');
     const member = (Array.isArray(result.Gateways ?? []) ? (result.Gateways ?? []) : [result.Gateways]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -409,57 +409,57 @@ export class StorageGateway {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.listLocalDisks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.Disks ?? []) ? (result.Disks ?? []) : [result.Disks]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listTagsForResource(params: { [K in keyof ParamsFrom<'listTagsForResource', { next?: string, limit?: number }>]: ParamsFrom<'listTagsForResource', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listTagsForResource'>]-?: ReturnTypeFrom<'listTagsForResource'>[K]}['Tags'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"Limit","outputToken":"Marker","resultKey":"Tags"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listTagsForResource({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listTagsForResource' })).toString('base64');
     const member = (Array.isArray(result.Tags ?? []) ? (result.Tags ?? []) : [result.Tags]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listTapePools(params: { [K in keyof ParamsFrom<'listTapePools', { next?: string, limit?: number }>]: ParamsFrom<'listTapePools', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listTapePools'>]-?: ReturnTypeFrom<'listTapePools'>[K]}['PoolInfos'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"Limit","outputToken":"Marker","resultKey":"PoolInfos"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listTapePools({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listTapePools' })).toString('base64');
     const member = (Array.isArray(result.PoolInfos ?? []) ? (result.PoolInfos ?? []) : [result.PoolInfos]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listTapes(params: { [K in keyof ParamsFrom<'listTapes', { next?: string, limit?: number }>]: ParamsFrom<'listTapes', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listTapes'>]-?: ReturnTypeFrom<'listTapes'>[K]}['TapeInfos'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"Limit","outputToken":"Marker","resultKey":"TapeInfos"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listTapes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listTapes' })).toString('base64');
     const member = (Array.isArray(result.TapeInfos ?? []) ? (result.TapeInfos ?? []) : [result.TapeInfos]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -474,27 +474,27 @@ export class StorageGateway {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.listVolumeRecoveryPoints({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.VolumeRecoveryPointInfos ?? []) ? (result.VolumeRecoveryPointInfos ?? []) : [result.VolumeRecoveryPointInfos]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listVolumes(params: { [K in keyof ParamsFrom<'listVolumes', { next?: string, limit?: number }>]: ParamsFrom<'listVolumes', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listVolumes'>]-?: ReturnTypeFrom<'listVolumes'>[K]}['VolumeInfos'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"Limit","outputToken":"Marker","resultKey":"VolumeInfos"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listVolumes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listVolumes' })).toString('base64');
     const member = (Array.isArray(result.VolumeInfos ?? []) ? (result.VolumeInfos ?? []) : [result.VolumeInfos]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

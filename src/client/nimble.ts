@@ -156,135 +156,135 @@ export class Nimble {
   async listEulaAcceptances(params: { [K in keyof ParamsFrom<'listEulaAcceptances', { next?: string }>]: ParamsFrom<'listEulaAcceptances', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listEulaAcceptances'>]-?: ReturnTypeFrom<'listEulaAcceptances'>[K]}['eulaAcceptances'], undefined>}> {
     // {"inputToken":"nextToken","outputToken":"nextToken","resultKey":"eulaAcceptances"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listEulaAcceptances({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEulaAcceptances' })).toString('base64');
     const member = (Array.isArray(result.eulaAcceptances ?? []) ? (result.eulaAcceptances ?? []) : [result.eulaAcceptances]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listEulas(params: { [K in keyof ParamsFrom<'listEulas', { next?: string }>]: ParamsFrom<'listEulas', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listEulas'>]-?: ReturnTypeFrom<'listEulas'>[K]}['eulas'], undefined>}> {
     // {"inputToken":"nextToken","outputToken":"nextToken","resultKey":"eulas"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listEulas({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEulas' })).toString('base64');
     const member = (Array.isArray(result.eulas ?? []) ? (result.eulas ?? []) : [result.eulas]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listLaunchProfileMembers(params: { [K in keyof ParamsFrom<'listLaunchProfileMembers', { next?: string, limit?: number }>]: ParamsFrom<'listLaunchProfileMembers', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listLaunchProfileMembers'>]-?: ReturnTypeFrom<'listLaunchProfileMembers'>[K]}['members'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"members"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listLaunchProfileMembers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listLaunchProfileMembers' })).toString('base64');
     const member = (Array.isArray(result.members ?? []) ? (result.members ?? []) : [result.members]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listLaunchProfiles(params: { [K in keyof ParamsFrom<'listLaunchProfiles', { next?: string, limit?: number }>]: ParamsFrom<'listLaunchProfiles', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listLaunchProfiles'>]-?: ReturnTypeFrom<'listLaunchProfiles'>[K]}['launchProfiles'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"launchProfiles"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listLaunchProfiles({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listLaunchProfiles' })).toString('base64');
     const member = (Array.isArray(result.launchProfiles ?? []) ? (result.launchProfiles ?? []) : [result.launchProfiles]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listStreamingImages(params: { [K in keyof ParamsFrom<'listStreamingImages', { next?: string }>]: ParamsFrom<'listStreamingImages', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listStreamingImages'>]-?: ReturnTypeFrom<'listStreamingImages'>[K]}['streamingImages'], undefined>}> {
     // {"inputToken":"nextToken","outputToken":"nextToken","resultKey":"streamingImages"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listStreamingImages({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStreamingImages' })).toString('base64');
     const member = (Array.isArray(result.streamingImages ?? []) ? (result.streamingImages ?? []) : [result.streamingImages]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listStreamingSessions(params: { [K in keyof ParamsFrom<'listStreamingSessions', { next?: string }>]: ParamsFrom<'listStreamingSessions', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listStreamingSessions'>]-?: ReturnTypeFrom<'listStreamingSessions'>[K]}['sessions'], undefined>}> {
     // {"inputToken":"nextToken","outputToken":"nextToken","resultKey":"sessions"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listStreamingSessions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStreamingSessions' })).toString('base64');
     const member = (Array.isArray(result.sessions ?? []) ? (result.sessions ?? []) : [result.sessions]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listStudioComponents(params: { [K in keyof ParamsFrom<'listStudioComponents', { next?: string, limit?: number }>]: ParamsFrom<'listStudioComponents', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listStudioComponents'>]-?: ReturnTypeFrom<'listStudioComponents'>[K]}['studioComponents'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"studioComponents"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listStudioComponents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStudioComponents' })).toString('base64');
     const member = (Array.isArray(result.studioComponents ?? []) ? (result.studioComponents ?? []) : [result.studioComponents]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listStudioMembers(params: { [K in keyof ParamsFrom<'listStudioMembers', { next?: string, limit?: number }>]: ParamsFrom<'listStudioMembers', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listStudioMembers'>]-?: ReturnTypeFrom<'listStudioMembers'>[K]}['members'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"members"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listStudioMembers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStudioMembers' })).toString('base64');
     const member = (Array.isArray(result.members ?? []) ? (result.members ?? []) : [result.members]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listStudios(params: { [K in keyof ParamsFrom<'listStudios', { next?: string }>]: ParamsFrom<'listStudios', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listStudios'>]-?: ReturnTypeFrom<'listStudios'>[K]}['studios'], undefined>}> {
     // {"inputToken":"nextToken","outputToken":"nextToken","resultKey":"studios"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listStudios({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStudios' })).toString('base64');
     const member = (Array.isArray(result.studios ?? []) ? (result.studios ?? []) : [result.studios]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

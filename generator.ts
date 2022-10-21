@@ -108,15 +108,15 @@ export default class Generator {
       return `  async ${it.name}(params: { [K in keyof ${omitPrefix}ParamsFrom<'${it.name}', ${extras}>${omitPostFix}]: ParamsFrom<'${it.name}', ${extras}>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'${it.name}'>]-?: ReturnTypeFrom<'${it.name}'>[K]}${digger}, undefined>}> {
     // ${JSON.stringify(it.info)}
     const {${it.info?.inputToken ? 'next' : ''}${it.info?.limitKey ? it.info?.inputToken ? ', limit, ' : 'limit, ' : it.info?.inputToken ? ', ': ''} ...otherParams} = params ?? {};
-    const nextTokenPart = ${it.info?.inputToken ? `next ? { ${it.info?.inputToken}: JSON.parse(next) } : {}`: '{}'};
+    const nextTokenPart = ${it.info?.inputToken ? `next ? { ${it.info?.inputToken}: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {}`: '{}'};
     const limitTokenPart = ${it.info?.limitKey ? `limit ? { ${it.info?.limitKey}: limit } : {}`: '{}'};
     const result = await this.client.${it.name}({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = ${digToken ? `result${digToken}` : 'undefined'} ;
+    const nextToken = ${digToken ? `Buffer.from(JSON.stringify({ token: result${digToken}, operation: '${it.name}' })).toString('base64')` : 'undefined'};
     const member = (Array.isArray(result${dig} ?? []) ? (result${dig} ?? []) : [result${dig}]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }`
     }

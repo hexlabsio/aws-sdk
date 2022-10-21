@@ -111,60 +111,60 @@ export class Schemas {
   async listDiscoverers(params: { [K in keyof ParamsFrom<'listDiscoverers', { next?: string, limit?: number }>]: ParamsFrom<'listDiscoverers', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listDiscoverers'>]-?: ReturnTypeFrom<'listDiscoverers'>[K]}['Discoverers'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"Discoverers"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listDiscoverers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDiscoverers' })).toString('base64');
     const member = (Array.isArray(result.Discoverers ?? []) ? (result.Discoverers ?? []) : [result.Discoverers]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listRegistries(params: { [K in keyof ParamsFrom<'listRegistries', { next?: string, limit?: number }>]: ParamsFrom<'listRegistries', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listRegistries'>]-?: ReturnTypeFrom<'listRegistries'>[K]}['Registries'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"Registries"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listRegistries({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRegistries' })).toString('base64');
     const member = (Array.isArray(result.Registries ?? []) ? (result.Registries ?? []) : [result.Registries]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listSchemaVersions(params: { [K in keyof ParamsFrom<'listSchemaVersions', { next?: string, limit?: number }>]: ParamsFrom<'listSchemaVersions', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listSchemaVersions'>]-?: ReturnTypeFrom<'listSchemaVersions'>[K]}['SchemaVersions'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"SchemaVersions"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listSchemaVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSchemaVersions' })).toString('base64');
     const member = (Array.isArray(result.SchemaVersions ?? []) ? (result.SchemaVersions ?? []) : [result.SchemaVersions]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listSchemas(params: { [K in keyof ParamsFrom<'listSchemas', { next?: string, limit?: number }>]: ParamsFrom<'listSchemas', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listSchemas'>]-?: ReturnTypeFrom<'listSchemas'>[K]}['Schemas'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"Schemas"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listSchemas({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSchemas' })).toString('base64');
     const member = (Array.isArray(result.Schemas ?? []) ? (result.Schemas ?? []) : [result.Schemas]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -186,15 +186,15 @@ export class Schemas {
   async searchSchemas(params: { [K in keyof ParamsFrom<'searchSchemas', { next?: string, limit?: number }>]: ParamsFrom<'searchSchemas', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'searchSchemas'>]-?: ReturnTypeFrom<'searchSchemas'>[K]}['Schemas'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"Schemas"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.searchSchemas({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchSchemas' })).toString('base64');
     const member = (Array.isArray(result.Schemas ?? []) ? (result.Schemas ?? []) : [result.Schemas]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

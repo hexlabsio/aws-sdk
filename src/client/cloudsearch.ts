@@ -89,12 +89,12 @@ export class CloudSearch {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeAnalysisSchemes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.AnalysisSchemes ?? []) ? (result.AnalysisSchemes ?? []) : [result.AnalysisSchemes]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -114,12 +114,12 @@ export class CloudSearch {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeDomains({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.DomainStatusList ?? []) ? (result.DomainStatusList ?? []) : [result.DomainStatusList]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -129,12 +129,12 @@ export class CloudSearch {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeExpressions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.Expressions ?? []) ? (result.Expressions ?? []) : [result.Expressions]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -144,12 +144,12 @@ export class CloudSearch {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeIndexFields({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.IndexFields ?? []) ? (result.IndexFields ?? []) : [result.IndexFields]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -169,12 +169,12 @@ export class CloudSearch {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeSuggesters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.Suggesters ?? []) ? (result.Suggesters ?? []) : [result.Suggesters]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

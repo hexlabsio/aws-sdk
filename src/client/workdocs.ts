@@ -131,15 +131,15 @@ export class WorkDocs {
   async describeDocumentVersions(params: { [K in keyof ParamsFrom<'describeDocumentVersions', { next?: string, limit?: number }>]: ParamsFrom<'describeDocumentVersions', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeDocumentVersions'>]-?: ReturnTypeFrom<'describeDocumentVersions'>[K]}['DocumentVersions'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"Limit","outputToken":"Marker","resultKey":"DocumentVersions"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeDocumentVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDocumentVersions' })).toString('base64');
     const member = (Array.isArray(result.DocumentVersions ?? []) ? (result.DocumentVersions ?? []) : [result.DocumentVersions]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -171,15 +171,15 @@ export class WorkDocs {
   async describeUsers(params: { [K in keyof ParamsFrom<'describeUsers', { next?: string, limit?: number }>]: ParamsFrom<'describeUsers', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeUsers'>]-?: ReturnTypeFrom<'describeUsers'>[K]}['Users'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"Limit","outputToken":"Marker","resultKey":"Users"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeUsers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeUsers' })).toString('base64');
     const member = (Array.isArray(result.Users ?? []) ? (result.Users ?? []) : [result.Users]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

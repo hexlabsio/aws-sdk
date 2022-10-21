@@ -56,15 +56,15 @@ export class DataPipeline {
   async describeObjects(params: { [K in keyof ParamsFrom<'describeObjects', { next?: string }>]: ParamsFrom<'describeObjects', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeObjects'>]-?: ReturnTypeFrom<'describeObjects'>[K]}['pipelineObjects'], undefined>}> {
     // {"inputToken":"marker","moreResults":"hasMoreResults","outputToken":"marker","resultKey":"pipelineObjects"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.describeObjects({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.marker, operation: 'describeObjects' })).toString('base64');
     const member = (Array.isArray(result.pipelineObjects ?? []) ? (result.pipelineObjects ?? []) : [result.pipelineObjects]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -74,12 +74,12 @@ export class DataPipeline {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describePipelines({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.pipelineDescriptionList ?? []) ? (result.pipelineDescriptionList ?? []) : [result.pipelineDescriptionList]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -96,15 +96,15 @@ export class DataPipeline {
   async listPipelines(params: { [K in keyof ParamsFrom<'listPipelines', { next?: string }>]: ParamsFrom<'listPipelines', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listPipelines'>]-?: ReturnTypeFrom<'listPipelines'>[K]}['pipelineIdList'], undefined>}> {
     // {"inputToken":"marker","moreResults":"hasMoreResults","outputToken":"marker","resultKey":"pipelineIdList"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listPipelines({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.marker, operation: 'listPipelines' })).toString('base64');
     const member = (Array.isArray(result.pipelineIdList ?? []) ? (result.pipelineIdList ?? []) : [result.pipelineIdList]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -121,15 +121,15 @@ export class DataPipeline {
   async queryObjects(params: { [K in keyof ParamsFrom<'queryObjects', { next?: string, limit?: number }>]: ParamsFrom<'queryObjects', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'queryObjects'>]-?: ReturnTypeFrom<'queryObjects'>[K]}['ids'], undefined>}> {
     // {"inputToken":"marker","limitKey":"limit","moreResults":"hasMoreResults","outputToken":"marker","resultKey":"ids"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.queryObjects({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.marker, operation: 'queryObjects' })).toString('base64');
     const member = (Array.isArray(result.ids ?? []) ? (result.ids ?? []) : [result.ids]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

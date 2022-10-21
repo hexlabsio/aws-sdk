@@ -51,15 +51,15 @@ export class ImportExport {
   async listJobs(params: { [K in keyof ParamsFrom<'listJobs', { next?: string, limit?: number }>]: ParamsFrom<'listJobs', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listJobs'>]-?: ReturnTypeFrom<'listJobs'>[K]}['Jobs'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxJobs","moreResults":"IsTruncated","outputToken":"Jobs[-1].JobId","resultKey":"Jobs"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxJobs: limit } : {};
     const result = await this.client.listJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Jobs?.[result.Jobs?.length - 1]?.JobId ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Jobs?.[result.Jobs?.length - 1]?.JobId, operation: 'listJobs' })).toString('base64');
     const member = (Array.isArray(result.Jobs ?? []) ? (result.Jobs ?? []) : [result.Jobs]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

@@ -131,30 +131,30 @@ export class AutoScaling {
   async describeAutoScalingGroups(params: { [K in keyof ParamsFrom<'describeAutoScalingGroups', { next?: string, limit?: number }>]: ParamsFrom<'describeAutoScalingGroups', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeAutoScalingGroups'>]-?: ReturnTypeFrom<'describeAutoScalingGroups'>[K]}['AutoScalingGroups'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxRecords","outputToken":"NextToken","resultKey":"AutoScalingGroups"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeAutoScalingGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAutoScalingGroups' })).toString('base64');
     const member = (Array.isArray(result.AutoScalingGroups ?? []) ? (result.AutoScalingGroups ?? []) : [result.AutoScalingGroups]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeAutoScalingInstances(params: { [K in keyof ParamsFrom<'describeAutoScalingInstances', { next?: string, limit?: number }>]: ParamsFrom<'describeAutoScalingInstances', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeAutoScalingInstances'>]-?: ReturnTypeFrom<'describeAutoScalingInstances'>[K]}['AutoScalingInstances'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxRecords","outputToken":"NextToken","resultKey":"AutoScalingInstances"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeAutoScalingInstances({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAutoScalingInstances' })).toString('base64');
     const member = (Array.isArray(result.AutoScalingInstances ?? []) ? (result.AutoScalingInstances ?? []) : [result.AutoScalingInstances]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -171,15 +171,15 @@ export class AutoScaling {
   async describeLaunchConfigurations(params: { [K in keyof ParamsFrom<'describeLaunchConfigurations', { next?: string, limit?: number }>]: ParamsFrom<'describeLaunchConfigurations', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeLaunchConfigurations'>]-?: ReturnTypeFrom<'describeLaunchConfigurations'>[K]}['LaunchConfigurations'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxRecords","outputToken":"NextToken","resultKey":"LaunchConfigurations"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeLaunchConfigurations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeLaunchConfigurations' })).toString('base64');
     const member = (Array.isArray(result.LaunchConfigurations ?? []) ? (result.LaunchConfigurations ?? []) : [result.LaunchConfigurations]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -211,45 +211,45 @@ export class AutoScaling {
   async describeNotificationConfigurations(params: { [K in keyof ParamsFrom<'describeNotificationConfigurations', { next?: string, limit?: number }>]: ParamsFrom<'describeNotificationConfigurations', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeNotificationConfigurations'>]-?: ReturnTypeFrom<'describeNotificationConfigurations'>[K]}['NotificationConfigurations'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxRecords","outputToken":"NextToken","resultKey":"NotificationConfigurations"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeNotificationConfigurations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeNotificationConfigurations' })).toString('base64');
     const member = (Array.isArray(result.NotificationConfigurations ?? []) ? (result.NotificationConfigurations ?? []) : [result.NotificationConfigurations]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describePolicies(params: { [K in keyof ParamsFrom<'describePolicies', { next?: string, limit?: number }>]: ParamsFrom<'describePolicies', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describePolicies'>]-?: ReturnTypeFrom<'describePolicies'>[K]}['ScalingPolicies'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxRecords","outputToken":"NextToken","resultKey":"ScalingPolicies"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describePolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describePolicies' })).toString('base64');
     const member = (Array.isArray(result.ScalingPolicies ?? []) ? (result.ScalingPolicies ?? []) : [result.ScalingPolicies]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeScalingActivities(params: { [K in keyof ParamsFrom<'describeScalingActivities', { next?: string, limit?: number }>]: ParamsFrom<'describeScalingActivities', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeScalingActivities'>]-?: ReturnTypeFrom<'describeScalingActivities'>[K]}['Activities'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxRecords","outputToken":"NextToken","resultKey":"Activities"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeScalingActivities({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeScalingActivities' })).toString('base64');
     const member = (Array.isArray(result.Activities ?? []) ? (result.Activities ?? []) : [result.Activities]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -261,30 +261,30 @@ export class AutoScaling {
   async describeScheduledActions(params: { [K in keyof ParamsFrom<'describeScheduledActions', { next?: string, limit?: number }>]: ParamsFrom<'describeScheduledActions', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeScheduledActions'>]-?: ReturnTypeFrom<'describeScheduledActions'>[K]}['ScheduledUpdateGroupActions'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxRecords","outputToken":"NextToken","resultKey":"ScheduledUpdateGroupActions"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeScheduledActions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeScheduledActions' })).toString('base64');
     const member = (Array.isArray(result.ScheduledUpdateGroupActions ?? []) ? (result.ScheduledUpdateGroupActions ?? []) : [result.ScheduledUpdateGroupActions]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeTags(params: { [K in keyof ParamsFrom<'describeTags', { next?: string, limit?: number }>]: ParamsFrom<'describeTags', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeTags'>]-?: ReturnTypeFrom<'describeTags'>[K]}['Tags'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxRecords","outputToken":"NextToken","resultKey":"Tags"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeTags({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeTags' })).toString('base64');
     const member = (Array.isArray(result.Tags ?? []) ? (result.Tags ?? []) : [result.Tags]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

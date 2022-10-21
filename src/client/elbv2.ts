@@ -96,15 +96,15 @@ export class ELBv2 {
   async describeListeners(params: { [K in keyof ParamsFrom<'describeListeners', { next?: string }>]: ParamsFrom<'describeListeners', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeListeners'>]-?: ReturnTypeFrom<'describeListeners'>[K]}['Listeners'], undefined>}> {
     // {"inputToken":"Marker","outputToken":"NextMarker","resultKey":"Listeners"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.describeListeners({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'describeListeners' })).toString('base64');
     const member = (Array.isArray(result.Listeners ?? []) ? (result.Listeners ?? []) : [result.Listeners]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -116,15 +116,15 @@ export class ELBv2 {
   async describeLoadBalancers(params: { [K in keyof ParamsFrom<'describeLoadBalancers', { next?: string }>]: ParamsFrom<'describeLoadBalancers', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeLoadBalancers'>]-?: ReturnTypeFrom<'describeLoadBalancers'>[K]}['LoadBalancers'], undefined>}> {
     // {"inputToken":"Marker","outputToken":"NextMarker","resultKey":"LoadBalancers"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.describeLoadBalancers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'describeLoadBalancers' })).toString('base64');
     const member = (Array.isArray(result.LoadBalancers ?? []) ? (result.LoadBalancers ?? []) : [result.LoadBalancers]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -151,15 +151,15 @@ export class ELBv2 {
   async describeTargetGroups(params: { [K in keyof ParamsFrom<'describeTargetGroups', { next?: string }>]: ParamsFrom<'describeTargetGroups', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeTargetGroups'>]-?: ReturnTypeFrom<'describeTargetGroups'>[K]}['TargetGroups'], undefined>}> {
     // {"inputToken":"Marker","outputToken":"NextMarker","resultKey":"TargetGroups"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.describeTargetGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'describeTargetGroups' })).toString('base64');
     const member = (Array.isArray(result.TargetGroups ?? []) ? (result.TargetGroups ?? []) : [result.TargetGroups]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

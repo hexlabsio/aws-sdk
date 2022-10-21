@@ -236,15 +236,15 @@ export class WorkMail {
   async listAvailabilityConfigurations(params: { [K in keyof ParamsFrom<'listAvailabilityConfigurations', { next?: string, limit?: number }>]: ParamsFrom<'listAvailabilityConfigurations', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listAvailabilityConfigurations'>]-?: ReturnTypeFrom<'listAvailabilityConfigurations'>[K]}['AvailabilityConfigurations'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"AvailabilityConfigurations"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listAvailabilityConfigurations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAvailabilityConfigurations' })).toString('base64');
     const member = (Array.isArray(result.AvailabilityConfigurations ?? []) ? (result.AvailabilityConfigurations ?? []) : [result.AvailabilityConfigurations]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

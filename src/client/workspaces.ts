@@ -176,30 +176,30 @@ export class WorkSpaces {
   async describeWorkspaceBundles(params: { [K in keyof ParamsFrom<'describeWorkspaceBundles', { next?: string }>]: ParamsFrom<'describeWorkspaceBundles', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeWorkspaceBundles'>]-?: ReturnTypeFrom<'describeWorkspaceBundles'>[K]}['Bundles'], undefined>}> {
     // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"Bundles"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.describeWorkspaceBundles({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeWorkspaceBundles' })).toString('base64');
     const member = (Array.isArray(result.Bundles ?? []) ? (result.Bundles ?? []) : [result.Bundles]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeWorkspaceDirectories(params: { [K in keyof ParamsFrom<'describeWorkspaceDirectories', { next?: string }>]: ParamsFrom<'describeWorkspaceDirectories', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeWorkspaceDirectories'>]-?: ReturnTypeFrom<'describeWorkspaceDirectories'>[K]}['Directories'], undefined>}> {
     // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"Directories"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.describeWorkspaceDirectories({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeWorkspaceDirectories' })).toString('base64');
     const member = (Array.isArray(result.Directories ?? []) ? (result.Directories ?? []) : [result.Directories]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -221,15 +221,15 @@ export class WorkSpaces {
   async describeWorkspaces(params: { [K in keyof ParamsFrom<'describeWorkspaces', { next?: string, limit?: number }>]: ParamsFrom<'describeWorkspaces', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeWorkspaces'>]-?: ReturnTypeFrom<'describeWorkspaces'>[K]}['Workspaces'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"Workspaces"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeWorkspaces({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeWorkspaces' })).toString('base64');
     const member = (Array.isArray(result.Workspaces ?? []) ? (result.Workspaces ?? []) : [result.Workspaces]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

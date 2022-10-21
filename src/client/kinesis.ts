@@ -61,15 +61,15 @@ export class Kinesis {
   async describeStream(params: { [K in keyof ParamsFrom<'describeStream', { next?: string, limit?: number }>]: ParamsFrom<'describeStream', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeStream'>]-?: ReturnTypeFrom<'describeStream'>[K]}['StreamDescription']['Shards'], undefined>}> {
     // {"inputToken":"ExclusiveStartShardId","limitKey":"Limit","moreResults":"StreamDescription.HasMoreShards","outputToken":"StreamDescription.Shards[-1].ShardId","resultKey":"StreamDescription.Shards"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { ExclusiveStartShardId: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { ExclusiveStartShardId: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeStream({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.StreamDescription?.Shards?.[result.StreamDescription?.Shards?.length - 1]?.ShardId ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.StreamDescription?.Shards?.[result.StreamDescription?.Shards?.length - 1]?.ShardId, operation: 'describeStream' })).toString('base64');
     const member = (Array.isArray(result.StreamDescription?.Shards ?? []) ? (result.StreamDescription?.Shards ?? []) : [result.StreamDescription?.Shards]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -121,15 +121,15 @@ export class Kinesis {
   async listStreams(params: { [K in keyof ParamsFrom<'listStreams', { next?: string, limit?: number }>]: ParamsFrom<'listStreams', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listStreams'>]-?: ReturnTypeFrom<'listStreams'>[K]}['StreamNames'], undefined>}> {
     // {"inputToken":"ExclusiveStartStreamName","limitKey":"Limit","moreResults":"HasMoreStreams","outputToken":"StreamNames[-1]","resultKey":"StreamNames"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { ExclusiveStartStreamName: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { ExclusiveStartStreamName: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listStreams({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.StreamNames?.[result.StreamNames?.length - 1] ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.StreamNames?.[result.StreamNames?.length - 1], operation: 'listStreams' })).toString('base64');
     const member = (Array.isArray(result.StreamNames ?? []) ? (result.StreamNames ?? []) : [result.StreamNames]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

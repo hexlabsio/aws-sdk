@@ -61,60 +61,60 @@ export class ElasticTranscoder {
   async listJobsByPipeline(params: { [K in keyof ParamsFrom<'listJobsByPipeline', { next?: string }>]: ParamsFrom<'listJobsByPipeline', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listJobsByPipeline'>]-?: ReturnTypeFrom<'listJobsByPipeline'>[K]}['Jobs'], undefined>}> {
     // {"inputToken":"PageToken","outputToken":"NextPageToken","resultKey":"Jobs"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { PageToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { PageToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listJobsByPipeline({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextPageToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextPageToken, operation: 'listJobsByPipeline' })).toString('base64');
     const member = (Array.isArray(result.Jobs ?? []) ? (result.Jobs ?? []) : [result.Jobs]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listJobsByStatus(params: { [K in keyof ParamsFrom<'listJobsByStatus', { next?: string }>]: ParamsFrom<'listJobsByStatus', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listJobsByStatus'>]-?: ReturnTypeFrom<'listJobsByStatus'>[K]}['Jobs'], undefined>}> {
     // {"inputToken":"PageToken","outputToken":"NextPageToken","resultKey":"Jobs"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { PageToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { PageToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listJobsByStatus({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextPageToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextPageToken, operation: 'listJobsByStatus' })).toString('base64');
     const member = (Array.isArray(result.Jobs ?? []) ? (result.Jobs ?? []) : [result.Jobs]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listPipelines(params: { [K in keyof ParamsFrom<'listPipelines', { next?: string }>]: ParamsFrom<'listPipelines', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listPipelines'>]-?: ReturnTypeFrom<'listPipelines'>[K]}['Pipelines'], undefined>}> {
     // {"inputToken":"PageToken","outputToken":"NextPageToken","resultKey":"Pipelines"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { PageToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { PageToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listPipelines({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextPageToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextPageToken, operation: 'listPipelines' })).toString('base64');
     const member = (Array.isArray(result.Pipelines ?? []) ? (result.Pipelines ?? []) : [result.Pipelines]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listPresets(params: { [K in keyof ParamsFrom<'listPresets', { next?: string }>]: ParamsFrom<'listPresets', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listPresets'>]-?: ReturnTypeFrom<'listPresets'>[K]}['Presets'], undefined>}> {
     // {"inputToken":"PageToken","outputToken":"NextPageToken","resultKey":"Presets"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { PageToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { PageToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listPresets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextPageToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextPageToken, operation: 'listPresets' })).toString('base64');
     const member = (Array.isArray(result.Presets ?? []) ? (result.Presets ?? []) : [result.Presets]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

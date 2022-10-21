@@ -91,15 +91,15 @@ export class MigrationHubOrchestrator {
   async listPlugins(params: { [K in keyof ParamsFrom<'listPlugins', { next?: string, limit?: number }>]: ParamsFrom<'listPlugins', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listPlugins'>]-?: ReturnTypeFrom<'listPlugins'>[K]}['plugins'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"plugins"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listPlugins({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listPlugins' })).toString('base64');
     const member = (Array.isArray(result.plugins ?? []) ? (result.plugins ?? []) : [result.plugins]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -111,90 +111,90 @@ export class MigrationHubOrchestrator {
   async listTemplateStepGroups(params: { [K in keyof ParamsFrom<'listTemplateStepGroups', { next?: string, limit?: number }>]: ParamsFrom<'listTemplateStepGroups', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listTemplateStepGroups'>]-?: ReturnTypeFrom<'listTemplateStepGroups'>[K]}['templateStepGroupSummary'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"templateStepGroupSummary"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listTemplateStepGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTemplateStepGroups' })).toString('base64');
     const member = (Array.isArray(result.templateStepGroupSummary ?? []) ? (result.templateStepGroupSummary ?? []) : [result.templateStepGroupSummary]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listTemplateSteps(params: { [K in keyof ParamsFrom<'listTemplateSteps', { next?: string, limit?: number }>]: ParamsFrom<'listTemplateSteps', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listTemplateSteps'>]-?: ReturnTypeFrom<'listTemplateSteps'>[K]}['templateStepSummaryList'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"templateStepSummaryList"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listTemplateSteps({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTemplateSteps' })).toString('base64');
     const member = (Array.isArray(result.templateStepSummaryList ?? []) ? (result.templateStepSummaryList ?? []) : [result.templateStepSummaryList]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listTemplates(params: { [K in keyof ParamsFrom<'listTemplates', { next?: string, limit?: number }>]: ParamsFrom<'listTemplates', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listTemplates'>]-?: ReturnTypeFrom<'listTemplates'>[K]}['templateSummary'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"templateSummary"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listTemplates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTemplates' })).toString('base64');
     const member = (Array.isArray(result.templateSummary ?? []) ? (result.templateSummary ?? []) : [result.templateSummary]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listWorkflowStepGroups(params: { [K in keyof ParamsFrom<'listWorkflowStepGroups', { next?: string, limit?: number }>]: ParamsFrom<'listWorkflowStepGroups', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listWorkflowStepGroups'>]-?: ReturnTypeFrom<'listWorkflowStepGroups'>[K]}['workflowStepGroupsSummary'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"workflowStepGroupsSummary"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listWorkflowStepGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorkflowStepGroups' })).toString('base64');
     const member = (Array.isArray(result.workflowStepGroupsSummary ?? []) ? (result.workflowStepGroupsSummary ?? []) : [result.workflowStepGroupsSummary]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listWorkflowSteps(params: { [K in keyof ParamsFrom<'listWorkflowSteps', { next?: string, limit?: number }>]: ParamsFrom<'listWorkflowSteps', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listWorkflowSteps'>]-?: ReturnTypeFrom<'listWorkflowSteps'>[K]}['workflowStepsSummary'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"workflowStepsSummary"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listWorkflowSteps({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorkflowSteps' })).toString('base64');
     const member = (Array.isArray(result.workflowStepsSummary ?? []) ? (result.workflowStepsSummary ?? []) : [result.workflowStepsSummary]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listWorkflows(params: { [K in keyof ParamsFrom<'listWorkflows', { next?: string, limit?: number }>]: ParamsFrom<'listWorkflows', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listWorkflows'>]-?: ReturnTypeFrom<'listWorkflows'>[K]}['migrationWorkflowSummary'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"migrationWorkflowSummary"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listWorkflows({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorkflows' })).toString('base64');
     const member = (Array.isArray(result.migrationWorkflowSummary ?? []) ? (result.migrationWorkflowSummary ?? []) : [result.migrationWorkflowSummary]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

@@ -56,15 +56,15 @@ export class CloudWatch {
   async describeAlarmHistory(params: { [K in keyof ParamsFrom<'describeAlarmHistory', { next?: string, limit?: number }>]: ParamsFrom<'describeAlarmHistory', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeAlarmHistory'>]-?: ReturnTypeFrom<'describeAlarmHistory'>[K]}['AlarmHistoryItems'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxRecords","outputToken":"NextToken","resultKey":"AlarmHistoryItems"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeAlarmHistory({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAlarmHistory' })).toString('base64');
     const member = (Array.isArray(result.AlarmHistoryItems ?? []) ? (result.AlarmHistoryItems ?? []) : [result.AlarmHistoryItems]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -79,27 +79,27 @@ export class CloudWatch {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeAlarmsForMetric({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.MetricAlarms ?? []) ? (result.MetricAlarms ?? []) : [result.MetricAlarms]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeAnomalyDetectors(params: { [K in keyof ParamsFrom<'describeAnomalyDetectors', { next?: string, limit?: number }>]: ParamsFrom<'describeAnomalyDetectors', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeAnomalyDetectors'>]-?: ReturnTypeFrom<'describeAnomalyDetectors'>[K]}['AnomalyDetectors'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"AnomalyDetectors"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeAnomalyDetectors({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAnomalyDetectors' })).toString('base64');
     const member = (Array.isArray(result.AnomalyDetectors ?? []) ? (result.AnomalyDetectors ?? []) : [result.AnomalyDetectors]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -161,15 +161,15 @@ export class CloudWatch {
   async listDashboards(params: { [K in keyof ParamsFrom<'listDashboards', { next?: string }>]: ParamsFrom<'listDashboards', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listDashboards'>]-?: ReturnTypeFrom<'listDashboards'>[K]}['DashboardEntries'], undefined>}> {
     // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"DashboardEntries"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listDashboards({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDashboards' })).toString('base64');
     const member = (Array.isArray(result.DashboardEntries ?? []) ? (result.DashboardEntries ?? []) : [result.DashboardEntries]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -186,15 +186,15 @@ export class CloudWatch {
   async listMetrics(params: { [K in keyof ParamsFrom<'listMetrics', { next?: string }>]: ParamsFrom<'listMetrics', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listMetrics'>]-?: ReturnTypeFrom<'listMetrics'>[K]}['Metrics'], undefined>}> {
     // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"Metrics"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listMetrics({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMetrics' })).toString('base64');
     const member = (Array.isArray(result.Metrics ?? []) ? (result.Metrics ?? []) : [result.Metrics]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

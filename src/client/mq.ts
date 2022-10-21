@@ -96,15 +96,15 @@ export class MQ {
   async listBrokers(params: { [K in keyof ParamsFrom<'listBrokers', { next?: string, limit?: number }>]: ParamsFrom<'listBrokers', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listBrokers'>]-?: ReturnTypeFrom<'listBrokers'>[K]}['BrokerSummaries'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"BrokerSummaries"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listBrokers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBrokers' })).toString('base64');
     const member = (Array.isArray(result.BrokerSummaries ?? []) ? (result.BrokerSummaries ?? []) : [result.BrokerSummaries]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

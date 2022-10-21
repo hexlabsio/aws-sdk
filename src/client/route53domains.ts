@@ -101,45 +101,45 @@ export class Route53Domains {
   async listDomains(params: { [K in keyof ParamsFrom<'listDomains', { next?: string, limit?: number }>]: ParamsFrom<'listDomains', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listDomains'>]-?: ReturnTypeFrom<'listDomains'>[K]}['Domains'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxItems","outputToken":"NextPageMarker","resultKey":"Domains"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listDomains({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextPageMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextPageMarker, operation: 'listDomains' })).toString('base64');
     const member = (Array.isArray(result.Domains ?? []) ? (result.Domains ?? []) : [result.Domains]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listOperations(params: { [K in keyof ParamsFrom<'listOperations', { next?: string, limit?: number }>]: ParamsFrom<'listOperations', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listOperations'>]-?: ReturnTypeFrom<'listOperations'>[K]}['Operations'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxItems","outputToken":"NextPageMarker","resultKey":"Operations"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listOperations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextPageMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextPageMarker, operation: 'listOperations' })).toString('base64');
     const member = (Array.isArray(result.Operations ?? []) ? (result.Operations ?? []) : [result.Operations]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listPrices(params: { [K in keyof ParamsFrom<'listPrices', { next?: string, limit?: number }>]: ParamsFrom<'listPrices', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listPrices'>]-?: ReturnTypeFrom<'listPrices'>[K]}['Prices'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxItems","outputToken":"NextPageMarker","resultKey":"Prices"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listPrices({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextPageMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextPageMarker, operation: 'listPrices' })).toString('base64');
     const member = (Array.isArray(result.Prices ?? []) ? (result.Prices ?? []) : [result.Prices]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -206,15 +206,15 @@ export class Route53Domains {
   async viewBilling(params: { [K in keyof ParamsFrom<'viewBilling', { next?: string, limit?: number }>]: ParamsFrom<'viewBilling', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'viewBilling'>]-?: ReturnTypeFrom<'viewBilling'>[K]}['BillingRecords'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxItems","outputToken":"NextPageMarker","resultKey":"BillingRecords"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.viewBilling({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextPageMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextPageMarker, operation: 'viewBilling' })).toString('base64');
     const member = (Array.isArray(result.BillingRecords ?? []) ? (result.BillingRecords ?? []) : [result.BillingRecords]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
   

@@ -51,30 +51,30 @@ export class Support {
   async describeCases(params: { [K in keyof ParamsFrom<'describeCases', { next?: string, limit?: number }>]: ParamsFrom<'describeCases', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeCases'>]-?: ReturnTypeFrom<'describeCases'>[K]}['cases'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"cases"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeCases({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeCases' })).toString('base64');
     const member = (Array.isArray(result.cases ?? []) ? (result.cases ?? []) : [result.cases]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeCommunications(params: { [K in keyof ParamsFrom<'describeCommunications', { next?: string, limit?: number }>]: ParamsFrom<'describeCommunications', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeCommunications'>]-?: ReturnTypeFrom<'describeCommunications'>[K]}['communications'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"communications"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeCommunications({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeCommunications' })).toString('base64');
     const member = (Array.isArray(result.communications ?? []) ? (result.communications ?? []) : [result.communications]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -84,12 +84,12 @@ export class Support {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeServices({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.services ?? []) ? (result.services ?? []) : [result.services]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -104,12 +104,12 @@ export class Support {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeTrustedAdvisorCheckRefreshStatuses({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.statuses ?? []) ? (result.statuses ?? []) : [result.statuses]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -124,12 +124,12 @@ export class Support {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeTrustedAdvisorCheckSummaries({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.summaries ?? []) ? (result.summaries ?? []) : [result.summaries]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

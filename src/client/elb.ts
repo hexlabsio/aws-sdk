@@ -104,12 +104,12 @@ export class ELB {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeInstanceHealth({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.InstanceStates ?? []) ? (result.InstanceStates ?? []) : [result.InstanceStates]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -124,12 +124,12 @@ export class ELB {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeLoadBalancerPolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.PolicyDescriptions ?? []) ? (result.PolicyDescriptions ?? []) : [result.PolicyDescriptions]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -139,27 +139,27 @@ export class ELB {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeLoadBalancerPolicyTypes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.PolicyTypeDescriptions ?? []) ? (result.PolicyTypeDescriptions ?? []) : [result.PolicyTypeDescriptions]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeLoadBalancers(params: { [K in keyof ParamsFrom<'describeLoadBalancers', { next?: string }>]: ParamsFrom<'describeLoadBalancers', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeLoadBalancers'>]-?: ReturnTypeFrom<'describeLoadBalancers'>[K]}['LoadBalancerDescriptions'], undefined>}> {
     // {"inputToken":"Marker","outputToken":"NextMarker","resultKey":"LoadBalancerDescriptions"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.describeLoadBalancers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'describeLoadBalancers' })).toString('base64');
     const member = (Array.isArray(result.LoadBalancerDescriptions ?? []) ? (result.LoadBalancerDescriptions ?? []) : [result.LoadBalancerDescriptions]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

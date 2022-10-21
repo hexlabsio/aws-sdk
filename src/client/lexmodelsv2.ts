@@ -25,7 +25,7 @@ export class LexModelsV2 {
   public readonly signingRegion = undefined;
   public readonly service = 'models-v2-lex' as const;
   public readonly global = false as const;
-  public readonly category = 'Other' as const;
+  public readonly category = 'Machine Learning' as const;
   public readonly topLevelCalls = ["listBots","listExports","listImports"] as const;
   
   buildBotLocale: (params: RawParamsFrom<'buildBotLocale'>) => Promise<ReturnTypeFrom<'buildBotLocale'>>  = async params => {

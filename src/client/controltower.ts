@@ -46,15 +46,15 @@ export class ControlTower {
   async listEnabledControls(params: { [K in keyof ParamsFrom<'listEnabledControls', { next?: string, limit?: number }>]: ParamsFrom<'listEnabledControls', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listEnabledControls'>]-?: ReturnTypeFrom<'listEnabledControls'>[K]}['enabledControls'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"enabledControls"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listEnabledControls({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEnabledControls' })).toString('base64');
     const member = (Array.isArray(result.enabledControls ?? []) ? (result.enabledControls ?? []) : [result.enabledControls]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
   

@@ -144,12 +144,12 @@ export class OpsWorks {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeApps({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.Apps ?? []) ? (result.Apps ?? []) : [result.Apps]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -159,12 +159,12 @@ export class OpsWorks {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeCommands({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.Commands ?? []) ? (result.Commands ?? []) : [result.Commands]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -174,27 +174,27 @@ export class OpsWorks {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeDeployments({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.Deployments ?? []) ? (result.Deployments ?? []) : [result.Deployments]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeEcsClusters(params: { [K in keyof ParamsFrom<'describeEcsClusters', { next?: string, limit?: number }>]: ParamsFrom<'describeEcsClusters', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeEcsClusters'>]-?: ReturnTypeFrom<'describeEcsClusters'>[K]}['EcsClusters'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"EcsClusters"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeEcsClusters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeEcsClusters' })).toString('base64');
     const member = (Array.isArray(result.EcsClusters ?? []) ? (result.EcsClusters ?? []) : [result.EcsClusters]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -204,12 +204,12 @@ export class OpsWorks {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeElasticIps({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.ElasticIps ?? []) ? (result.ElasticIps ?? []) : [result.ElasticIps]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -219,12 +219,12 @@ export class OpsWorks {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeElasticLoadBalancers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.ElasticLoadBalancers ?? []) ? (result.ElasticLoadBalancers ?? []) : [result.ElasticLoadBalancers]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -234,12 +234,12 @@ export class OpsWorks {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeInstances({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.Instances ?? []) ? (result.Instances ?? []) : [result.Instances]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -249,12 +249,12 @@ export class OpsWorks {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeLayers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.Layers ?? []) ? (result.Layers ?? []) : [result.Layers]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -264,12 +264,12 @@ export class OpsWorks {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeLoadBasedAutoScaling({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.LoadBasedAutoScalingConfigurations ?? []) ? (result.LoadBasedAutoScalingConfigurations ?? []) : [result.LoadBasedAutoScalingConfigurations]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -289,12 +289,12 @@ export class OpsWorks {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describePermissions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.Permissions ?? []) ? (result.Permissions ?? []) : [result.Permissions]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -304,12 +304,12 @@ export class OpsWorks {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeRaidArrays({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.RaidArrays ?? []) ? (result.RaidArrays ?? []) : [result.RaidArrays]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -324,12 +324,12 @@ export class OpsWorks {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeServiceErrors({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.ServiceErrors ?? []) ? (result.ServiceErrors ?? []) : [result.ServiceErrors]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -349,12 +349,12 @@ export class OpsWorks {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeStacks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.Stacks ?? []) ? (result.Stacks ?? []) : [result.Stacks]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -364,12 +364,12 @@ export class OpsWorks {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeTimeBasedAutoScaling({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.TimeBasedAutoScalingConfigurations ?? []) ? (result.TimeBasedAutoScalingConfigurations ?? []) : [result.TimeBasedAutoScalingConfigurations]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -379,12 +379,12 @@ export class OpsWorks {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeUserProfiles({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.UserProfiles ?? []) ? (result.UserProfiles ?? []) : [result.UserProfiles]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -394,12 +394,12 @@ export class OpsWorks {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeVolumes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.Volumes ?? []) ? (result.Volumes ?? []) : [result.Volumes]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

@@ -116,75 +116,75 @@ export class FMS {
   async listAppsLists(params: { [K in keyof ParamsFrom<'listAppsLists', { next?: string, limit?: number }>]: ParamsFrom<'listAppsLists', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listAppsLists'>]-?: ReturnTypeFrom<'listAppsLists'>[K]}['AppsLists'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"AppsLists"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listAppsLists({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAppsLists' })).toString('base64');
     const member = (Array.isArray(result.AppsLists ?? []) ? (result.AppsLists ?? []) : [result.AppsLists]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listComplianceStatus(params: { [K in keyof ParamsFrom<'listComplianceStatus', { next?: string, limit?: number }>]: ParamsFrom<'listComplianceStatus', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listComplianceStatus'>]-?: ReturnTypeFrom<'listComplianceStatus'>[K]}['PolicyComplianceStatusList'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"PolicyComplianceStatusList"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listComplianceStatus({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listComplianceStatus' })).toString('base64');
     const member = (Array.isArray(result.PolicyComplianceStatusList ?? []) ? (result.PolicyComplianceStatusList ?? []) : [result.PolicyComplianceStatusList]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listMemberAccounts(params: { [K in keyof ParamsFrom<'listMemberAccounts', { next?: string, limit?: number }>]: ParamsFrom<'listMemberAccounts', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listMemberAccounts'>]-?: ReturnTypeFrom<'listMemberAccounts'>[K]}['MemberAccounts'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"MemberAccounts"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listMemberAccounts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMemberAccounts' })).toString('base64');
     const member = (Array.isArray(result.MemberAccounts ?? []) ? (result.MemberAccounts ?? []) : [result.MemberAccounts]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listPolicies(params: { [K in keyof ParamsFrom<'listPolicies', { next?: string, limit?: number }>]: ParamsFrom<'listPolicies', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listPolicies'>]-?: ReturnTypeFrom<'listPolicies'>[K]}['PolicyList'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"PolicyList"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPolicies' })).toString('base64');
     const member = (Array.isArray(result.PolicyList ?? []) ? (result.PolicyList ?? []) : [result.PolicyList]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listProtocolsLists(params: { [K in keyof ParamsFrom<'listProtocolsLists', { next?: string, limit?: number }>]: ParamsFrom<'listProtocolsLists', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listProtocolsLists'>]-?: ReturnTypeFrom<'listProtocolsLists'>[K]}['ProtocolsLists'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"ProtocolsLists"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listProtocolsLists({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listProtocolsLists' })).toString('base64');
     const member = (Array.isArray(result.ProtocolsLists ?? []) ? (result.ProtocolsLists ?? []) : [result.ProtocolsLists]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -196,15 +196,15 @@ export class FMS {
   async listThirdPartyFirewallFirewallPolicies(params: { [K in keyof ParamsFrom<'listThirdPartyFirewallFirewallPolicies', { next?: string, limit?: number }>]: ParamsFrom<'listThirdPartyFirewallFirewallPolicies', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listThirdPartyFirewallFirewallPolicies'>]-?: ReturnTypeFrom<'listThirdPartyFirewallFirewallPolicies'>[K]}['ThirdPartyFirewallFirewallPolicies'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"ThirdPartyFirewallFirewallPolicies"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listThirdPartyFirewallFirewallPolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listThirdPartyFirewallFirewallPolicies' })).toString('base64');
     const member = (Array.isArray(result.ThirdPartyFirewallFirewallPolicies ?? []) ? (result.ThirdPartyFirewallFirewallPolicies ?? []) : [result.ThirdPartyFirewallFirewallPolicies]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

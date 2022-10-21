@@ -261,45 +261,45 @@ export class Route53 {
   async listCidrBlocks(params: { [K in keyof ParamsFrom<'listCidrBlocks', { next?: string, limit?: number }>]: ParamsFrom<'listCidrBlocks', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listCidrBlocks'>]-?: ReturnTypeFrom<'listCidrBlocks'>[K]}['CidrBlocks'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"CidrBlocks"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCidrBlocks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCidrBlocks' })).toString('base64');
     const member = (Array.isArray(result.CidrBlocks ?? []) ? (result.CidrBlocks ?? []) : [result.CidrBlocks]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listCidrCollections(params: { [K in keyof ParamsFrom<'listCidrCollections', { next?: string, limit?: number }>]: ParamsFrom<'listCidrCollections', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listCidrCollections'>]-?: ReturnTypeFrom<'listCidrCollections'>[K]}['CidrCollections'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"CidrCollections"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCidrCollections({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCidrCollections' })).toString('base64');
     const member = (Array.isArray(result.CidrCollections ?? []) ? (result.CidrCollections ?? []) : [result.CidrCollections]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listCidrLocations(params: { [K in keyof ParamsFrom<'listCidrLocations', { next?: string, limit?: number }>]: ParamsFrom<'listCidrLocations', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listCidrLocations'>]-?: ReturnTypeFrom<'listCidrLocations'>[K]}['CidrLocations'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"CidrLocations"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCidrLocations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCidrLocations' })).toString('base64');
     const member = (Array.isArray(result.CidrLocations ?? []) ? (result.CidrLocations ?? []) : [result.CidrLocations]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -311,30 +311,30 @@ export class Route53 {
   async listHealthChecks(params: { [K in keyof ParamsFrom<'listHealthChecks', { next?: string, limit?: number }>]: ParamsFrom<'listHealthChecks', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listHealthChecks'>]-?: ReturnTypeFrom<'listHealthChecks'>[K]}['HealthChecks'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxItems","moreResults":"IsTruncated","outputToken":"NextMarker","resultKey":"HealthChecks"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listHealthChecks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listHealthChecks' })).toString('base64');
     const member = (Array.isArray(result.HealthChecks ?? []) ? (result.HealthChecks ?? []) : [result.HealthChecks]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listHostedZones(params: { [K in keyof ParamsFrom<'listHostedZones', { next?: string, limit?: number }>]: ParamsFrom<'listHostedZones', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listHostedZones'>]-?: ReturnTypeFrom<'listHostedZones'>[K]}['HostedZones'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxItems","moreResults":"IsTruncated","outputToken":"NextMarker","resultKey":"HostedZones"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listHostedZones({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listHostedZones' })).toString('base64');
     const member = (Array.isArray(result.HostedZones ?? []) ? (result.HostedZones ?? []) : [result.HostedZones]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -351,15 +351,15 @@ export class Route53 {
   async listQueryLoggingConfigs(params: { [K in keyof ParamsFrom<'listQueryLoggingConfigs', { next?: string, limit?: number }>]: ParamsFrom<'listQueryLoggingConfigs', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listQueryLoggingConfigs'>]-?: ReturnTypeFrom<'listQueryLoggingConfigs'>[K]}['QueryLoggingConfigs'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"QueryLoggingConfigs"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listQueryLoggingConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listQueryLoggingConfigs' })).toString('base64');
     const member = (Array.isArray(result.QueryLoggingConfigs ?? []) ? (result.QueryLoggingConfigs ?? []) : [result.QueryLoggingConfigs]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

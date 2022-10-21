@@ -231,15 +231,15 @@ export class S3Control {
   async listAccessPointsForObjectLambda(params: { [K in keyof ParamsFrom<'listAccessPointsForObjectLambda', { next?: string, limit?: number }>]: ParamsFrom<'listAccessPointsForObjectLambda', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listAccessPointsForObjectLambda'>]-?: ReturnTypeFrom<'listAccessPointsForObjectLambda'>[K]}['ObjectLambdaAccessPointList'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"ObjectLambdaAccessPointList"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listAccessPointsForObjectLambda({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAccessPointsForObjectLambda' })).toString('base64');
     const member = (Array.isArray(result.ObjectLambdaAccessPointList ?? []) ? (result.ObjectLambdaAccessPointList ?? []) : [result.ObjectLambdaAccessPointList]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

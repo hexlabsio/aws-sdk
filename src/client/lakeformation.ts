@@ -156,15 +156,15 @@ export class LakeFormation {
   async getWorkUnits(params: { [K in keyof ParamsFrom<'getWorkUnits', { next?: string, limit?: number }>]: ParamsFrom<'getWorkUnits', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getWorkUnits'>]-?: ReturnTypeFrom<'getWorkUnits'>[K]}['WorkUnitRanges'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"PageSize","outputToken":"NextToken","resultKey":"WorkUnitRanges"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { PageSize: limit } : {};
     const result = await this.client.getWorkUnits({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getWorkUnits' })).toString('base64');
     const member = (Array.isArray(result.WorkUnitRanges ?? []) ? (result.WorkUnitRanges ?? []) : [result.WorkUnitRanges]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -176,30 +176,30 @@ export class LakeFormation {
   async listDataCellsFilter(params: { [K in keyof ParamsFrom<'listDataCellsFilter', { next?: string, limit?: number }>]: ParamsFrom<'listDataCellsFilter', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listDataCellsFilter'>]-?: ReturnTypeFrom<'listDataCellsFilter'>[K]}['DataCellsFilters'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"DataCellsFilters"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDataCellsFilter({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDataCellsFilter' })).toString('base64');
     const member = (Array.isArray(result.DataCellsFilters ?? []) ? (result.DataCellsFilters ?? []) : [result.DataCellsFilters]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listLFTags(params: { [K in keyof ParamsFrom<'listLFTags', { next?: string, limit?: number }>]: ParamsFrom<'listLFTags', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listLFTags'>]-?: ReturnTypeFrom<'listLFTags'>[K]}['LFTags'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"LFTags"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listLFTags({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listLFTags' })).toString('base64');
     const member = (Array.isArray(result.LFTags ?? []) ? (result.LFTags ?? []) : [result.LFTags]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -246,30 +246,30 @@ export class LakeFormation {
   async searchDatabasesByLFTags(params: { [K in keyof ParamsFrom<'searchDatabasesByLFTags', { next?: string, limit?: number }>]: ParamsFrom<'searchDatabasesByLFTags', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'searchDatabasesByLFTags'>]-?: ReturnTypeFrom<'searchDatabasesByLFTags'>[K]}['DatabaseList'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"DatabaseList"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.searchDatabasesByLFTags({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchDatabasesByLFTags' })).toString('base64');
     const member = (Array.isArray(result.DatabaseList ?? []) ? (result.DatabaseList ?? []) : [result.DatabaseList]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async searchTablesByLFTags(params: { [K in keyof ParamsFrom<'searchTablesByLFTags', { next?: string, limit?: number }>]: ParamsFrom<'searchTablesByLFTags', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'searchTablesByLFTags'>]-?: ReturnTypeFrom<'searchTablesByLFTags'>[K]}['TableList'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"TableList"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.searchTablesByLFTags({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchTablesByLFTags' })).toString('base64');
     const member = (Array.isArray(result.TableList ?? []) ? (result.TableList ?? []) : [result.TableList]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

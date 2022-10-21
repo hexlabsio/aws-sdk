@@ -91,15 +91,15 @@ export class CognitoIdentity {
   async listIdentityPools(params: { [K in keyof ParamsFrom<'listIdentityPools', { next?: string, limit?: number }>]: ParamsFrom<'listIdentityPools', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listIdentityPools'>]-?: ReturnTypeFrom<'listIdentityPools'>[K]}['IdentityPools'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"IdentityPools"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listIdentityPools({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listIdentityPools' })).toString('base64');
     const member = (Array.isArray(result.IdentityPools ?? []) ? (result.IdentityPools ?? []) : [result.IdentityPools]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

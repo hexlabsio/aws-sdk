@@ -56,30 +56,30 @@ export class CloudControl {
   async listResourceRequests(params: { [K in keyof ParamsFrom<'listResourceRequests', { next?: string, limit?: number }>]: ParamsFrom<'listResourceRequests', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listResourceRequests'>]-?: ReturnTypeFrom<'listResourceRequests'>[K]}['ResourceRequestStatusSummaries'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"ResourceRequestStatusSummaries"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listResourceRequests({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResourceRequests' })).toString('base64');
     const member = (Array.isArray(result.ResourceRequestStatusSummaries ?? []) ? (result.ResourceRequestStatusSummaries ?? []) : [result.ResourceRequestStatusSummaries]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listResources(params: { [K in keyof ParamsFrom<'listResources', { next?: string, limit?: number }>]: ParamsFrom<'listResources', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listResources'>]-?: ReturnTypeFrom<'listResources'>[K]}['ResourceDescriptions'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"ResourceDescriptions"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listResources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResources' })).toString('base64');
     const member = (Array.isArray(result.ResourceDescriptions ?? []) ? (result.ResourceDescriptions ?? []) : [result.ResourceDescriptions]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

@@ -201,15 +201,15 @@ export class DynamoDB {
   async listTables(params: { [K in keyof ParamsFrom<'listTables', { next?: string, limit?: number }>]: ParamsFrom<'listTables', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listTables'>]-?: ReturnTypeFrom<'listTables'>[K]}['TableNames'], undefined>}> {
     // {"inputToken":"ExclusiveStartTableName","limitKey":"Limit","outputToken":"LastEvaluatedTableName","resultKey":"TableNames"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { ExclusiveStartTableName: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { ExclusiveStartTableName: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listTables({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.LastEvaluatedTableName ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.LastEvaluatedTableName, operation: 'listTables' })).toString('base64');
     const member = (Array.isArray(result.TableNames ?? []) ? (result.TableNames ?? []) : [result.TableNames]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -226,15 +226,15 @@ export class DynamoDB {
   async query(params: { [K in keyof ParamsFrom<'query', { next?: string, limit?: number }>]: ParamsFrom<'query', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'query'>]-?: ReturnTypeFrom<'query'>[K]}['Items'], undefined>}> {
     // {"inputToken":"ExclusiveStartKey","limitKey":"Limit","outputToken":"LastEvaluatedKey","resultKey":"Items"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { ExclusiveStartKey: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { ExclusiveStartKey: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.query({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.LastEvaluatedKey ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.LastEvaluatedKey, operation: 'query' })).toString('base64');
     const member = (Array.isArray(result.Items ?? []) ? (result.Items ?? []) : [result.Items]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -251,15 +251,15 @@ export class DynamoDB {
   async scan(params: { [K in keyof ParamsFrom<'scan', { next?: string, limit?: number }>]: ParamsFrom<'scan', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'scan'>]-?: ReturnTypeFrom<'scan'>[K]}['Items'], undefined>}> {
     // {"inputToken":"ExclusiveStartKey","limitKey":"Limit","outputToken":"LastEvaluatedKey","resultKey":"Items"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { ExclusiveStartKey: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { ExclusiveStartKey: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.scan({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.LastEvaluatedKey ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.LastEvaluatedKey, operation: 'scan' })).toString('base64');
     const member = (Array.isArray(result.Items ?? []) ? (result.Items ?? []) : [result.Items]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

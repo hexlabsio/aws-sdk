@@ -204,12 +204,12 @@ export class DirectConnect {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeConnections({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.connections ?? []) ? (result.connections ?? []) : [result.connections]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -219,12 +219,12 @@ export class DirectConnect {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeConnectionsOnInterconnect({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.connections ?? []) ? (result.connections ?? []) : [result.connections]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -269,12 +269,12 @@ export class DirectConnect {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeInterconnects({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.interconnects ?? []) ? (result.interconnects ?? []) : [result.interconnects]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -294,12 +294,12 @@ export class DirectConnect {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeLocations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.locations ?? []) ? (result.locations ?? []) : [result.locations]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -319,12 +319,12 @@ export class DirectConnect {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeVirtualGateways({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.virtualGateways ?? []) ? (result.virtualGateways ?? []) : [result.virtualGateways]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -334,12 +334,12 @@ export class DirectConnect {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeVirtualInterfaces({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.virtualInterfaces ?? []) ? (result.virtualInterfaces ?? []) : [result.virtualInterfaces]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

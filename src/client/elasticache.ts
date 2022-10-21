@@ -161,255 +161,255 @@ export class ElastiCache {
   async describeCacheClusters(params: { [K in keyof ParamsFrom<'describeCacheClusters', { next?: string, limit?: number }>]: ParamsFrom<'describeCacheClusters', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeCacheClusters'>]-?: ReturnTypeFrom<'describeCacheClusters'>[K]}['CacheClusters'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxRecords","outputToken":"Marker","resultKey":"CacheClusters"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeCacheClusters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeCacheClusters' })).toString('base64');
     const member = (Array.isArray(result.CacheClusters ?? []) ? (result.CacheClusters ?? []) : [result.CacheClusters]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeCacheEngineVersions(params: { [K in keyof ParamsFrom<'describeCacheEngineVersions', { next?: string, limit?: number }>]: ParamsFrom<'describeCacheEngineVersions', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeCacheEngineVersions'>]-?: ReturnTypeFrom<'describeCacheEngineVersions'>[K]}['CacheEngineVersions'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxRecords","outputToken":"Marker","resultKey":"CacheEngineVersions"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeCacheEngineVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeCacheEngineVersions' })).toString('base64');
     const member = (Array.isArray(result.CacheEngineVersions ?? []) ? (result.CacheEngineVersions ?? []) : [result.CacheEngineVersions]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeCacheParameterGroups(params: { [K in keyof ParamsFrom<'describeCacheParameterGroups', { next?: string, limit?: number }>]: ParamsFrom<'describeCacheParameterGroups', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeCacheParameterGroups'>]-?: ReturnTypeFrom<'describeCacheParameterGroups'>[K]}['CacheParameterGroups'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxRecords","outputToken":"Marker","resultKey":"CacheParameterGroups"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeCacheParameterGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeCacheParameterGroups' })).toString('base64');
     const member = (Array.isArray(result.CacheParameterGroups ?? []) ? (result.CacheParameterGroups ?? []) : [result.CacheParameterGroups]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeCacheParameters(params: { [K in keyof ParamsFrom<'describeCacheParameters', { next?: string, limit?: number }>]: ParamsFrom<'describeCacheParameters', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeCacheParameters'>]-?: ReturnTypeFrom<'describeCacheParameters'>[K]}['Parameters'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxRecords","outputToken":"Marker","resultKey":"Parameters"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeCacheParameters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeCacheParameters' })).toString('base64');
     const member = (Array.isArray(result.Parameters ?? []) ? (result.Parameters ?? []) : [result.Parameters]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeCacheSecurityGroups(params: { [K in keyof ParamsFrom<'describeCacheSecurityGroups', { next?: string, limit?: number }>]: ParamsFrom<'describeCacheSecurityGroups', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeCacheSecurityGroups'>]-?: ReturnTypeFrom<'describeCacheSecurityGroups'>[K]}['CacheSecurityGroups'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxRecords","outputToken":"Marker","resultKey":"CacheSecurityGroups"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeCacheSecurityGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeCacheSecurityGroups' })).toString('base64');
     const member = (Array.isArray(result.CacheSecurityGroups ?? []) ? (result.CacheSecurityGroups ?? []) : [result.CacheSecurityGroups]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeCacheSubnetGroups(params: { [K in keyof ParamsFrom<'describeCacheSubnetGroups', { next?: string, limit?: number }>]: ParamsFrom<'describeCacheSubnetGroups', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeCacheSubnetGroups'>]-?: ReturnTypeFrom<'describeCacheSubnetGroups'>[K]}['CacheSubnetGroups'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxRecords","outputToken":"Marker","resultKey":"CacheSubnetGroups"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeCacheSubnetGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeCacheSubnetGroups' })).toString('base64');
     const member = (Array.isArray(result.CacheSubnetGroups ?? []) ? (result.CacheSubnetGroups ?? []) : [result.CacheSubnetGroups]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeEngineDefaultParameters(params: { [K in keyof ParamsFrom<'describeEngineDefaultParameters', { next?: string, limit?: number }>]: ParamsFrom<'describeEngineDefaultParameters', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeEngineDefaultParameters'>]-?: ReturnTypeFrom<'describeEngineDefaultParameters'>[K]}['EngineDefaults']['Parameters'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxRecords","outputToken":"EngineDefaults.Marker","resultKey":"EngineDefaults.Parameters"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeEngineDefaultParameters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.EngineDefaults?.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.EngineDefaults?.Marker, operation: 'describeEngineDefaultParameters' })).toString('base64');
     const member = (Array.isArray(result.EngineDefaults?.Parameters ?? []) ? (result.EngineDefaults?.Parameters ?? []) : [result.EngineDefaults?.Parameters]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeEvents(params: { [K in keyof ParamsFrom<'describeEvents', { next?: string, limit?: number }>]: ParamsFrom<'describeEvents', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeEvents'>]-?: ReturnTypeFrom<'describeEvents'>[K]}['Events'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxRecords","outputToken":"Marker","resultKey":"Events"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeEvents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeEvents' })).toString('base64');
     const member = (Array.isArray(result.Events ?? []) ? (result.Events ?? []) : [result.Events]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeGlobalReplicationGroups(params: { [K in keyof ParamsFrom<'describeGlobalReplicationGroups', { next?: string, limit?: number }>]: ParamsFrom<'describeGlobalReplicationGroups', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeGlobalReplicationGroups'>]-?: ReturnTypeFrom<'describeGlobalReplicationGroups'>[K]}['GlobalReplicationGroups'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxRecords","outputToken":"Marker","resultKey":"GlobalReplicationGroups"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeGlobalReplicationGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeGlobalReplicationGroups' })).toString('base64');
     const member = (Array.isArray(result.GlobalReplicationGroups ?? []) ? (result.GlobalReplicationGroups ?? []) : [result.GlobalReplicationGroups]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeReplicationGroups(params: { [K in keyof ParamsFrom<'describeReplicationGroups', { next?: string, limit?: number }>]: ParamsFrom<'describeReplicationGroups', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeReplicationGroups'>]-?: ReturnTypeFrom<'describeReplicationGroups'>[K]}['ReplicationGroups'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxRecords","outputToken":"Marker","resultKey":"ReplicationGroups"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeReplicationGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeReplicationGroups' })).toString('base64');
     const member = (Array.isArray(result.ReplicationGroups ?? []) ? (result.ReplicationGroups ?? []) : [result.ReplicationGroups]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeReservedCacheNodes(params: { [K in keyof ParamsFrom<'describeReservedCacheNodes', { next?: string, limit?: number }>]: ParamsFrom<'describeReservedCacheNodes', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeReservedCacheNodes'>]-?: ReturnTypeFrom<'describeReservedCacheNodes'>[K]}['ReservedCacheNodes'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxRecords","outputToken":"Marker","resultKey":"ReservedCacheNodes"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeReservedCacheNodes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeReservedCacheNodes' })).toString('base64');
     const member = (Array.isArray(result.ReservedCacheNodes ?? []) ? (result.ReservedCacheNodes ?? []) : [result.ReservedCacheNodes]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeReservedCacheNodesOfferings(params: { [K in keyof ParamsFrom<'describeReservedCacheNodesOfferings', { next?: string, limit?: number }>]: ParamsFrom<'describeReservedCacheNodesOfferings', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeReservedCacheNodesOfferings'>]-?: ReturnTypeFrom<'describeReservedCacheNodesOfferings'>[K]}['ReservedCacheNodesOfferings'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxRecords","outputToken":"Marker","resultKey":"ReservedCacheNodesOfferings"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeReservedCacheNodesOfferings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeReservedCacheNodesOfferings' })).toString('base64');
     const member = (Array.isArray(result.ReservedCacheNodesOfferings ?? []) ? (result.ReservedCacheNodesOfferings ?? []) : [result.ReservedCacheNodesOfferings]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeServiceUpdates(params: { [K in keyof ParamsFrom<'describeServiceUpdates', { next?: string, limit?: number }>]: ParamsFrom<'describeServiceUpdates', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeServiceUpdates'>]-?: ReturnTypeFrom<'describeServiceUpdates'>[K]}['ServiceUpdates'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxRecords","outputToken":"Marker","resultKey":"ServiceUpdates"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeServiceUpdates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeServiceUpdates' })).toString('base64');
     const member = (Array.isArray(result.ServiceUpdates ?? []) ? (result.ServiceUpdates ?? []) : [result.ServiceUpdates]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeSnapshots(params: { [K in keyof ParamsFrom<'describeSnapshots', { next?: string, limit?: number }>]: ParamsFrom<'describeSnapshots', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeSnapshots'>]-?: ReturnTypeFrom<'describeSnapshots'>[K]}['Snapshots'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxRecords","outputToken":"Marker","resultKey":"Snapshots"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeSnapshots({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeSnapshots' })).toString('base64');
     const member = (Array.isArray(result.Snapshots ?? []) ? (result.Snapshots ?? []) : [result.Snapshots]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeUpdateActions(params: { [K in keyof ParamsFrom<'describeUpdateActions', { next?: string, limit?: number }>]: ParamsFrom<'describeUpdateActions', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeUpdateActions'>]-?: ReturnTypeFrom<'describeUpdateActions'>[K]}['UpdateActions'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxRecords","outputToken":"Marker","resultKey":"UpdateActions"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeUpdateActions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeUpdateActions' })).toString('base64');
     const member = (Array.isArray(result.UpdateActions ?? []) ? (result.UpdateActions ?? []) : [result.UpdateActions]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeUserGroups(params: { [K in keyof ParamsFrom<'describeUserGroups', { next?: string, limit?: number }>]: ParamsFrom<'describeUserGroups', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeUserGroups'>]-?: ReturnTypeFrom<'describeUserGroups'>[K]}['UserGroups'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxRecords","outputToken":"Marker","resultKey":"UserGroups"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeUserGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeUserGroups' })).toString('base64');
     const member = (Array.isArray(result.UserGroups ?? []) ? (result.UserGroups ?? []) : [result.UserGroups]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeUsers(params: { [K in keyof ParamsFrom<'describeUsers', { next?: string, limit?: number }>]: ParamsFrom<'describeUsers', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeUsers'>]-?: ReturnTypeFrom<'describeUsers'>[K]}['Users'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxRecords","outputToken":"Marker","resultKey":"Users"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeUsers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeUsers' })).toString('base64');
     const member = (Array.isArray(result.Users ?? []) ? (result.Users ?? []) : [result.Users]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

@@ -116,15 +116,15 @@ export class DevOpsGuru {
   async listEvents(params: { [K in keyof ParamsFrom<'listEvents', { next?: string, limit?: number }>]: ParamsFrom<'listEvents', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listEvents'>]-?: ReturnTypeFrom<'listEvents'>[K]}['Events'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"Events"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listEvents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEvents' })).toString('base64');
     const member = (Array.isArray(result.Events ?? []) ? (result.Events ?? []) : [result.Events]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -141,15 +141,15 @@ export class DevOpsGuru {
   async listNotificationChannels(params: { [K in keyof ParamsFrom<'listNotificationChannels', { next?: string }>]: ParamsFrom<'listNotificationChannels', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listNotificationChannels'>]-?: ReturnTypeFrom<'listNotificationChannels'>[K]}['Channels'], undefined>}> {
     // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"Channels"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listNotificationChannels({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listNotificationChannels' })).toString('base64');
     const member = (Array.isArray(result.Channels ?? []) ? (result.Channels ?? []) : [result.Channels]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -161,15 +161,15 @@ export class DevOpsGuru {
   async listRecommendations(params: { [K in keyof ParamsFrom<'listRecommendations', { next?: string }>]: ParamsFrom<'listRecommendations', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listRecommendations'>]-?: ReturnTypeFrom<'listRecommendations'>[K]}['Recommendations'], undefined>}> {
     // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"Recommendations"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listRecommendations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRecommendations' })).toString('base64');
     const member = (Array.isArray(result.Recommendations ?? []) ? (result.Recommendations ?? []) : [result.Recommendations]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

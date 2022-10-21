@@ -36,15 +36,15 @@ export class Route53RecoveryCluster {
   async listRoutingControls(params: { [K in keyof ParamsFrom<'listRoutingControls', { next?: string, limit?: number }>]: ParamsFrom<'listRoutingControls', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listRoutingControls'>]-?: ReturnTypeFrom<'listRoutingControls'>[K]}['RoutingControls'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"RoutingControls"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listRoutingControls({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRoutingControls' })).toString('base64');
     const member = (Array.isArray(result.RoutingControls ?? []) ? (result.RoutingControls ?? []) : [result.RoutingControls]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

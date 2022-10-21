@@ -76,15 +76,15 @@ export class CodeGuruReviewer {
   async listRepositoryAssociations(params: { [K in keyof ParamsFrom<'listRepositoryAssociations', { next?: string, limit?: number }>]: ParamsFrom<'listRepositoryAssociations', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listRepositoryAssociations'>]-?: ReturnTypeFrom<'listRepositoryAssociations'>[K]}['RepositoryAssociationSummaries'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"RepositoryAssociationSummaries"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listRepositoryAssociations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRepositoryAssociations' })).toString('base64');
     const member = (Array.isArray(result.RepositoryAssociationSummaries ?? []) ? (result.RepositoryAssociationSummaries ?? []) : [result.RepositoryAssociationSummaries]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

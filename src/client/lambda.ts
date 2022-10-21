@@ -201,150 +201,150 @@ export class Lambda {
   async listAliases(params: { [K in keyof ParamsFrom<'listAliases', { next?: string, limit?: number }>]: ParamsFrom<'listAliases', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listAliases'>]-?: ReturnTypeFrom<'listAliases'>[K]}['Aliases'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxItems","outputToken":"NextMarker","resultKey":"Aliases"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listAliases({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listAliases' })).toString('base64');
     const member = (Array.isArray(result.Aliases ?? []) ? (result.Aliases ?? []) : [result.Aliases]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listCodeSigningConfigs(params: { [K in keyof ParamsFrom<'listCodeSigningConfigs', { next?: string, limit?: number }>]: ParamsFrom<'listCodeSigningConfigs', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listCodeSigningConfigs'>]-?: ReturnTypeFrom<'listCodeSigningConfigs'>[K]}['CodeSigningConfigs'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxItems","outputToken":"NextMarker","resultKey":"CodeSigningConfigs"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listCodeSigningConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listCodeSigningConfigs' })).toString('base64');
     const member = (Array.isArray(result.CodeSigningConfigs ?? []) ? (result.CodeSigningConfigs ?? []) : [result.CodeSigningConfigs]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listEventSourceMappings(params: { [K in keyof ParamsFrom<'listEventSourceMappings', { next?: string, limit?: number }>]: ParamsFrom<'listEventSourceMappings', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listEventSourceMappings'>]-?: ReturnTypeFrom<'listEventSourceMappings'>[K]}['EventSourceMappings'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxItems","outputToken":"NextMarker","resultKey":"EventSourceMappings"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listEventSourceMappings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listEventSourceMappings' })).toString('base64');
     const member = (Array.isArray(result.EventSourceMappings ?? []) ? (result.EventSourceMappings ?? []) : [result.EventSourceMappings]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listFunctionEventInvokeConfigs(params: { [K in keyof ParamsFrom<'listFunctionEventInvokeConfigs', { next?: string, limit?: number }>]: ParamsFrom<'listFunctionEventInvokeConfigs', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listFunctionEventInvokeConfigs'>]-?: ReturnTypeFrom<'listFunctionEventInvokeConfigs'>[K]}['FunctionEventInvokeConfigs'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxItems","outputToken":"NextMarker","resultKey":"FunctionEventInvokeConfigs"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listFunctionEventInvokeConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listFunctionEventInvokeConfigs' })).toString('base64');
     const member = (Array.isArray(result.FunctionEventInvokeConfigs ?? []) ? (result.FunctionEventInvokeConfigs ?? []) : [result.FunctionEventInvokeConfigs]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listFunctionUrlConfigs(params: { [K in keyof ParamsFrom<'listFunctionUrlConfigs', { next?: string, limit?: number }>]: ParamsFrom<'listFunctionUrlConfigs', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listFunctionUrlConfigs'>]-?: ReturnTypeFrom<'listFunctionUrlConfigs'>[K]}['FunctionUrlConfigs'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxItems","outputToken":"NextMarker","resultKey":"FunctionUrlConfigs"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listFunctionUrlConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listFunctionUrlConfigs' })).toString('base64');
     const member = (Array.isArray(result.FunctionUrlConfigs ?? []) ? (result.FunctionUrlConfigs ?? []) : [result.FunctionUrlConfigs]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listFunctions(params: { [K in keyof ParamsFrom<'listFunctions', { next?: string, limit?: number }>]: ParamsFrom<'listFunctions', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listFunctions'>]-?: ReturnTypeFrom<'listFunctions'>[K]}['Functions'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxItems","outputToken":"NextMarker","resultKey":"Functions"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listFunctions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listFunctions' })).toString('base64');
     const member = (Array.isArray(result.Functions ?? []) ? (result.Functions ?? []) : [result.Functions]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listFunctionsByCodeSigningConfig(params: { [K in keyof ParamsFrom<'listFunctionsByCodeSigningConfig', { next?: string, limit?: number }>]: ParamsFrom<'listFunctionsByCodeSigningConfig', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listFunctionsByCodeSigningConfig'>]-?: ReturnTypeFrom<'listFunctionsByCodeSigningConfig'>[K]}['FunctionArns'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxItems","outputToken":"NextMarker","resultKey":"FunctionArns"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listFunctionsByCodeSigningConfig({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listFunctionsByCodeSigningConfig' })).toString('base64');
     const member = (Array.isArray(result.FunctionArns ?? []) ? (result.FunctionArns ?? []) : [result.FunctionArns]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listLayerVersions(params: { [K in keyof ParamsFrom<'listLayerVersions', { next?: string, limit?: number }>]: ParamsFrom<'listLayerVersions', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listLayerVersions'>]-?: ReturnTypeFrom<'listLayerVersions'>[K]}['LayerVersions'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxItems","outputToken":"NextMarker","resultKey":"LayerVersions"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listLayerVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listLayerVersions' })).toString('base64');
     const member = (Array.isArray(result.LayerVersions ?? []) ? (result.LayerVersions ?? []) : [result.LayerVersions]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listLayers(params: { [K in keyof ParamsFrom<'listLayers', { next?: string, limit?: number }>]: ParamsFrom<'listLayers', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listLayers'>]-?: ReturnTypeFrom<'listLayers'>[K]}['Layers'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxItems","outputToken":"NextMarker","resultKey":"Layers"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listLayers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listLayers' })).toString('base64');
     const member = (Array.isArray(result.Layers ?? []) ? (result.Layers ?? []) : [result.Layers]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listProvisionedConcurrencyConfigs(params: { [K in keyof ParamsFrom<'listProvisionedConcurrencyConfigs', { next?: string, limit?: number }>]: ParamsFrom<'listProvisionedConcurrencyConfigs', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listProvisionedConcurrencyConfigs'>]-?: ReturnTypeFrom<'listProvisionedConcurrencyConfigs'>[K]}['ProvisionedConcurrencyConfigs'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxItems","outputToken":"NextMarker","resultKey":"ProvisionedConcurrencyConfigs"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listProvisionedConcurrencyConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listProvisionedConcurrencyConfigs' })).toString('base64');
     const member = (Array.isArray(result.ProvisionedConcurrencyConfigs ?? []) ? (result.ProvisionedConcurrencyConfigs ?? []) : [result.ProvisionedConcurrencyConfigs]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -356,15 +356,15 @@ export class Lambda {
   async listVersionsByFunction(params: { [K in keyof ParamsFrom<'listVersionsByFunction', { next?: string, limit?: number }>]: ParamsFrom<'listVersionsByFunction', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listVersionsByFunction'>]-?: ReturnTypeFrom<'listVersionsByFunction'>[K]}['Versions'], undefined>}> {
     // {"inputToken":"Marker","limitKey":"MaxItems","outputToken":"NextMarker","resultKey":"Versions"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { Marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listVersionsByFunction({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listVersionsByFunction' })).toString('base64');
     const member = (Array.isArray(result.Versions ?? []) ? (result.Versions ?? []) : [result.Versions]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

@@ -236,15 +236,15 @@ export class APIGateway {
   async getApiKeys(params: { [K in keyof ParamsFrom<'getApiKeys', { next?: string, limit?: number }>]: ParamsFrom<'getApiKeys', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getApiKeys'>]-?: ReturnTypeFrom<'getApiKeys'>[K]}['items'], undefined>}> {
     // {"inputToken":"position","limitKey":"limit","outputToken":"position","resultKey":"items"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { position: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getApiKeys({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.position ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getApiKeys' })).toString('base64');
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -266,15 +266,15 @@ export class APIGateway {
   async getBasePathMappings(params: { [K in keyof ParamsFrom<'getBasePathMappings', { next?: string, limit?: number }>]: ParamsFrom<'getBasePathMappings', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getBasePathMappings'>]-?: ReturnTypeFrom<'getBasePathMappings'>[K]}['items'], undefined>}> {
     // {"inputToken":"position","limitKey":"limit","outputToken":"position","resultKey":"items"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { position: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getBasePathMappings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.position ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getBasePathMappings' })).toString('base64');
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -286,15 +286,15 @@ export class APIGateway {
   async getClientCertificates(params: { [K in keyof ParamsFrom<'getClientCertificates', { next?: string, limit?: number }>]: ParamsFrom<'getClientCertificates', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getClientCertificates'>]-?: ReturnTypeFrom<'getClientCertificates'>[K]}['items'], undefined>}> {
     // {"inputToken":"position","limitKey":"limit","outputToken":"position","resultKey":"items"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { position: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getClientCertificates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.position ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getClientCertificates' })).toString('base64');
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -306,15 +306,15 @@ export class APIGateway {
   async getDeployments(params: { [K in keyof ParamsFrom<'getDeployments', { next?: string, limit?: number }>]: ParamsFrom<'getDeployments', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getDeployments'>]-?: ReturnTypeFrom<'getDeployments'>[K]}['items'], undefined>}> {
     // {"inputToken":"position","limitKey":"limit","outputToken":"position","resultKey":"items"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { position: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getDeployments({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.position ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getDeployments' })).toString('base64');
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -346,15 +346,15 @@ export class APIGateway {
   async getDomainNames(params: { [K in keyof ParamsFrom<'getDomainNames', { next?: string, limit?: number }>]: ParamsFrom<'getDomainNames', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getDomainNames'>]-?: ReturnTypeFrom<'getDomainNames'>[K]}['items'], undefined>}> {
     // {"inputToken":"position","limitKey":"limit","outputToken":"position","resultKey":"items"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { position: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getDomainNames({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.position ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getDomainNames' })).toString('base64');
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -406,15 +406,15 @@ export class APIGateway {
   async getModels(params: { [K in keyof ParamsFrom<'getModels', { next?: string, limit?: number }>]: ParamsFrom<'getModels', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getModels'>]-?: ReturnTypeFrom<'getModels'>[K]}['items'], undefined>}> {
     // {"inputToken":"position","limitKey":"limit","outputToken":"position","resultKey":"items"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { position: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getModels({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.position ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getModels' })).toString('base64');
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -436,15 +436,15 @@ export class APIGateway {
   async getResources(params: { [K in keyof ParamsFrom<'getResources', { next?: string, limit?: number }>]: ParamsFrom<'getResources', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getResources'>]-?: ReturnTypeFrom<'getResources'>[K]}['items'], undefined>}> {
     // {"inputToken":"position","limitKey":"limit","outputToken":"position","resultKey":"items"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { position: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getResources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.position ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getResources' })).toString('base64');
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -456,15 +456,15 @@ export class APIGateway {
   async getRestApis(params: { [K in keyof ParamsFrom<'getRestApis', { next?: string, limit?: number }>]: ParamsFrom<'getRestApis', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getRestApis'>]-?: ReturnTypeFrom<'getRestApis'>[K]}['items'], undefined>}> {
     // {"inputToken":"position","limitKey":"limit","outputToken":"position","resultKey":"items"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { position: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getRestApis({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.position ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getRestApis' })).toString('base64');
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -501,15 +501,15 @@ export class APIGateway {
   async getUsage(params: { [K in keyof ParamsFrom<'getUsage', { next?: string, limit?: number }>]: ParamsFrom<'getUsage', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getUsage'>]-?: ReturnTypeFrom<'getUsage'>[K]}['items'], undefined>}> {
     // {"inputToken":"position","limitKey":"limit","outputToken":"position","resultKey":"items"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { position: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getUsage({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.position ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getUsage' })).toString('base64');
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -526,30 +526,30 @@ export class APIGateway {
   async getUsagePlanKeys(params: { [K in keyof ParamsFrom<'getUsagePlanKeys', { next?: string, limit?: number }>]: ParamsFrom<'getUsagePlanKeys', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getUsagePlanKeys'>]-?: ReturnTypeFrom<'getUsagePlanKeys'>[K]}['items'], undefined>}> {
     // {"inputToken":"position","limitKey":"limit","outputToken":"position","resultKey":"items"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { position: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getUsagePlanKeys({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.position ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getUsagePlanKeys' })).toString('base64');
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async getUsagePlans(params: { [K in keyof ParamsFrom<'getUsagePlans', { next?: string, limit?: number }>]: ParamsFrom<'getUsagePlans', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getUsagePlans'>]-?: ReturnTypeFrom<'getUsagePlans'>[K]}['items'], undefined>}> {
     // {"inputToken":"position","limitKey":"limit","outputToken":"position","resultKey":"items"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { position: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getUsagePlans({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.position ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getUsagePlans' })).toString('base64');
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -561,15 +561,15 @@ export class APIGateway {
   async getVpcLinks(params: { [K in keyof ParamsFrom<'getVpcLinks', { next?: string, limit?: number }>]: ParamsFrom<'getVpcLinks', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getVpcLinks'>]-?: ReturnTypeFrom<'getVpcLinks'>[K]}['items'], undefined>}> {
     // {"inputToken":"position","limitKey":"limit","outputToken":"position","resultKey":"items"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { position: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getVpcLinks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.position ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getVpcLinks' })).toString('base64');
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

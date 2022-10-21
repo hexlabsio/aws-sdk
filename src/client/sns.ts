@@ -121,105 +121,105 @@ export class SNS {
   async listEndpointsByPlatformApplication(params: { [K in keyof ParamsFrom<'listEndpointsByPlatformApplication', { next?: string }>]: ParamsFrom<'listEndpointsByPlatformApplication', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listEndpointsByPlatformApplication'>]-?: ReturnTypeFrom<'listEndpointsByPlatformApplication'>[K]}['Endpoints'], undefined>}> {
     // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"Endpoints"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listEndpointsByPlatformApplication({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEndpointsByPlatformApplication' })).toString('base64');
     const member = (Array.isArray(result.Endpoints ?? []) ? (result.Endpoints ?? []) : [result.Endpoints]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listOriginationNumbers(params: { [K in keyof ParamsFrom<'listOriginationNumbers', { next?: string, limit?: number }>]: ParamsFrom<'listOriginationNumbers', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listOriginationNumbers'>]-?: ReturnTypeFrom<'listOriginationNumbers'>[K]}['PhoneNumbers'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"PhoneNumbers"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listOriginationNumbers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listOriginationNumbers' })).toString('base64');
     const member = (Array.isArray(result.PhoneNumbers ?? []) ? (result.PhoneNumbers ?? []) : [result.PhoneNumbers]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listPhoneNumbersOptedOut(params: { [K in keyof ParamsFrom<'listPhoneNumbersOptedOut', { next?: string }>]: ParamsFrom<'listPhoneNumbersOptedOut', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listPhoneNumbersOptedOut'>]-?: ReturnTypeFrom<'listPhoneNumbersOptedOut'>[K]}['phoneNumbers'], undefined>}> {
     // {"inputToken":"nextToken","outputToken":"nextToken","resultKey":"phoneNumbers"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listPhoneNumbersOptedOut({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listPhoneNumbersOptedOut' })).toString('base64');
     const member = (Array.isArray(result.phoneNumbers ?? []) ? (result.phoneNumbers ?? []) : [result.phoneNumbers]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listPlatformApplications(params: { [K in keyof ParamsFrom<'listPlatformApplications', { next?: string }>]: ParamsFrom<'listPlatformApplications', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listPlatformApplications'>]-?: ReturnTypeFrom<'listPlatformApplications'>[K]}['PlatformApplications'], undefined>}> {
     // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"PlatformApplications"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listPlatformApplications({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPlatformApplications' })).toString('base64');
     const member = (Array.isArray(result.PlatformApplications ?? []) ? (result.PlatformApplications ?? []) : [result.PlatformApplications]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listSMSSandboxPhoneNumbers(params: { [K in keyof ParamsFrom<'listSMSSandboxPhoneNumbers', { next?: string, limit?: number }>]: ParamsFrom<'listSMSSandboxPhoneNumbers', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listSMSSandboxPhoneNumbers'>]-?: ReturnTypeFrom<'listSMSSandboxPhoneNumbers'>[K]}['PhoneNumbers'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"PhoneNumbers"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listSMSSandboxPhoneNumbers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSMSSandboxPhoneNumbers' })).toString('base64');
     const member = (Array.isArray(result.PhoneNumbers ?? []) ? (result.PhoneNumbers ?? []) : [result.PhoneNumbers]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listSubscriptions(params: { [K in keyof ParamsFrom<'listSubscriptions', { next?: string }>]: ParamsFrom<'listSubscriptions', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listSubscriptions'>]-?: ReturnTypeFrom<'listSubscriptions'>[K]}['Subscriptions'], undefined>}> {
     // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"Subscriptions"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listSubscriptions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSubscriptions' })).toString('base64');
     const member = (Array.isArray(result.Subscriptions ?? []) ? (result.Subscriptions ?? []) : [result.Subscriptions]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listSubscriptionsByTopic(params: { [K in keyof ParamsFrom<'listSubscriptionsByTopic', { next?: string }>]: ParamsFrom<'listSubscriptionsByTopic', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listSubscriptionsByTopic'>]-?: ReturnTypeFrom<'listSubscriptionsByTopic'>[K]}['Subscriptions'], undefined>}> {
     // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"Subscriptions"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listSubscriptionsByTopic({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSubscriptionsByTopic' })).toString('base64');
     const member = (Array.isArray(result.Subscriptions ?? []) ? (result.Subscriptions ?? []) : [result.Subscriptions]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -231,15 +231,15 @@ export class SNS {
   async listTopics(params: { [K in keyof ParamsFrom<'listTopics', { next?: string }>]: ParamsFrom<'listTopics', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listTopics'>]-?: ReturnTypeFrom<'listTopics'>[K]}['Topics'], undefined>}> {
     // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"Topics"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listTopics({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTopics' })).toString('base64');
     const member = (Array.isArray(result.Topics ?? []) ? (result.Topics ?? []) : [result.Topics]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

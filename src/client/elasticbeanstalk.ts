@@ -119,12 +119,12 @@ export class ElasticBeanstalk {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeApplicationVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.ApplicationVersions ?? []) ? (result.ApplicationVersions ?? []) : [result.ApplicationVersions]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -134,12 +134,12 @@ export class ElasticBeanstalk {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeApplications({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.Applications ?? []) ? (result.Applications ?? []) : [result.Applications]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -149,12 +149,12 @@ export class ElasticBeanstalk {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeConfigurationOptions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.Options ?? []) ? (result.Options ?? []) : [result.Options]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -171,15 +171,15 @@ export class ElasticBeanstalk {
   async describeEnvironmentManagedActionHistory(params: { [K in keyof ParamsFrom<'describeEnvironmentManagedActionHistory', { next?: string, limit?: number }>]: ParamsFrom<'describeEnvironmentManagedActionHistory', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeEnvironmentManagedActionHistory'>]-?: ReturnTypeFrom<'describeEnvironmentManagedActionHistory'>[K]}['ManagedActionHistoryItems'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxItems","outputToken":"NextToken","resultKey":"ManagedActionHistoryItems"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.describeEnvironmentManagedActionHistory({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeEnvironmentManagedActionHistory' })).toString('base64');
     const member = (Array.isArray(result.ManagedActionHistoryItems ?? []) ? (result.ManagedActionHistoryItems ?? []) : [result.ManagedActionHistoryItems]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -199,27 +199,27 @@ export class ElasticBeanstalk {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.describeEnvironments({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.Environments ?? []) ? (result.Environments ?? []) : [result.Environments]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeEvents(params: { [K in keyof ParamsFrom<'describeEvents', { next?: string, limit?: number }>]: ParamsFrom<'describeEvents', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeEvents'>]-?: ReturnTypeFrom<'describeEvents'>[K]}['Events'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxRecords","outputToken":"NextToken","resultKey":"Events"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeEvents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeEvents' })).toString('base64');
     const member = (Array.isArray(result.Events ?? []) ? (result.Events ?? []) : [result.Events]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -244,12 +244,12 @@ export class ElasticBeanstalk {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.listAvailableSolutionStacks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.SolutionStacks ?? []) ? (result.SolutionStacks ?? []) : [result.SolutionStacks]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -261,15 +261,15 @@ export class ElasticBeanstalk {
   async listPlatformVersions(params: { [K in keyof ParamsFrom<'listPlatformVersions', { next?: string, limit?: number }>]: ParamsFrom<'listPlatformVersions', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listPlatformVersions'>]-?: ReturnTypeFrom<'listPlatformVersions'>[K]}['PlatformSummaryList'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxRecords","outputToken":"NextToken","resultKey":"PlatformSummaryList"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.listPlatformVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPlatformVersions' })).toString('base64');
     const member = (Array.isArray(result.PlatformSummaryList ?? []) ? (result.PlatformSummaryList ?? []) : [result.PlatformSummaryList]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

@@ -324,12 +324,12 @@ export class S3 {
     const nextTokenPart = {};
     const limitTokenPart = {};
     const result = await this.client.listBuckets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined ;
+    const nextToken = undefined;
     const member = (Array.isArray(result.Buckets ?? []) ? (result.Buckets ?? []) : [result.Buckets]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -356,15 +356,15 @@ export class S3 {
   async listParts(params: { [K in keyof ParamsFrom<'listParts', { next?: string, limit?: number }>]: ParamsFrom<'listParts', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listParts'>]-?: ReturnTypeFrom<'listParts'>[K]}['Parts'], undefined>}> {
     // {"inputToken":"PartNumberMarker","limitKey":"MaxParts","moreResults":"IsTruncated","outputToken":"NextPartNumberMarker","resultKey":"Parts"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { PartNumberMarker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { PartNumberMarker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxParts: limit } : {};
     const result = await this.client.listParts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextPartNumberMarker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextPartNumberMarker, operation: 'listParts' })).toString('base64');
     const member = (Array.isArray(result.Parts ?? []) ? (result.Parts ?? []) : [result.Parts]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

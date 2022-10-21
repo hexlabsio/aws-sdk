@@ -36,60 +36,60 @@ export class ResourceGroupsTaggingAPI {
   async getComplianceSummary(params: { [K in keyof ParamsFrom<'getComplianceSummary', { next?: string, limit?: number }>]: ParamsFrom<'getComplianceSummary', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getComplianceSummary'>]-?: ReturnTypeFrom<'getComplianceSummary'>[K]}['SummaryList'], undefined>}> {
     // {"inputToken":"PaginationToken","limitKey":"MaxResults","outputToken":"PaginationToken","resultKey":"SummaryList"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { PaginationToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { PaginationToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getComplianceSummary({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.PaginationToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.PaginationToken, operation: 'getComplianceSummary' })).toString('base64');
     const member = (Array.isArray(result.SummaryList ?? []) ? (result.SummaryList ?? []) : [result.SummaryList]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async getResources(params: { [K in keyof ParamsFrom<'getResources', { next?: string, limit?: number }>]: ParamsFrom<'getResources', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getResources'>]-?: ReturnTypeFrom<'getResources'>[K]}['ResourceTagMappingList'], undefined>}> {
     // {"inputToken":"PaginationToken","limitKey":"ResourcesPerPage","outputToken":"PaginationToken","resultKey":"ResourceTagMappingList"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { PaginationToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { PaginationToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { ResourcesPerPage: limit } : {};
     const result = await this.client.getResources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.PaginationToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.PaginationToken, operation: 'getResources' })).toString('base64');
     const member = (Array.isArray(result.ResourceTagMappingList ?? []) ? (result.ResourceTagMappingList ?? []) : [result.ResourceTagMappingList]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async getTagKeys(params: { [K in keyof ParamsFrom<'getTagKeys', { next?: string }>]: ParamsFrom<'getTagKeys', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getTagKeys'>]-?: ReturnTypeFrom<'getTagKeys'>[K]}['TagKeys'], undefined>}> {
     // {"inputToken":"PaginationToken","outputToken":"PaginationToken","resultKey":"TagKeys"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { PaginationToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { PaginationToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.getTagKeys({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.PaginationToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.PaginationToken, operation: 'getTagKeys' })).toString('base64');
     const member = (Array.isArray(result.TagKeys ?? []) ? (result.TagKeys ?? []) : [result.TagKeys]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async getTagValues(params: { [K in keyof ParamsFrom<'getTagValues', { next?: string }>]: ParamsFrom<'getTagValues', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getTagValues'>]-?: ReturnTypeFrom<'getTagValues'>[K]}['TagValues'], undefined>}> {
     // {"inputToken":"PaginationToken","outputToken":"PaginationToken","resultKey":"TagValues"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { PaginationToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { PaginationToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.getTagValues({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.PaginationToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.PaginationToken, operation: 'getTagValues' })).toString('base64');
     const member = (Array.isArray(result.TagValues ?? []) ? (result.TagValues ?? []) : [result.TagValues]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

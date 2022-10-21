@@ -131,45 +131,45 @@ export class Glacier {
   async listJobs(params: { [K in keyof ParamsFrom<'listJobs', { next?: string, limit?: number }>]: ParamsFrom<'listJobs', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listJobs'>]-?: ReturnTypeFrom<'listJobs'>[K]}['JobList'], undefined>}> {
     // {"inputToken":"marker","limitKey":"limit","outputToken":"Marker","resultKey":"JobList"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.listJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listJobs' })).toString('base64');
     const member = (Array.isArray(result.JobList ?? []) ? (result.JobList ?? []) : [result.JobList]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listMultipartUploads(params: { [K in keyof ParamsFrom<'listMultipartUploads', { next?: string, limit?: number }>]: ParamsFrom<'listMultipartUploads', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listMultipartUploads'>]-?: ReturnTypeFrom<'listMultipartUploads'>[K]}['UploadsList'], undefined>}> {
     // {"inputToken":"marker","limitKey":"limit","outputToken":"Marker","resultKey":"UploadsList"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.listMultipartUploads({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listMultipartUploads' })).toString('base64');
     const member = (Array.isArray(result.UploadsList ?? []) ? (result.UploadsList ?? []) : [result.UploadsList]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async listParts(params: { [K in keyof ParamsFrom<'listParts', { next?: string, limit?: number }>]: ParamsFrom<'listParts', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listParts'>]-?: ReturnTypeFrom<'listParts'>[K]}['Parts'], undefined>}> {
     // {"inputToken":"marker","limitKey":"limit","outputToken":"Marker","resultKey":"Parts"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.listParts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listParts' })).toString('base64');
     const member = (Array.isArray(result.Parts ?? []) ? (result.Parts ?? []) : [result.Parts]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -186,15 +186,15 @@ export class Glacier {
   async listVaults(params: { [K in keyof ParamsFrom<'listVaults', { next?: string, limit?: number }>]: ParamsFrom<'listVaults', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listVaults'>]-?: ReturnTypeFrom<'listVaults'>[K]}['VaultList'], undefined>}> {
     // {"inputToken":"marker","limitKey":"limit","outputToken":"Marker","resultKey":"VaultList"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { marker: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.listVaults({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.Marker ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listVaults' })).toString('base64');
     const member = (Array.isArray(result.VaultList ?? []) ? (result.VaultList ?? []) : [result.VaultList]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

@@ -126,120 +126,120 @@ export class ConfigService {
   async describeAggregateComplianceByConformancePacks(params: { [K in keyof ParamsFrom<'describeAggregateComplianceByConformancePacks', { next?: string, limit?: number }>]: ParamsFrom<'describeAggregateComplianceByConformancePacks', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeAggregateComplianceByConformancePacks'>]-?: ReturnTypeFrom<'describeAggregateComplianceByConformancePacks'>[K]}['AggregateComplianceByConformancePacks'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"AggregateComplianceByConformancePacks"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeAggregateComplianceByConformancePacks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAggregateComplianceByConformancePacks' })).toString('base64');
     const member = (Array.isArray(result.AggregateComplianceByConformancePacks ?? []) ? (result.AggregateComplianceByConformancePacks ?? []) : [result.AggregateComplianceByConformancePacks]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeAggregationAuthorizations(params: { [K in keyof ParamsFrom<'describeAggregationAuthorizations', { next?: string, limit?: number }>]: ParamsFrom<'describeAggregationAuthorizations', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeAggregationAuthorizations'>]-?: ReturnTypeFrom<'describeAggregationAuthorizations'>[K]}['AggregationAuthorizations'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"AggregationAuthorizations"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeAggregationAuthorizations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAggregationAuthorizations' })).toString('base64');
     const member = (Array.isArray(result.AggregationAuthorizations ?? []) ? (result.AggregationAuthorizations ?? []) : [result.AggregationAuthorizations]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeComplianceByConfigRule(params: { [K in keyof ParamsFrom<'describeComplianceByConfigRule', { next?: string }>]: ParamsFrom<'describeComplianceByConfigRule', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeComplianceByConfigRule'>]-?: ReturnTypeFrom<'describeComplianceByConfigRule'>[K]}['ComplianceByConfigRules'], undefined>}> {
     // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"ComplianceByConfigRules"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.describeComplianceByConfigRule({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeComplianceByConfigRule' })).toString('base64');
     const member = (Array.isArray(result.ComplianceByConfigRules ?? []) ? (result.ComplianceByConfigRules ?? []) : [result.ComplianceByConfigRules]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeComplianceByResource(params: { [K in keyof ParamsFrom<'describeComplianceByResource', { next?: string, limit?: number }>]: ParamsFrom<'describeComplianceByResource', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeComplianceByResource'>]-?: ReturnTypeFrom<'describeComplianceByResource'>[K]}['ComplianceByResources'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"ComplianceByResources"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeComplianceByResource({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeComplianceByResource' })).toString('base64');
     const member = (Array.isArray(result.ComplianceByResources ?? []) ? (result.ComplianceByResources ?? []) : [result.ComplianceByResources]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeConfigRuleEvaluationStatus(params: { [K in keyof ParamsFrom<'describeConfigRuleEvaluationStatus', { next?: string, limit?: number }>]: ParamsFrom<'describeConfigRuleEvaluationStatus', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeConfigRuleEvaluationStatus'>]-?: ReturnTypeFrom<'describeConfigRuleEvaluationStatus'>[K]}['ConfigRulesEvaluationStatus'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"ConfigRulesEvaluationStatus"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeConfigRuleEvaluationStatus({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeConfigRuleEvaluationStatus' })).toString('base64');
     const member = (Array.isArray(result.ConfigRulesEvaluationStatus ?? []) ? (result.ConfigRulesEvaluationStatus ?? []) : [result.ConfigRulesEvaluationStatus]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeConfigRules(params: { [K in keyof ParamsFrom<'describeConfigRules', { next?: string }>]: ParamsFrom<'describeConfigRules', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeConfigRules'>]-?: ReturnTypeFrom<'describeConfigRules'>[K]}['ConfigRules'], undefined>}> {
     // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"ConfigRules"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.describeConfigRules({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeConfigRules' })).toString('base64');
     const member = (Array.isArray(result.ConfigRules ?? []) ? (result.ConfigRules ?? []) : [result.ConfigRules]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeConfigurationAggregatorSourcesStatus(params: { [K in keyof ParamsFrom<'describeConfigurationAggregatorSourcesStatus', { next?: string, limit?: number }>]: ParamsFrom<'describeConfigurationAggregatorSourcesStatus', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeConfigurationAggregatorSourcesStatus'>]-?: ReturnTypeFrom<'describeConfigurationAggregatorSourcesStatus'>[K]}['AggregatedSourceStatusList'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"AggregatedSourceStatusList"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeConfigurationAggregatorSourcesStatus({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeConfigurationAggregatorSourcesStatus' })).toString('base64');
     const member = (Array.isArray(result.AggregatedSourceStatusList ?? []) ? (result.AggregatedSourceStatusList ?? []) : [result.AggregatedSourceStatusList]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeConfigurationAggregators(params: { [K in keyof ParamsFrom<'describeConfigurationAggregators', { next?: string, limit?: number }>]: ParamsFrom<'describeConfigurationAggregators', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeConfigurationAggregators'>]-?: ReturnTypeFrom<'describeConfigurationAggregators'>[K]}['ConfigurationAggregators'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"ConfigurationAggregators"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeConfigurationAggregators({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeConfigurationAggregators' })).toString('base64');
     const member = (Array.isArray(result.ConfigurationAggregators ?? []) ? (result.ConfigurationAggregators ?? []) : [result.ConfigurationAggregators]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -261,30 +261,30 @@ export class ConfigService {
   async describeConformancePackStatus(params: { [K in keyof ParamsFrom<'describeConformancePackStatus', { next?: string, limit?: number }>]: ParamsFrom<'describeConformancePackStatus', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeConformancePackStatus'>]-?: ReturnTypeFrom<'describeConformancePackStatus'>[K]}['ConformancePackStatusDetails'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"ConformancePackStatusDetails"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeConformancePackStatus({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeConformancePackStatus' })).toString('base64');
     const member = (Array.isArray(result.ConformancePackStatusDetails ?? []) ? (result.ConformancePackStatusDetails ?? []) : [result.ConformancePackStatusDetails]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeConformancePacks(params: { [K in keyof ParamsFrom<'describeConformancePacks', { next?: string, limit?: number }>]: ParamsFrom<'describeConformancePacks', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeConformancePacks'>]-?: ReturnTypeFrom<'describeConformancePacks'>[K]}['ConformancePackDetails'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"ConformancePackDetails"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeConformancePacks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeConformancePacks' })).toString('base64');
     const member = (Array.isArray(result.ConformancePackDetails ?? []) ? (result.ConformancePackDetails ?? []) : [result.ConformancePackDetails]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -301,75 +301,75 @@ export class ConfigService {
   async describeOrganizationConfigRuleStatuses(params: { [K in keyof ParamsFrom<'describeOrganizationConfigRuleStatuses', { next?: string, limit?: number }>]: ParamsFrom<'describeOrganizationConfigRuleStatuses', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeOrganizationConfigRuleStatuses'>]-?: ReturnTypeFrom<'describeOrganizationConfigRuleStatuses'>[K]}['OrganizationConfigRuleStatuses'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"OrganizationConfigRuleStatuses"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeOrganizationConfigRuleStatuses({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeOrganizationConfigRuleStatuses' })).toString('base64');
     const member = (Array.isArray(result.OrganizationConfigRuleStatuses ?? []) ? (result.OrganizationConfigRuleStatuses ?? []) : [result.OrganizationConfigRuleStatuses]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeOrganizationConfigRules(params: { [K in keyof ParamsFrom<'describeOrganizationConfigRules', { next?: string, limit?: number }>]: ParamsFrom<'describeOrganizationConfigRules', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeOrganizationConfigRules'>]-?: ReturnTypeFrom<'describeOrganizationConfigRules'>[K]}['OrganizationConfigRules'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"OrganizationConfigRules"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeOrganizationConfigRules({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeOrganizationConfigRules' })).toString('base64');
     const member = (Array.isArray(result.OrganizationConfigRules ?? []) ? (result.OrganizationConfigRules ?? []) : [result.OrganizationConfigRules]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeOrganizationConformancePackStatuses(params: { [K in keyof ParamsFrom<'describeOrganizationConformancePackStatuses', { next?: string, limit?: number }>]: ParamsFrom<'describeOrganizationConformancePackStatuses', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeOrganizationConformancePackStatuses'>]-?: ReturnTypeFrom<'describeOrganizationConformancePackStatuses'>[K]}['OrganizationConformancePackStatuses'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"OrganizationConformancePackStatuses"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeOrganizationConformancePackStatuses({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeOrganizationConformancePackStatuses' })).toString('base64');
     const member = (Array.isArray(result.OrganizationConformancePackStatuses ?? []) ? (result.OrganizationConformancePackStatuses ?? []) : [result.OrganizationConformancePackStatuses]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeOrganizationConformancePacks(params: { [K in keyof ParamsFrom<'describeOrganizationConformancePacks', { next?: string, limit?: number }>]: ParamsFrom<'describeOrganizationConformancePacks', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeOrganizationConformancePacks'>]-?: ReturnTypeFrom<'describeOrganizationConformancePacks'>[K]}['OrganizationConformancePacks'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"OrganizationConformancePacks"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeOrganizationConformancePacks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeOrganizationConformancePacks' })).toString('base64');
     const member = (Array.isArray(result.OrganizationConformancePacks ?? []) ? (result.OrganizationConformancePacks ?? []) : [result.OrganizationConformancePacks]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describePendingAggregationRequests(params: { [K in keyof ParamsFrom<'describePendingAggregationRequests', { next?: string, limit?: number }>]: ParamsFrom<'describePendingAggregationRequests', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describePendingAggregationRequests'>]-?: ReturnTypeFrom<'describePendingAggregationRequests'>[K]}['PendingAggregationRequests'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"PendingAggregationRequests"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describePendingAggregationRequests({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describePendingAggregationRequests' })).toString('base64');
     const member = (Array.isArray(result.PendingAggregationRequests ?? []) ? (result.PendingAggregationRequests ?? []) : [result.PendingAggregationRequests]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -386,45 +386,45 @@ export class ConfigService {
   async describeRemediationExecutionStatus(params: { [K in keyof ParamsFrom<'describeRemediationExecutionStatus', { next?: string, limit?: number }>]: ParamsFrom<'describeRemediationExecutionStatus', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeRemediationExecutionStatus'>]-?: ReturnTypeFrom<'describeRemediationExecutionStatus'>[K]}['RemediationExecutionStatuses'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"RemediationExecutionStatuses"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeRemediationExecutionStatus({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeRemediationExecutionStatus' })).toString('base64');
     const member = (Array.isArray(result.RemediationExecutionStatuses ?? []) ? (result.RemediationExecutionStatuses ?? []) : [result.RemediationExecutionStatuses]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async describeRetentionConfigurations(params: { [K in keyof ParamsFrom<'describeRetentionConfigurations', { next?: string }>]: ParamsFrom<'describeRetentionConfigurations', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeRetentionConfigurations'>]-?: ReturnTypeFrom<'describeRetentionConfigurations'>[K]}['RetentionConfigurations'], undefined>}> {
     // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"RetentionConfigurations"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.describeRetentionConfigurations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeRetentionConfigurations' })).toString('base64');
     const member = (Array.isArray(result.RetentionConfigurations ?? []) ? (result.RetentionConfigurations ?? []) : [result.RetentionConfigurations]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async getAggregateComplianceDetailsByConfigRule(params: { [K in keyof ParamsFrom<'getAggregateComplianceDetailsByConfigRule', { next?: string, limit?: number }>]: ParamsFrom<'getAggregateComplianceDetailsByConfigRule', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getAggregateComplianceDetailsByConfigRule'>]-?: ReturnTypeFrom<'getAggregateComplianceDetailsByConfigRule'>[K]}['AggregateEvaluationResults'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"AggregateEvaluationResults"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.getAggregateComplianceDetailsByConfigRule({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getAggregateComplianceDetailsByConfigRule' })).toString('base64');
     const member = (Array.isArray(result.AggregateEvaluationResults ?? []) ? (result.AggregateEvaluationResults ?? []) : [result.AggregateEvaluationResults]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -451,30 +451,30 @@ export class ConfigService {
   async getComplianceDetailsByConfigRule(params: { [K in keyof ParamsFrom<'getComplianceDetailsByConfigRule', { next?: string, limit?: number }>]: ParamsFrom<'getComplianceDetailsByConfigRule', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getComplianceDetailsByConfigRule'>]-?: ReturnTypeFrom<'getComplianceDetailsByConfigRule'>[K]}['EvaluationResults'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"EvaluationResults"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.getComplianceDetailsByConfigRule({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getComplianceDetailsByConfigRule' })).toString('base64');
     const member = (Array.isArray(result.EvaluationResults ?? []) ? (result.EvaluationResults ?? []) : [result.EvaluationResults]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async getComplianceDetailsByResource(params: { [K in keyof ParamsFrom<'getComplianceDetailsByResource', { next?: string }>]: ParamsFrom<'getComplianceDetailsByResource', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getComplianceDetailsByResource'>]-?: ReturnTypeFrom<'getComplianceDetailsByResource'>[K]}['EvaluationResults'], undefined>}> {
     // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"EvaluationResults"}
     const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.getComplianceDetailsByResource({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getComplianceDetailsByResource' })).toString('base64');
     const member = (Array.isArray(result.EvaluationResults ?? []) ? (result.EvaluationResults ?? []) : [result.EvaluationResults]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -496,15 +496,15 @@ export class ConfigService {
   async getConformancePackComplianceSummary(params: { [K in keyof ParamsFrom<'getConformancePackComplianceSummary', { next?: string, limit?: number }>]: ParamsFrom<'getConformancePackComplianceSummary', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getConformancePackComplianceSummary'>]-?: ReturnTypeFrom<'getConformancePackComplianceSummary'>[K]}['ConformancePackComplianceSummaryList'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"ConformancePackComplianceSummaryList"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.getConformancePackComplianceSummary({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getConformancePackComplianceSummary' })).toString('base64');
     const member = (Array.isArray(result.ConformancePackComplianceSummaryList ?? []) ? (result.ConformancePackComplianceSummaryList ?? []) : [result.ConformancePackComplianceSummaryList]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -521,30 +521,30 @@ export class ConfigService {
   async getOrganizationConfigRuleDetailedStatus(params: { [K in keyof ParamsFrom<'getOrganizationConfigRuleDetailedStatus', { next?: string, limit?: number }>]: ParamsFrom<'getOrganizationConfigRuleDetailedStatus', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getOrganizationConfigRuleDetailedStatus'>]-?: ReturnTypeFrom<'getOrganizationConfigRuleDetailedStatus'>[K]}['OrganizationConfigRuleDetailedStatus'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"OrganizationConfigRuleDetailedStatus"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.getOrganizationConfigRuleDetailedStatus({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getOrganizationConfigRuleDetailedStatus' })).toString('base64');
     const member = (Array.isArray(result.OrganizationConfigRuleDetailedStatus ?? []) ? (result.OrganizationConfigRuleDetailedStatus ?? []) : [result.OrganizationConfigRuleDetailedStatus]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async getOrganizationConformancePackDetailedStatus(params: { [K in keyof ParamsFrom<'getOrganizationConformancePackDetailedStatus', { next?: string, limit?: number }>]: ParamsFrom<'getOrganizationConformancePackDetailedStatus', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getOrganizationConformancePackDetailedStatus'>]-?: ReturnTypeFrom<'getOrganizationConformancePackDetailedStatus'>[K]}['OrganizationConformancePackDetailedStatuses'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"OrganizationConformancePackDetailedStatuses"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.getOrganizationConformancePackDetailedStatus({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getOrganizationConformancePackDetailedStatus' })).toString('base64');
     const member = (Array.isArray(result.OrganizationConformancePackDetailedStatuses ?? []) ? (result.OrganizationConformancePackDetailedStatuses ?? []) : [result.OrganizationConformancePackDetailedStatuses]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -556,15 +556,15 @@ export class ConfigService {
   async getResourceConfigHistory(params: { [K in keyof ParamsFrom<'getResourceConfigHistory', { next?: string, limit?: number }>]: ParamsFrom<'getResourceConfigHistory', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getResourceConfigHistory'>]-?: ReturnTypeFrom<'getResourceConfigHistory'>[K]}['configurationItems'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"limit","outputToken":"nextToken","resultKey":"configurationItems"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getResourceConfigHistory({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getResourceConfigHistory' })).toString('base64');
     const member = (Array.isArray(result.configurationItems ?? []) ? (result.configurationItems ?? []) : [result.configurationItems]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -576,15 +576,15 @@ export class ConfigService {
   async listAggregateDiscoveredResources(params: { [K in keyof ParamsFrom<'listAggregateDiscoveredResources', { next?: string, limit?: number }>]: ParamsFrom<'listAggregateDiscoveredResources', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listAggregateDiscoveredResources'>]-?: ReturnTypeFrom<'listAggregateDiscoveredResources'>[K]}['ResourceIdentifiers'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"ResourceIdentifiers"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listAggregateDiscoveredResources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAggregateDiscoveredResources' })).toString('base64');
     const member = (Array.isArray(result.ResourceIdentifiers ?? []) ? (result.ResourceIdentifiers ?? []) : [result.ResourceIdentifiers]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -596,15 +596,15 @@ export class ConfigService {
   async listDiscoveredResources(params: { [K in keyof ParamsFrom<'listDiscoveredResources', { next?: string, limit?: number }>]: ParamsFrom<'listDiscoveredResources', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listDiscoveredResources'>]-?: ReturnTypeFrom<'listDiscoveredResources'>[K]}['resourceIdentifiers'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"limit","outputToken":"nextToken","resultKey":"resourceIdentifiers"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { nextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.listDiscoveredResources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.nextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDiscoveredResources' })).toString('base64');
     const member = (Array.isArray(result.resourceIdentifiers ?? []) ? (result.resourceIdentifiers ?? []) : [result.resourceIdentifiers]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -616,15 +616,15 @@ export class ConfigService {
   async listTagsForResource(params: { [K in keyof ParamsFrom<'listTagsForResource', { next?: string, limit?: number }>]: ParamsFrom<'listTagsForResource', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listTagsForResource'>]-?: ReturnTypeFrom<'listTagsForResource'>[K]}['Tags'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"Tags"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listTagsForResource({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTagsForResource' })).toString('base64');
     const member = (Array.isArray(result.Tags ?? []) ? (result.Tags ?? []) : [result.Tags]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
@@ -706,30 +706,30 @@ export class ConfigService {
   async selectAggregateResourceConfig(params: { [K in keyof ParamsFrom<'selectAggregateResourceConfig', { next?: string, limit?: number }>]: ParamsFrom<'selectAggregateResourceConfig', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'selectAggregateResourceConfig'>]-?: ReturnTypeFrom<'selectAggregateResourceConfig'>[K]}['Results'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"Results"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.selectAggregateResourceConfig({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'selectAggregateResourceConfig' })).toString('base64');
     const member = (Array.isArray(result.Results ?? []) ? (result.Results ?? []) : [result.Results]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
   async selectResourceConfig(params: { [K in keyof ParamsFrom<'selectResourceConfig', { next?: string, limit?: number }>]: ParamsFrom<'selectResourceConfig', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'selectResourceConfig'>]-?: ReturnTypeFrom<'selectResourceConfig'>[K]}['Results'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"Results"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.selectResourceConfig({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'selectResourceConfig' })).toString('base64');
     const member = (Array.isArray(result.Results ?? []) ? (result.Results ?? []) : [result.Results]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 

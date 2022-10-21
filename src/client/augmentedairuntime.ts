@@ -41,15 +41,15 @@ export class AugmentedAIRuntime {
   async listHumanLoops(params: { [K in keyof ParamsFrom<'listHumanLoops', { next?: string, limit?: number }>]: ParamsFrom<'listHumanLoops', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listHumanLoops'>]-?: ReturnTypeFrom<'listHumanLoops'>[K]}['HumanLoopSummaries'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"HumanLoopSummaries"}
     const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(next) } : {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listHumanLoops({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ;
+    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listHumanLoops' })).toString('base64');
     const member = (Array.isArray(result.HumanLoopSummaries ?? []) ? (result.HumanLoopSummaries ?? []) : [result.HumanLoopSummaries]) as any;
     return {
       totalItems: member.length,
       member,
-      next: JSON.stringify(nextToken)
+      next: nextToken
     }
   }
 
