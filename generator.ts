@@ -111,7 +111,7 @@ export default class Generator {
     const nextTokenPart = ${it.info?.inputToken ? `next ? { ${it.info?.inputToken}: JSON.parse(next) } : {}`: '{}'};
     const limitTokenPart = ${it.info?.limitKey ? `limit ? { ${it.info?.limitKey}: limit } : {}`: '{}'};
     const result = await this.client.${it.name}({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result${digToken};
+    const nextToken = ${digToken ? `result${digToken}` : 'undefined'} ;
     const member = (Array.isArray(result${dig} ?? []) ? (result${dig} ?? []) : [result${dig}]) as any;
     return {
       totalItems: member.length,
