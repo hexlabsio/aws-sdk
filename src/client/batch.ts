@@ -74,7 +74,7 @@ export class Batch {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeComputeEnvironments({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeComputeEnvironments' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeComputeEnvironments' })).toString('base64') : undefined;
     const member = (Array.isArray(result.computeEnvironments ?? []) ? (result.computeEnvironments ?? []) : [result.computeEnvironments]) as any;
     return {
       totalItems: member.length,
@@ -89,7 +89,7 @@ export class Batch {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeJobDefinitions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeJobDefinitions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeJobDefinitions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.jobDefinitions ?? []) ? (result.jobDefinitions ?? []) : [result.jobDefinitions]) as any;
     return {
       totalItems: member.length,
@@ -104,7 +104,7 @@ export class Batch {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeJobQueues({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeJobQueues' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeJobQueues' })).toString('base64') : undefined;
     const member = (Array.isArray(result.jobQueues ?? []) ? (result.jobQueues ?? []) : [result.jobQueues]) as any;
     return {
       totalItems: member.length,
@@ -129,7 +129,7 @@ export class Batch {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listJobs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.jobSummaryList ?? []) ? (result.jobSummaryList ?? []) : [result.jobSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -144,7 +144,7 @@ export class Batch {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listSchedulingPolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSchedulingPolicies' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSchedulingPolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.schedulingPolicies ?? []) ? (result.schedulingPolicies ?? []) : [result.schedulingPolicies]) as any;
     return {
       totalItems: member.length,

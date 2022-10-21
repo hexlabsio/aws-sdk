@@ -154,7 +154,7 @@ export class IoTFleetWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.getVehicleStatus({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getVehicleStatus' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getVehicleStatus' })).toString('base64') : undefined;
     const member = (Array.isArray(result.campaigns ?? []) ? (result.campaigns ?? []) : [result.campaigns]) as any;
     return {
       totalItems: member.length,
@@ -179,7 +179,7 @@ export class IoTFleetWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listCampaigns({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listCampaigns' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listCampaigns' })).toString('base64') : undefined;
     const member = (Array.isArray(result.campaignSummaries ?? []) ? (result.campaignSummaries ?? []) : [result.campaignSummaries]) as any;
     return {
       totalItems: member.length,
@@ -194,7 +194,7 @@ export class IoTFleetWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDecoderManifestNetworkInterfaces({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDecoderManifestNetworkInterfaces' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDecoderManifestNetworkInterfaces' })).toString('base64') : undefined;
     const member = (Array.isArray(result.networkInterfaces ?? []) ? (result.networkInterfaces ?? []) : [result.networkInterfaces]) as any;
     return {
       totalItems: member.length,
@@ -209,7 +209,7 @@ export class IoTFleetWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDecoderManifestSignals({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDecoderManifestSignals' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDecoderManifestSignals' })).toString('base64') : undefined;
     const member = (Array.isArray(result.signalDecoders ?? []) ? (result.signalDecoders ?? []) : [result.signalDecoders]) as any;
     return {
       totalItems: member.length,
@@ -224,7 +224,7 @@ export class IoTFleetWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDecoderManifests({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDecoderManifests' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDecoderManifests' })).toString('base64') : undefined;
     const member = (Array.isArray(result.summaries ?? []) ? (result.summaries ?? []) : [result.summaries]) as any;
     return {
       totalItems: member.length,
@@ -239,7 +239,7 @@ export class IoTFleetWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listFleets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listFleets' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listFleets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.fleetSummaries ?? []) ? (result.fleetSummaries ?? []) : [result.fleetSummaries]) as any;
     return {
       totalItems: member.length,
@@ -254,7 +254,7 @@ export class IoTFleetWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listFleetsForVehicle({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listFleetsForVehicle' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listFleetsForVehicle' })).toString('base64') : undefined;
     const member = (Array.isArray(result.fleets ?? []) ? (result.fleets ?? []) : [result.fleets]) as any;
     return {
       totalItems: member.length,
@@ -269,7 +269,7 @@ export class IoTFleetWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listModelManifestNodes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listModelManifestNodes' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listModelManifestNodes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.nodes ?? []) ? (result.nodes ?? []) : [result.nodes]) as any;
     return {
       totalItems: member.length,
@@ -284,7 +284,7 @@ export class IoTFleetWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listModelManifests({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listModelManifests' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listModelManifests' })).toString('base64') : undefined;
     const member = (Array.isArray(result.summaries ?? []) ? (result.summaries ?? []) : [result.summaries]) as any;
     return {
       totalItems: member.length,
@@ -299,7 +299,7 @@ export class IoTFleetWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listSignalCatalogNodes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSignalCatalogNodes' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSignalCatalogNodes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.nodes ?? []) ? (result.nodes ?? []) : [result.nodes]) as any;
     return {
       totalItems: member.length,
@@ -314,7 +314,7 @@ export class IoTFleetWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listSignalCatalogs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSignalCatalogs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSignalCatalogs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.summaries ?? []) ? (result.summaries ?? []) : [result.summaries]) as any;
     return {
       totalItems: member.length,
@@ -334,7 +334,7 @@ export class IoTFleetWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listVehicles({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listVehicles' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listVehicles' })).toString('base64') : undefined;
     const member = (Array.isArray(result.vehicleSummaries ?? []) ? (result.vehicleSummaries ?? []) : [result.vehicleSummaries]) as any;
     return {
       totalItems: member.length,
@@ -349,7 +349,7 @@ export class IoTFleetWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listVehiclesInFleet({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listVehiclesInFleet' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listVehiclesInFleet' })).toString('base64') : undefined;
     const member = (Array.isArray(result.vehicles ?? []) ? (result.vehicles ?? []) : [result.vehicles]) as any;
     return {
       totalItems: member.length,

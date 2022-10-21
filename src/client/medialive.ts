@@ -189,7 +189,7 @@ export class MediaLive {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeSchedule({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeSchedule' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeSchedule' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ScheduleActions ?? []) ? (result.ScheduleActions ?? []) : [result.ScheduleActions]) as any;
     return {
       totalItems: member.length,
@@ -204,7 +204,7 @@ export class MediaLive {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listChannels({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listChannels' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listChannels' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Channels ?? []) ? (result.Channels ?? []) : [result.Channels]) as any;
     return {
       totalItems: member.length,
@@ -219,7 +219,7 @@ export class MediaLive {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listInputDeviceTransfers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listInputDeviceTransfers' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listInputDeviceTransfers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.InputDeviceTransfers ?? []) ? (result.InputDeviceTransfers ?? []) : [result.InputDeviceTransfers]) as any;
     return {
       totalItems: member.length,
@@ -234,7 +234,7 @@ export class MediaLive {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listInputDevices({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listInputDevices' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listInputDevices' })).toString('base64') : undefined;
     const member = (Array.isArray(result.InputDevices ?? []) ? (result.InputDevices ?? []) : [result.InputDevices]) as any;
     return {
       totalItems: member.length,
@@ -249,7 +249,7 @@ export class MediaLive {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listInputSecurityGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listInputSecurityGroups' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listInputSecurityGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.InputSecurityGroups ?? []) ? (result.InputSecurityGroups ?? []) : [result.InputSecurityGroups]) as any;
     return {
       totalItems: member.length,
@@ -264,7 +264,7 @@ export class MediaLive {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listInputs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listInputs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listInputs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Inputs ?? []) ? (result.Inputs ?? []) : [result.Inputs]) as any;
     return {
       totalItems: member.length,
@@ -279,7 +279,7 @@ export class MediaLive {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listMultiplexPrograms({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMultiplexPrograms' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMultiplexPrograms' })).toString('base64') : undefined;
     const member = (Array.isArray(result.MultiplexPrograms ?? []) ? (result.MultiplexPrograms ?? []) : [result.MultiplexPrograms]) as any;
     return {
       totalItems: member.length,
@@ -294,7 +294,7 @@ export class MediaLive {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listMultiplexes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMultiplexes' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMultiplexes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Multiplexes ?? []) ? (result.Multiplexes ?? []) : [result.Multiplexes]) as any;
     return {
       totalItems: member.length,
@@ -309,7 +309,7 @@ export class MediaLive {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listOfferings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listOfferings' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listOfferings' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Offerings ?? []) ? (result.Offerings ?? []) : [result.Offerings]) as any;
     return {
       totalItems: member.length,
@@ -324,7 +324,7 @@ export class MediaLive {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listReservations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listReservations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listReservations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Reservations ?? []) ? (result.Reservations ?? []) : [result.Reservations]) as any;
     return {
       totalItems: member.length,

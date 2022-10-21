@@ -104,7 +104,7 @@ export class DataExchange {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDataSetRevisions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDataSetRevisions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDataSetRevisions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Revisions ?? []) ? (result.Revisions ?? []) : [result.Revisions]) as any;
     return {
       totalItems: member.length,
@@ -119,7 +119,7 @@ export class DataExchange {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDataSets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDataSets' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDataSets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DataSets ?? []) ? (result.DataSets ?? []) : [result.DataSets]) as any;
     return {
       totalItems: member.length,
@@ -134,7 +134,7 @@ export class DataExchange {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listEventActions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEventActions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEventActions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.EventActions ?? []) ? (result.EventActions ?? []) : [result.EventActions]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class DataExchange {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Jobs ?? []) ? (result.Jobs ?? []) : [result.Jobs]) as any;
     return {
       totalItems: member.length,
@@ -164,7 +164,7 @@ export class DataExchange {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listRevisionAssets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRevisionAssets' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRevisionAssets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Assets ?? []) ? (result.Assets ?? []) : [result.Assets]) as any;
     return {
       totalItems: member.length,

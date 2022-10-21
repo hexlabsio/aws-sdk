@@ -79,7 +79,7 @@ export class SQS {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDeadLetterSourceQueues({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDeadLetterSourceQueues' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDeadLetterSourceQueues' })).toString('base64') : undefined;
     const member = (Array.isArray(result.queueUrls ?? []) ? (result.queueUrls ?? []) : [result.queueUrls]) as any;
     return {
       totalItems: member.length,
@@ -99,7 +99,7 @@ export class SQS {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listQueues({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listQueues' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listQueues' })).toString('base64') : undefined;
     const member = (Array.isArray(result.QueueUrls ?? []) ? (result.QueueUrls ?? []) : [result.QueueUrls]) as any;
     return {
       totalItems: member.length,

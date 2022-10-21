@@ -114,7 +114,7 @@ export class CodePipeline {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listActionExecutions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listActionExecutions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listActionExecutions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.actionExecutionDetails ?? []) ? (result.actionExecutionDetails ?? []) : [result.actionExecutionDetails]) as any;
     return {
       totalItems: member.length,
@@ -129,7 +129,7 @@ export class CodePipeline {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listActionTypes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listActionTypes' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listActionTypes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.actionTypes ?? []) ? (result.actionTypes ?? []) : [result.actionTypes]) as any;
     return {
       totalItems: member.length,
@@ -144,7 +144,7 @@ export class CodePipeline {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listPipelineExecutions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listPipelineExecutions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listPipelineExecutions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.pipelineExecutionSummaries ?? []) ? (result.pipelineExecutionSummaries ?? []) : [result.pipelineExecutionSummaries]) as any;
     return {
       totalItems: member.length,
@@ -159,7 +159,7 @@ export class CodePipeline {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listPipelines({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listPipelines' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listPipelines' })).toString('base64') : undefined;
     const member = (Array.isArray(result.pipelines ?? []) ? (result.pipelines ?? []) : [result.pipelines]) as any;
     return {
       totalItems: member.length,
@@ -174,7 +174,7 @@ export class CodePipeline {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listTagsForResource({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTagsForResource' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTagsForResource' })).toString('base64') : undefined;
     const member = (Array.isArray(result.tags ?? []) ? (result.tags ?? []) : [result.tags]) as any;
     return {
       totalItems: member.length,
@@ -189,7 +189,7 @@ export class CodePipeline {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listWebhooks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listWebhooks' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listWebhooks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.webhooks ?? []) ? (result.webhooks ?? []) : [result.webhooks]) as any;
     return {
       totalItems: member.length,

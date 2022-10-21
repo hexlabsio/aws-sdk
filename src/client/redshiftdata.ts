@@ -49,7 +49,7 @@ export class RedshiftData {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeTable({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeTable' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeTable' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ColumnList ?? []) ? (result.ColumnList ?? []) : [result.ColumnList]) as any;
     return {
       totalItems: member.length,
@@ -69,7 +69,7 @@ export class RedshiftData {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.getStatementResult({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getStatementResult' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getStatementResult' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Records ?? []) ? (result.Records ?? []) : [result.Records]) as any;
     return {
       totalItems: member.length,
@@ -84,7 +84,7 @@ export class RedshiftData {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDatabases({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDatabases' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDatabases' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Databases ?? []) ? (result.Databases ?? []) : [result.Databases]) as any;
     return {
       totalItems: member.length,
@@ -99,7 +99,7 @@ export class RedshiftData {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listSchemas({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSchemas' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSchemas' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Schemas ?? []) ? (result.Schemas ?? []) : [result.Schemas]) as any;
     return {
       totalItems: member.length,
@@ -114,7 +114,7 @@ export class RedshiftData {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listStatements({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStatements' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStatements' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Statements ?? []) ? (result.Statements ?? []) : [result.Statements]) as any;
     return {
       totalItems: member.length,
@@ -129,7 +129,7 @@ export class RedshiftData {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listTables({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTables' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTables' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Tables ?? []) ? (result.Tables ?? []) : [result.Tables]) as any;
     return {
       totalItems: member.length,

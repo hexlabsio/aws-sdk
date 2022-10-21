@@ -204,7 +204,7 @@ export class Lambda {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listAliases({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listAliases' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listAliases' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Aliases ?? []) ? (result.Aliases ?? []) : [result.Aliases]) as any;
     return {
       totalItems: member.length,
@@ -219,7 +219,7 @@ export class Lambda {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listCodeSigningConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listCodeSigningConfigs' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listCodeSigningConfigs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CodeSigningConfigs ?? []) ? (result.CodeSigningConfigs ?? []) : [result.CodeSigningConfigs]) as any;
     return {
       totalItems: member.length,
@@ -234,7 +234,7 @@ export class Lambda {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listEventSourceMappings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listEventSourceMappings' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listEventSourceMappings' })).toString('base64') : undefined;
     const member = (Array.isArray(result.EventSourceMappings ?? []) ? (result.EventSourceMappings ?? []) : [result.EventSourceMappings]) as any;
     return {
       totalItems: member.length,
@@ -249,7 +249,7 @@ export class Lambda {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listFunctionEventInvokeConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listFunctionEventInvokeConfigs' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listFunctionEventInvokeConfigs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.FunctionEventInvokeConfigs ?? []) ? (result.FunctionEventInvokeConfigs ?? []) : [result.FunctionEventInvokeConfigs]) as any;
     return {
       totalItems: member.length,
@@ -264,7 +264,7 @@ export class Lambda {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listFunctionUrlConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listFunctionUrlConfigs' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listFunctionUrlConfigs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.FunctionUrlConfigs ?? []) ? (result.FunctionUrlConfigs ?? []) : [result.FunctionUrlConfigs]) as any;
     return {
       totalItems: member.length,
@@ -279,7 +279,7 @@ export class Lambda {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listFunctions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listFunctions' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listFunctions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Functions ?? []) ? (result.Functions ?? []) : [result.Functions]) as any;
     return {
       totalItems: member.length,
@@ -294,7 +294,7 @@ export class Lambda {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listFunctionsByCodeSigningConfig({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listFunctionsByCodeSigningConfig' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listFunctionsByCodeSigningConfig' })).toString('base64') : undefined;
     const member = (Array.isArray(result.FunctionArns ?? []) ? (result.FunctionArns ?? []) : [result.FunctionArns]) as any;
     return {
       totalItems: member.length,
@@ -309,7 +309,7 @@ export class Lambda {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listLayerVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listLayerVersions' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listLayerVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.LayerVersions ?? []) ? (result.LayerVersions ?? []) : [result.LayerVersions]) as any;
     return {
       totalItems: member.length,
@@ -324,7 +324,7 @@ export class Lambda {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listLayers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listLayers' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listLayers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Layers ?? []) ? (result.Layers ?? []) : [result.Layers]) as any;
     return {
       totalItems: member.length,
@@ -339,7 +339,7 @@ export class Lambda {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listProvisionedConcurrencyConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listProvisionedConcurrencyConfigs' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listProvisionedConcurrencyConfigs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ProvisionedConcurrencyConfigs ?? []) ? (result.ProvisionedConcurrencyConfigs ?? []) : [result.ProvisionedConcurrencyConfigs]) as any;
     return {
       totalItems: member.length,
@@ -359,7 +359,7 @@ export class Lambda {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listVersionsByFunction({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listVersionsByFunction' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listVersionsByFunction' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Versions ?? []) ? (result.Versions ?? []) : [result.Versions]) as any;
     return {
       totalItems: member.length,

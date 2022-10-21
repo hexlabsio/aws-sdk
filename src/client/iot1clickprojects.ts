@@ -79,7 +79,7 @@ export class IoT1ClickProjects {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listPlacements({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listPlacements' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listPlacements' })).toString('base64') : undefined;
     const member = (Array.isArray(result.placements ?? []) ? (result.placements ?? []) : [result.placements]) as any;
     return {
       totalItems: member.length,
@@ -94,7 +94,7 @@ export class IoT1ClickProjects {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listProjects({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listProjects' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listProjects' })).toString('base64') : undefined;
     const member = (Array.isArray(result.projects ?? []) ? (result.projects ?? []) : [result.projects]) as any;
     return {
       totalItems: member.length,

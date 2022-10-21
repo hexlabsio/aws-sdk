@@ -69,7 +69,7 @@ export class SimpleDB {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxNumberOfDomains: limit } : {};
     const result = await this.client.listDomains({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDomains' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDomains' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DomainNames ?? []) ? (result.DomainNames ?? []) : [result.DomainNames]) as any;
     return {
       totalItems: member.length,
@@ -89,7 +89,7 @@ export class SimpleDB {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.select({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'select' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'select' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Items ?? []) ? (result.Items ?? []) : [result.Items]) as any;
     return {
       totalItems: member.length,

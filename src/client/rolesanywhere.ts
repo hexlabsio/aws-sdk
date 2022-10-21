@@ -114,7 +114,7 @@ export class RolesAnywhere {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listCrls({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listCrls' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listCrls' })).toString('base64') : undefined;
     const member = (Array.isArray(result.crls ?? []) ? (result.crls ?? []) : [result.crls]) as any;
     return {
       totalItems: member.length,
@@ -129,7 +129,7 @@ export class RolesAnywhere {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listProfiles({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listProfiles' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listProfiles' })).toString('base64') : undefined;
     const member = (Array.isArray(result.profiles ?? []) ? (result.profiles ?? []) : [result.profiles]) as any;
     return {
       totalItems: member.length,
@@ -144,7 +144,7 @@ export class RolesAnywhere {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listSubjects({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSubjects' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSubjects' })).toString('base64') : undefined;
     const member = (Array.isArray(result.subjects ?? []) ? (result.subjects ?? []) : [result.subjects]) as any;
     return {
       totalItems: member.length,
@@ -164,7 +164,7 @@ export class RolesAnywhere {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listTrustAnchors({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTrustAnchors' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTrustAnchors' })).toString('base64') : undefined;
     const member = (Array.isArray(result.trustAnchors ?? []) ? (result.trustAnchors ?? []) : [result.trustAnchors]) as any;
     return {
       totalItems: member.length,

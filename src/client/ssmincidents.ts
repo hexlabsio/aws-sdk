@@ -84,7 +84,7 @@ export class SSMIncidents {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.getResourcePolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getResourcePolicies' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getResourcePolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.resourcePolicies ?? []) ? (result.resourcePolicies ?? []) : [result.resourcePolicies]) as any;
     return {
       totalItems: member.length,
@@ -109,7 +109,7 @@ export class SSMIncidents {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listIncidentRecords({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listIncidentRecords' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listIncidentRecords' })).toString('base64') : undefined;
     const member = (Array.isArray(result.incidentRecordSummaries ?? []) ? (result.incidentRecordSummaries ?? []) : [result.incidentRecordSummaries]) as any;
     return {
       totalItems: member.length,
@@ -124,7 +124,7 @@ export class SSMIncidents {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listRelatedItems({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listRelatedItems' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listRelatedItems' })).toString('base64') : undefined;
     const member = (Array.isArray(result.relatedItems ?? []) ? (result.relatedItems ?? []) : [result.relatedItems]) as any;
     return {
       totalItems: member.length,
@@ -139,7 +139,7 @@ export class SSMIncidents {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listReplicationSets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listReplicationSets' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listReplicationSets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.replicationSetArns ?? []) ? (result.replicationSetArns ?? []) : [result.replicationSetArns]) as any;
     return {
       totalItems: member.length,
@@ -154,7 +154,7 @@ export class SSMIncidents {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listResponsePlans({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listResponsePlans' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listResponsePlans' })).toString('base64') : undefined;
     const member = (Array.isArray(result.responsePlanSummaries ?? []) ? (result.responsePlanSummaries ?? []) : [result.responsePlanSummaries]) as any;
     return {
       totalItems: member.length,
@@ -174,7 +174,7 @@ export class SSMIncidents {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listTimelineEvents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTimelineEvents' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTimelineEvents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.eventSummaries ?? []) ? (result.eventSummaries ?? []) : [result.eventSummaries]) as any;
     return {
       totalItems: member.length,

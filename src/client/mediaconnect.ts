@@ -84,7 +84,7 @@ export class MediaConnect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listEntitlements({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEntitlements' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEntitlements' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Entitlements ?? []) ? (result.Entitlements ?? []) : [result.Entitlements]) as any;
     return {
       totalItems: member.length,
@@ -99,7 +99,7 @@ export class MediaConnect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listFlows({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFlows' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFlows' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Flows ?? []) ? (result.Flows ?? []) : [result.Flows]) as any;
     return {
       totalItems: member.length,
@@ -114,7 +114,7 @@ export class MediaConnect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listOfferings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listOfferings' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listOfferings' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Offerings ?? []) ? (result.Offerings ?? []) : [result.Offerings]) as any;
     return {
       totalItems: member.length,
@@ -129,7 +129,7 @@ export class MediaConnect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listReservations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listReservations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listReservations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Reservations ?? []) ? (result.Reservations ?? []) : [result.Reservations]) as any;
     return {
       totalItems: member.length,

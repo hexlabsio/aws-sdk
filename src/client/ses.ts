@@ -214,7 +214,7 @@ export class SES {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listIdentities({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listIdentities' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listIdentities' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Identities ?? []) ? (result.Identities ?? []) : [result.Identities]) as any;
     return {
       totalItems: member.length,

@@ -59,7 +59,7 @@ export class CloudWatch {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeAlarmHistory({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAlarmHistory' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAlarmHistory' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AlarmHistoryItems ?? []) ? (result.AlarmHistoryItems ?? []) : [result.AlarmHistoryItems]) as any;
     return {
       totalItems: member.length,
@@ -94,7 +94,7 @@ export class CloudWatch {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeAnomalyDetectors({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAnomalyDetectors' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAnomalyDetectors' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AnomalyDetectors ?? []) ? (result.AnomalyDetectors ?? []) : [result.AnomalyDetectors]) as any;
     return {
       totalItems: member.length,
@@ -164,7 +164,7 @@ export class CloudWatch {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listDashboards({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDashboards' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDashboards' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DashboardEntries ?? []) ? (result.DashboardEntries ?? []) : [result.DashboardEntries]) as any;
     return {
       totalItems: member.length,
@@ -189,7 +189,7 @@ export class CloudWatch {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listMetrics({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMetrics' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMetrics' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Metrics ?? []) ? (result.Metrics ?? []) : [result.Metrics]) as any;
     return {
       totalItems: member.length,

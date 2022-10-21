@@ -74,7 +74,7 @@ export class EMRcontainers {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listJobRuns({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listJobRuns' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listJobRuns' })).toString('base64') : undefined;
     const member = (Array.isArray(result.jobRuns ?? []) ? (result.jobRuns ?? []) : [result.jobRuns]) as any;
     return {
       totalItems: member.length,
@@ -89,7 +89,7 @@ export class EMRcontainers {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listManagedEndpoints({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listManagedEndpoints' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listManagedEndpoints' })).toString('base64') : undefined;
     const member = (Array.isArray(result.endpoints ?? []) ? (result.endpoints ?? []) : [result.endpoints]) as any;
     return {
       totalItems: member.length,
@@ -109,7 +109,7 @@ export class EMRcontainers {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listVirtualClusters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listVirtualClusters' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listVirtualClusters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.virtualClusters ?? []) ? (result.virtualClusters ?? []) : [result.virtualClusters]) as any;
     return {
       totalItems: member.length,

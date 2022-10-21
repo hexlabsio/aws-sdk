@@ -134,7 +134,7 @@ export class Glacier {
     const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.listJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listJobs' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.JobList ?? []) ? (result.JobList ?? []) : [result.JobList]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class Glacier {
     const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.listMultipartUploads({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listMultipartUploads' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listMultipartUploads' })).toString('base64') : undefined;
     const member = (Array.isArray(result.UploadsList ?? []) ? (result.UploadsList ?? []) : [result.UploadsList]) as any;
     return {
       totalItems: member.length,
@@ -164,7 +164,7 @@ export class Glacier {
     const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.listParts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listParts' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listParts' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Parts ?? []) ? (result.Parts ?? []) : [result.Parts]) as any;
     return {
       totalItems: member.length,
@@ -189,7 +189,7 @@ export class Glacier {
     const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.listVaults({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listVaults' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listVaults' })).toString('base64') : undefined;
     const member = (Array.isArray(result.VaultList ?? []) ? (result.VaultList ?? []) : [result.VaultList]) as any;
     return {
       totalItems: member.length,

@@ -164,7 +164,7 @@ export class ElastiCache {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeCacheClusters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeCacheClusters' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeCacheClusters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CacheClusters ?? []) ? (result.CacheClusters ?? []) : [result.CacheClusters]) as any;
     return {
       totalItems: member.length,
@@ -179,7 +179,7 @@ export class ElastiCache {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeCacheEngineVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeCacheEngineVersions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeCacheEngineVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CacheEngineVersions ?? []) ? (result.CacheEngineVersions ?? []) : [result.CacheEngineVersions]) as any;
     return {
       totalItems: member.length,
@@ -194,7 +194,7 @@ export class ElastiCache {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeCacheParameterGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeCacheParameterGroups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeCacheParameterGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CacheParameterGroups ?? []) ? (result.CacheParameterGroups ?? []) : [result.CacheParameterGroups]) as any;
     return {
       totalItems: member.length,
@@ -209,7 +209,7 @@ export class ElastiCache {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeCacheParameters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeCacheParameters' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeCacheParameters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Parameters ?? []) ? (result.Parameters ?? []) : [result.Parameters]) as any;
     return {
       totalItems: member.length,
@@ -224,7 +224,7 @@ export class ElastiCache {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeCacheSecurityGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeCacheSecurityGroups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeCacheSecurityGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CacheSecurityGroups ?? []) ? (result.CacheSecurityGroups ?? []) : [result.CacheSecurityGroups]) as any;
     return {
       totalItems: member.length,
@@ -239,7 +239,7 @@ export class ElastiCache {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeCacheSubnetGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeCacheSubnetGroups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeCacheSubnetGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CacheSubnetGroups ?? []) ? (result.CacheSubnetGroups ?? []) : [result.CacheSubnetGroups]) as any;
     return {
       totalItems: member.length,
@@ -254,7 +254,7 @@ export class ElastiCache {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeEngineDefaultParameters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.EngineDefaults?.Marker, operation: 'describeEngineDefaultParameters' })).toString('base64');
+    const nextToken = result.EngineDefaults?.Marker ? Buffer.from(JSON.stringify({ token: result.EngineDefaults?.Marker, operation: 'describeEngineDefaultParameters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.EngineDefaults?.Parameters ?? []) ? (result.EngineDefaults?.Parameters ?? []) : [result.EngineDefaults?.Parameters]) as any;
     return {
       totalItems: member.length,
@@ -269,7 +269,7 @@ export class ElastiCache {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeEvents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeEvents' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeEvents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Events ?? []) ? (result.Events ?? []) : [result.Events]) as any;
     return {
       totalItems: member.length,
@@ -284,7 +284,7 @@ export class ElastiCache {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeGlobalReplicationGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeGlobalReplicationGroups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeGlobalReplicationGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.GlobalReplicationGroups ?? []) ? (result.GlobalReplicationGroups ?? []) : [result.GlobalReplicationGroups]) as any;
     return {
       totalItems: member.length,
@@ -299,7 +299,7 @@ export class ElastiCache {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeReplicationGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeReplicationGroups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeReplicationGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ReplicationGroups ?? []) ? (result.ReplicationGroups ?? []) : [result.ReplicationGroups]) as any;
     return {
       totalItems: member.length,
@@ -314,7 +314,7 @@ export class ElastiCache {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeReservedCacheNodes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeReservedCacheNodes' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeReservedCacheNodes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ReservedCacheNodes ?? []) ? (result.ReservedCacheNodes ?? []) : [result.ReservedCacheNodes]) as any;
     return {
       totalItems: member.length,
@@ -329,7 +329,7 @@ export class ElastiCache {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeReservedCacheNodesOfferings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeReservedCacheNodesOfferings' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeReservedCacheNodesOfferings' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ReservedCacheNodesOfferings ?? []) ? (result.ReservedCacheNodesOfferings ?? []) : [result.ReservedCacheNodesOfferings]) as any;
     return {
       totalItems: member.length,
@@ -344,7 +344,7 @@ export class ElastiCache {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeServiceUpdates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeServiceUpdates' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeServiceUpdates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ServiceUpdates ?? []) ? (result.ServiceUpdates ?? []) : [result.ServiceUpdates]) as any;
     return {
       totalItems: member.length,
@@ -359,7 +359,7 @@ export class ElastiCache {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeSnapshots({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeSnapshots' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeSnapshots' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Snapshots ?? []) ? (result.Snapshots ?? []) : [result.Snapshots]) as any;
     return {
       totalItems: member.length,
@@ -374,7 +374,7 @@ export class ElastiCache {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeUpdateActions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeUpdateActions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeUpdateActions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.UpdateActions ?? []) ? (result.UpdateActions ?? []) : [result.UpdateActions]) as any;
     return {
       totalItems: member.length,
@@ -389,7 +389,7 @@ export class ElastiCache {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeUserGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeUserGroups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeUserGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.UserGroups ?? []) ? (result.UserGroups ?? []) : [result.UserGroups]) as any;
     return {
       totalItems: member.length,
@@ -404,7 +404,7 @@ export class ElastiCache {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeUsers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeUsers' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeUsers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Users ?? []) ? (result.Users ?? []) : [result.Users]) as any;
     return {
       totalItems: member.length,

@@ -189,7 +189,7 @@ export class OpsWorks {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeEcsClusters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeEcsClusters' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeEcsClusters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.EcsClusters ?? []) ? (result.EcsClusters ?? []) : [result.EcsClusters]) as any;
     return {
       totalItems: member.length,

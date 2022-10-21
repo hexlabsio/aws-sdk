@@ -74,7 +74,7 @@ export class ServiceQuotas {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listAWSDefaultServiceQuotas({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAWSDefaultServiceQuotas' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAWSDefaultServiceQuotas' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Quotas ?? []) ? (result.Quotas ?? []) : [result.Quotas]) as any;
     return {
       totalItems: member.length,
@@ -89,7 +89,7 @@ export class ServiceQuotas {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listRequestedServiceQuotaChangeHistory({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRequestedServiceQuotaChangeHistory' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRequestedServiceQuotaChangeHistory' })).toString('base64') : undefined;
     const member = (Array.isArray(result.RequestedQuotas ?? []) ? (result.RequestedQuotas ?? []) : [result.RequestedQuotas]) as any;
     return {
       totalItems: member.length,
@@ -104,7 +104,7 @@ export class ServiceQuotas {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listRequestedServiceQuotaChangeHistoryByQuota({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRequestedServiceQuotaChangeHistoryByQuota' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRequestedServiceQuotaChangeHistoryByQuota' })).toString('base64') : undefined;
     const member = (Array.isArray(result.RequestedQuotas ?? []) ? (result.RequestedQuotas ?? []) : [result.RequestedQuotas]) as any;
     return {
       totalItems: member.length,
@@ -119,7 +119,7 @@ export class ServiceQuotas {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listServiceQuotaIncreaseRequestsInTemplate({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listServiceQuotaIncreaseRequestsInTemplate' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listServiceQuotaIncreaseRequestsInTemplate' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ServiceQuotaIncreaseRequestInTemplateList ?? []) ? (result.ServiceQuotaIncreaseRequestInTemplateList ?? []) : [result.ServiceQuotaIncreaseRequestInTemplateList]) as any;
     return {
       totalItems: member.length,
@@ -134,7 +134,7 @@ export class ServiceQuotas {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listServiceQuotas({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listServiceQuotas' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listServiceQuotas' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Quotas ?? []) ? (result.Quotas ?? []) : [result.Quotas]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class ServiceQuotas {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listServices({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listServices' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listServices' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Services ?? []) ? (result.Services ?? []) : [result.Services]) as any;
     return {
       totalItems: member.length,

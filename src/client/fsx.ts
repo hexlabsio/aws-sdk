@@ -169,7 +169,7 @@ export class FSx {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeStorageVirtualMachines({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeStorageVirtualMachines' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeStorageVirtualMachines' })).toString('base64') : undefined;
     const member = (Array.isArray(result.StorageVirtualMachines ?? []) ? (result.StorageVirtualMachines ?? []) : [result.StorageVirtualMachines]) as any;
     return {
       totalItems: member.length,
@@ -184,7 +184,7 @@ export class FSx {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeVolumes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeVolumes' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeVolumes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Volumes ?? []) ? (result.Volumes ?? []) : [result.Volumes]) as any;
     return {
       totalItems: member.length,

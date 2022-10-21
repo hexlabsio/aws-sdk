@@ -179,7 +179,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeGlobalNetworks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeGlobalNetworks' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeGlobalNetworks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.GlobalNetworks ?? []) ? (result.GlobalNetworks ?? []) : [result.GlobalNetworks]) as any;
     return {
       totalItems: member.length,
@@ -229,7 +229,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getConnectPeerAssociations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getConnectPeerAssociations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getConnectPeerAssociations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ConnectPeerAssociations ?? []) ? (result.ConnectPeerAssociations ?? []) : [result.ConnectPeerAssociations]) as any;
     return {
       totalItems: member.length,
@@ -244,7 +244,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getConnections({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getConnections' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getConnections' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Connections ?? []) ? (result.Connections ?? []) : [result.Connections]) as any;
     return {
       totalItems: member.length,
@@ -264,7 +264,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getCoreNetworkChangeEvents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getCoreNetworkChangeEvents' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getCoreNetworkChangeEvents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CoreNetworkChangeEvents ?? []) ? (result.CoreNetworkChangeEvents ?? []) : [result.CoreNetworkChangeEvents]) as any;
     return {
       totalItems: member.length,
@@ -279,7 +279,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getCoreNetworkChangeSet({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getCoreNetworkChangeSet' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getCoreNetworkChangeSet' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CoreNetworkChanges ?? []) ? (result.CoreNetworkChanges ?? []) : [result.CoreNetworkChanges]) as any;
     return {
       totalItems: member.length,
@@ -299,7 +299,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getCustomerGatewayAssociations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getCustomerGatewayAssociations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getCustomerGatewayAssociations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CustomerGatewayAssociations ?? []) ? (result.CustomerGatewayAssociations ?? []) : [result.CustomerGatewayAssociations]) as any;
     return {
       totalItems: member.length,
@@ -314,7 +314,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getDevices({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getDevices' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getDevices' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Devices ?? []) ? (result.Devices ?? []) : [result.Devices]) as any;
     return {
       totalItems: member.length,
@@ -329,7 +329,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getLinkAssociations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getLinkAssociations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getLinkAssociations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.LinkAssociations ?? []) ? (result.LinkAssociations ?? []) : [result.LinkAssociations]) as any;
     return {
       totalItems: member.length,
@@ -344,7 +344,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getLinks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getLinks' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getLinks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Links ?? []) ? (result.Links ?? []) : [result.Links]) as any;
     return {
       totalItems: member.length,
@@ -359,7 +359,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getNetworkResourceCounts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getNetworkResourceCounts' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getNetworkResourceCounts' })).toString('base64') : undefined;
     const member = (Array.isArray(result.NetworkResourceCounts ?? []) ? (result.NetworkResourceCounts ?? []) : [result.NetworkResourceCounts]) as any;
     return {
       totalItems: member.length,
@@ -374,7 +374,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getNetworkResourceRelationships({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getNetworkResourceRelationships' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getNetworkResourceRelationships' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Relationships ?? []) ? (result.Relationships ?? []) : [result.Relationships]) as any;
     return {
       totalItems: member.length,
@@ -389,7 +389,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getNetworkResources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getNetworkResources' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getNetworkResources' })).toString('base64') : undefined;
     const member = (Array.isArray(result.NetworkResources ?? []) ? (result.NetworkResources ?? []) : [result.NetworkResources]) as any;
     return {
       totalItems: member.length,
@@ -409,7 +409,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getNetworkTelemetry({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getNetworkTelemetry' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getNetworkTelemetry' })).toString('base64') : undefined;
     const member = (Array.isArray(result.NetworkTelemetry ?? []) ? (result.NetworkTelemetry ?? []) : [result.NetworkTelemetry]) as any;
     return {
       totalItems: member.length,
@@ -439,7 +439,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getSites({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getSites' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getSites' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Sites ?? []) ? (result.Sites ?? []) : [result.Sites]) as any;
     return {
       totalItems: member.length,
@@ -454,7 +454,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getTransitGatewayConnectPeerAssociations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getTransitGatewayConnectPeerAssociations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getTransitGatewayConnectPeerAssociations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TransitGatewayConnectPeerAssociations ?? []) ? (result.TransitGatewayConnectPeerAssociations ?? []) : [result.TransitGatewayConnectPeerAssociations]) as any;
     return {
       totalItems: member.length,
@@ -474,7 +474,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getTransitGatewayRegistrations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getTransitGatewayRegistrations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getTransitGatewayRegistrations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TransitGatewayRegistrations ?? []) ? (result.TransitGatewayRegistrations ?? []) : [result.TransitGatewayRegistrations]) as any;
     return {
       totalItems: member.length,
@@ -499,7 +499,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listAttachments({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAttachments' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAttachments' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Attachments ?? []) ? (result.Attachments ?? []) : [result.Attachments]) as any;
     return {
       totalItems: member.length,
@@ -514,7 +514,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listConnectPeers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listConnectPeers' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listConnectPeers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ConnectPeers ?? []) ? (result.ConnectPeers ?? []) : [result.ConnectPeers]) as any;
     return {
       totalItems: member.length,
@@ -529,7 +529,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCoreNetworkPolicyVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCoreNetworkPolicyVersions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCoreNetworkPolicyVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CoreNetworkPolicyVersions ?? []) ? (result.CoreNetworkPolicyVersions ?? []) : [result.CoreNetworkPolicyVersions]) as any;
     return {
       totalItems: member.length,
@@ -544,7 +544,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCoreNetworks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCoreNetworks' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCoreNetworks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CoreNetworks ?? []) ? (result.CoreNetworks ?? []) : [result.CoreNetworks]) as any;
     return {
       totalItems: member.length,
@@ -564,7 +564,7 @@ export class NetworkManager {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPeerings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPeerings' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPeerings' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Peerings ?? []) ? (result.Peerings ?? []) : [result.Peerings]) as any;
     return {
       totalItems: member.length,

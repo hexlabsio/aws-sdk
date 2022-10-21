@@ -214,7 +214,7 @@ export class RoboMaker {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDeploymentJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDeploymentJobs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDeploymentJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.deploymentJobs ?? []) ? (result.deploymentJobs ?? []) : [result.deploymentJobs]) as any;
     return {
       totalItems: member.length,
@@ -229,7 +229,7 @@ export class RoboMaker {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listFleets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listFleets' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listFleets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.fleetDetails ?? []) ? (result.fleetDetails ?? []) : [result.fleetDetails]) as any;
     return {
       totalItems: member.length,
@@ -244,7 +244,7 @@ export class RoboMaker {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listRobotApplications({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listRobotApplications' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listRobotApplications' })).toString('base64') : undefined;
     const member = (Array.isArray(result.robotApplicationSummaries ?? []) ? (result.robotApplicationSummaries ?? []) : [result.robotApplicationSummaries]) as any;
     return {
       totalItems: member.length,
@@ -259,7 +259,7 @@ export class RoboMaker {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listRobots({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listRobots' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listRobots' })).toString('base64') : undefined;
     const member = (Array.isArray(result.robots ?? []) ? (result.robots ?? []) : [result.robots]) as any;
     return {
       totalItems: member.length,
@@ -274,7 +274,7 @@ export class RoboMaker {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listSimulationApplications({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSimulationApplications' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSimulationApplications' })).toString('base64') : undefined;
     const member = (Array.isArray(result.simulationApplicationSummaries ?? []) ? (result.simulationApplicationSummaries ?? []) : [result.simulationApplicationSummaries]) as any;
     return {
       totalItems: member.length,
@@ -289,7 +289,7 @@ export class RoboMaker {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listSimulationJobBatches({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSimulationJobBatches' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSimulationJobBatches' })).toString('base64') : undefined;
     const member = (Array.isArray(result.simulationJobBatchSummaries ?? []) ? (result.simulationJobBatchSummaries ?? []) : [result.simulationJobBatchSummaries]) as any;
     return {
       totalItems: member.length,
@@ -304,7 +304,7 @@ export class RoboMaker {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listSimulationJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSimulationJobs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSimulationJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.simulationJobSummaries ?? []) ? (result.simulationJobSummaries ?? []) : [result.simulationJobSummaries]) as any;
     return {
       totalItems: member.length,
@@ -324,7 +324,7 @@ export class RoboMaker {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listWorldExportJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorldExportJobs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorldExportJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.worldExportJobSummaries ?? []) ? (result.worldExportJobSummaries ?? []) : [result.worldExportJobSummaries]) as any;
     return {
       totalItems: member.length,
@@ -339,7 +339,7 @@ export class RoboMaker {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listWorldGenerationJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorldGenerationJobs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorldGenerationJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.worldGenerationJobSummaries ?? []) ? (result.worldGenerationJobSummaries ?? []) : [result.worldGenerationJobSummaries]) as any;
     return {
       totalItems: member.length,
@@ -354,7 +354,7 @@ export class RoboMaker {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listWorldTemplates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorldTemplates' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorldTemplates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.templateSummaries ?? []) ? (result.templateSummaries ?? []) : [result.templateSummaries]) as any;
     return {
       totalItems: member.length,
@@ -369,7 +369,7 @@ export class RoboMaker {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listWorlds({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorlds' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorlds' })).toString('base64') : undefined;
     const member = (Array.isArray(result.worldSummaries ?? []) ? (result.worldSummaries ?? []) : [result.worldSummaries]) as any;
     return {
       totalItems: member.length,

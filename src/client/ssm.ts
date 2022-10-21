@@ -169,7 +169,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeActivations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeActivations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeActivations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ActivationList ?? []) ? (result.ActivationList ?? []) : [result.ActivationList]) as any;
     return {
       totalItems: member.length,
@@ -189,7 +189,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeAssociationExecutionTargets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAssociationExecutionTargets' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAssociationExecutionTargets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AssociationExecutionTargets ?? []) ? (result.AssociationExecutionTargets ?? []) : [result.AssociationExecutionTargets]) as any;
     return {
       totalItems: member.length,
@@ -204,7 +204,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeAssociationExecutions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAssociationExecutions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAssociationExecutions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AssociationExecutions ?? []) ? (result.AssociationExecutions ?? []) : [result.AssociationExecutions]) as any;
     return {
       totalItems: member.length,
@@ -219,7 +219,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeAutomationExecutions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAutomationExecutions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAutomationExecutions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AutomationExecutionMetadataList ?? []) ? (result.AutomationExecutionMetadataList ?? []) : [result.AutomationExecutionMetadataList]) as any;
     return {
       totalItems: member.length,
@@ -234,7 +234,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeAutomationStepExecutions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAutomationStepExecutions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAutomationStepExecutions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.StepExecutions ?? []) ? (result.StepExecutions ?? []) : [result.StepExecutions]) as any;
     return {
       totalItems: member.length,
@@ -249,7 +249,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeAvailablePatches({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAvailablePatches' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAvailablePatches' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Patches ?? []) ? (result.Patches ?? []) : [result.Patches]) as any;
     return {
       totalItems: member.length,
@@ -274,7 +274,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeEffectiveInstanceAssociations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeEffectiveInstanceAssociations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeEffectiveInstanceAssociations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Associations ?? []) ? (result.Associations ?? []) : [result.Associations]) as any;
     return {
       totalItems: member.length,
@@ -289,7 +289,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeEffectivePatchesForPatchBaseline({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeEffectivePatchesForPatchBaseline' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeEffectivePatchesForPatchBaseline' })).toString('base64') : undefined;
     const member = (Array.isArray(result.EffectivePatches ?? []) ? (result.EffectivePatches ?? []) : [result.EffectivePatches]) as any;
     return {
       totalItems: member.length,
@@ -304,7 +304,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeInstanceAssociationsStatus({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeInstanceAssociationsStatus' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeInstanceAssociationsStatus' })).toString('base64') : undefined;
     const member = (Array.isArray(result.InstanceAssociationStatusInfos ?? []) ? (result.InstanceAssociationStatusInfos ?? []) : [result.InstanceAssociationStatusInfos]) as any;
     return {
       totalItems: member.length,
@@ -319,7 +319,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeInstanceInformation({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeInstanceInformation' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeInstanceInformation' })).toString('base64') : undefined;
     const member = (Array.isArray(result.InstanceInformationList ?? []) ? (result.InstanceInformationList ?? []) : [result.InstanceInformationList]) as any;
     return {
       totalItems: member.length,
@@ -334,7 +334,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeInstancePatchStates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeInstancePatchStates' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeInstancePatchStates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.InstancePatchStates ?? []) ? (result.InstancePatchStates ?? []) : [result.InstancePatchStates]) as any;
     return {
       totalItems: member.length,
@@ -349,7 +349,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeInstancePatchStatesForPatchGroup({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeInstancePatchStatesForPatchGroup' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeInstancePatchStatesForPatchGroup' })).toString('base64') : undefined;
     const member = (Array.isArray(result.InstancePatchStates ?? []) ? (result.InstancePatchStates ?? []) : [result.InstancePatchStates]) as any;
     return {
       totalItems: member.length,
@@ -364,7 +364,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeInstancePatches({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeInstancePatches' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeInstancePatches' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Patches ?? []) ? (result.Patches ?? []) : [result.Patches]) as any;
     return {
       totalItems: member.length,
@@ -379,7 +379,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeInventoryDeletions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeInventoryDeletions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeInventoryDeletions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.InventoryDeletions ?? []) ? (result.InventoryDeletions ?? []) : [result.InventoryDeletions]) as any;
     return {
       totalItems: member.length,
@@ -394,7 +394,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeMaintenanceWindowExecutionTaskInvocations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMaintenanceWindowExecutionTaskInvocations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMaintenanceWindowExecutionTaskInvocations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.WindowExecutionTaskInvocationIdentities ?? []) ? (result.WindowExecutionTaskInvocationIdentities ?? []) : [result.WindowExecutionTaskInvocationIdentities]) as any;
     return {
       totalItems: member.length,
@@ -409,7 +409,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeMaintenanceWindowExecutionTasks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMaintenanceWindowExecutionTasks' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMaintenanceWindowExecutionTasks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.WindowExecutionTaskIdentities ?? []) ? (result.WindowExecutionTaskIdentities ?? []) : [result.WindowExecutionTaskIdentities]) as any;
     return {
       totalItems: member.length,
@@ -424,7 +424,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeMaintenanceWindowExecutions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMaintenanceWindowExecutions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMaintenanceWindowExecutions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.WindowExecutions ?? []) ? (result.WindowExecutions ?? []) : [result.WindowExecutions]) as any;
     return {
       totalItems: member.length,
@@ -439,7 +439,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeMaintenanceWindowSchedule({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMaintenanceWindowSchedule' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMaintenanceWindowSchedule' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ScheduledWindowExecutions ?? []) ? (result.ScheduledWindowExecutions ?? []) : [result.ScheduledWindowExecutions]) as any;
     return {
       totalItems: member.length,
@@ -454,7 +454,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeMaintenanceWindowTargets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMaintenanceWindowTargets' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMaintenanceWindowTargets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Targets ?? []) ? (result.Targets ?? []) : [result.Targets]) as any;
     return {
       totalItems: member.length,
@@ -469,7 +469,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeMaintenanceWindowTasks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMaintenanceWindowTasks' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMaintenanceWindowTasks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Tasks ?? []) ? (result.Tasks ?? []) : [result.Tasks]) as any;
     return {
       totalItems: member.length,
@@ -484,7 +484,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeMaintenanceWindows({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMaintenanceWindows' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMaintenanceWindows' })).toString('base64') : undefined;
     const member = (Array.isArray(result.WindowIdentities ?? []) ? (result.WindowIdentities ?? []) : [result.WindowIdentities]) as any;
     return {
       totalItems: member.length,
@@ -499,7 +499,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeMaintenanceWindowsForTarget({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMaintenanceWindowsForTarget' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMaintenanceWindowsForTarget' })).toString('base64') : undefined;
     const member = (Array.isArray(result.WindowIdentities ?? []) ? (result.WindowIdentities ?? []) : [result.WindowIdentities]) as any;
     return {
       totalItems: member.length,
@@ -514,7 +514,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeOpsItems({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeOpsItems' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeOpsItems' })).toString('base64') : undefined;
     const member = (Array.isArray(result.OpsItemSummaries ?? []) ? (result.OpsItemSummaries ?? []) : [result.OpsItemSummaries]) as any;
     return {
       totalItems: member.length,
@@ -534,7 +534,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describePatchBaselines({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describePatchBaselines' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describePatchBaselines' })).toString('base64') : undefined;
     const member = (Array.isArray(result.BaselineIdentities ?? []) ? (result.BaselineIdentities ?? []) : [result.BaselineIdentities]) as any;
     return {
       totalItems: member.length,
@@ -554,7 +554,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describePatchGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describePatchGroups' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describePatchGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Mappings ?? []) ? (result.Mappings ?? []) : [result.Mappings]) as any;
     return {
       totalItems: member.length,
@@ -569,7 +569,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describePatchProperties({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describePatchProperties' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describePatchProperties' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Properties ?? []) ? (result.Properties ?? []) : [result.Properties]) as any;
     return {
       totalItems: member.length,
@@ -584,7 +584,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeSessions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeSessions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeSessions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Sessions ?? []) ? (result.Sessions ?? []) : [result.Sessions]) as any;
     return {
       totalItems: member.length,
@@ -639,7 +639,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getInventory({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getInventory' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getInventory' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Entities ?? []) ? (result.Entities ?? []) : [result.Entities]) as any;
     return {
       totalItems: member.length,
@@ -654,7 +654,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getInventorySchema({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getInventorySchema' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getInventorySchema' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Schemas ?? []) ? (result.Schemas ?? []) : [result.Schemas]) as any;
     return {
       totalItems: member.length,
@@ -704,7 +704,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getOpsSummary({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getOpsSummary' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getOpsSummary' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Entities ?? []) ? (result.Entities ?? []) : [result.Entities]) as any;
     return {
       totalItems: member.length,
@@ -759,7 +759,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listAssociationVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAssociationVersions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAssociationVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AssociationVersions ?? []) ? (result.AssociationVersions ?? []) : [result.AssociationVersions]) as any;
     return {
       totalItems: member.length,
@@ -774,7 +774,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listAssociations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAssociations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAssociations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Associations ?? []) ? (result.Associations ?? []) : [result.Associations]) as any;
     return {
       totalItems: member.length,
@@ -789,7 +789,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCommandInvocations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCommandInvocations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCommandInvocations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CommandInvocations ?? []) ? (result.CommandInvocations ?? []) : [result.CommandInvocations]) as any;
     return {
       totalItems: member.length,
@@ -804,7 +804,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCommands({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCommands' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCommands' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Commands ?? []) ? (result.Commands ?? []) : [result.Commands]) as any;
     return {
       totalItems: member.length,
@@ -819,7 +819,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listComplianceItems({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listComplianceItems' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listComplianceItems' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ComplianceItems ?? []) ? (result.ComplianceItems ?? []) : [result.ComplianceItems]) as any;
     return {
       totalItems: member.length,
@@ -834,7 +834,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listComplianceSummaries({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listComplianceSummaries' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listComplianceSummaries' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ComplianceSummaryItems ?? []) ? (result.ComplianceSummaryItems ?? []) : [result.ComplianceSummaryItems]) as any;
     return {
       totalItems: member.length,
@@ -854,7 +854,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDocumentVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDocumentVersions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDocumentVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DocumentVersions ?? []) ? (result.DocumentVersions ?? []) : [result.DocumentVersions]) as any;
     return {
       totalItems: member.length,
@@ -869,7 +869,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDocuments({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDocuments' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDocuments' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DocumentIdentifiers ?? []) ? (result.DocumentIdentifiers ?? []) : [result.DocumentIdentifiers]) as any;
     return {
       totalItems: member.length,
@@ -889,7 +889,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listOpsItemEvents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listOpsItemEvents' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listOpsItemEvents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Summaries ?? []) ? (result.Summaries ?? []) : [result.Summaries]) as any;
     return {
       totalItems: member.length,
@@ -904,7 +904,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listOpsItemRelatedItems({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listOpsItemRelatedItems' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listOpsItemRelatedItems' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Summaries ?? []) ? (result.Summaries ?? []) : [result.Summaries]) as any;
     return {
       totalItems: member.length,
@@ -919,7 +919,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listOpsMetadata({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listOpsMetadata' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listOpsMetadata' })).toString('base64') : undefined;
     const member = (Array.isArray(result.OpsMetadataList ?? []) ? (result.OpsMetadataList ?? []) : [result.OpsMetadataList]) as any;
     return {
       totalItems: member.length,
@@ -934,7 +934,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listResourceComplianceSummaries({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResourceComplianceSummaries' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResourceComplianceSummaries' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ResourceComplianceSummaryItems ?? []) ? (result.ResourceComplianceSummaryItems ?? []) : [result.ResourceComplianceSummaryItems]) as any;
     return {
       totalItems: member.length,
@@ -949,7 +949,7 @@ export class SSM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listResourceDataSync({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResourceDataSync' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResourceDataSync' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ResourceDataSyncItems ?? []) ? (result.ResourceDataSyncItems ?? []) : [result.ResourceDataSyncItems]) as any;
     return {
       totalItems: member.length,

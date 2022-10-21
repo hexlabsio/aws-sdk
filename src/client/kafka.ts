@@ -104,7 +104,7 @@ export class Kafka {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listClusterOperations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listClusterOperations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listClusterOperations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ClusterOperationInfoList ?? []) ? (result.ClusterOperationInfoList ?? []) : [result.ClusterOperationInfoList]) as any;
     return {
       totalItems: member.length,
@@ -119,7 +119,7 @@ export class Kafka {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listClusters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listClusters' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listClusters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ClusterInfoList ?? []) ? (result.ClusterInfoList ?? []) : [result.ClusterInfoList]) as any;
     return {
       totalItems: member.length,
@@ -134,7 +134,7 @@ export class Kafka {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listClustersV2({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listClustersV2' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listClustersV2' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ClusterInfoList ?? []) ? (result.ClusterInfoList ?? []) : [result.ClusterInfoList]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class Kafka {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listConfigurationRevisions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listConfigurationRevisions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listConfigurationRevisions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Revisions ?? []) ? (result.Revisions ?? []) : [result.Revisions]) as any;
     return {
       totalItems: member.length,
@@ -164,7 +164,7 @@ export class Kafka {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listConfigurations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listConfigurations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listConfigurations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Configurations ?? []) ? (result.Configurations ?? []) : [result.Configurations]) as any;
     return {
       totalItems: member.length,
@@ -179,7 +179,7 @@ export class Kafka {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listKafkaVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listKafkaVersions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listKafkaVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.KafkaVersions ?? []) ? (result.KafkaVersions ?? []) : [result.KafkaVersions]) as any;
     return {
       totalItems: member.length,
@@ -194,7 +194,7 @@ export class Kafka {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listNodes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listNodes' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listNodes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.NodeInfoList ?? []) ? (result.NodeInfoList ?? []) : [result.NodeInfoList]) as any;
     return {
       totalItems: member.length,
@@ -209,7 +209,7 @@ export class Kafka {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listScramSecrets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listScramSecrets' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listScramSecrets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.SecretArnList ?? []) ? (result.SecretArnList ?? []) : [result.SecretArnList]) as any;
     return {
       totalItems: member.length,

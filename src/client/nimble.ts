@@ -159,7 +159,7 @@ export class Nimble {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listEulaAcceptances({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEulaAcceptances' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEulaAcceptances' })).toString('base64') : undefined;
     const member = (Array.isArray(result.eulaAcceptances ?? []) ? (result.eulaAcceptances ?? []) : [result.eulaAcceptances]) as any;
     return {
       totalItems: member.length,
@@ -174,7 +174,7 @@ export class Nimble {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listEulas({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEulas' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEulas' })).toString('base64') : undefined;
     const member = (Array.isArray(result.eulas ?? []) ? (result.eulas ?? []) : [result.eulas]) as any;
     return {
       totalItems: member.length,
@@ -189,7 +189,7 @@ export class Nimble {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listLaunchProfileMembers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listLaunchProfileMembers' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listLaunchProfileMembers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.members ?? []) ? (result.members ?? []) : [result.members]) as any;
     return {
       totalItems: member.length,
@@ -204,7 +204,7 @@ export class Nimble {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listLaunchProfiles({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listLaunchProfiles' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listLaunchProfiles' })).toString('base64') : undefined;
     const member = (Array.isArray(result.launchProfiles ?? []) ? (result.launchProfiles ?? []) : [result.launchProfiles]) as any;
     return {
       totalItems: member.length,
@@ -219,7 +219,7 @@ export class Nimble {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listStreamingImages({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStreamingImages' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStreamingImages' })).toString('base64') : undefined;
     const member = (Array.isArray(result.streamingImages ?? []) ? (result.streamingImages ?? []) : [result.streamingImages]) as any;
     return {
       totalItems: member.length,
@@ -234,7 +234,7 @@ export class Nimble {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listStreamingSessions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStreamingSessions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStreamingSessions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.sessions ?? []) ? (result.sessions ?? []) : [result.sessions]) as any;
     return {
       totalItems: member.length,
@@ -249,7 +249,7 @@ export class Nimble {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listStudioComponents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStudioComponents' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStudioComponents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.studioComponents ?? []) ? (result.studioComponents ?? []) : [result.studioComponents]) as any;
     return {
       totalItems: member.length,
@@ -264,7 +264,7 @@ export class Nimble {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listStudioMembers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStudioMembers' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStudioMembers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.members ?? []) ? (result.members ?? []) : [result.members]) as any;
     return {
       totalItems: member.length,
@@ -279,7 +279,7 @@ export class Nimble {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listStudios({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStudios' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStudios' })).toString('base64') : undefined;
     const member = (Array.isArray(result.studios ?? []) ? (result.studios ?? []) : [result.studios]) as any;
     return {
       totalItems: member.length,

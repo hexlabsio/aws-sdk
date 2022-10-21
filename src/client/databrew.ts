@@ -139,7 +139,7 @@ export class DataBrew {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDatasets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDatasets' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDatasets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Datasets ?? []) ? (result.Datasets ?? []) : [result.Datasets]) as any;
     return {
       totalItems: member.length,
@@ -154,7 +154,7 @@ export class DataBrew {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listJobRuns({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listJobRuns' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listJobRuns' })).toString('base64') : undefined;
     const member = (Array.isArray(result.JobRuns ?? []) ? (result.JobRuns ?? []) : [result.JobRuns]) as any;
     return {
       totalItems: member.length,
@@ -169,7 +169,7 @@ export class DataBrew {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Jobs ?? []) ? (result.Jobs ?? []) : [result.Jobs]) as any;
     return {
       totalItems: member.length,
@@ -184,7 +184,7 @@ export class DataBrew {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listProjects({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listProjects' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listProjects' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Projects ?? []) ? (result.Projects ?? []) : [result.Projects]) as any;
     return {
       totalItems: member.length,
@@ -199,7 +199,7 @@ export class DataBrew {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listRecipeVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRecipeVersions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRecipeVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Recipes ?? []) ? (result.Recipes ?? []) : [result.Recipes]) as any;
     return {
       totalItems: member.length,
@@ -214,7 +214,7 @@ export class DataBrew {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listRecipes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRecipes' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRecipes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Recipes ?? []) ? (result.Recipes ?? []) : [result.Recipes]) as any;
     return {
       totalItems: member.length,
@@ -229,7 +229,7 @@ export class DataBrew {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listRulesets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRulesets' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRulesets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Rulesets ?? []) ? (result.Rulesets ?? []) : [result.Rulesets]) as any;
     return {
       totalItems: member.length,
@@ -244,7 +244,7 @@ export class DataBrew {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listSchedules({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSchedules' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSchedules' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Schedules ?? []) ? (result.Schedules ?? []) : [result.Schedules]) as any;
     return {
       totalItems: member.length,

@@ -154,7 +154,7 @@ export class EMR {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listBootstrapActions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listBootstrapActions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listBootstrapActions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.BootstrapActions ?? []) ? (result.BootstrapActions ?? []) : [result.BootstrapActions]) as any;
     return {
       totalItems: member.length,
@@ -169,7 +169,7 @@ export class EMR {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listClusters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listClusters' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listClusters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Clusters ?? []) ? (result.Clusters ?? []) : [result.Clusters]) as any;
     return {
       totalItems: member.length,
@@ -184,7 +184,7 @@ export class EMR {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listInstanceFleets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listInstanceFleets' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listInstanceFleets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.InstanceFleets ?? []) ? (result.InstanceFleets ?? []) : [result.InstanceFleets]) as any;
     return {
       totalItems: member.length,
@@ -199,7 +199,7 @@ export class EMR {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listInstanceGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listInstanceGroups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listInstanceGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.InstanceGroups ?? []) ? (result.InstanceGroups ?? []) : [result.InstanceGroups]) as any;
     return {
       totalItems: member.length,
@@ -214,7 +214,7 @@ export class EMR {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listInstances({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listInstances' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listInstances' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Instances ?? []) ? (result.Instances ?? []) : [result.Instances]) as any;
     return {
       totalItems: member.length,
@@ -229,7 +229,7 @@ export class EMR {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listNotebookExecutions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listNotebookExecutions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listNotebookExecutions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.NotebookExecutions ?? []) ? (result.NotebookExecutions ?? []) : [result.NotebookExecutions]) as any;
     return {
       totalItems: member.length,
@@ -249,7 +249,7 @@ export class EMR {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listSecurityConfigurations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listSecurityConfigurations' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listSecurityConfigurations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.SecurityConfigurations ?? []) ? (result.SecurityConfigurations ?? []) : [result.SecurityConfigurations]) as any;
     return {
       totalItems: member.length,
@@ -264,7 +264,7 @@ export class EMR {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listSteps({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listSteps' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listSteps' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Steps ?? []) ? (result.Steps ?? []) : [result.Steps]) as any;
     return {
       totalItems: member.length,
@@ -279,7 +279,7 @@ export class EMR {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listStudioSessionMappings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listStudioSessionMappings' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listStudioSessionMappings' })).toString('base64') : undefined;
     const member = (Array.isArray(result.SessionMappings ?? []) ? (result.SessionMappings ?? []) : [result.SessionMappings]) as any;
     return {
       totalItems: member.length,
@@ -294,7 +294,7 @@ export class EMR {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listStudios({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listStudios' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listStudios' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Studios ?? []) ? (result.Studios ?? []) : [result.Studios]) as any;
     return {
       totalItems: member.length,

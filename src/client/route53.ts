@@ -264,7 +264,7 @@ export class Route53 {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCidrBlocks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCidrBlocks' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCidrBlocks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CidrBlocks ?? []) ? (result.CidrBlocks ?? []) : [result.CidrBlocks]) as any;
     return {
       totalItems: member.length,
@@ -279,7 +279,7 @@ export class Route53 {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCidrCollections({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCidrCollections' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCidrCollections' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CidrCollections ?? []) ? (result.CidrCollections ?? []) : [result.CidrCollections]) as any;
     return {
       totalItems: member.length,
@@ -294,7 +294,7 @@ export class Route53 {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCidrLocations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCidrLocations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCidrLocations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CidrLocations ?? []) ? (result.CidrLocations ?? []) : [result.CidrLocations]) as any;
     return {
       totalItems: member.length,
@@ -314,7 +314,7 @@ export class Route53 {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listHealthChecks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listHealthChecks' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listHealthChecks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.HealthChecks ?? []) ? (result.HealthChecks ?? []) : [result.HealthChecks]) as any;
     return {
       totalItems: member.length,
@@ -329,7 +329,7 @@ export class Route53 {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listHostedZones({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listHostedZones' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listHostedZones' })).toString('base64') : undefined;
     const member = (Array.isArray(result.HostedZones ?? []) ? (result.HostedZones ?? []) : [result.HostedZones]) as any;
     return {
       totalItems: member.length,
@@ -354,7 +354,7 @@ export class Route53 {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listQueryLoggingConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listQueryLoggingConfigs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listQueryLoggingConfigs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.QueryLoggingConfigs ?? []) ? (result.QueryLoggingConfigs ?? []) : [result.QueryLoggingConfigs]) as any;
     return {
       totalItems: member.length,

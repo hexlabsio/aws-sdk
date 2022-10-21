@@ -114,7 +114,7 @@ export class CodeBuild {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeCodeCoverages({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeCodeCoverages' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeCodeCoverages' })).toString('base64') : undefined;
     const member = (Array.isArray(result.codeCoverages ?? []) ? (result.codeCoverages ?? []) : [result.codeCoverages]) as any;
     return {
       totalItems: member.length,
@@ -129,7 +129,7 @@ export class CodeBuild {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeTestCases({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeTestCases' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeTestCases' })).toString('base64') : undefined;
     const member = (Array.isArray(result.testCases ?? []) ? (result.testCases ?? []) : [result.testCases]) as any;
     return {
       totalItems: member.length,
@@ -164,7 +164,7 @@ export class CodeBuild {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listBuildBatches({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listBuildBatches' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listBuildBatches' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ids ?? []) ? (result.ids ?? []) : [result.ids]) as any;
     return {
       totalItems: member.length,
@@ -179,7 +179,7 @@ export class CodeBuild {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listBuildBatchesForProject({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listBuildBatchesForProject' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listBuildBatchesForProject' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ids ?? []) ? (result.ids ?? []) : [result.ids]) as any;
     return {
       totalItems: member.length,
@@ -194,7 +194,7 @@ export class CodeBuild {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listBuilds({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listBuilds' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listBuilds' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ids ?? []) ? (result.ids ?? []) : [result.ids]) as any;
     return {
       totalItems: member.length,
@@ -209,7 +209,7 @@ export class CodeBuild {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listBuildsForProject({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listBuildsForProject' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listBuildsForProject' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ids ?? []) ? (result.ids ?? []) : [result.ids]) as any;
     return {
       totalItems: member.length,
@@ -229,7 +229,7 @@ export class CodeBuild {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listProjects({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listProjects' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listProjects' })).toString('base64') : undefined;
     const member = (Array.isArray(result.projects ?? []) ? (result.projects ?? []) : [result.projects]) as any;
     return {
       totalItems: member.length,
@@ -244,7 +244,7 @@ export class CodeBuild {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listReportGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listReportGroups' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listReportGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.reportGroups ?? []) ? (result.reportGroups ?? []) : [result.reportGroups]) as any;
     return {
       totalItems: member.length,
@@ -259,7 +259,7 @@ export class CodeBuild {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listReports({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listReports' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listReports' })).toString('base64') : undefined;
     const member = (Array.isArray(result.reports ?? []) ? (result.reports ?? []) : [result.reports]) as any;
     return {
       totalItems: member.length,
@@ -274,7 +274,7 @@ export class CodeBuild {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listReportsForReportGroup({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listReportsForReportGroup' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listReportsForReportGroup' })).toString('base64') : undefined;
     const member = (Array.isArray(result.reports ?? []) ? (result.reports ?? []) : [result.reports]) as any;
     return {
       totalItems: member.length,
@@ -289,7 +289,7 @@ export class CodeBuild {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listSharedProjects({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSharedProjects' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSharedProjects' })).toString('base64') : undefined;
     const member = (Array.isArray(result.projects ?? []) ? (result.projects ?? []) : [result.projects]) as any;
     return {
       totalItems: member.length,
@@ -304,7 +304,7 @@ export class CodeBuild {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listSharedReportGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSharedReportGroups' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSharedReportGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.reportGroups ?? []) ? (result.reportGroups ?? []) : [result.reportGroups]) as any;
     return {
       totalItems: member.length,

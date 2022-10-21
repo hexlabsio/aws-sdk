@@ -139,7 +139,7 @@ export class MediaTailor {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getChannelSchedule({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getChannelSchedule' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getChannelSchedule' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Items ?? []) ? (result.Items ?? []) : [result.Items]) as any;
     return {
       totalItems: member.length,
@@ -164,7 +164,7 @@ export class MediaTailor {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listAlerts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAlerts' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAlerts' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Items ?? []) ? (result.Items ?? []) : [result.Items]) as any;
     return {
       totalItems: member.length,
@@ -179,7 +179,7 @@ export class MediaTailor {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listChannels({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listChannels' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listChannels' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Items ?? []) ? (result.Items ?? []) : [result.Items]) as any;
     return {
       totalItems: member.length,
@@ -194,7 +194,7 @@ export class MediaTailor {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listLiveSources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listLiveSources' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listLiveSources' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Items ?? []) ? (result.Items ?? []) : [result.Items]) as any;
     return {
       totalItems: member.length,
@@ -209,7 +209,7 @@ export class MediaTailor {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPlaybackConfigurations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPlaybackConfigurations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPlaybackConfigurations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Items ?? []) ? (result.Items ?? []) : [result.Items]) as any;
     return {
       totalItems: member.length,
@@ -224,7 +224,7 @@ export class MediaTailor {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPrefetchSchedules({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPrefetchSchedules' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPrefetchSchedules' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Items ?? []) ? (result.Items ?? []) : [result.Items]) as any;
     return {
       totalItems: member.length,
@@ -239,7 +239,7 @@ export class MediaTailor {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listSourceLocations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSourceLocations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSourceLocations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Items ?? []) ? (result.Items ?? []) : [result.Items]) as any;
     return {
       totalItems: member.length,
@@ -259,7 +259,7 @@ export class MediaTailor {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listVodSources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listVodSources' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listVodSources' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Items ?? []) ? (result.Items ?? []) : [result.Items]) as any;
     return {
       totalItems: member.length,

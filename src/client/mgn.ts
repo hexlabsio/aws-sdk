@@ -74,7 +74,7 @@ export class Mgn {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeJobLogItems({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeJobLogItems' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeJobLogItems' })).toString('base64') : undefined;
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
@@ -89,7 +89,7 @@ export class Mgn {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeJobs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
@@ -104,7 +104,7 @@ export class Mgn {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeLaunchConfigurationTemplates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeLaunchConfigurationTemplates' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeLaunchConfigurationTemplates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
@@ -119,7 +119,7 @@ export class Mgn {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeReplicationConfigurationTemplates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeReplicationConfigurationTemplates' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeReplicationConfigurationTemplates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
@@ -134,7 +134,7 @@ export class Mgn {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeSourceServers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeSourceServers' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeSourceServers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class Mgn {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeVcenterClients({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeVcenterClients' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeVcenterClients' })).toString('base64') : undefined;
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,

@@ -84,7 +84,7 @@ export class MediaPackageVod {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listAssets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAssets' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAssets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Assets ?? []) ? (result.Assets ?? []) : [result.Assets]) as any;
     return {
       totalItems: member.length,
@@ -99,7 +99,7 @@ export class MediaPackageVod {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPackagingConfigurations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPackagingConfigurations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPackagingConfigurations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PackagingConfigurations ?? []) ? (result.PackagingConfigurations ?? []) : [result.PackagingConfigurations]) as any;
     return {
       totalItems: member.length,
@@ -114,7 +114,7 @@ export class MediaPackageVod {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPackagingGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPackagingGroups' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPackagingGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PackagingGroups ?? []) ? (result.PackagingGroups ?? []) : [result.PackagingGroups]) as any;
     return {
       totalItems: member.length,

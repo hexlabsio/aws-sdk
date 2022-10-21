@@ -79,7 +79,7 @@ export class MigrationHub {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listApplicationStates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listApplicationStates' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listApplicationStates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ApplicationStateList ?? []) ? (result.ApplicationStateList ?? []) : [result.ApplicationStateList]) as any;
     return {
       totalItems: member.length,
@@ -94,7 +94,7 @@ export class MigrationHub {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCreatedArtifacts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCreatedArtifacts' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCreatedArtifacts' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CreatedArtifactList ?? []) ? (result.CreatedArtifactList ?? []) : [result.CreatedArtifactList]) as any;
     return {
       totalItems: member.length,
@@ -109,7 +109,7 @@ export class MigrationHub {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDiscoveredResources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDiscoveredResources' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDiscoveredResources' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DiscoveredResourceList ?? []) ? (result.DiscoveredResourceList ?? []) : [result.DiscoveredResourceList]) as any;
     return {
       totalItems: member.length,
@@ -124,7 +124,7 @@ export class MigrationHub {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listMigrationTasks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMigrationTasks' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMigrationTasks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.MigrationTaskSummaryList ?? []) ? (result.MigrationTaskSummaryList ?? []) : [result.MigrationTaskSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -139,7 +139,7 @@ export class MigrationHub {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listProgressUpdateStreams({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listProgressUpdateStreams' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listProgressUpdateStreams' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ProgressUpdateStreamSummaryList ?? []) ? (result.ProgressUpdateStreamSummaryList ?? []) : [result.ProgressUpdateStreamSummaryList]) as any;
     return {
       totalItems: member.length,

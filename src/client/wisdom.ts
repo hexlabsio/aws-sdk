@@ -114,7 +114,7 @@ export class Wisdom {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAssistantAssociations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAssistantAssociations' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAssistantAssociations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.assistantAssociationSummaries ?? []) ? (result.assistantAssociationSummaries ?? []) : [result.assistantAssociationSummaries]) as any;
     return {
       totalItems: member.length,
@@ -129,7 +129,7 @@ export class Wisdom {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAssistants({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAssistants' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAssistants' })).toString('base64') : undefined;
     const member = (Array.isArray(result.assistantSummaries ?? []) ? (result.assistantSummaries ?? []) : [result.assistantSummaries]) as any;
     return {
       totalItems: member.length,
@@ -144,7 +144,7 @@ export class Wisdom {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listContents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listContents' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listContents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.contentSummaries ?? []) ? (result.contentSummaries ?? []) : [result.contentSummaries]) as any;
     return {
       totalItems: member.length,
@@ -159,7 +159,7 @@ export class Wisdom {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listKnowledgeBases({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listKnowledgeBases' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listKnowledgeBases' })).toString('base64') : undefined;
     const member = (Array.isArray(result.knowledgeBaseSummaries ?? []) ? (result.knowledgeBaseSummaries ?? []) : [result.knowledgeBaseSummaries]) as any;
     return {
       totalItems: member.length,
@@ -189,7 +189,7 @@ export class Wisdom {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.queryAssistant({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'queryAssistant' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'queryAssistant' })).toString('base64') : undefined;
     const member = (Array.isArray(result.results ?? []) ? (result.results ?? []) : [result.results]) as any;
     return {
       totalItems: member.length,
@@ -209,7 +209,7 @@ export class Wisdom {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.searchContent({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'searchContent' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'searchContent' })).toString('base64') : undefined;
     const member = (Array.isArray(result.contentSummaries ?? []) ? (result.contentSummaries ?? []) : [result.contentSummaries]) as any;
     return {
       totalItems: member.length,
@@ -224,7 +224,7 @@ export class Wisdom {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.searchSessions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'searchSessions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'searchSessions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.sessionSummaries ?? []) ? (result.sessionSummaries ?? []) : [result.sessionSummaries]) as any;
     return {
       totalItems: member.length,

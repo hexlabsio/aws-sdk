@@ -269,7 +269,7 @@ export class StorageGateway {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeTapeArchives({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeTapeArchives' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeTapeArchives' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TapeArchives ?? []) ? (result.TapeArchives ?? []) : [result.TapeArchives]) as any;
     return {
       totalItems: member.length,
@@ -284,7 +284,7 @@ export class StorageGateway {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeTapeRecoveryPoints({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeTapeRecoveryPoints' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeTapeRecoveryPoints' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TapeRecoveryPointInfos ?? []) ? (result.TapeRecoveryPointInfos ?? []) : [result.TapeRecoveryPointInfos]) as any;
     return {
       totalItems: member.length,
@@ -299,7 +299,7 @@ export class StorageGateway {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeTapes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeTapes' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeTapes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Tapes ?? []) ? (result.Tapes ?? []) : [result.Tapes]) as any;
     return {
       totalItems: member.length,
@@ -319,7 +319,7 @@ export class StorageGateway {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeVTLDevices({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeVTLDevices' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeVTLDevices' })).toString('base64') : undefined;
     const member = (Array.isArray(result.VTLDevices ?? []) ? (result.VTLDevices ?? []) : [result.VTLDevices]) as any;
     return {
       totalItems: member.length,
@@ -364,7 +364,7 @@ export class StorageGateway {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listFileShares({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listFileShares' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listFileShares' })).toString('base64') : undefined;
     const member = (Array.isArray(result.FileShareInfoList ?? []) ? (result.FileShareInfoList ?? []) : [result.FileShareInfoList]) as any;
     return {
       totalItems: member.length,
@@ -379,7 +379,7 @@ export class StorageGateway {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listFileSystemAssociations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listFileSystemAssociations' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listFileSystemAssociations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.FileSystemAssociationSummaryList ?? []) ? (result.FileSystemAssociationSummaryList ?? []) : [result.FileSystemAssociationSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -394,7 +394,7 @@ export class StorageGateway {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listGateways({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listGateways' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listGateways' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Gateways ?? []) ? (result.Gateways ?? []) : [result.Gateways]) as any;
     return {
       totalItems: member.length,
@@ -424,7 +424,7 @@ export class StorageGateway {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listTagsForResource({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listTagsForResource' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listTagsForResource' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Tags ?? []) ? (result.Tags ?? []) : [result.Tags]) as any;
     return {
       totalItems: member.length,
@@ -439,7 +439,7 @@ export class StorageGateway {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listTapePools({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listTapePools' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listTapePools' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PoolInfos ?? []) ? (result.PoolInfos ?? []) : [result.PoolInfos]) as any;
     return {
       totalItems: member.length,
@@ -454,7 +454,7 @@ export class StorageGateway {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listTapes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listTapes' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listTapes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TapeInfos ?? []) ? (result.TapeInfos ?? []) : [result.TapeInfos]) as any;
     return {
       totalItems: member.length,
@@ -489,7 +489,7 @@ export class StorageGateway {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listVolumes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listVolumes' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listVolumes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.VolumeInfos ?? []) ? (result.VolumeInfos ?? []) : [result.VolumeInfos]) as any;
     return {
       totalItems: member.length,

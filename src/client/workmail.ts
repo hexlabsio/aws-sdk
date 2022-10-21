@@ -239,7 +239,7 @@ export class WorkMail {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listAvailabilityConfigurations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAvailabilityConfigurations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAvailabilityConfigurations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AvailabilityConfigurations ?? []) ? (result.AvailabilityConfigurations ?? []) : [result.AvailabilityConfigurations]) as any;
     return {
       totalItems: member.length,

@@ -99,7 +99,7 @@ export class IdentityStore {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listGroupMemberships({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGroupMemberships' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGroupMemberships' })).toString('base64') : undefined;
     const member = (Array.isArray(result.GroupMemberships ?? []) ? (result.GroupMemberships ?? []) : [result.GroupMemberships]) as any;
     return {
       totalItems: member.length,
@@ -114,7 +114,7 @@ export class IdentityStore {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listGroupMembershipsForMember({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGroupMembershipsForMember' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGroupMembershipsForMember' })).toString('base64') : undefined;
     const member = (Array.isArray(result.GroupMemberships ?? []) ? (result.GroupMemberships ?? []) : [result.GroupMemberships]) as any;
     return {
       totalItems: member.length,
@@ -129,7 +129,7 @@ export class IdentityStore {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGroups' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Groups ?? []) ? (result.Groups ?? []) : [result.Groups]) as any;
     return {
       totalItems: member.length,
@@ -144,7 +144,7 @@ export class IdentityStore {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listUsers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listUsers' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listUsers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Users ?? []) ? (result.Users ?? []) : [result.Users]) as any;
     return {
       totalItems: member.length,

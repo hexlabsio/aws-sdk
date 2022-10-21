@@ -334,7 +334,7 @@ export class CloudFront {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listCloudFrontOriginAccessIdentities({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.CloudFrontOriginAccessIdentityList?.NextMarker, operation: 'listCloudFrontOriginAccessIdentities' })).toString('base64');
+    const nextToken = result.CloudFrontOriginAccessIdentityList?.NextMarker ? Buffer.from(JSON.stringify({ token: result.CloudFrontOriginAccessIdentityList?.NextMarker, operation: 'listCloudFrontOriginAccessIdentities' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CloudFrontOriginAccessIdentityList?.Items ?? []) ? (result.CloudFrontOriginAccessIdentityList?.Items ?? []) : [result.CloudFrontOriginAccessIdentityList?.Items]) as any;
     return {
       totalItems: member.length,
@@ -354,7 +354,7 @@ export class CloudFront {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listDistributions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.DistributionList?.NextMarker, operation: 'listDistributions' })).toString('base64');
+    const nextToken = result.DistributionList?.NextMarker ? Buffer.from(JSON.stringify({ token: result.DistributionList?.NextMarker, operation: 'listDistributions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DistributionList?.Items ?? []) ? (result.DistributionList?.Items ?? []) : [result.DistributionList?.Items]) as any;
     return {
       totalItems: member.length,
@@ -414,7 +414,7 @@ export class CloudFront {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listInvalidations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.InvalidationList?.NextMarker, operation: 'listInvalidations' })).toString('base64');
+    const nextToken = result.InvalidationList?.NextMarker ? Buffer.from(JSON.stringify({ token: result.InvalidationList?.NextMarker, operation: 'listInvalidations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.InvalidationList?.Items ?? []) ? (result.InvalidationList?.Items ?? []) : [result.InvalidationList?.Items]) as any;
     return {
       totalItems: member.length,
@@ -459,7 +459,7 @@ export class CloudFront {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listStreamingDistributions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.StreamingDistributionList?.NextMarker, operation: 'listStreamingDistributions' })).toString('base64');
+    const nextToken = result.StreamingDistributionList?.NextMarker ? Buffer.from(JSON.stringify({ token: result.StreamingDistributionList?.NextMarker, operation: 'listStreamingDistributions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.StreamingDistributionList?.Items ?? []) ? (result.StreamingDistributionList?.Items ?? []) : [result.StreamingDistributionList?.Items]) as any;
     return {
       totalItems: member.length,

@@ -94,7 +94,7 @@ export class EKS {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeAddonVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeAddonVersions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeAddonVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.addons ?? []) ? (result.addons ?? []) : [result.addons]) as any;
     return {
       totalItems: member.length,
@@ -139,7 +139,7 @@ export class EKS {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAddons({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAddons' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAddons' })).toString('base64') : undefined;
     const member = (Array.isArray(result.addons ?? []) ? (result.addons ?? []) : [result.addons]) as any;
     return {
       totalItems: member.length,
@@ -154,7 +154,7 @@ export class EKS {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listClusters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listClusters' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listClusters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.clusters ?? []) ? (result.clusters ?? []) : [result.clusters]) as any;
     return {
       totalItems: member.length,
@@ -169,7 +169,7 @@ export class EKS {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listFargateProfiles({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listFargateProfiles' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listFargateProfiles' })).toString('base64') : undefined;
     const member = (Array.isArray(result.fargateProfileNames ?? []) ? (result.fargateProfileNames ?? []) : [result.fargateProfileNames]) as any;
     return {
       totalItems: member.length,
@@ -184,7 +184,7 @@ export class EKS {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listIdentityProviderConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listIdentityProviderConfigs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listIdentityProviderConfigs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.identityProviderConfigs ?? []) ? (result.identityProviderConfigs ?? []) : [result.identityProviderConfigs]) as any;
     return {
       totalItems: member.length,
@@ -199,7 +199,7 @@ export class EKS {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listNodegroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listNodegroups' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listNodegroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.nodegroups ?? []) ? (result.nodegroups ?? []) : [result.nodegroups]) as any;
     return {
       totalItems: member.length,
@@ -219,7 +219,7 @@ export class EKS {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listUpdates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listUpdates' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listUpdates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.updateIds ?? []) ? (result.updateIds ?? []) : [result.updateIds]) as any;
     return {
       totalItems: member.length,

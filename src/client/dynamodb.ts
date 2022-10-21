@@ -204,7 +204,7 @@ export class DynamoDB {
     const nextTokenPart = next ? { ExclusiveStartTableName: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listTables({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.LastEvaluatedTableName, operation: 'listTables' })).toString('base64');
+    const nextToken = result.LastEvaluatedTableName ? Buffer.from(JSON.stringify({ token: result.LastEvaluatedTableName, operation: 'listTables' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TableNames ?? []) ? (result.TableNames ?? []) : [result.TableNames]) as any;
     return {
       totalItems: member.length,
@@ -229,7 +229,7 @@ export class DynamoDB {
     const nextTokenPart = next ? { ExclusiveStartKey: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.query({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.LastEvaluatedKey, operation: 'query' })).toString('base64');
+    const nextToken = result.LastEvaluatedKey ? Buffer.from(JSON.stringify({ token: result.LastEvaluatedKey, operation: 'query' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Items ?? []) ? (result.Items ?? []) : [result.Items]) as any;
     return {
       totalItems: member.length,
@@ -254,7 +254,7 @@ export class DynamoDB {
     const nextTokenPart = next ? { ExclusiveStartKey: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.scan({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.LastEvaluatedKey, operation: 'scan' })).toString('base64');
+    const nextToken = result.LastEvaluatedKey ? Buffer.from(JSON.stringify({ token: result.LastEvaluatedKey, operation: 'scan' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Items ?? []) ? (result.Items ?? []) : [result.Items]) as any;
     return {
       totalItems: member.length,

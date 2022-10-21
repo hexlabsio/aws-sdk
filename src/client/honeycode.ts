@@ -69,7 +69,7 @@ export class Honeycode {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listTableColumns({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTableColumns' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTableColumns' })).toString('base64') : undefined;
     const member = (Array.isArray(result.tableColumns ?? []) ? (result.tableColumns ?? []) : [result.tableColumns]) as any;
     return {
       totalItems: member.length,
@@ -84,7 +84,7 @@ export class Honeycode {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listTableRows({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTableRows' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTableRows' })).toString('base64') : undefined;
     const member = (Array.isArray(result.rows ?? []) ? (result.rows ?? []) : [result.rows]) as any;
     return {
       totalItems: member.length,
@@ -99,7 +99,7 @@ export class Honeycode {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listTables({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTables' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTables' })).toString('base64') : undefined;
     const member = (Array.isArray(result.tables ?? []) ? (result.tables ?? []) : [result.tables]) as any;
     return {
       totalItems: member.length,
@@ -119,7 +119,7 @@ export class Honeycode {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.queryTableRows({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'queryTableRows' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'queryTableRows' })).toString('base64') : undefined;
     const member = (Array.isArray(result.rows ?? []) ? (result.rows ?? []) : [result.rows]) as any;
     return {
       totalItems: member.length,

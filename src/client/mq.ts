@@ -99,7 +99,7 @@ export class MQ {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listBrokers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBrokers' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBrokers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.BrokerSummaries ?? []) ? (result.BrokerSummaries ?? []) : [result.BrokerSummaries]) as any;
     return {
       totalItems: member.length,

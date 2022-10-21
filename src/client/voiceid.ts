@@ -84,7 +84,7 @@ export class VoiceID {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDomains({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDomains' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDomains' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DomainSummaries ?? []) ? (result.DomainSummaries ?? []) : [result.DomainSummaries]) as any;
     return {
       totalItems: member.length,
@@ -99,7 +99,7 @@ export class VoiceID {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listFraudsterRegistrationJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFraudsterRegistrationJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFraudsterRegistrationJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.JobSummaries ?? []) ? (result.JobSummaries ?? []) : [result.JobSummaries]) as any;
     return {
       totalItems: member.length,
@@ -114,7 +114,7 @@ export class VoiceID {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listSpeakerEnrollmentJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSpeakerEnrollmentJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSpeakerEnrollmentJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.JobSummaries ?? []) ? (result.JobSummaries ?? []) : [result.JobSummaries]) as any;
     return {
       totalItems: member.length,
@@ -129,7 +129,7 @@ export class VoiceID {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listSpeakers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSpeakers' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSpeakers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.SpeakerSummaries ?? []) ? (result.SpeakerSummaries ?? []) : [result.SpeakerSummaries]) as any;
     return {
       totalItems: member.length,

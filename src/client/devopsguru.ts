@@ -119,7 +119,7 @@ export class DevOpsGuru {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listEvents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEvents' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEvents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Events ?? []) ? (result.Events ?? []) : [result.Events]) as any;
     return {
       totalItems: member.length,
@@ -144,7 +144,7 @@ export class DevOpsGuru {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listNotificationChannels({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listNotificationChannels' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listNotificationChannels' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Channels ?? []) ? (result.Channels ?? []) : [result.Channels]) as any;
     return {
       totalItems: member.length,
@@ -164,7 +164,7 @@ export class DevOpsGuru {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listRecommendations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRecommendations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRecommendations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Recommendations ?? []) ? (result.Recommendations ?? []) : [result.Recommendations]) as any;
     return {
       totalItems: member.length,

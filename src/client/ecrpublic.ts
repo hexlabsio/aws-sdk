@@ -64,7 +64,7 @@ export class ECRPUBLIC {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeImageTags({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeImageTags' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeImageTags' })).toString('base64') : undefined;
     const member = (Array.isArray(result.imageTagDetails ?? []) ? (result.imageTagDetails ?? []) : [result.imageTagDetails]) as any;
     return {
       totalItems: member.length,
@@ -79,7 +79,7 @@ export class ECRPUBLIC {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeImages({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeImages' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeImages' })).toString('base64') : undefined;
     const member = (Array.isArray(result.imageDetails ?? []) ? (result.imageDetails ?? []) : [result.imageDetails]) as any;
     return {
       totalItems: member.length,
@@ -94,7 +94,7 @@ export class ECRPUBLIC {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeRegistries({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeRegistries' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeRegistries' })).toString('base64') : undefined;
     const member = (Array.isArray(result.registries ?? []) ? (result.registries ?? []) : [result.registries]) as any;
     return {
       totalItems: member.length,
@@ -109,7 +109,7 @@ export class ECRPUBLIC {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeRepositories({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeRepositories' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeRepositories' })).toString('base64') : undefined;
     const member = (Array.isArray(result.repositories ?? []) ? (result.repositories ?? []) : [result.repositories]) as any;
     return {
       totalItems: member.length,

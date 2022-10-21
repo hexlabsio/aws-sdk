@@ -209,7 +209,7 @@ export class Route53Resolver {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listFirewallConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFirewallConfigs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFirewallConfigs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.FirewallConfigs ?? []) ? (result.FirewallConfigs ?? []) : [result.FirewallConfigs]) as any;
     return {
       totalItems: member.length,
@@ -224,7 +224,7 @@ export class Route53Resolver {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listFirewallDomainLists({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFirewallDomainLists' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFirewallDomainLists' })).toString('base64') : undefined;
     const member = (Array.isArray(result.FirewallDomainLists ?? []) ? (result.FirewallDomainLists ?? []) : [result.FirewallDomainLists]) as any;
     return {
       totalItems: member.length,
@@ -239,7 +239,7 @@ export class Route53Resolver {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listFirewallDomains({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFirewallDomains' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFirewallDomains' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Domains ?? []) ? (result.Domains ?? []) : [result.Domains]) as any;
     return {
       totalItems: member.length,
@@ -254,7 +254,7 @@ export class Route53Resolver {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listFirewallRuleGroupAssociations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFirewallRuleGroupAssociations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFirewallRuleGroupAssociations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.FirewallRuleGroupAssociations ?? []) ? (result.FirewallRuleGroupAssociations ?? []) : [result.FirewallRuleGroupAssociations]) as any;
     return {
       totalItems: member.length,
@@ -269,7 +269,7 @@ export class Route53Resolver {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listFirewallRuleGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFirewallRuleGroups' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFirewallRuleGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.FirewallRuleGroups ?? []) ? (result.FirewallRuleGroups ?? []) : [result.FirewallRuleGroups]) as any;
     return {
       totalItems: member.length,
@@ -284,7 +284,7 @@ export class Route53Resolver {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listFirewallRules({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFirewallRules' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFirewallRules' })).toString('base64') : undefined;
     const member = (Array.isArray(result.FirewallRules ?? []) ? (result.FirewallRules ?? []) : [result.FirewallRules]) as any;
     return {
       totalItems: member.length,
@@ -299,7 +299,7 @@ export class Route53Resolver {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listResolverConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResolverConfigs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResolverConfigs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ResolverConfigs ?? []) ? (result.ResolverConfigs ?? []) : [result.ResolverConfigs]) as any;
     return {
       totalItems: member.length,
@@ -314,7 +314,7 @@ export class Route53Resolver {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listResolverDnssecConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResolverDnssecConfigs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResolverDnssecConfigs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ResolverDnssecConfigs ?? []) ? (result.ResolverDnssecConfigs ?? []) : [result.ResolverDnssecConfigs]) as any;
     return {
       totalItems: member.length,
@@ -329,7 +329,7 @@ export class Route53Resolver {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listResolverEndpointIpAddresses({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResolverEndpointIpAddresses' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResolverEndpointIpAddresses' })).toString('base64') : undefined;
     const member = (Array.isArray(result.IpAddresses ?? []) ? (result.IpAddresses ?? []) : [result.IpAddresses]) as any;
     return {
       totalItems: member.length,
@@ -344,7 +344,7 @@ export class Route53Resolver {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listResolverEndpoints({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResolverEndpoints' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResolverEndpoints' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ResolverEndpoints ?? []) ? (result.ResolverEndpoints ?? []) : [result.ResolverEndpoints]) as any;
     return {
       totalItems: member.length,
@@ -359,7 +359,7 @@ export class Route53Resolver {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listResolverQueryLogConfigAssociations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResolverQueryLogConfigAssociations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResolverQueryLogConfigAssociations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ResolverQueryLogConfigAssociations ?? []) ? (result.ResolverQueryLogConfigAssociations ?? []) : [result.ResolverQueryLogConfigAssociations]) as any;
     return {
       totalItems: member.length,
@@ -374,7 +374,7 @@ export class Route53Resolver {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listResolverQueryLogConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResolverQueryLogConfigs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResolverQueryLogConfigs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ResolverQueryLogConfigs ?? []) ? (result.ResolverQueryLogConfigs ?? []) : [result.ResolverQueryLogConfigs]) as any;
     return {
       totalItems: member.length,
@@ -389,7 +389,7 @@ export class Route53Resolver {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listResolverRuleAssociations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResolverRuleAssociations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResolverRuleAssociations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ResolverRuleAssociations ?? []) ? (result.ResolverRuleAssociations ?? []) : [result.ResolverRuleAssociations]) as any;
     return {
       totalItems: member.length,
@@ -404,7 +404,7 @@ export class Route53Resolver {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listResolverRules({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResolverRules' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResolverRules' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ResolverRules ?? []) ? (result.ResolverRules ?? []) : [result.ResolverRules]) as any;
     return {
       totalItems: member.length,
@@ -419,7 +419,7 @@ export class Route53Resolver {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listTagsForResource({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTagsForResource' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTagsForResource' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Tags ?? []) ? (result.Tags ?? []) : [result.Tags]) as any;
     return {
       totalItems: member.length,

@@ -49,7 +49,7 @@ export class ApplicationAutoScaling {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeScalableTargets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeScalableTargets' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeScalableTargets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ScalableTargets ?? []) ? (result.ScalableTargets ?? []) : [result.ScalableTargets]) as any;
     return {
       totalItems: member.length,
@@ -64,7 +64,7 @@ export class ApplicationAutoScaling {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeScalingActivities({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeScalingActivities' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeScalingActivities' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ScalingActivities ?? []) ? (result.ScalingActivities ?? []) : [result.ScalingActivities]) as any;
     return {
       totalItems: member.length,
@@ -79,7 +79,7 @@ export class ApplicationAutoScaling {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeScalingPolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeScalingPolicies' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeScalingPolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ScalingPolicies ?? []) ? (result.ScalingPolicies ?? []) : [result.ScalingPolicies]) as any;
     return {
       totalItems: member.length,
@@ -94,7 +94,7 @@ export class ApplicationAutoScaling {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeScheduledActions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeScheduledActions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeScheduledActions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ScheduledActions ?? []) ? (result.ScheduledActions ?? []) : [result.ScheduledActions]) as any;
     return {
       totalItems: member.length,

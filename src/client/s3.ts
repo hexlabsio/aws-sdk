@@ -359,7 +359,7 @@ export class S3 {
     const nextTokenPart = next ? { PartNumberMarker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxParts: limit } : {};
     const result = await this.client.listParts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextPartNumberMarker, operation: 'listParts' })).toString('base64');
+    const nextToken = result.NextPartNumberMarker ? Buffer.from(JSON.stringify({ token: result.NextPartNumberMarker, operation: 'listParts' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Parts ?? []) ? (result.Parts ?? []) : [result.Parts]) as any;
     return {
       totalItems: member.length,

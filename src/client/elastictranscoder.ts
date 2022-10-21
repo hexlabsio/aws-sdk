@@ -64,7 +64,7 @@ export class ElasticTranscoder {
     const nextTokenPart = next ? { PageToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listJobsByPipeline({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextPageToken, operation: 'listJobsByPipeline' })).toString('base64');
+    const nextToken = result.NextPageToken ? Buffer.from(JSON.stringify({ token: result.NextPageToken, operation: 'listJobsByPipeline' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Jobs ?? []) ? (result.Jobs ?? []) : [result.Jobs]) as any;
     return {
       totalItems: member.length,
@@ -79,7 +79,7 @@ export class ElasticTranscoder {
     const nextTokenPart = next ? { PageToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listJobsByStatus({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextPageToken, operation: 'listJobsByStatus' })).toString('base64');
+    const nextToken = result.NextPageToken ? Buffer.from(JSON.stringify({ token: result.NextPageToken, operation: 'listJobsByStatus' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Jobs ?? []) ? (result.Jobs ?? []) : [result.Jobs]) as any;
     return {
       totalItems: member.length,
@@ -94,7 +94,7 @@ export class ElasticTranscoder {
     const nextTokenPart = next ? { PageToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listPipelines({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextPageToken, operation: 'listPipelines' })).toString('base64');
+    const nextToken = result.NextPageToken ? Buffer.from(JSON.stringify({ token: result.NextPageToken, operation: 'listPipelines' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Pipelines ?? []) ? (result.Pipelines ?? []) : [result.Pipelines]) as any;
     return {
       totalItems: member.length,
@@ -109,7 +109,7 @@ export class ElasticTranscoder {
     const nextTokenPart = next ? { PageToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listPresets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextPageToken, operation: 'listPresets' })).toString('base64');
+    const nextToken = result.NextPageToken ? Buffer.from(JSON.stringify({ token: result.NextPageToken, operation: 'listPresets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Presets ?? []) ? (result.Presets ?? []) : [result.Presets]) as any;
     return {
       totalItems: member.length,

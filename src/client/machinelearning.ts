@@ -104,7 +104,7 @@ export class MachineLearning {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeBatchPredictions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeBatchPredictions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeBatchPredictions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Results ?? []) ? (result.Results ?? []) : [result.Results]) as any;
     return {
       totalItems: member.length,
@@ -119,7 +119,7 @@ export class MachineLearning {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeDataSources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeDataSources' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeDataSources' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Results ?? []) ? (result.Results ?? []) : [result.Results]) as any;
     return {
       totalItems: member.length,
@@ -134,7 +134,7 @@ export class MachineLearning {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeEvaluations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeEvaluations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeEvaluations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Results ?? []) ? (result.Results ?? []) : [result.Results]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class MachineLearning {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeMLModels({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMLModels' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMLModels' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Results ?? []) ? (result.Results ?? []) : [result.Results]) as any;
     return {
       totalItems: member.length,

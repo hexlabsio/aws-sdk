@@ -224,7 +224,7 @@ export class Personalize {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listBatchInferenceJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listBatchInferenceJobs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listBatchInferenceJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.batchInferenceJobs ?? []) ? (result.batchInferenceJobs ?? []) : [result.batchInferenceJobs]) as any;
     return {
       totalItems: member.length,
@@ -239,7 +239,7 @@ export class Personalize {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listBatchSegmentJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listBatchSegmentJobs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listBatchSegmentJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.batchSegmentJobs ?? []) ? (result.batchSegmentJobs ?? []) : [result.batchSegmentJobs]) as any;
     return {
       totalItems: member.length,
@@ -254,7 +254,7 @@ export class Personalize {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listCampaigns({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listCampaigns' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listCampaigns' })).toString('base64') : undefined;
     const member = (Array.isArray(result.campaigns ?? []) ? (result.campaigns ?? []) : [result.campaigns]) as any;
     return {
       totalItems: member.length,
@@ -269,7 +269,7 @@ export class Personalize {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDatasetExportJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDatasetExportJobs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDatasetExportJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.datasetExportJobs ?? []) ? (result.datasetExportJobs ?? []) : [result.datasetExportJobs]) as any;
     return {
       totalItems: member.length,
@@ -284,7 +284,7 @@ export class Personalize {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDatasetGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDatasetGroups' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDatasetGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.datasetGroups ?? []) ? (result.datasetGroups ?? []) : [result.datasetGroups]) as any;
     return {
       totalItems: member.length,
@@ -299,7 +299,7 @@ export class Personalize {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDatasetImportJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDatasetImportJobs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDatasetImportJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.datasetImportJobs ?? []) ? (result.datasetImportJobs ?? []) : [result.datasetImportJobs]) as any;
     return {
       totalItems: member.length,
@@ -314,7 +314,7 @@ export class Personalize {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDatasets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDatasets' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDatasets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.datasets ?? []) ? (result.datasets ?? []) : [result.datasets]) as any;
     return {
       totalItems: member.length,
@@ -329,7 +329,7 @@ export class Personalize {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listEventTrackers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEventTrackers' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEventTrackers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.eventTrackers ?? []) ? (result.eventTrackers ?? []) : [result.eventTrackers]) as any;
     return {
       totalItems: member.length,
@@ -344,7 +344,7 @@ export class Personalize {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listFilters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listFilters' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listFilters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Filters ?? []) ? (result.Filters ?? []) : [result.Filters]) as any;
     return {
       totalItems: member.length,
@@ -359,7 +359,7 @@ export class Personalize {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listRecipes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listRecipes' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listRecipes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.recipes ?? []) ? (result.recipes ?? []) : [result.recipes]) as any;
     return {
       totalItems: member.length,
@@ -374,7 +374,7 @@ export class Personalize {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listRecommenders({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listRecommenders' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listRecommenders' })).toString('base64') : undefined;
     const member = (Array.isArray(result.recommenders ?? []) ? (result.recommenders ?? []) : [result.recommenders]) as any;
     return {
       totalItems: member.length,
@@ -389,7 +389,7 @@ export class Personalize {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listSchemas({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSchemas' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSchemas' })).toString('base64') : undefined;
     const member = (Array.isArray(result.schemas ?? []) ? (result.schemas ?? []) : [result.schemas]) as any;
     return {
       totalItems: member.length,
@@ -404,7 +404,7 @@ export class Personalize {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listSolutionVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSolutionVersions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSolutionVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.solutionVersions ?? []) ? (result.solutionVersions ?? []) : [result.solutionVersions]) as any;
     return {
       totalItems: member.length,
@@ -419,7 +419,7 @@ export class Personalize {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listSolutions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSolutions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSolutions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.solutions ?? []) ? (result.solutions ?? []) : [result.solutions]) as any;
     return {
       totalItems: member.length,

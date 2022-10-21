@@ -104,7 +104,7 @@ export class ECR {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeImages({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeImages' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeImages' })).toString('base64') : undefined;
     const member = (Array.isArray(result.imageDetails ?? []) ? (result.imageDetails ?? []) : [result.imageDetails]) as any;
     return {
       totalItems: member.length,
@@ -119,7 +119,7 @@ export class ECR {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describePullThroughCacheRules({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describePullThroughCacheRules' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describePullThroughCacheRules' })).toString('base64') : undefined;
     const member = (Array.isArray(result.pullThroughCacheRules ?? []) ? (result.pullThroughCacheRules ?? []) : [result.pullThroughCacheRules]) as any;
     return {
       totalItems: member.length,
@@ -139,7 +139,7 @@ export class ECR {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeRepositories({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeRepositories' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeRepositories' })).toString('base64') : undefined;
     const member = (Array.isArray(result.repositories ?? []) ? (result.repositories ?? []) : [result.repositories]) as any;
     return {
       totalItems: member.length,
@@ -169,7 +169,7 @@ export class ECR {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.getLifecyclePolicyPreview({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getLifecyclePolicyPreview' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getLifecyclePolicyPreview' })).toString('base64') : undefined;
     const member = (Array.isArray(result.previewResults ?? []) ? (result.previewResults ?? []) : [result.previewResults]) as any;
     return {
       totalItems: member.length,
@@ -204,7 +204,7 @@ export class ECR {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listImages({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listImages' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listImages' })).toString('base64') : undefined;
     const member = (Array.isArray(result.imageIds ?? []) ? (result.imageIds ?? []) : [result.imageIds]) as any;
     return {
       totalItems: member.length,

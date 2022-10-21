@@ -44,7 +44,7 @@ export class ElasticInference {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeAccelerators({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeAccelerators' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeAccelerators' })).toString('base64') : undefined;
     const member = (Array.isArray(result.acceleratorSet ?? []) ? (result.acceleratorSet ?? []) : [result.acceleratorSet]) as any;
     return {
       totalItems: member.length,

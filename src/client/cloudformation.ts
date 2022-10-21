@@ -104,7 +104,7 @@ export class CloudFormation {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.describeAccountLimits({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAccountLimits' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAccountLimits' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AccountLimits ?? []) ? (result.AccountLimits ?? []) : [result.AccountLimits]) as any;
     return {
       totalItems: member.length,
@@ -139,7 +139,7 @@ export class CloudFormation {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.describeStackEvents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeStackEvents' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeStackEvents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.StackEvents ?? []) ? (result.StackEvents ?? []) : [result.StackEvents]) as any;
     return {
       totalItems: member.length,
@@ -194,7 +194,7 @@ export class CloudFormation {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.describeStacks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeStacks' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeStacks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Stacks ?? []) ? (result.Stacks ?? []) : [result.Stacks]) as any;
     return {
       totalItems: member.length,
@@ -264,7 +264,7 @@ export class CloudFormation {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listChangeSets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listChangeSets' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listChangeSets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Summaries ?? []) ? (result.Summaries ?? []) : [result.Summaries]) as any;
     return {
       totalItems: member.length,
@@ -279,7 +279,7 @@ export class CloudFormation {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listExports({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listExports' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listExports' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Exports ?? []) ? (result.Exports ?? []) : [result.Exports]) as any;
     return {
       totalItems: member.length,
@@ -294,7 +294,7 @@ export class CloudFormation {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listImports({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listImports' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listImports' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Imports ?? []) ? (result.Imports ?? []) : [result.Imports]) as any;
     return {
       totalItems: member.length,
@@ -309,7 +309,7 @@ export class CloudFormation {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listStackInstances({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStackInstances' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStackInstances' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Summaries ?? []) ? (result.Summaries ?? []) : [result.Summaries]) as any;
     return {
       totalItems: member.length,
@@ -324,7 +324,7 @@ export class CloudFormation {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listStackResources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStackResources' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStackResources' })).toString('base64') : undefined;
     const member = (Array.isArray(result.StackResourceSummaries ?? []) ? (result.StackResourceSummaries ?? []) : [result.StackResourceSummaries]) as any;
     return {
       totalItems: member.length,
@@ -339,7 +339,7 @@ export class CloudFormation {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listStackSetOperationResults({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStackSetOperationResults' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStackSetOperationResults' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Summaries ?? []) ? (result.Summaries ?? []) : [result.Summaries]) as any;
     return {
       totalItems: member.length,
@@ -354,7 +354,7 @@ export class CloudFormation {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listStackSetOperations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStackSetOperations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStackSetOperations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Summaries ?? []) ? (result.Summaries ?? []) : [result.Summaries]) as any;
     return {
       totalItems: member.length,
@@ -369,7 +369,7 @@ export class CloudFormation {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listStackSets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStackSets' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStackSets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Summaries ?? []) ? (result.Summaries ?? []) : [result.Summaries]) as any;
     return {
       totalItems: member.length,
@@ -384,7 +384,7 @@ export class CloudFormation {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listStacks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStacks' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStacks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.StackSummaries ?? []) ? (result.StackSummaries ?? []) : [result.StackSummaries]) as any;
     return {
       totalItems: member.length,
@@ -409,7 +409,7 @@ export class CloudFormation {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listTypes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTypes' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTypes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TypeSummaries ?? []) ? (result.TypeSummaries ?? []) : [result.TypeSummaries]) as any;
     return {
       totalItems: member.length,

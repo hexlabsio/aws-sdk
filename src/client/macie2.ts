@@ -109,7 +109,7 @@ export class Macie2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeBuckets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeBuckets' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeBuckets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.buckets ?? []) ? (result.buckets ?? []) : [result.buckets]) as any;
     return {
       totalItems: member.length,
@@ -249,7 +249,7 @@ export class Macie2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.getUsageStatistics({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getUsageStatistics' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getUsageStatistics' })).toString('base64') : undefined;
     const member = (Array.isArray(result.records ?? []) ? (result.records ?? []) : [result.records]) as any;
     return {
       totalItems: member.length,
@@ -274,7 +274,7 @@ export class Macie2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listClassificationJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listClassificationJobs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listClassificationJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
@@ -289,7 +289,7 @@ export class Macie2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listCustomDataIdentifiers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listCustomDataIdentifiers' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listCustomDataIdentifiers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
@@ -304,7 +304,7 @@ export class Macie2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listFindings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listFindings' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listFindings' })).toString('base64') : undefined;
     const member = (Array.isArray(result.findingIds ?? []) ? (result.findingIds ?? []) : [result.findingIds]) as any;
     return {
       totalItems: member.length,
@@ -319,7 +319,7 @@ export class Macie2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listFindingsFilters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listFindingsFilters' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listFindingsFilters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.findingsFilterListItems ?? []) ? (result.findingsFilterListItems ?? []) : [result.findingsFilterListItems]) as any;
     return {
       totalItems: member.length,
@@ -334,7 +334,7 @@ export class Macie2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listInvitations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listInvitations' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listInvitations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.invitations ?? []) ? (result.invitations ?? []) : [result.invitations]) as any;
     return {
       totalItems: member.length,
@@ -354,7 +354,7 @@ export class Macie2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listMembers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listMembers' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listMembers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.members ?? []) ? (result.members ?? []) : [result.members]) as any;
     return {
       totalItems: member.length,
@@ -369,7 +369,7 @@ export class Macie2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listOrganizationAdminAccounts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listOrganizationAdminAccounts' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listOrganizationAdminAccounts' })).toString('base64') : undefined;
     const member = (Array.isArray(result.adminAccounts ?? []) ? (result.adminAccounts ?? []) : [result.adminAccounts]) as any;
     return {
       totalItems: member.length,
@@ -399,7 +399,7 @@ export class Macie2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.searchResources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'searchResources' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'searchResources' })).toString('base64') : undefined;
     const member = (Array.isArray(result.matchingResources ?? []) ? (result.matchingResources ?? []) : [result.matchingResources]) as any;
     return {
       totalItems: member.length,

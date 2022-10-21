@@ -64,7 +64,7 @@ export class EMRServerless {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listApplications({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listApplications' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listApplications' })).toString('base64') : undefined;
     const member = (Array.isArray(result.applications ?? []) ? (result.applications ?? []) : [result.applications]) as any;
     return {
       totalItems: member.length,
@@ -79,7 +79,7 @@ export class EMRServerless {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listJobRuns({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listJobRuns' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listJobRuns' })).toString('base64') : undefined;
     const member = (Array.isArray(result.jobRuns ?? []) ? (result.jobRuns ?? []) : [result.jobRuns]) as any;
     return {
       totalItems: member.length,

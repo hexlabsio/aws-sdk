@@ -94,7 +94,7 @@ export class SSMContacts {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listContactChannels({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listContactChannels' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listContactChannels' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ContactChannels ?? []) ? (result.ContactChannels ?? []) : [result.ContactChannels]) as any;
     return {
       totalItems: member.length,
@@ -109,7 +109,7 @@ export class SSMContacts {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listContacts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listContacts' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listContacts' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Contacts ?? []) ? (result.Contacts ?? []) : [result.Contacts]) as any;
     return {
       totalItems: member.length,
@@ -124,7 +124,7 @@ export class SSMContacts {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listEngagements({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEngagements' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEngagements' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Engagements ?? []) ? (result.Engagements ?? []) : [result.Engagements]) as any;
     return {
       totalItems: member.length,
@@ -139,7 +139,7 @@ export class SSMContacts {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPageReceipts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPageReceipts' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPageReceipts' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Receipts ?? []) ? (result.Receipts ?? []) : [result.Receipts]) as any;
     return {
       totalItems: member.length,
@@ -154,7 +154,7 @@ export class SSMContacts {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPagesByContact({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPagesByContact' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPagesByContact' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Pages ?? []) ? (result.Pages ?? []) : [result.Pages]) as any;
     return {
       totalItems: member.length,
@@ -169,7 +169,7 @@ export class SSMContacts {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPagesByEngagement({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPagesByEngagement' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPagesByEngagement' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Pages ?? []) ? (result.Pages ?? []) : [result.Pages]) as any;
     return {
       totalItems: member.length,

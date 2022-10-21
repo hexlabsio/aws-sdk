@@ -119,7 +119,7 @@ export class GreengrassV2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listClientDevicesAssociatedWithCoreDevice({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listClientDevicesAssociatedWithCoreDevice' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listClientDevicesAssociatedWithCoreDevice' })).toString('base64') : undefined;
     const member = (Array.isArray(result.associatedClientDevices ?? []) ? (result.associatedClientDevices ?? []) : [result.associatedClientDevices]) as any;
     return {
       totalItems: member.length,
@@ -134,7 +134,7 @@ export class GreengrassV2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listComponentVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listComponentVersions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listComponentVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.componentVersions ?? []) ? (result.componentVersions ?? []) : [result.componentVersions]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class GreengrassV2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listComponents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listComponents' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listComponents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.components ?? []) ? (result.components ?? []) : [result.components]) as any;
     return {
       totalItems: member.length,
@@ -164,7 +164,7 @@ export class GreengrassV2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listCoreDevices({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listCoreDevices' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listCoreDevices' })).toString('base64') : undefined;
     const member = (Array.isArray(result.coreDevices ?? []) ? (result.coreDevices ?? []) : [result.coreDevices]) as any;
     return {
       totalItems: member.length,
@@ -179,7 +179,7 @@ export class GreengrassV2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDeployments({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDeployments' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDeployments' })).toString('base64') : undefined;
     const member = (Array.isArray(result.deployments ?? []) ? (result.deployments ?? []) : [result.deployments]) as any;
     return {
       totalItems: member.length,
@@ -194,7 +194,7 @@ export class GreengrassV2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listEffectiveDeployments({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEffectiveDeployments' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEffectiveDeployments' })).toString('base64') : undefined;
     const member = (Array.isArray(result.effectiveDeployments ?? []) ? (result.effectiveDeployments ?? []) : [result.effectiveDeployments]) as any;
     return {
       totalItems: member.length,
@@ -209,7 +209,7 @@ export class GreengrassV2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listInstalledComponents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listInstalledComponents' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listInstalledComponents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.installedComponents ?? []) ? (result.installedComponents ?? []) : [result.installedComponents]) as any;
     return {
       totalItems: member.length,

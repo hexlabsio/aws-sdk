@@ -74,7 +74,7 @@ export class Snowball {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeAddresses({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAddresses' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAddresses' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Addresses ?? []) ? (result.Addresses ?? []) : [result.Addresses]) as any;
     return {
       totalItems: member.length,
@@ -139,7 +139,7 @@ export class Snowball {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.JobListEntries ?? []) ? (result.JobListEntries ?? []) : [result.JobListEntries]) as any;
     return {
       totalItems: member.length,

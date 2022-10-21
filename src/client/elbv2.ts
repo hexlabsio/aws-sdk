@@ -99,7 +99,7 @@ export class ELBv2 {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.describeListeners({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'describeListeners' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'describeListeners' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Listeners ?? []) ? (result.Listeners ?? []) : [result.Listeners]) as any;
     return {
       totalItems: member.length,
@@ -119,7 +119,7 @@ export class ELBv2 {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.describeLoadBalancers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'describeLoadBalancers' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'describeLoadBalancers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.LoadBalancers ?? []) ? (result.LoadBalancers ?? []) : [result.LoadBalancers]) as any;
     return {
       totalItems: member.length,
@@ -154,7 +154,7 @@ export class ELBv2 {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.describeTargetGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'describeTargetGroups' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'describeTargetGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TargetGroups ?? []) ? (result.TargetGroups ?? []) : [result.TargetGroups]) as any;
     return {
       totalItems: member.length,

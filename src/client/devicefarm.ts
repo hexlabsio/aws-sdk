@@ -219,7 +219,7 @@ export class DeviceFarm {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listArtifacts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listArtifacts' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listArtifacts' })).toString('base64') : undefined;
     const member = (Array.isArray(result.artifacts ?? []) ? (result.artifacts ?? []) : [result.artifacts]) as any;
     return {
       totalItems: member.length,
@@ -239,7 +239,7 @@ export class DeviceFarm {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listDevicePools({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDevicePools' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDevicePools' })).toString('base64') : undefined;
     const member = (Array.isArray(result.devicePools ?? []) ? (result.devicePools ?? []) : [result.devicePools]) as any;
     return {
       totalItems: member.length,
@@ -254,7 +254,7 @@ export class DeviceFarm {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listDevices({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDevices' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDevices' })).toString('base64') : undefined;
     const member = (Array.isArray(result.devices ?? []) ? (result.devices ?? []) : [result.devices]) as any;
     return {
       totalItems: member.length,
@@ -274,7 +274,7 @@ export class DeviceFarm {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listJobs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.jobs ?? []) ? (result.jobs ?? []) : [result.jobs]) as any;
     return {
       totalItems: member.length,
@@ -299,7 +299,7 @@ export class DeviceFarm {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listOfferingTransactions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listOfferingTransactions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listOfferingTransactions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.offeringTransactions ?? []) ? (result.offeringTransactions ?? []) : [result.offeringTransactions]) as any;
     return {
       totalItems: member.length,
@@ -314,7 +314,7 @@ export class DeviceFarm {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listOfferings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listOfferings' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listOfferings' })).toString('base64') : undefined;
     const member = (Array.isArray(result.offerings ?? []) ? (result.offerings ?? []) : [result.offerings]) as any;
     return {
       totalItems: member.length,
@@ -329,7 +329,7 @@ export class DeviceFarm {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listProjects({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listProjects' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listProjects' })).toString('base64') : undefined;
     const member = (Array.isArray(result.projects ?? []) ? (result.projects ?? []) : [result.projects]) as any;
     return {
       totalItems: member.length,
@@ -349,7 +349,7 @@ export class DeviceFarm {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listRuns({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listRuns' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listRuns' })).toString('base64') : undefined;
     const member = (Array.isArray(result.runs ?? []) ? (result.runs ?? []) : [result.runs]) as any;
     return {
       totalItems: member.length,
@@ -364,7 +364,7 @@ export class DeviceFarm {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listSamples({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSamples' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSamples' })).toString('base64') : undefined;
     const member = (Array.isArray(result.samples ?? []) ? (result.samples ?? []) : [result.samples]) as any;
     return {
       totalItems: member.length,
@@ -379,7 +379,7 @@ export class DeviceFarm {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listSuites({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSuites' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSuites' })).toString('base64') : undefined;
     const member = (Array.isArray(result.suites ?? []) ? (result.suites ?? []) : [result.suites]) as any;
     return {
       totalItems: member.length,
@@ -419,7 +419,7 @@ export class DeviceFarm {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listTests({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTests' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTests' })).toString('base64') : undefined;
     const member = (Array.isArray(result.tests ?? []) ? (result.tests ?? []) : [result.tests]) as any;
     return {
       totalItems: member.length,
@@ -434,7 +434,7 @@ export class DeviceFarm {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listUniqueProblems({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listUniqueProblems' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listUniqueProblems' })).toString('base64') : undefined;
     const member = (Array.isArray(result.uniqueProblems ?? []) ? (result.uniqueProblems ?? []) : [result.uniqueProblems]) as any;
     return {
       totalItems: member.length,
@@ -449,7 +449,7 @@ export class DeviceFarm {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listUploads({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listUploads' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listUploads' })).toString('base64') : undefined;
     const member = (Array.isArray(result.uploads ?? []) ? (result.uploads ?? []) : [result.uploads]) as any;
     return {
       totalItems: member.length,

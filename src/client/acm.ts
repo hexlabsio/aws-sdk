@@ -69,7 +69,7 @@ export class ACM {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listCertificates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCertificates' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCertificates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CertificateSummaryList ?? []) ? (result.CertificateSummaryList ?? []) : [result.CertificateSummaryList]) as any;
     return {
       totalItems: member.length,

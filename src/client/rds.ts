@@ -269,7 +269,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeCertificates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeCertificates' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeCertificates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Certificates ?? []) ? (result.Certificates ?? []) : [result.Certificates]) as any;
     return {
       totalItems: member.length,
@@ -284,7 +284,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBClusterBacktracks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusterBacktracks' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusterBacktracks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBClusterBacktracks ?? []) ? (result.DBClusterBacktracks ?? []) : [result.DBClusterBacktracks]) as any;
     return {
       totalItems: member.length,
@@ -299,7 +299,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBClusterEndpoints({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusterEndpoints' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusterEndpoints' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBClusterEndpoints ?? []) ? (result.DBClusterEndpoints ?? []) : [result.DBClusterEndpoints]) as any;
     return {
       totalItems: member.length,
@@ -314,7 +314,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBClusterParameterGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusterParameterGroups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusterParameterGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBClusterParameterGroups ?? []) ? (result.DBClusterParameterGroups ?? []) : [result.DBClusterParameterGroups]) as any;
     return {
       totalItems: member.length,
@@ -329,7 +329,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBClusterParameters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusterParameters' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusterParameters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Parameters ?? []) ? (result.Parameters ?? []) : [result.Parameters]) as any;
     return {
       totalItems: member.length,
@@ -349,7 +349,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBClusterSnapshots({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusterSnapshots' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusterSnapshots' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBClusterSnapshots ?? []) ? (result.DBClusterSnapshots ?? []) : [result.DBClusterSnapshots]) as any;
     return {
       totalItems: member.length,
@@ -364,7 +364,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBClusters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusters' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBClusters ?? []) ? (result.DBClusters ?? []) : [result.DBClusters]) as any;
     return {
       totalItems: member.length,
@@ -379,7 +379,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBEngineVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBEngineVersions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBEngineVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBEngineVersions ?? []) ? (result.DBEngineVersions ?? []) : [result.DBEngineVersions]) as any;
     return {
       totalItems: member.length,
@@ -394,7 +394,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBInstanceAutomatedBackups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBInstanceAutomatedBackups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBInstanceAutomatedBackups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBInstanceAutomatedBackups ?? []) ? (result.DBInstanceAutomatedBackups ?? []) : [result.DBInstanceAutomatedBackups]) as any;
     return {
       totalItems: member.length,
@@ -409,7 +409,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBInstances({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBInstances' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBInstances' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBInstances ?? []) ? (result.DBInstances ?? []) : [result.DBInstances]) as any;
     return {
       totalItems: member.length,
@@ -424,7 +424,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBLogFiles({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBLogFiles' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBLogFiles' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DescribeDBLogFiles ?? []) ? (result.DescribeDBLogFiles ?? []) : [result.DescribeDBLogFiles]) as any;
     return {
       totalItems: member.length,
@@ -439,7 +439,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBParameterGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBParameterGroups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBParameterGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBParameterGroups ?? []) ? (result.DBParameterGroups ?? []) : [result.DBParameterGroups]) as any;
     return {
       totalItems: member.length,
@@ -454,7 +454,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBParameters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBParameters' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBParameters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Parameters ?? []) ? (result.Parameters ?? []) : [result.Parameters]) as any;
     return {
       totalItems: member.length,
@@ -469,7 +469,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBProxies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBProxies' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBProxies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBProxies ?? []) ? (result.DBProxies ?? []) : [result.DBProxies]) as any;
     return {
       totalItems: member.length,
@@ -484,7 +484,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBProxyEndpoints({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBProxyEndpoints' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBProxyEndpoints' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBProxyEndpoints ?? []) ? (result.DBProxyEndpoints ?? []) : [result.DBProxyEndpoints]) as any;
     return {
       totalItems: member.length,
@@ -499,7 +499,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBProxyTargetGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBProxyTargetGroups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBProxyTargetGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TargetGroups ?? []) ? (result.TargetGroups ?? []) : [result.TargetGroups]) as any;
     return {
       totalItems: member.length,
@@ -514,7 +514,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBProxyTargets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBProxyTargets' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBProxyTargets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Targets ?? []) ? (result.Targets ?? []) : [result.Targets]) as any;
     return {
       totalItems: member.length,
@@ -529,7 +529,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBSecurityGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBSecurityGroups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBSecurityGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBSecurityGroups ?? []) ? (result.DBSecurityGroups ?? []) : [result.DBSecurityGroups]) as any;
     return {
       totalItems: member.length,
@@ -549,7 +549,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBSnapshots({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBSnapshots' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBSnapshots' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBSnapshots ?? []) ? (result.DBSnapshots ?? []) : [result.DBSnapshots]) as any;
     return {
       totalItems: member.length,
@@ -564,7 +564,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBSubnetGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBSubnetGroups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBSubnetGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBSubnetGroups ?? []) ? (result.DBSubnetGroups ?? []) : [result.DBSubnetGroups]) as any;
     return {
       totalItems: member.length,
@@ -584,7 +584,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeEngineDefaultParameters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.EngineDefaults?.Marker, operation: 'describeEngineDefaultParameters' })).toString('base64');
+    const nextToken = result.EngineDefaults?.Marker ? Buffer.from(JSON.stringify({ token: result.EngineDefaults?.Marker, operation: 'describeEngineDefaultParameters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.EngineDefaults?.Parameters ?? []) ? (result.EngineDefaults?.Parameters ?? []) : [result.EngineDefaults?.Parameters]) as any;
     return {
       totalItems: member.length,
@@ -604,7 +604,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeEventSubscriptions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeEventSubscriptions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeEventSubscriptions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.EventSubscriptionsList ?? []) ? (result.EventSubscriptionsList ?? []) : [result.EventSubscriptionsList]) as any;
     return {
       totalItems: member.length,
@@ -619,7 +619,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeEvents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeEvents' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeEvents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Events ?? []) ? (result.Events ?? []) : [result.Events]) as any;
     return {
       totalItems: member.length,
@@ -634,7 +634,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeExportTasks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeExportTasks' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeExportTasks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ExportTasks ?? []) ? (result.ExportTasks ?? []) : [result.ExportTasks]) as any;
     return {
       totalItems: member.length,
@@ -649,7 +649,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeGlobalClusters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeGlobalClusters' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeGlobalClusters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.GlobalClusters ?? []) ? (result.GlobalClusters ?? []) : [result.GlobalClusters]) as any;
     return {
       totalItems: member.length,
@@ -664,7 +664,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeOptionGroupOptions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeOptionGroupOptions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeOptionGroupOptions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.OptionGroupOptions ?? []) ? (result.OptionGroupOptions ?? []) : [result.OptionGroupOptions]) as any;
     return {
       totalItems: member.length,
@@ -679,7 +679,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeOptionGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeOptionGroups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeOptionGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.OptionGroupsList ?? []) ? (result.OptionGroupsList ?? []) : [result.OptionGroupsList]) as any;
     return {
       totalItems: member.length,
@@ -694,7 +694,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeOrderableDBInstanceOptions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeOrderableDBInstanceOptions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeOrderableDBInstanceOptions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.OrderableDBInstanceOptions ?? []) ? (result.OrderableDBInstanceOptions ?? []) : [result.OrderableDBInstanceOptions]) as any;
     return {
       totalItems: member.length,
@@ -709,7 +709,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describePendingMaintenanceActions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describePendingMaintenanceActions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describePendingMaintenanceActions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PendingMaintenanceActions ?? []) ? (result.PendingMaintenanceActions ?? []) : [result.PendingMaintenanceActions]) as any;
     return {
       totalItems: member.length,
@@ -724,7 +724,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeReservedDBInstances({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeReservedDBInstances' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeReservedDBInstances' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ReservedDBInstances ?? []) ? (result.ReservedDBInstances ?? []) : [result.ReservedDBInstances]) as any;
     return {
       totalItems: member.length,
@@ -739,7 +739,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeReservedDBInstancesOfferings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeReservedDBInstancesOfferings' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeReservedDBInstancesOfferings' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ReservedDBInstancesOfferings ?? []) ? (result.ReservedDBInstancesOfferings ?? []) : [result.ReservedDBInstancesOfferings]) as any;
     return {
       totalItems: member.length,
@@ -754,7 +754,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeSourceRegions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeSourceRegions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeSourceRegions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.SourceRegions ?? []) ? (result.SourceRegions ?? []) : [result.SourceRegions]) as any;
     return {
       totalItems: member.length,
@@ -774,7 +774,7 @@ export class RDS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { NumberOfLines: limit } : {};
     const result = await this.client.downloadDBLogFilePortion({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'downloadDBLogFilePortion' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'downloadDBLogFilePortion' })).toString('base64') : undefined;
     const member = (Array.isArray(result.LogFileData ?? []) ? (result.LogFileData ?? []) : [result.LogFileData]) as any;
     return {
       totalItems: member.length,

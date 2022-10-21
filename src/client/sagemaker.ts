@@ -794,7 +794,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listActions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listActions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listActions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ActionSummaries ?? []) ? (result.ActionSummaries ?? []) : [result.ActionSummaries]) as any;
     return {
       totalItems: member.length,
@@ -809,7 +809,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listAlgorithms({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAlgorithms' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAlgorithms' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AlgorithmSummaryList ?? []) ? (result.AlgorithmSummaryList ?? []) : [result.AlgorithmSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -824,7 +824,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listAppImageConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAppImageConfigs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAppImageConfigs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AppImageConfigs ?? []) ? (result.AppImageConfigs ?? []) : [result.AppImageConfigs]) as any;
     return {
       totalItems: member.length,
@@ -839,7 +839,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listApps({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listApps' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listApps' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Apps ?? []) ? (result.Apps ?? []) : [result.Apps]) as any;
     return {
       totalItems: member.length,
@@ -854,7 +854,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listArtifacts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listArtifacts' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listArtifacts' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ArtifactSummaries ?? []) ? (result.ArtifactSummaries ?? []) : [result.ArtifactSummaries]) as any;
     return {
       totalItems: member.length,
@@ -869,7 +869,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listAssociations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAssociations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAssociations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AssociationSummaries ?? []) ? (result.AssociationSummaries ?? []) : [result.AssociationSummaries]) as any;
     return {
       totalItems: member.length,
@@ -884,7 +884,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listAutoMLJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAutoMLJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAutoMLJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AutoMLJobSummaries ?? []) ? (result.AutoMLJobSummaries ?? []) : [result.AutoMLJobSummaries]) as any;
     return {
       totalItems: member.length,
@@ -899,7 +899,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCandidatesForAutoMLJob({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCandidatesForAutoMLJob' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCandidatesForAutoMLJob' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Candidates ?? []) ? (result.Candidates ?? []) : [result.Candidates]) as any;
     return {
       totalItems: member.length,
@@ -914,7 +914,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCodeRepositories({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCodeRepositories' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCodeRepositories' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CodeRepositorySummaryList ?? []) ? (result.CodeRepositorySummaryList ?? []) : [result.CodeRepositorySummaryList]) as any;
     return {
       totalItems: member.length,
@@ -929,7 +929,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCompilationJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCompilationJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCompilationJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CompilationJobSummaries ?? []) ? (result.CompilationJobSummaries ?? []) : [result.CompilationJobSummaries]) as any;
     return {
       totalItems: member.length,
@@ -944,7 +944,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listContexts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listContexts' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listContexts' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ContextSummaries ?? []) ? (result.ContextSummaries ?? []) : [result.ContextSummaries]) as any;
     return {
       totalItems: member.length,
@@ -959,7 +959,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDataQualityJobDefinitions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDataQualityJobDefinitions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDataQualityJobDefinitions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.JobDefinitionSummaries ?? []) ? (result.JobDefinitionSummaries ?? []) : [result.JobDefinitionSummaries]) as any;
     return {
       totalItems: member.length,
@@ -974,7 +974,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDeviceFleets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDeviceFleets' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDeviceFleets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DeviceFleetSummaries ?? []) ? (result.DeviceFleetSummaries ?? []) : [result.DeviceFleetSummaries]) as any;
     return {
       totalItems: member.length,
@@ -989,7 +989,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDevices({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDevices' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDevices' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DeviceSummaries ?? []) ? (result.DeviceSummaries ?? []) : [result.DeviceSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1004,7 +1004,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDomains({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDomains' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDomains' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Domains ?? []) ? (result.Domains ?? []) : [result.Domains]) as any;
     return {
       totalItems: member.length,
@@ -1019,7 +1019,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listEdgeDeploymentPlans({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEdgeDeploymentPlans' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEdgeDeploymentPlans' })).toString('base64') : undefined;
     const member = (Array.isArray(result.EdgeDeploymentPlanSummaries ?? []) ? (result.EdgeDeploymentPlanSummaries ?? []) : [result.EdgeDeploymentPlanSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1034,7 +1034,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listEdgePackagingJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEdgePackagingJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEdgePackagingJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.EdgePackagingJobSummaries ?? []) ? (result.EdgePackagingJobSummaries ?? []) : [result.EdgePackagingJobSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1049,7 +1049,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listEndpointConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEndpointConfigs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEndpointConfigs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.EndpointConfigs ?? []) ? (result.EndpointConfigs ?? []) : [result.EndpointConfigs]) as any;
     return {
       totalItems: member.length,
@@ -1064,7 +1064,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listEndpoints({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEndpoints' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEndpoints' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Endpoints ?? []) ? (result.Endpoints ?? []) : [result.Endpoints]) as any;
     return {
       totalItems: member.length,
@@ -1079,7 +1079,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listExperiments({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listExperiments' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listExperiments' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ExperimentSummaries ?? []) ? (result.ExperimentSummaries ?? []) : [result.ExperimentSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1094,7 +1094,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listFeatureGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFeatureGroups' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFeatureGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.FeatureGroupSummaries ?? []) ? (result.FeatureGroupSummaries ?? []) : [result.FeatureGroupSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1109,7 +1109,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listFlowDefinitions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFlowDefinitions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFlowDefinitions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.FlowDefinitionSummaries ?? []) ? (result.FlowDefinitionSummaries ?? []) : [result.FlowDefinitionSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1124,7 +1124,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listHumanTaskUis({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listHumanTaskUis' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listHumanTaskUis' })).toString('base64') : undefined;
     const member = (Array.isArray(result.HumanTaskUiSummaries ?? []) ? (result.HumanTaskUiSummaries ?? []) : [result.HumanTaskUiSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1139,7 +1139,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listHyperParameterTuningJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listHyperParameterTuningJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listHyperParameterTuningJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.HyperParameterTuningJobSummaries ?? []) ? (result.HyperParameterTuningJobSummaries ?? []) : [result.HyperParameterTuningJobSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1154,7 +1154,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listImageVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listImageVersions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listImageVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ImageVersions ?? []) ? (result.ImageVersions ?? []) : [result.ImageVersions]) as any;
     return {
       totalItems: member.length,
@@ -1169,7 +1169,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listImages({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listImages' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listImages' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Images ?? []) ? (result.Images ?? []) : [result.Images]) as any;
     return {
       totalItems: member.length,
@@ -1184,7 +1184,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listInferenceRecommendationsJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listInferenceRecommendationsJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listInferenceRecommendationsJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.InferenceRecommendationsJobs ?? []) ? (result.InferenceRecommendationsJobs ?? []) : [result.InferenceRecommendationsJobs]) as any;
     return {
       totalItems: member.length,
@@ -1199,7 +1199,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listLabelingJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listLabelingJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listLabelingJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.LabelingJobSummaryList ?? []) ? (result.LabelingJobSummaryList ?? []) : [result.LabelingJobSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -1214,7 +1214,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listLabelingJobsForWorkteam({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listLabelingJobsForWorkteam' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listLabelingJobsForWorkteam' })).toString('base64') : undefined;
     const member = (Array.isArray(result.LabelingJobSummaryList ?? []) ? (result.LabelingJobSummaryList ?? []) : [result.LabelingJobSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -1229,7 +1229,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listLineageGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listLineageGroups' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listLineageGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.LineageGroupSummaries ?? []) ? (result.LineageGroupSummaries ?? []) : [result.LineageGroupSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1244,7 +1244,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listModelBiasJobDefinitions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModelBiasJobDefinitions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModelBiasJobDefinitions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.JobDefinitionSummaries ?? []) ? (result.JobDefinitionSummaries ?? []) : [result.JobDefinitionSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1259,7 +1259,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listModelExplainabilityJobDefinitions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModelExplainabilityJobDefinitions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModelExplainabilityJobDefinitions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.JobDefinitionSummaries ?? []) ? (result.JobDefinitionSummaries ?? []) : [result.JobDefinitionSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1274,7 +1274,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listModelMetadata({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModelMetadata' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModelMetadata' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ModelMetadataSummaries ?? []) ? (result.ModelMetadataSummaries ?? []) : [result.ModelMetadataSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1289,7 +1289,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listModelPackageGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModelPackageGroups' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModelPackageGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ModelPackageGroupSummaryList ?? []) ? (result.ModelPackageGroupSummaryList ?? []) : [result.ModelPackageGroupSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -1304,7 +1304,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listModelPackages({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModelPackages' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModelPackages' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ModelPackageSummaryList ?? []) ? (result.ModelPackageSummaryList ?? []) : [result.ModelPackageSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -1319,7 +1319,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listModelQualityJobDefinitions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModelQualityJobDefinitions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModelQualityJobDefinitions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.JobDefinitionSummaries ?? []) ? (result.JobDefinitionSummaries ?? []) : [result.JobDefinitionSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1334,7 +1334,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listModels({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModels' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModels' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Models ?? []) ? (result.Models ?? []) : [result.Models]) as any;
     return {
       totalItems: member.length,
@@ -1349,7 +1349,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listMonitoringExecutions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMonitoringExecutions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMonitoringExecutions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.MonitoringExecutionSummaries ?? []) ? (result.MonitoringExecutionSummaries ?? []) : [result.MonitoringExecutionSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1364,7 +1364,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listMonitoringSchedules({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMonitoringSchedules' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMonitoringSchedules' })).toString('base64') : undefined;
     const member = (Array.isArray(result.MonitoringScheduleSummaries ?? []) ? (result.MonitoringScheduleSummaries ?? []) : [result.MonitoringScheduleSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1379,7 +1379,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listNotebookInstanceLifecycleConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listNotebookInstanceLifecycleConfigs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listNotebookInstanceLifecycleConfigs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.NotebookInstanceLifecycleConfigs ?? []) ? (result.NotebookInstanceLifecycleConfigs ?? []) : [result.NotebookInstanceLifecycleConfigs]) as any;
     return {
       totalItems: member.length,
@@ -1394,7 +1394,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listNotebookInstances({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listNotebookInstances' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listNotebookInstances' })).toString('base64') : undefined;
     const member = (Array.isArray(result.NotebookInstances ?? []) ? (result.NotebookInstances ?? []) : [result.NotebookInstances]) as any;
     return {
       totalItems: member.length,
@@ -1409,7 +1409,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPipelineExecutionSteps({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPipelineExecutionSteps' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPipelineExecutionSteps' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PipelineExecutionSteps ?? []) ? (result.PipelineExecutionSteps ?? []) : [result.PipelineExecutionSteps]) as any;
     return {
       totalItems: member.length,
@@ -1424,7 +1424,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPipelineExecutions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPipelineExecutions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPipelineExecutions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PipelineExecutionSummaries ?? []) ? (result.PipelineExecutionSummaries ?? []) : [result.PipelineExecutionSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1439,7 +1439,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPipelineParametersForExecution({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPipelineParametersForExecution' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPipelineParametersForExecution' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PipelineParameters ?? []) ? (result.PipelineParameters ?? []) : [result.PipelineParameters]) as any;
     return {
       totalItems: member.length,
@@ -1454,7 +1454,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPipelines({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPipelines' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPipelines' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PipelineSummaries ?? []) ? (result.PipelineSummaries ?? []) : [result.PipelineSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1469,7 +1469,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listProcessingJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listProcessingJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listProcessingJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ProcessingJobSummaries ?? []) ? (result.ProcessingJobSummaries ?? []) : [result.ProcessingJobSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1489,7 +1489,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listStageDevices({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStageDevices' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStageDevices' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DeviceDeploymentSummaries ?? []) ? (result.DeviceDeploymentSummaries ?? []) : [result.DeviceDeploymentSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1504,7 +1504,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listStudioLifecycleConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStudioLifecycleConfigs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStudioLifecycleConfigs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.StudioLifecycleConfigs ?? []) ? (result.StudioLifecycleConfigs ?? []) : [result.StudioLifecycleConfigs]) as any;
     return {
       totalItems: member.length,
@@ -1519,7 +1519,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listSubscribedWorkteams({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSubscribedWorkteams' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSubscribedWorkteams' })).toString('base64') : undefined;
     const member = (Array.isArray(result.SubscribedWorkteams ?? []) ? (result.SubscribedWorkteams ?? []) : [result.SubscribedWorkteams]) as any;
     return {
       totalItems: member.length,
@@ -1534,7 +1534,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listTags({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTags' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTags' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Tags ?? []) ? (result.Tags ?? []) : [result.Tags]) as any;
     return {
       totalItems: member.length,
@@ -1549,7 +1549,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listTrainingJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTrainingJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTrainingJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TrainingJobSummaries ?? []) ? (result.TrainingJobSummaries ?? []) : [result.TrainingJobSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1564,7 +1564,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listTrainingJobsForHyperParameterTuningJob({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTrainingJobsForHyperParameterTuningJob' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTrainingJobsForHyperParameterTuningJob' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TrainingJobSummaries ?? []) ? (result.TrainingJobSummaries ?? []) : [result.TrainingJobSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1579,7 +1579,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listTransformJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTransformJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTransformJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TransformJobSummaries ?? []) ? (result.TransformJobSummaries ?? []) : [result.TransformJobSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1594,7 +1594,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listTrialComponents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTrialComponents' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTrialComponents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TrialComponentSummaries ?? []) ? (result.TrialComponentSummaries ?? []) : [result.TrialComponentSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1609,7 +1609,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listTrials({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTrials' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTrials' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TrialSummaries ?? []) ? (result.TrialSummaries ?? []) : [result.TrialSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1624,7 +1624,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listUserProfiles({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listUserProfiles' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listUserProfiles' })).toString('base64') : undefined;
     const member = (Array.isArray(result.UserProfiles ?? []) ? (result.UserProfiles ?? []) : [result.UserProfiles]) as any;
     return {
       totalItems: member.length,
@@ -1639,7 +1639,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listWorkforces({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listWorkforces' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listWorkforces' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Workforces ?? []) ? (result.Workforces ?? []) : [result.Workforces]) as any;
     return {
       totalItems: member.length,
@@ -1654,7 +1654,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listWorkteams({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listWorkteams' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listWorkteams' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Workteams ?? []) ? (result.Workteams ?? []) : [result.Workteams]) as any;
     return {
       totalItems: member.length,
@@ -1694,7 +1694,7 @@ export class SageMaker {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.search({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'search' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'search' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Results ?? []) ? (result.Results ?? []) : [result.Results]) as any;
     return {
       totalItems: member.length,

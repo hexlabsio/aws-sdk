@@ -94,7 +94,7 @@ export class MigrationHubOrchestrator {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listPlugins({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listPlugins' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listPlugins' })).toString('base64') : undefined;
     const member = (Array.isArray(result.plugins ?? []) ? (result.plugins ?? []) : [result.plugins]) as any;
     return {
       totalItems: member.length,
@@ -114,7 +114,7 @@ export class MigrationHubOrchestrator {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listTemplateStepGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTemplateStepGroups' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTemplateStepGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.templateStepGroupSummary ?? []) ? (result.templateStepGroupSummary ?? []) : [result.templateStepGroupSummary]) as any;
     return {
       totalItems: member.length,
@@ -129,7 +129,7 @@ export class MigrationHubOrchestrator {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listTemplateSteps({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTemplateSteps' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTemplateSteps' })).toString('base64') : undefined;
     const member = (Array.isArray(result.templateStepSummaryList ?? []) ? (result.templateStepSummaryList ?? []) : [result.templateStepSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -144,7 +144,7 @@ export class MigrationHubOrchestrator {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listTemplates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTemplates' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTemplates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.templateSummary ?? []) ? (result.templateSummary ?? []) : [result.templateSummary]) as any;
     return {
       totalItems: member.length,
@@ -159,7 +159,7 @@ export class MigrationHubOrchestrator {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listWorkflowStepGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorkflowStepGroups' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorkflowStepGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.workflowStepGroupsSummary ?? []) ? (result.workflowStepGroupsSummary ?? []) : [result.workflowStepGroupsSummary]) as any;
     return {
       totalItems: member.length,
@@ -174,7 +174,7 @@ export class MigrationHubOrchestrator {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listWorkflowSteps({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorkflowSteps' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorkflowSteps' })).toString('base64') : undefined;
     const member = (Array.isArray(result.workflowStepsSummary ?? []) ? (result.workflowStepsSummary ?? []) : [result.workflowStepsSummary]) as any;
     return {
       totalItems: member.length,
@@ -189,7 +189,7 @@ export class MigrationHubOrchestrator {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listWorkflows({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorkflows' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorkflows' })).toString('base64') : undefined;
     const member = (Array.isArray(result.migrationWorkflowSummary ?? []) ? (result.migrationWorkflowSummary ?? []) : [result.migrationWorkflowSummary]) as any;
     return {
       totalItems: member.length,

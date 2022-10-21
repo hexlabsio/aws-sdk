@@ -114,7 +114,7 @@ export class SMS {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.getConnectors({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getConnectors' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getConnectors' })).toString('base64') : undefined;
     const member = (Array.isArray(result.connectorList ?? []) ? (result.connectorList ?? []) : [result.connectorList]) as any;
     return {
       totalItems: member.length,
@@ -129,7 +129,7 @@ export class SMS {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.getReplicationJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getReplicationJobs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getReplicationJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.replicationJobList ?? []) ? (result.replicationJobList ?? []) : [result.replicationJobList]) as any;
     return {
       totalItems: member.length,
@@ -144,7 +144,7 @@ export class SMS {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.getReplicationRuns({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getReplicationRuns' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getReplicationRuns' })).toString('base64') : undefined;
     const member = (Array.isArray(result.replicationRunList ?? []) ? (result.replicationRunList ?? []) : [result.replicationRunList]) as any;
     return {
       totalItems: member.length,
@@ -159,7 +159,7 @@ export class SMS {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.getServers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getServers' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getServers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.serverList ?? []) ? (result.serverList ?? []) : [result.serverList]) as any;
     return {
       totalItems: member.length,

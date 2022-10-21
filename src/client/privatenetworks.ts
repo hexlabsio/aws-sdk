@@ -104,7 +104,7 @@ export class PrivateNetworks {
     const nextTokenPart = next ? { startToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDeviceIdentifiers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDeviceIdentifiers' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDeviceIdentifiers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.deviceIdentifiers ?? []) ? (result.deviceIdentifiers ?? []) : [result.deviceIdentifiers]) as any;
     return {
       totalItems: member.length,
@@ -119,7 +119,7 @@ export class PrivateNetworks {
     const nextTokenPart = next ? { startToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listNetworkResources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listNetworkResources' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listNetworkResources' })).toString('base64') : undefined;
     const member = (Array.isArray(result.networkResources ?? []) ? (result.networkResources ?? []) : [result.networkResources]) as any;
     return {
       totalItems: member.length,
@@ -134,7 +134,7 @@ export class PrivateNetworks {
     const nextTokenPart = next ? { startToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listNetworkSites({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listNetworkSites' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listNetworkSites' })).toString('base64') : undefined;
     const member = (Array.isArray(result.networkSites ?? []) ? (result.networkSites ?? []) : [result.networkSites]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class PrivateNetworks {
     const nextTokenPart = next ? { startToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listNetworks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listNetworks' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listNetworks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.networks ?? []) ? (result.networks ?? []) : [result.networks]) as any;
     return {
       totalItems: member.length,
@@ -164,7 +164,7 @@ export class PrivateNetworks {
     const nextTokenPart = next ? { startToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listOrders({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listOrders' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listOrders' })).toString('base64') : undefined;
     const member = (Array.isArray(result.orders ?? []) ? (result.orders ?? []) : [result.orders]) as any;
     return {
       totalItems: member.length,

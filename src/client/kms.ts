@@ -84,7 +84,7 @@ export class KMS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeCustomKeyStores({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'describeCustomKeyStores' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'describeCustomKeyStores' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CustomKeyStores ?? []) ? (result.CustomKeyStores ?? []) : [result.CustomKeyStores]) as any;
     return {
       totalItems: member.length,
@@ -189,7 +189,7 @@ export class KMS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listAliases({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listAliases' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listAliases' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Aliases ?? []) ? (result.Aliases ?? []) : [result.Aliases]) as any;
     return {
       totalItems: member.length,
@@ -204,7 +204,7 @@ export class KMS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listGrants({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listGrants' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listGrants' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Grants ?? []) ? (result.Grants ?? []) : [result.Grants]) as any;
     return {
       totalItems: member.length,
@@ -219,7 +219,7 @@ export class KMS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listKeyPolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listKeyPolicies' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listKeyPolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PolicyNames ?? []) ? (result.PolicyNames ?? []) : [result.PolicyNames]) as any;
     return {
       totalItems: member.length,
@@ -234,7 +234,7 @@ export class KMS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listKeys({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listKeys' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listKeys' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Keys ?? []) ? (result.Keys ?? []) : [result.Keys]) as any;
     return {
       totalItems: member.length,
@@ -249,7 +249,7 @@ export class KMS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listResourceTags({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listResourceTags' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listResourceTags' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Tags ?? []) ? (result.Tags ?? []) : [result.Tags]) as any;
     return {
       totalItems: member.length,
@@ -264,7 +264,7 @@ export class KMS {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listRetirableGrants({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listRetirableGrants' })).toString('base64');
+    const nextToken = result.NextMarker ? Buffer.from(JSON.stringify({ token: result.NextMarker, operation: 'listRetirableGrants' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Grants ?? []) ? (result.Grants ?? []) : [result.Grants]) as any;
     return {
       totalItems: member.length,

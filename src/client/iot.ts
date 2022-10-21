@@ -609,7 +609,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.getBehaviorModelTrainingSummaries({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getBehaviorModelTrainingSummaries' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getBehaviorModelTrainingSummaries' })).toString('base64') : undefined;
     const member = (Array.isArray(result.summaries ?? []) ? (result.summaries ?? []) : [result.summaries]) as any;
     return {
       totalItems: member.length,
@@ -699,7 +699,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listActiveViolations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listActiveViolations' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listActiveViolations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.activeViolations ?? []) ? (result.activeViolations ?? []) : [result.activeViolations]) as any;
     return {
       totalItems: member.length,
@@ -714,7 +714,7 @@ export class Iot {
     const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { pageSize: limit } : {};
     const result = await this.client.listAttachedPolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listAttachedPolicies' })).toString('base64');
+    const nextToken = result.nextMarker ? Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listAttachedPolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.policies ?? []) ? (result.policies ?? []) : [result.policies]) as any;
     return {
       totalItems: member.length,
@@ -729,7 +729,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAuditFindings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAuditFindings' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAuditFindings' })).toString('base64') : undefined;
     const member = (Array.isArray(result.findings ?? []) ? (result.findings ?? []) : [result.findings]) as any;
     return {
       totalItems: member.length,
@@ -744,7 +744,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAuditMitigationActionsExecutions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAuditMitigationActionsExecutions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAuditMitigationActionsExecutions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.actionsExecutions ?? []) ? (result.actionsExecutions ?? []) : [result.actionsExecutions]) as any;
     return {
       totalItems: member.length,
@@ -759,7 +759,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAuditMitigationActionsTasks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAuditMitigationActionsTasks' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAuditMitigationActionsTasks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.tasks ?? []) ? (result.tasks ?? []) : [result.tasks]) as any;
     return {
       totalItems: member.length,
@@ -774,7 +774,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAuditSuppressions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAuditSuppressions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAuditSuppressions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.suppressions ?? []) ? (result.suppressions ?? []) : [result.suppressions]) as any;
     return {
       totalItems: member.length,
@@ -789,7 +789,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAuditTasks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAuditTasks' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAuditTasks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.tasks ?? []) ? (result.tasks ?? []) : [result.tasks]) as any;
     return {
       totalItems: member.length,
@@ -804,7 +804,7 @@ export class Iot {
     const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { pageSize: limit } : {};
     const result = await this.client.listAuthorizers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listAuthorizers' })).toString('base64');
+    const nextToken = result.nextMarker ? Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listAuthorizers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.authorizers ?? []) ? (result.authorizers ?? []) : [result.authorizers]) as any;
     return {
       totalItems: member.length,
@@ -819,7 +819,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listBillingGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listBillingGroups' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listBillingGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.billingGroups ?? []) ? (result.billingGroups ?? []) : [result.billingGroups]) as any;
     return {
       totalItems: member.length,
@@ -834,7 +834,7 @@ export class Iot {
     const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { pageSize: limit } : {};
     const result = await this.client.listCACertificates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listCACertificates' })).toString('base64');
+    const nextToken = result.nextMarker ? Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listCACertificates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.certificates ?? []) ? (result.certificates ?? []) : [result.certificates]) as any;
     return {
       totalItems: member.length,
@@ -849,7 +849,7 @@ export class Iot {
     const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { pageSize: limit } : {};
     const result = await this.client.listCertificates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listCertificates' })).toString('base64');
+    const nextToken = result.nextMarker ? Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listCertificates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.certificates ?? []) ? (result.certificates ?? []) : [result.certificates]) as any;
     return {
       totalItems: member.length,
@@ -864,7 +864,7 @@ export class Iot {
     const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { pageSize: limit } : {};
     const result = await this.client.listCertificatesByCA({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listCertificatesByCA' })).toString('base64');
+    const nextToken = result.nextMarker ? Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listCertificatesByCA' })).toString('base64') : undefined;
     const member = (Array.isArray(result.certificates ?? []) ? (result.certificates ?? []) : [result.certificates]) as any;
     return {
       totalItems: member.length,
@@ -879,7 +879,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listCustomMetrics({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listCustomMetrics' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listCustomMetrics' })).toString('base64') : undefined;
     const member = (Array.isArray(result.metricNames ?? []) ? (result.metricNames ?? []) : [result.metricNames]) as any;
     return {
       totalItems: member.length,
@@ -894,7 +894,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDetectMitigationActionsExecutions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDetectMitigationActionsExecutions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDetectMitigationActionsExecutions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.actionsExecutions ?? []) ? (result.actionsExecutions ?? []) : [result.actionsExecutions]) as any;
     return {
       totalItems: member.length,
@@ -909,7 +909,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDetectMitigationActionsTasks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDetectMitigationActionsTasks' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDetectMitigationActionsTasks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.tasks ?? []) ? (result.tasks ?? []) : [result.tasks]) as any;
     return {
       totalItems: member.length,
@@ -924,7 +924,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDimensions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDimensions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDimensions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.dimensionNames ?? []) ? (result.dimensionNames ?? []) : [result.dimensionNames]) as any;
     return {
       totalItems: member.length,
@@ -939,7 +939,7 @@ export class Iot {
     const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { pageSize: limit } : {};
     const result = await this.client.listDomainConfigurations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listDomainConfigurations' })).toString('base64');
+    const nextToken = result.nextMarker ? Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listDomainConfigurations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.domainConfigurations ?? []) ? (result.domainConfigurations ?? []) : [result.domainConfigurations]) as any;
     return {
       totalItems: member.length,
@@ -954,7 +954,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listFleetMetrics({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listFleetMetrics' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listFleetMetrics' })).toString('base64') : undefined;
     const member = (Array.isArray(result.fleetMetrics ?? []) ? (result.fleetMetrics ?? []) : [result.fleetMetrics]) as any;
     return {
       totalItems: member.length,
@@ -969,7 +969,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listIndices({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listIndices' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listIndices' })).toString('base64') : undefined;
     const member = (Array.isArray(result.indexNames ?? []) ? (result.indexNames ?? []) : [result.indexNames]) as any;
     return {
       totalItems: member.length,
@@ -984,7 +984,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listJobExecutionsForJob({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listJobExecutionsForJob' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listJobExecutionsForJob' })).toString('base64') : undefined;
     const member = (Array.isArray(result.executionSummaries ?? []) ? (result.executionSummaries ?? []) : [result.executionSummaries]) as any;
     return {
       totalItems: member.length,
@@ -999,7 +999,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listJobExecutionsForThing({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listJobExecutionsForThing' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listJobExecutionsForThing' })).toString('base64') : undefined;
     const member = (Array.isArray(result.executionSummaries ?? []) ? (result.executionSummaries ?? []) : [result.executionSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1014,7 +1014,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listJobTemplates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listJobTemplates' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listJobTemplates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.jobTemplates ?? []) ? (result.jobTemplates ?? []) : [result.jobTemplates]) as any;
     return {
       totalItems: member.length,
@@ -1029,7 +1029,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listJobs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.jobs ?? []) ? (result.jobs ?? []) : [result.jobs]) as any;
     return {
       totalItems: member.length,
@@ -1049,7 +1049,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listMetricValues({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listMetricValues' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listMetricValues' })).toString('base64') : undefined;
     const member = (Array.isArray(result.metricDatumList ?? []) ? (result.metricDatumList ?? []) : [result.metricDatumList]) as any;
     return {
       totalItems: member.length,
@@ -1064,7 +1064,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listMitigationActions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listMitigationActions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listMitigationActions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.actionIdentifiers ?? []) ? (result.actionIdentifiers ?? []) : [result.actionIdentifiers]) as any;
     return {
       totalItems: member.length,
@@ -1079,7 +1079,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listOTAUpdates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listOTAUpdates' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listOTAUpdates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.otaUpdates ?? []) ? (result.otaUpdates ?? []) : [result.otaUpdates]) as any;
     return {
       totalItems: member.length,
@@ -1094,7 +1094,7 @@ export class Iot {
     const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { pageSize: limit } : {};
     const result = await this.client.listOutgoingCertificates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listOutgoingCertificates' })).toString('base64');
+    const nextToken = result.nextMarker ? Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listOutgoingCertificates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.outgoingCertificates ?? []) ? (result.outgoingCertificates ?? []) : [result.outgoingCertificates]) as any;
     return {
       totalItems: member.length,
@@ -1109,7 +1109,7 @@ export class Iot {
     const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { pageSize: limit } : {};
     const result = await this.client.listPolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listPolicies' })).toString('base64');
+    const nextToken = result.nextMarker ? Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listPolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.policies ?? []) ? (result.policies ?? []) : [result.policies]) as any;
     return {
       totalItems: member.length,
@@ -1124,7 +1124,7 @@ export class Iot {
     const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { pageSize: limit } : {};
     const result = await this.client.listPolicyPrincipals({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listPolicyPrincipals' })).toString('base64');
+    const nextToken = result.nextMarker ? Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listPolicyPrincipals' })).toString('base64') : undefined;
     const member = (Array.isArray(result.principals ?? []) ? (result.principals ?? []) : [result.principals]) as any;
     return {
       totalItems: member.length,
@@ -1144,7 +1144,7 @@ export class Iot {
     const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { pageSize: limit } : {};
     const result = await this.client.listPrincipalPolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listPrincipalPolicies' })).toString('base64');
+    const nextToken = result.nextMarker ? Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listPrincipalPolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.policies ?? []) ? (result.policies ?? []) : [result.policies]) as any;
     return {
       totalItems: member.length,
@@ -1159,7 +1159,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listPrincipalThings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listPrincipalThings' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listPrincipalThings' })).toString('base64') : undefined;
     const member = (Array.isArray(result.things ?? []) ? (result.things ?? []) : [result.things]) as any;
     return {
       totalItems: member.length,
@@ -1174,7 +1174,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listProvisioningTemplateVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listProvisioningTemplateVersions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listProvisioningTemplateVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.versions ?? []) ? (result.versions ?? []) : [result.versions]) as any;
     return {
       totalItems: member.length,
@@ -1189,7 +1189,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listProvisioningTemplates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listProvisioningTemplates' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listProvisioningTemplates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.templates ?? []) ? (result.templates ?? []) : [result.templates]) as any;
     return {
       totalItems: member.length,
@@ -1204,7 +1204,7 @@ export class Iot {
     const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { pageSize: limit } : {};
     const result = await this.client.listRoleAliases({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listRoleAliases' })).toString('base64');
+    const nextToken = result.nextMarker ? Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listRoleAliases' })).toString('base64') : undefined;
     const member = (Array.isArray(result.roleAliases ?? []) ? (result.roleAliases ?? []) : [result.roleAliases]) as any;
     return {
       totalItems: member.length,
@@ -1219,7 +1219,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listScheduledAudits({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listScheduledAudits' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listScheduledAudits' })).toString('base64') : undefined;
     const member = (Array.isArray(result.scheduledAudits ?? []) ? (result.scheduledAudits ?? []) : [result.scheduledAudits]) as any;
     return {
       totalItems: member.length,
@@ -1234,7 +1234,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listSecurityProfiles({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSecurityProfiles' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSecurityProfiles' })).toString('base64') : undefined;
     const member = (Array.isArray(result.securityProfileIdentifiers ?? []) ? (result.securityProfileIdentifiers ?? []) : [result.securityProfileIdentifiers]) as any;
     return {
       totalItems: member.length,
@@ -1249,7 +1249,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listSecurityProfilesForTarget({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSecurityProfilesForTarget' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSecurityProfilesForTarget' })).toString('base64') : undefined;
     const member = (Array.isArray(result.securityProfileTargetMappings ?? []) ? (result.securityProfileTargetMappings ?? []) : [result.securityProfileTargetMappings]) as any;
     return {
       totalItems: member.length,
@@ -1264,7 +1264,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listStreams({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStreams' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStreams' })).toString('base64') : undefined;
     const member = (Array.isArray(result.streams ?? []) ? (result.streams ?? []) : [result.streams]) as any;
     return {
       totalItems: member.length,
@@ -1279,7 +1279,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listTagsForResource({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTagsForResource' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTagsForResource' })).toString('base64') : undefined;
     const member = (Array.isArray(result.tags ?? []) ? (result.tags ?? []) : [result.tags]) as any;
     return {
       totalItems: member.length,
@@ -1294,7 +1294,7 @@ export class Iot {
     const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { pageSize: limit } : {};
     const result = await this.client.listTargetsForPolicy({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listTargetsForPolicy' })).toString('base64');
+    const nextToken = result.nextMarker ? Buffer.from(JSON.stringify({ token: result.nextMarker, operation: 'listTargetsForPolicy' })).toString('base64') : undefined;
     const member = (Array.isArray(result.targets ?? []) ? (result.targets ?? []) : [result.targets]) as any;
     return {
       totalItems: member.length,
@@ -1309,7 +1309,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listTargetsForSecurityProfile({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTargetsForSecurityProfile' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTargetsForSecurityProfile' })).toString('base64') : undefined;
     const member = (Array.isArray(result.securityProfileTargets ?? []) ? (result.securityProfileTargets ?? []) : [result.securityProfileTargets]) as any;
     return {
       totalItems: member.length,
@@ -1324,7 +1324,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listThingGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listThingGroups' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listThingGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.thingGroups ?? []) ? (result.thingGroups ?? []) : [result.thingGroups]) as any;
     return {
       totalItems: member.length,
@@ -1339,7 +1339,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listThingGroupsForThing({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listThingGroupsForThing' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listThingGroupsForThing' })).toString('base64') : undefined;
     const member = (Array.isArray(result.thingGroups ?? []) ? (result.thingGroups ?? []) : [result.thingGroups]) as any;
     return {
       totalItems: member.length,
@@ -1354,7 +1354,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listThingPrincipals({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listThingPrincipals' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listThingPrincipals' })).toString('base64') : undefined;
     const member = (Array.isArray(result.principals ?? []) ? (result.principals ?? []) : [result.principals]) as any;
     return {
       totalItems: member.length,
@@ -1369,7 +1369,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listThingRegistrationTaskReports({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listThingRegistrationTaskReports' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listThingRegistrationTaskReports' })).toString('base64') : undefined;
     const member = (Array.isArray(result.resourceLinks ?? []) ? (result.resourceLinks ?? []) : [result.resourceLinks]) as any;
     return {
       totalItems: member.length,
@@ -1384,7 +1384,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listThingRegistrationTasks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listThingRegistrationTasks' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listThingRegistrationTasks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.taskIds ?? []) ? (result.taskIds ?? []) : [result.taskIds]) as any;
     return {
       totalItems: member.length,
@@ -1399,7 +1399,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listThingTypes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listThingTypes' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listThingTypes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.thingTypes ?? []) ? (result.thingTypes ?? []) : [result.thingTypes]) as any;
     return {
       totalItems: member.length,
@@ -1414,7 +1414,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listThings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listThings' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listThings' })).toString('base64') : undefined;
     const member = (Array.isArray(result.things ?? []) ? (result.things ?? []) : [result.things]) as any;
     return {
       totalItems: member.length,
@@ -1429,7 +1429,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listThingsInBillingGroup({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listThingsInBillingGroup' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listThingsInBillingGroup' })).toString('base64') : undefined;
     const member = (Array.isArray(result.things ?? []) ? (result.things ?? []) : [result.things]) as any;
     return {
       totalItems: member.length,
@@ -1444,7 +1444,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listThingsInThingGroup({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listThingsInThingGroup' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listThingsInThingGroup' })).toString('base64') : undefined;
     const member = (Array.isArray(result.things ?? []) ? (result.things ?? []) : [result.things]) as any;
     return {
       totalItems: member.length,
@@ -1459,7 +1459,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listTopicRuleDestinations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTopicRuleDestinations' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTopicRuleDestinations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.destinationSummaries ?? []) ? (result.destinationSummaries ?? []) : [result.destinationSummaries]) as any;
     return {
       totalItems: member.length,
@@ -1474,7 +1474,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listTopicRules({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTopicRules' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTopicRules' })).toString('base64') : undefined;
     const member = (Array.isArray(result.rules ?? []) ? (result.rules ?? []) : [result.rules]) as any;
     return {
       totalItems: member.length,
@@ -1489,7 +1489,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listV2LoggingLevels({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listV2LoggingLevels' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listV2LoggingLevels' })).toString('base64') : undefined;
     const member = (Array.isArray(result.logTargetConfigurations ?? []) ? (result.logTargetConfigurations ?? []) : [result.logTargetConfigurations]) as any;
     return {
       totalItems: member.length,
@@ -1504,7 +1504,7 @@ export class Iot {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listViolationEvents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listViolationEvents' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listViolationEvents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.violationEvents ?? []) ? (result.violationEvents ?? []) : [result.violationEvents]) as any;
     return {
       totalItems: member.length,

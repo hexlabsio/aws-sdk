@@ -364,7 +364,7 @@ export class QuickSight {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listAnalyses({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAnalyses' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAnalyses' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AnalysisSummaryList ?? []) ? (result.AnalysisSummaryList ?? []) : [result.AnalysisSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -379,7 +379,7 @@ export class QuickSight {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDashboardVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDashboardVersions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDashboardVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DashboardVersionSummaryList ?? []) ? (result.DashboardVersionSummaryList ?? []) : [result.DashboardVersionSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -394,7 +394,7 @@ export class QuickSight {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDashboards({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDashboards' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDashboards' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DashboardSummaryList ?? []) ? (result.DashboardSummaryList ?? []) : [result.DashboardSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -409,7 +409,7 @@ export class QuickSight {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDataSets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDataSets' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDataSets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DataSetSummaries ?? []) ? (result.DataSetSummaries ?? []) : [result.DataSetSummaries]) as any;
     return {
       totalItems: member.length,
@@ -424,7 +424,7 @@ export class QuickSight {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDataSources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDataSources' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDataSources' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DataSources ?? []) ? (result.DataSources ?? []) : [result.DataSources]) as any;
     return {
       totalItems: member.length,
@@ -469,7 +469,7 @@ export class QuickSight {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listIngestions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listIngestions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listIngestions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Ingestions ?? []) ? (result.Ingestions ?? []) : [result.Ingestions]) as any;
     return {
       totalItems: member.length,
@@ -484,7 +484,7 @@ export class QuickSight {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listNamespaces({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listNamespaces' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listNamespaces' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Namespaces ?? []) ? (result.Namespaces ?? []) : [result.Namespaces]) as any;
     return {
       totalItems: member.length,
@@ -504,7 +504,7 @@ export class QuickSight {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listTemplateAliases({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTemplateAliases' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTemplateAliases' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TemplateAliasList ?? []) ? (result.TemplateAliasList ?? []) : [result.TemplateAliasList]) as any;
     return {
       totalItems: member.length,
@@ -519,7 +519,7 @@ export class QuickSight {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listTemplateVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTemplateVersions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTemplateVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TemplateVersionSummaryList ?? []) ? (result.TemplateVersionSummaryList ?? []) : [result.TemplateVersionSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -534,7 +534,7 @@ export class QuickSight {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listTemplates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTemplates' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTemplates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TemplateSummaryList ?? []) ? (result.TemplateSummaryList ?? []) : [result.TemplateSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -554,7 +554,7 @@ export class QuickSight {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listThemeVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listThemeVersions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listThemeVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ThemeVersionSummaryList ?? []) ? (result.ThemeVersionSummaryList ?? []) : [result.ThemeVersionSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -569,7 +569,7 @@ export class QuickSight {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listThemes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listThemes' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listThemes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ThemeSummaryList ?? []) ? (result.ThemeSummaryList ?? []) : [result.ThemeSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -604,7 +604,7 @@ export class QuickSight {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.searchAnalyses({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchAnalyses' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchAnalyses' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AnalysisSummaryList ?? []) ? (result.AnalysisSummaryList ?? []) : [result.AnalysisSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -619,7 +619,7 @@ export class QuickSight {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.searchDashboards({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchDashboards' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchDashboards' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DashboardSummaryList ?? []) ? (result.DashboardSummaryList ?? []) : [result.DashboardSummaryList]) as any;
     return {
       totalItems: member.length,

@@ -89,7 +89,7 @@ export class SWF {
     const nextTokenPart = next ? { nextPageToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maximumPageSize: limit } : {};
     const result = await this.client.getWorkflowExecutionHistory({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextPageToken, operation: 'getWorkflowExecutionHistory' })).toString('base64');
+    const nextToken = result.nextPageToken ? Buffer.from(JSON.stringify({ token: result.nextPageToken, operation: 'getWorkflowExecutionHistory' })).toString('base64') : undefined;
     const member = (Array.isArray(result.events ?? []) ? (result.events ?? []) : [result.events]) as any;
     return {
       totalItems: member.length,
@@ -104,7 +104,7 @@ export class SWF {
     const nextTokenPart = next ? { nextPageToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maximumPageSize: limit } : {};
     const result = await this.client.listActivityTypes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextPageToken, operation: 'listActivityTypes' })).toString('base64');
+    const nextToken = result.nextPageToken ? Buffer.from(JSON.stringify({ token: result.nextPageToken, operation: 'listActivityTypes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.typeInfos ?? []) ? (result.typeInfos ?? []) : [result.typeInfos]) as any;
     return {
       totalItems: member.length,
@@ -119,7 +119,7 @@ export class SWF {
     const nextTokenPart = next ? { nextPageToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maximumPageSize: limit } : {};
     const result = await this.client.listClosedWorkflowExecutions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextPageToken, operation: 'listClosedWorkflowExecutions' })).toString('base64');
+    const nextToken = result.nextPageToken ? Buffer.from(JSON.stringify({ token: result.nextPageToken, operation: 'listClosedWorkflowExecutions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.executionInfos ?? []) ? (result.executionInfos ?? []) : [result.executionInfos]) as any;
     return {
       totalItems: member.length,
@@ -134,7 +134,7 @@ export class SWF {
     const nextTokenPart = next ? { nextPageToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maximumPageSize: limit } : {};
     const result = await this.client.listDomains({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextPageToken, operation: 'listDomains' })).toString('base64');
+    const nextToken = result.nextPageToken ? Buffer.from(JSON.stringify({ token: result.nextPageToken, operation: 'listDomains' })).toString('base64') : undefined;
     const member = (Array.isArray(result.domainInfos ?? []) ? (result.domainInfos ?? []) : [result.domainInfos]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class SWF {
     const nextTokenPart = next ? { nextPageToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maximumPageSize: limit } : {};
     const result = await this.client.listOpenWorkflowExecutions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextPageToken, operation: 'listOpenWorkflowExecutions' })).toString('base64');
+    const nextToken = result.nextPageToken ? Buffer.from(JSON.stringify({ token: result.nextPageToken, operation: 'listOpenWorkflowExecutions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.executionInfos ?? []) ? (result.executionInfos ?? []) : [result.executionInfos]) as any;
     return {
       totalItems: member.length,
@@ -169,7 +169,7 @@ export class SWF {
     const nextTokenPart = next ? { nextPageToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maximumPageSize: limit } : {};
     const result = await this.client.listWorkflowTypes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextPageToken, operation: 'listWorkflowTypes' })).toString('base64');
+    const nextToken = result.nextPageToken ? Buffer.from(JSON.stringify({ token: result.nextPageToken, operation: 'listWorkflowTypes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.typeInfos ?? []) ? (result.typeInfos ?? []) : [result.typeInfos]) as any;
     return {
       totalItems: member.length,
@@ -189,7 +189,7 @@ export class SWF {
     const nextTokenPart = next ? { nextPageToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maximumPageSize: limit } : {};
     const result = await this.client.pollForDecisionTask({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextPageToken, operation: 'pollForDecisionTask' })).toString('base64');
+    const nextToken = result.nextPageToken ? Buffer.from(JSON.stringify({ token: result.nextPageToken, operation: 'pollForDecisionTask' })).toString('base64') : undefined;
     const member = (Array.isArray(result.events ?? []) ? (result.events ?? []) : [result.events]) as any;
     return {
       totalItems: member.length,

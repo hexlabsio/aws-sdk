@@ -69,7 +69,7 @@ export class MigrationHubStrategy {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.getServerDetails({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getServerDetails' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getServerDetails' })).toString('base64') : undefined;
     const member = (Array.isArray(result.associatedApplications ?? []) ? (result.associatedApplications ?? []) : [result.associatedApplications]) as any;
     return {
       totalItems: member.length,
@@ -89,7 +89,7 @@ export class MigrationHubStrategy {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listApplicationComponents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listApplicationComponents' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listApplicationComponents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.applicationComponentInfos ?? []) ? (result.applicationComponentInfos ?? []) : [result.applicationComponentInfos]) as any;
     return {
       totalItems: member.length,
@@ -104,7 +104,7 @@ export class MigrationHubStrategy {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listCollectors({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listCollectors' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listCollectors' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Collectors ?? []) ? (result.Collectors ?? []) : [result.Collectors]) as any;
     return {
       totalItems: member.length,
@@ -119,7 +119,7 @@ export class MigrationHubStrategy {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listImportFileTask({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listImportFileTask' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listImportFileTask' })).toString('base64') : undefined;
     const member = (Array.isArray(result.taskInfos ?? []) ? (result.taskInfos ?? []) : [result.taskInfos]) as any;
     return {
       totalItems: member.length,
@@ -134,7 +134,7 @@ export class MigrationHubStrategy {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listServers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServers' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.serverInfos ?? []) ? (result.serverInfos ?? []) : [result.serverInfos]) as any;
     return {
       totalItems: member.length,

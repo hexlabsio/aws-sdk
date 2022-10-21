@@ -134,7 +134,7 @@ export class RedshiftServerless {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listEndpointAccess({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEndpointAccess' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEndpointAccess' })).toString('base64') : undefined;
     const member = (Array.isArray(result.endpoints ?? []) ? (result.endpoints ?? []) : [result.endpoints]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class RedshiftServerless {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listNamespaces({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listNamespaces' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listNamespaces' })).toString('base64') : undefined;
     const member = (Array.isArray(result.namespaces ?? []) ? (result.namespaces ?? []) : [result.namespaces]) as any;
     return {
       totalItems: member.length,
@@ -164,7 +164,7 @@ export class RedshiftServerless {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listRecoveryPoints({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listRecoveryPoints' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listRecoveryPoints' })).toString('base64') : undefined;
     const member = (Array.isArray(result.recoveryPoints ?? []) ? (result.recoveryPoints ?? []) : [result.recoveryPoints]) as any;
     return {
       totalItems: member.length,
@@ -179,7 +179,7 @@ export class RedshiftServerless {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listSnapshots({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSnapshots' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSnapshots' })).toString('base64') : undefined;
     const member = (Array.isArray(result.snapshots ?? []) ? (result.snapshots ?? []) : [result.snapshots]) as any;
     return {
       totalItems: member.length,
@@ -199,7 +199,7 @@ export class RedshiftServerless {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listUsageLimits({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listUsageLimits' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listUsageLimits' })).toString('base64') : undefined;
     const member = (Array.isArray(result.usageLimits ?? []) ? (result.usageLimits ?? []) : [result.usageLimits]) as any;
     return {
       totalItems: member.length,
@@ -214,7 +214,7 @@ export class RedshiftServerless {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listWorkgroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorkgroups' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorkgroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.workgroups ?? []) ? (result.workgroups ?? []) : [result.workgroups]) as any;
     return {
       totalItems: member.length,

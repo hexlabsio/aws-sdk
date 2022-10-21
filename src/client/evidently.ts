@@ -124,7 +124,7 @@ export class Evidently {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listExperiments({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listExperiments' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listExperiments' })).toString('base64') : undefined;
     const member = (Array.isArray(result.experiments ?? []) ? (result.experiments ?? []) : [result.experiments]) as any;
     return {
       totalItems: member.length,
@@ -139,7 +139,7 @@ export class Evidently {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listFeatures({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listFeatures' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listFeatures' })).toString('base64') : undefined;
     const member = (Array.isArray(result.features ?? []) ? (result.features ?? []) : [result.features]) as any;
     return {
       totalItems: member.length,
@@ -154,7 +154,7 @@ export class Evidently {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listLaunches({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listLaunches' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listLaunches' })).toString('base64') : undefined;
     const member = (Array.isArray(result.launches ?? []) ? (result.launches ?? []) : [result.launches]) as any;
     return {
       totalItems: member.length,
@@ -169,7 +169,7 @@ export class Evidently {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listProjects({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listProjects' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listProjects' })).toString('base64') : undefined;
     const member = (Array.isArray(result.projects ?? []) ? (result.projects ?? []) : [result.projects]) as any;
     return {
       totalItems: member.length,
@@ -184,7 +184,7 @@ export class Evidently {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listSegmentReferences({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSegmentReferences' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSegmentReferences' })).toString('base64') : undefined;
     const member = (Array.isArray(result.referencedBy ?? []) ? (result.referencedBy ?? []) : [result.referencedBy]) as any;
     return {
       totalItems: member.length,
@@ -199,7 +199,7 @@ export class Evidently {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listSegments({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSegments' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSegments' })).toString('base64') : undefined;
     const member = (Array.isArray(result.segments ?? []) ? (result.segments ?? []) : [result.segments]) as any;
     return {
       totalItems: member.length,

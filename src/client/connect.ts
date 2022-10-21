@@ -384,7 +384,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listAgentStatuses({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAgentStatuses' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAgentStatuses' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AgentStatusSummaryList ?? []) ? (result.AgentStatusSummaryList ?? []) : [result.AgentStatusSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -399,7 +399,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listApprovedOrigins({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listApprovedOrigins' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listApprovedOrigins' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Origins ?? []) ? (result.Origins ?? []) : [result.Origins]) as any;
     return {
       totalItems: member.length,
@@ -414,7 +414,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listBots({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBots' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBots' })).toString('base64') : undefined;
     const member = (Array.isArray(result.LexBots ?? []) ? (result.LexBots ?? []) : [result.LexBots]) as any;
     return {
       totalItems: member.length,
@@ -429,7 +429,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listContactFlowModules({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listContactFlowModules' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listContactFlowModules' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ContactFlowModulesSummaryList ?? []) ? (result.ContactFlowModulesSummaryList ?? []) : [result.ContactFlowModulesSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -444,7 +444,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listContactFlows({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listContactFlows' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listContactFlows' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ContactFlowSummaryList ?? []) ? (result.ContactFlowSummaryList ?? []) : [result.ContactFlowSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -459,7 +459,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listContactReferences({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listContactReferences' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listContactReferences' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ReferenceSummaryList ?? []) ? (result.ReferenceSummaryList ?? []) : [result.ReferenceSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -474,7 +474,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDefaultVocabularies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDefaultVocabularies' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDefaultVocabularies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DefaultVocabularyList ?? []) ? (result.DefaultVocabularyList ?? []) : [result.DefaultVocabularyList]) as any;
     return {
       totalItems: member.length,
@@ -489,7 +489,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listHoursOfOperations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listHoursOfOperations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listHoursOfOperations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.HoursOfOperationSummaryList ?? []) ? (result.HoursOfOperationSummaryList ?? []) : [result.HoursOfOperationSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -504,7 +504,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listInstanceAttributes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listInstanceAttributes' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listInstanceAttributes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Attributes ?? []) ? (result.Attributes ?? []) : [result.Attributes]) as any;
     return {
       totalItems: member.length,
@@ -519,7 +519,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listInstanceStorageConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listInstanceStorageConfigs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listInstanceStorageConfigs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.StorageConfigs ?? []) ? (result.StorageConfigs ?? []) : [result.StorageConfigs]) as any;
     return {
       totalItems: member.length,
@@ -534,7 +534,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listInstances({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listInstances' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listInstances' })).toString('base64') : undefined;
     const member = (Array.isArray(result.InstanceSummaryList ?? []) ? (result.InstanceSummaryList ?? []) : [result.InstanceSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -549,7 +549,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listIntegrationAssociations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listIntegrationAssociations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listIntegrationAssociations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.IntegrationAssociationSummaryList ?? []) ? (result.IntegrationAssociationSummaryList ?? []) : [result.IntegrationAssociationSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -564,7 +564,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listLambdaFunctions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listLambdaFunctions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listLambdaFunctions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.LambdaFunctions ?? []) ? (result.LambdaFunctions ?? []) : [result.LambdaFunctions]) as any;
     return {
       totalItems: member.length,
@@ -579,7 +579,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listLexBots({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listLexBots' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listLexBots' })).toString('base64') : undefined;
     const member = (Array.isArray(result.LexBots ?? []) ? (result.LexBots ?? []) : [result.LexBots]) as any;
     return {
       totalItems: member.length,
@@ -594,7 +594,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPhoneNumbers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPhoneNumbers' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPhoneNumbers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PhoneNumberSummaryList ?? []) ? (result.PhoneNumberSummaryList ?? []) : [result.PhoneNumberSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -609,7 +609,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPhoneNumbersV2({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPhoneNumbersV2' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPhoneNumbersV2' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ListPhoneNumbersSummaryList ?? []) ? (result.ListPhoneNumbersSummaryList ?? []) : [result.ListPhoneNumbersSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -624,7 +624,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPrompts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPrompts' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPrompts' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PromptSummaryList ?? []) ? (result.PromptSummaryList ?? []) : [result.PromptSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -639,7 +639,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listQueueQuickConnects({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listQueueQuickConnects' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listQueueQuickConnects' })).toString('base64') : undefined;
     const member = (Array.isArray(result.QuickConnectSummaryList ?? []) ? (result.QuickConnectSummaryList ?? []) : [result.QuickConnectSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -654,7 +654,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listQueues({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listQueues' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listQueues' })).toString('base64') : undefined;
     const member = (Array.isArray(result.QueueSummaryList ?? []) ? (result.QueueSummaryList ?? []) : [result.QueueSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -669,7 +669,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listQuickConnects({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listQuickConnects' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listQuickConnects' })).toString('base64') : undefined;
     const member = (Array.isArray(result.QuickConnectSummaryList ?? []) ? (result.QuickConnectSummaryList ?? []) : [result.QuickConnectSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -684,7 +684,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listRoutingProfileQueues({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRoutingProfileQueues' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRoutingProfileQueues' })).toString('base64') : undefined;
     const member = (Array.isArray(result.RoutingProfileQueueConfigSummaryList ?? []) ? (result.RoutingProfileQueueConfigSummaryList ?? []) : [result.RoutingProfileQueueConfigSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -699,7 +699,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listRoutingProfiles({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRoutingProfiles' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRoutingProfiles' })).toString('base64') : undefined;
     const member = (Array.isArray(result.RoutingProfileSummaryList ?? []) ? (result.RoutingProfileSummaryList ?? []) : [result.RoutingProfileSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -714,7 +714,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listSecurityKeys({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSecurityKeys' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSecurityKeys' })).toString('base64') : undefined;
     const member = (Array.isArray(result.SecurityKeys ?? []) ? (result.SecurityKeys ?? []) : [result.SecurityKeys]) as any;
     return {
       totalItems: member.length,
@@ -729,7 +729,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listSecurityProfilePermissions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSecurityProfilePermissions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSecurityProfilePermissions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Permissions ?? []) ? (result.Permissions ?? []) : [result.Permissions]) as any;
     return {
       totalItems: member.length,
@@ -744,7 +744,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listSecurityProfiles({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSecurityProfiles' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSecurityProfiles' })).toString('base64') : undefined;
     const member = (Array.isArray(result.SecurityProfileSummaryList ?? []) ? (result.SecurityProfileSummaryList ?? []) : [result.SecurityProfileSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -764,7 +764,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listTaskTemplates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTaskTemplates' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTaskTemplates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TaskTemplates ?? []) ? (result.TaskTemplates ?? []) : [result.TaskTemplates]) as any;
     return {
       totalItems: member.length,
@@ -779,7 +779,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listUseCases({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listUseCases' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listUseCases' })).toString('base64') : undefined;
     const member = (Array.isArray(result.UseCaseSummaryList ?? []) ? (result.UseCaseSummaryList ?? []) : [result.UseCaseSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -794,7 +794,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listUserHierarchyGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listUserHierarchyGroups' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listUserHierarchyGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.UserHierarchyGroupSummaryList ?? []) ? (result.UserHierarchyGroupSummaryList ?? []) : [result.UserHierarchyGroupSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -809,7 +809,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listUsers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listUsers' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listUsers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.UserSummaryList ?? []) ? (result.UserSummaryList ?? []) : [result.UserSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -839,7 +839,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.searchAvailablePhoneNumbers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchAvailablePhoneNumbers' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchAvailablePhoneNumbers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AvailableNumbersList ?? []) ? (result.AvailableNumbersList ?? []) : [result.AvailableNumbersList]) as any;
     return {
       totalItems: member.length,
@@ -854,7 +854,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.searchQueues({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchQueues' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchQueues' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Queues ?? []) ? (result.Queues ?? []) : [result.Queues]) as any;
     return {
       totalItems: member.length,
@@ -869,7 +869,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.searchRoutingProfiles({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchRoutingProfiles' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchRoutingProfiles' })).toString('base64') : undefined;
     const member = (Array.isArray(result.RoutingProfiles ?? []) ? (result.RoutingProfiles ?? []) : [result.RoutingProfiles]) as any;
     return {
       totalItems: member.length,
@@ -884,7 +884,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.searchSecurityProfiles({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchSecurityProfiles' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchSecurityProfiles' })).toString('base64') : undefined;
     const member = (Array.isArray(result.SecurityProfiles ?? []) ? (result.SecurityProfiles ?? []) : [result.SecurityProfiles]) as any;
     return {
       totalItems: member.length,
@@ -899,7 +899,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.searchUsers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchUsers' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchUsers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Users ?? []) ? (result.Users ?? []) : [result.Users]) as any;
     return {
       totalItems: member.length,
@@ -914,7 +914,7 @@ export class Connect {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.searchVocabularies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchVocabularies' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchVocabularies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.VocabularySummaryList ?? []) ? (result.VocabularySummaryList ?? []) : [result.VocabularySummaryList]) as any;
     return {
       totalItems: member.length,

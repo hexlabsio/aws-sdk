@@ -89,7 +89,7 @@ export class LookoutVision {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDatasetEntries({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDatasetEntries' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDatasetEntries' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DatasetEntries ?? []) ? (result.DatasetEntries ?? []) : [result.DatasetEntries]) as any;
     return {
       totalItems: member.length,
@@ -104,7 +104,7 @@ export class LookoutVision {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listModelPackagingJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModelPackagingJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModelPackagingJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ModelPackagingJobs ?? []) ? (result.ModelPackagingJobs ?? []) : [result.ModelPackagingJobs]) as any;
     return {
       totalItems: member.length,
@@ -119,7 +119,7 @@ export class LookoutVision {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listModels({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModels' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModels' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Models ?? []) ? (result.Models ?? []) : [result.Models]) as any;
     return {
       totalItems: member.length,
@@ -134,7 +134,7 @@ export class LookoutVision {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listProjects({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listProjects' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listProjects' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Projects ?? []) ? (result.Projects ?? []) : [result.Projects]) as any;
     return {
       totalItems: member.length,

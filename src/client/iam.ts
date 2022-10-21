@@ -329,7 +329,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.getGroup({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'getGroup' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'getGroup' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Users ?? []) ? (result.Users ?? []) : [result.Users]) as any;
     return {
       totalItems: member.length,
@@ -429,7 +429,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listAccessKeys({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listAccessKeys' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listAccessKeys' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AccessKeyMetadata ?? []) ? (result.AccessKeyMetadata ?? []) : [result.AccessKeyMetadata]) as any;
     return {
       totalItems: member.length,
@@ -444,7 +444,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listAccountAliases({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listAccountAliases' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listAccountAliases' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AccountAliases ?? []) ? (result.AccountAliases ?? []) : [result.AccountAliases]) as any;
     return {
       totalItems: member.length,
@@ -459,7 +459,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listAttachedGroupPolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listAttachedGroupPolicies' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listAttachedGroupPolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AttachedPolicies ?? []) ? (result.AttachedPolicies ?? []) : [result.AttachedPolicies]) as any;
     return {
       totalItems: member.length,
@@ -474,7 +474,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listAttachedRolePolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listAttachedRolePolicies' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listAttachedRolePolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AttachedPolicies ?? []) ? (result.AttachedPolicies ?? []) : [result.AttachedPolicies]) as any;
     return {
       totalItems: member.length,
@@ -489,7 +489,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listAttachedUserPolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listAttachedUserPolicies' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listAttachedUserPolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AttachedPolicies ?? []) ? (result.AttachedPolicies ?? []) : [result.AttachedPolicies]) as any;
     return {
       totalItems: member.length,
@@ -509,7 +509,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listGroupPolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listGroupPolicies' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listGroupPolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PolicyNames ?? []) ? (result.PolicyNames ?? []) : [result.PolicyNames]) as any;
     return {
       totalItems: member.length,
@@ -524,7 +524,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listGroups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Groups ?? []) ? (result.Groups ?? []) : [result.Groups]) as any;
     return {
       totalItems: member.length,
@@ -539,7 +539,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listGroupsForUser({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listGroupsForUser' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listGroupsForUser' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Groups ?? []) ? (result.Groups ?? []) : [result.Groups]) as any;
     return {
       totalItems: member.length,
@@ -559,7 +559,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listInstanceProfiles({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listInstanceProfiles' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listInstanceProfiles' })).toString('base64') : undefined;
     const member = (Array.isArray(result.InstanceProfiles ?? []) ? (result.InstanceProfiles ?? []) : [result.InstanceProfiles]) as any;
     return {
       totalItems: member.length,
@@ -574,7 +574,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listInstanceProfilesForRole({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listInstanceProfilesForRole' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listInstanceProfilesForRole' })).toString('base64') : undefined;
     const member = (Array.isArray(result.InstanceProfiles ?? []) ? (result.InstanceProfiles ?? []) : [result.InstanceProfiles]) as any;
     return {
       totalItems: member.length,
@@ -594,7 +594,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listMFADevices({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listMFADevices' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listMFADevices' })).toString('base64') : undefined;
     const member = (Array.isArray(result.MFADevices ?? []) ? (result.MFADevices ?? []) : [result.MFADevices]) as any;
     return {
       totalItems: member.length,
@@ -619,7 +619,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listPolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listPolicies' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listPolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Policies ?? []) ? (result.Policies ?? []) : [result.Policies]) as any;
     return {
       totalItems: member.length,
@@ -644,7 +644,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listPolicyVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listPolicyVersions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listPolicyVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Versions ?? []) ? (result.Versions ?? []) : [result.Versions]) as any;
     return {
       totalItems: member.length,
@@ -659,7 +659,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listRolePolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listRolePolicies' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listRolePolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PolicyNames ?? []) ? (result.PolicyNames ?? []) : [result.PolicyNames]) as any;
     return {
       totalItems: member.length,
@@ -679,7 +679,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listRoles({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listRoles' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listRoles' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Roles ?? []) ? (result.Roles ?? []) : [result.Roles]) as any;
     return {
       totalItems: member.length,
@@ -714,7 +714,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listSSHPublicKeys({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listSSHPublicKeys' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listSSHPublicKeys' })).toString('base64') : undefined;
     const member = (Array.isArray(result.SSHPublicKeys ?? []) ? (result.SSHPublicKeys ?? []) : [result.SSHPublicKeys]) as any;
     return {
       totalItems: member.length,
@@ -734,7 +734,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listServerCertificates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listServerCertificates' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listServerCertificates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ServerCertificateMetadataList ?? []) ? (result.ServerCertificateMetadataList ?? []) : [result.ServerCertificateMetadataList]) as any;
     return {
       totalItems: member.length,
@@ -754,7 +754,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listSigningCertificates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listSigningCertificates' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listSigningCertificates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Certificates ?? []) ? (result.Certificates ?? []) : [result.Certificates]) as any;
     return {
       totalItems: member.length,
@@ -769,7 +769,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listUserPolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listUserPolicies' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listUserPolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PolicyNames ?? []) ? (result.PolicyNames ?? []) : [result.PolicyNames]) as any;
     return {
       totalItems: member.length,
@@ -784,7 +784,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listUserTags({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listUserTags' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listUserTags' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Tags ?? []) ? (result.Tags ?? []) : [result.Tags]) as any;
     return {
       totalItems: member.length,
@@ -799,7 +799,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listUsers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listUsers' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listUsers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Users ?? []) ? (result.Users ?? []) : [result.Users]) as any;
     return {
       totalItems: member.length,
@@ -814,7 +814,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listVirtualMFADevices({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listVirtualMFADevices' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'listVirtualMFADevices' })).toString('base64') : undefined;
     const member = (Array.isArray(result.VirtualMFADevices ?? []) ? (result.VirtualMFADevices ?? []) : [result.VirtualMFADevices]) as any;
     return {
       totalItems: member.length,
@@ -889,7 +889,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.simulateCustomPolicy({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'simulateCustomPolicy' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'simulateCustomPolicy' })).toString('base64') : undefined;
     const member = (Array.isArray(result.EvaluationResults ?? []) ? (result.EvaluationResults ?? []) : [result.EvaluationResults]) as any;
     return {
       totalItems: member.length,
@@ -904,7 +904,7 @@ export class IAM {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.simulatePrincipalPolicy({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'simulatePrincipalPolicy' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'simulatePrincipalPolicy' })).toString('base64') : undefined;
     const member = (Array.isArray(result.EvaluationResults ?? []) ? (result.EvaluationResults ?? []) : [result.EvaluationResults]) as any;
     return {
       totalItems: member.length,

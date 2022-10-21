@@ -159,7 +159,7 @@ export class Shield {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listAttacks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAttacks' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAttacks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AttackSummaries ?? []) ? (result.AttackSummaries ?? []) : [result.AttackSummaries]) as any;
     return {
       totalItems: member.length,
@@ -179,7 +179,7 @@ export class Shield {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listProtections({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listProtections' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listProtections' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Protections ?? []) ? (result.Protections ?? []) : [result.Protections]) as any;
     return {
       totalItems: member.length,

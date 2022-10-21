@@ -104,7 +104,7 @@ export class Route53Domains {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listDomains({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextPageMarker, operation: 'listDomains' })).toString('base64');
+    const nextToken = result.NextPageMarker ? Buffer.from(JSON.stringify({ token: result.NextPageMarker, operation: 'listDomains' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Domains ?? []) ? (result.Domains ?? []) : [result.Domains]) as any;
     return {
       totalItems: member.length,
@@ -119,7 +119,7 @@ export class Route53Domains {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listOperations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextPageMarker, operation: 'listOperations' })).toString('base64');
+    const nextToken = result.NextPageMarker ? Buffer.from(JSON.stringify({ token: result.NextPageMarker, operation: 'listOperations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Operations ?? []) ? (result.Operations ?? []) : [result.Operations]) as any;
     return {
       totalItems: member.length,
@@ -134,7 +134,7 @@ export class Route53Domains {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.listPrices({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextPageMarker, operation: 'listPrices' })).toString('base64');
+    const nextToken = result.NextPageMarker ? Buffer.from(JSON.stringify({ token: result.NextPageMarker, operation: 'listPrices' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Prices ?? []) ? (result.Prices ?? []) : [result.Prices]) as any;
     return {
       totalItems: member.length,
@@ -209,7 +209,7 @@ export class Route53Domains {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxItems: limit } : {};
     const result = await this.client.viewBilling({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextPageMarker, operation: 'viewBilling' })).toString('base64');
+    const nextToken = result.NextPageMarker ? Buffer.from(JSON.stringify({ token: result.NextPageMarker, operation: 'viewBilling' })).toString('base64') : undefined;
     const member = (Array.isArray(result.BillingRecords ?? []) ? (result.BillingRecords ?? []) : [result.BillingRecords]) as any;
     return {
       totalItems: member.length,

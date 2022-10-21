@@ -124,7 +124,7 @@ export class SNS {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listEndpointsByPlatformApplication({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEndpointsByPlatformApplication' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEndpointsByPlatformApplication' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Endpoints ?? []) ? (result.Endpoints ?? []) : [result.Endpoints]) as any;
     return {
       totalItems: member.length,
@@ -139,7 +139,7 @@ export class SNS {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listOriginationNumbers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listOriginationNumbers' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listOriginationNumbers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PhoneNumbers ?? []) ? (result.PhoneNumbers ?? []) : [result.PhoneNumbers]) as any;
     return {
       totalItems: member.length,
@@ -154,7 +154,7 @@ export class SNS {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listPhoneNumbersOptedOut({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listPhoneNumbersOptedOut' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listPhoneNumbersOptedOut' })).toString('base64') : undefined;
     const member = (Array.isArray(result.phoneNumbers ?? []) ? (result.phoneNumbers ?? []) : [result.phoneNumbers]) as any;
     return {
       totalItems: member.length,
@@ -169,7 +169,7 @@ export class SNS {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listPlatformApplications({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPlatformApplications' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPlatformApplications' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PlatformApplications ?? []) ? (result.PlatformApplications ?? []) : [result.PlatformApplications]) as any;
     return {
       totalItems: member.length,
@@ -184,7 +184,7 @@ export class SNS {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listSMSSandboxPhoneNumbers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSMSSandboxPhoneNumbers' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSMSSandboxPhoneNumbers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PhoneNumbers ?? []) ? (result.PhoneNumbers ?? []) : [result.PhoneNumbers]) as any;
     return {
       totalItems: member.length,
@@ -199,7 +199,7 @@ export class SNS {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listSubscriptions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSubscriptions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSubscriptions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Subscriptions ?? []) ? (result.Subscriptions ?? []) : [result.Subscriptions]) as any;
     return {
       totalItems: member.length,
@@ -214,7 +214,7 @@ export class SNS {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listSubscriptionsByTopic({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSubscriptionsByTopic' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSubscriptionsByTopic' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Subscriptions ?? []) ? (result.Subscriptions ?? []) : [result.Subscriptions]) as any;
     return {
       totalItems: member.length,
@@ -234,7 +234,7 @@ export class SNS {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listTopics({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTopics' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTopics' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Topics ?? []) ? (result.Topics ?? []) : [result.Topics]) as any;
     return {
       totalItems: member.length,

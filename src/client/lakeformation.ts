@@ -159,7 +159,7 @@ export class LakeFormation {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { PageSize: limit } : {};
     const result = await this.client.getWorkUnits({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getWorkUnits' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getWorkUnits' })).toString('base64') : undefined;
     const member = (Array.isArray(result.WorkUnitRanges ?? []) ? (result.WorkUnitRanges ?? []) : [result.WorkUnitRanges]) as any;
     return {
       totalItems: member.length,
@@ -179,7 +179,7 @@ export class LakeFormation {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDataCellsFilter({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDataCellsFilter' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDataCellsFilter' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DataCellsFilters ?? []) ? (result.DataCellsFilters ?? []) : [result.DataCellsFilters]) as any;
     return {
       totalItems: member.length,
@@ -194,7 +194,7 @@ export class LakeFormation {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listLFTags({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listLFTags' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listLFTags' })).toString('base64') : undefined;
     const member = (Array.isArray(result.LFTags ?? []) ? (result.LFTags ?? []) : [result.LFTags]) as any;
     return {
       totalItems: member.length,
@@ -249,7 +249,7 @@ export class LakeFormation {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.searchDatabasesByLFTags({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchDatabasesByLFTags' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchDatabasesByLFTags' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DatabaseList ?? []) ? (result.DatabaseList ?? []) : [result.DatabaseList]) as any;
     return {
       totalItems: member.length,
@@ -264,7 +264,7 @@ export class LakeFormation {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.searchTablesByLFTags({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchTablesByLFTags' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchTablesByLFTags' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TableList ?? []) ? (result.TableList ?? []) : [result.TableList]) as any;
     return {
       totalItems: member.length,

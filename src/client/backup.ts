@@ -209,7 +209,7 @@ export class Backup {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listBackupJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBackupJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBackupJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.BackupJobs ?? []) ? (result.BackupJobs ?? []) : [result.BackupJobs]) as any;
     return {
       totalItems: member.length,
@@ -224,7 +224,7 @@ export class Backup {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listBackupPlanTemplates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBackupPlanTemplates' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBackupPlanTemplates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.BackupPlanTemplatesList ?? []) ? (result.BackupPlanTemplatesList ?? []) : [result.BackupPlanTemplatesList]) as any;
     return {
       totalItems: member.length,
@@ -239,7 +239,7 @@ export class Backup {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listBackupPlanVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBackupPlanVersions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBackupPlanVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.BackupPlanVersionsList ?? []) ? (result.BackupPlanVersionsList ?? []) : [result.BackupPlanVersionsList]) as any;
     return {
       totalItems: member.length,
@@ -254,7 +254,7 @@ export class Backup {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listBackupPlans({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBackupPlans' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBackupPlans' })).toString('base64') : undefined;
     const member = (Array.isArray(result.BackupPlansList ?? []) ? (result.BackupPlansList ?? []) : [result.BackupPlansList]) as any;
     return {
       totalItems: member.length,
@@ -269,7 +269,7 @@ export class Backup {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listBackupSelections({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBackupSelections' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBackupSelections' })).toString('base64') : undefined;
     const member = (Array.isArray(result.BackupSelectionsList ?? []) ? (result.BackupSelectionsList ?? []) : [result.BackupSelectionsList]) as any;
     return {
       totalItems: member.length,
@@ -284,7 +284,7 @@ export class Backup {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listBackupVaults({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBackupVaults' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBackupVaults' })).toString('base64') : undefined;
     const member = (Array.isArray(result.BackupVaultList ?? []) ? (result.BackupVaultList ?? []) : [result.BackupVaultList]) as any;
     return {
       totalItems: member.length,
@@ -299,7 +299,7 @@ export class Backup {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCopyJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCopyJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCopyJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CopyJobs ?? []) ? (result.CopyJobs ?? []) : [result.CopyJobs]) as any;
     return {
       totalItems: member.length,
@@ -319,7 +319,7 @@ export class Backup {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listProtectedResources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listProtectedResources' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listProtectedResources' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Results ?? []) ? (result.Results ?? []) : [result.Results]) as any;
     return {
       totalItems: member.length,
@@ -334,7 +334,7 @@ export class Backup {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listRecoveryPointsByBackupVault({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRecoveryPointsByBackupVault' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRecoveryPointsByBackupVault' })).toString('base64') : undefined;
     const member = (Array.isArray(result.RecoveryPoints ?? []) ? (result.RecoveryPoints ?? []) : [result.RecoveryPoints]) as any;
     return {
       totalItems: member.length,
@@ -349,7 +349,7 @@ export class Backup {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listRecoveryPointsByResource({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRecoveryPointsByResource' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRecoveryPointsByResource' })).toString('base64') : undefined;
     const member = (Array.isArray(result.RecoveryPoints ?? []) ? (result.RecoveryPoints ?? []) : [result.RecoveryPoints]) as any;
     return {
       totalItems: member.length,
@@ -374,7 +374,7 @@ export class Backup {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listRestoreJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRestoreJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRestoreJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.RestoreJobs ?? []) ? (result.RestoreJobs ?? []) : [result.RestoreJobs]) as any;
     return {
       totalItems: member.length,

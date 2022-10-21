@@ -159,7 +159,7 @@ export class Neptune {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBClusterEndpoints({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusterEndpoints' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusterEndpoints' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBClusterEndpoints ?? []) ? (result.DBClusterEndpoints ?? []) : [result.DBClusterEndpoints]) as any;
     return {
       totalItems: member.length,
@@ -174,7 +174,7 @@ export class Neptune {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBClusterParameterGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusterParameterGroups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusterParameterGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBClusterParameterGroups ?? []) ? (result.DBClusterParameterGroups ?? []) : [result.DBClusterParameterGroups]) as any;
     return {
       totalItems: member.length,
@@ -189,7 +189,7 @@ export class Neptune {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBClusterParameters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusterParameters' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusterParameters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Parameters ?? []) ? (result.Parameters ?? []) : [result.Parameters]) as any;
     return {
       totalItems: member.length,
@@ -209,7 +209,7 @@ export class Neptune {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBClusterSnapshots({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusterSnapshots' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusterSnapshots' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBClusterSnapshots ?? []) ? (result.DBClusterSnapshots ?? []) : [result.DBClusterSnapshots]) as any;
     return {
       totalItems: member.length,
@@ -224,7 +224,7 @@ export class Neptune {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBClusters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusters' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBClusters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBClusters ?? []) ? (result.DBClusters ?? []) : [result.DBClusters]) as any;
     return {
       totalItems: member.length,
@@ -239,7 +239,7 @@ export class Neptune {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBEngineVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBEngineVersions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBEngineVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBEngineVersions ?? []) ? (result.DBEngineVersions ?? []) : [result.DBEngineVersions]) as any;
     return {
       totalItems: member.length,
@@ -254,7 +254,7 @@ export class Neptune {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBInstances({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBInstances' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBInstances' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBInstances ?? []) ? (result.DBInstances ?? []) : [result.DBInstances]) as any;
     return {
       totalItems: member.length,
@@ -269,7 +269,7 @@ export class Neptune {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBParameterGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBParameterGroups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBParameterGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBParameterGroups ?? []) ? (result.DBParameterGroups ?? []) : [result.DBParameterGroups]) as any;
     return {
       totalItems: member.length,
@@ -284,7 +284,7 @@ export class Neptune {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBParameters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBParameters' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBParameters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Parameters ?? []) ? (result.Parameters ?? []) : [result.Parameters]) as any;
     return {
       totalItems: member.length,
@@ -299,7 +299,7 @@ export class Neptune {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDBSubnetGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBSubnetGroups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDBSubnetGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DBSubnetGroups ?? []) ? (result.DBSubnetGroups ?? []) : [result.DBSubnetGroups]) as any;
     return {
       totalItems: member.length,
@@ -319,7 +319,7 @@ export class Neptune {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeEngineDefaultParameters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.EngineDefaults?.Marker, operation: 'describeEngineDefaultParameters' })).toString('base64');
+    const nextToken = result.EngineDefaults?.Marker ? Buffer.from(JSON.stringify({ token: result.EngineDefaults?.Marker, operation: 'describeEngineDefaultParameters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.EngineDefaults?.Parameters ?? []) ? (result.EngineDefaults?.Parameters ?? []) : [result.EngineDefaults?.Parameters]) as any;
     return {
       totalItems: member.length,
@@ -339,7 +339,7 @@ export class Neptune {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeEventSubscriptions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeEventSubscriptions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeEventSubscriptions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.EventSubscriptionsList ?? []) ? (result.EventSubscriptionsList ?? []) : [result.EventSubscriptionsList]) as any;
     return {
       totalItems: member.length,
@@ -354,7 +354,7 @@ export class Neptune {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeEvents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeEvents' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeEvents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Events ?? []) ? (result.Events ?? []) : [result.Events]) as any;
     return {
       totalItems: member.length,
@@ -374,7 +374,7 @@ export class Neptune {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeOrderableDBInstanceOptions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeOrderableDBInstanceOptions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeOrderableDBInstanceOptions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.OrderableDBInstanceOptions ?? []) ? (result.OrderableDBInstanceOptions ?? []) : [result.OrderableDBInstanceOptions]) as any;
     return {
       totalItems: member.length,
@@ -389,7 +389,7 @@ export class Neptune {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describePendingMaintenanceActions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describePendingMaintenanceActions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describePendingMaintenanceActions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PendingMaintenanceActions ?? []) ? (result.PendingMaintenanceActions ?? []) : [result.PendingMaintenanceActions]) as any;
     return {
       totalItems: member.length,

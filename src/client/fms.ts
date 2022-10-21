@@ -119,7 +119,7 @@ export class FMS {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listAppsLists({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAppsLists' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAppsLists' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AppsLists ?? []) ? (result.AppsLists ?? []) : [result.AppsLists]) as any;
     return {
       totalItems: member.length,
@@ -134,7 +134,7 @@ export class FMS {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listComplianceStatus({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listComplianceStatus' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listComplianceStatus' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PolicyComplianceStatusList ?? []) ? (result.PolicyComplianceStatusList ?? []) : [result.PolicyComplianceStatusList]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class FMS {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listMemberAccounts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMemberAccounts' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMemberAccounts' })).toString('base64') : undefined;
     const member = (Array.isArray(result.MemberAccounts ?? []) ? (result.MemberAccounts ?? []) : [result.MemberAccounts]) as any;
     return {
       totalItems: member.length,
@@ -164,7 +164,7 @@ export class FMS {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPolicies' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PolicyList ?? []) ? (result.PolicyList ?? []) : [result.PolicyList]) as any;
     return {
       totalItems: member.length,
@@ -179,7 +179,7 @@ export class FMS {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listProtocolsLists({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listProtocolsLists' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listProtocolsLists' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ProtocolsLists ?? []) ? (result.ProtocolsLists ?? []) : [result.ProtocolsLists]) as any;
     return {
       totalItems: member.length,
@@ -199,7 +199,7 @@ export class FMS {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listThirdPartyFirewallFirewallPolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listThirdPartyFirewallFirewallPolicies' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listThirdPartyFirewallFirewallPolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ThirdPartyFirewallFirewallPolicies ?? []) ? (result.ThirdPartyFirewallFirewallPolicies ?? []) : [result.ThirdPartyFirewallFirewallPolicies]) as any;
     return {
       totalItems: member.length,

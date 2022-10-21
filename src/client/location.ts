@@ -164,7 +164,7 @@ export class Location {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getDevicePositionHistory({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getDevicePositionHistory' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getDevicePositionHistory' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DevicePositions ?? []) ? (result.DevicePositions ?? []) : [result.DevicePositions]) as any;
     return {
       totalItems: member.length,
@@ -209,7 +209,7 @@ export class Location {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDevicePositions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDevicePositions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDevicePositions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Entries ?? []) ? (result.Entries ?? []) : [result.Entries]) as any;
     return {
       totalItems: member.length,
@@ -224,7 +224,7 @@ export class Location {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listGeofenceCollections({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGeofenceCollections' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGeofenceCollections' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Entries ?? []) ? (result.Entries ?? []) : [result.Entries]) as any;
     return {
       totalItems: member.length,
@@ -239,7 +239,7 @@ export class Location {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listGeofences({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGeofences' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGeofences' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Entries ?? []) ? (result.Entries ?? []) : [result.Entries]) as any;
     return {
       totalItems: member.length,
@@ -254,7 +254,7 @@ export class Location {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listMaps({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMaps' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMaps' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Entries ?? []) ? (result.Entries ?? []) : [result.Entries]) as any;
     return {
       totalItems: member.length,
@@ -269,7 +269,7 @@ export class Location {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPlaceIndexes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPlaceIndexes' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPlaceIndexes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Entries ?? []) ? (result.Entries ?? []) : [result.Entries]) as any;
     return {
       totalItems: member.length,
@@ -284,7 +284,7 @@ export class Location {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listRouteCalculators({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRouteCalculators' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRouteCalculators' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Entries ?? []) ? (result.Entries ?? []) : [result.Entries]) as any;
     return {
       totalItems: member.length,
@@ -304,7 +304,7 @@ export class Location {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listTrackerConsumers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTrackerConsumers' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTrackerConsumers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ConsumerArns ?? []) ? (result.ConsumerArns ?? []) : [result.ConsumerArns]) as any;
     return {
       totalItems: member.length,
@@ -319,7 +319,7 @@ export class Location {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listTrackers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTrackers' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTrackers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Entries ?? []) ? (result.Entries ?? []) : [result.Entries]) as any;
     return {
       totalItems: member.length,

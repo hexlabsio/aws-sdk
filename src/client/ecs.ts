@@ -139,7 +139,7 @@ export class ECS {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAccountSettings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAccountSettings' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAccountSettings' })).toString('base64') : undefined;
     const member = (Array.isArray(result.settings ?? []) ? (result.settings ?? []) : [result.settings]) as any;
     return {
       totalItems: member.length,
@@ -154,7 +154,7 @@ export class ECS {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAttributes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAttributes' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAttributes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.attributes ?? []) ? (result.attributes ?? []) : [result.attributes]) as any;
     return {
       totalItems: member.length,
@@ -169,7 +169,7 @@ export class ECS {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listClusters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listClusters' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listClusters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.clusterArns ?? []) ? (result.clusterArns ?? []) : [result.clusterArns]) as any;
     return {
       totalItems: member.length,
@@ -184,7 +184,7 @@ export class ECS {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listContainerInstances({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listContainerInstances' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listContainerInstances' })).toString('base64') : undefined;
     const member = (Array.isArray(result.containerInstanceArns ?? []) ? (result.containerInstanceArns ?? []) : [result.containerInstanceArns]) as any;
     return {
       totalItems: member.length,
@@ -199,7 +199,7 @@ export class ECS {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listServices({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServices' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServices' })).toString('base64') : undefined;
     const member = (Array.isArray(result.serviceArns ?? []) ? (result.serviceArns ?? []) : [result.serviceArns]) as any;
     return {
       totalItems: member.length,
@@ -219,7 +219,7 @@ export class ECS {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listTaskDefinitionFamilies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTaskDefinitionFamilies' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTaskDefinitionFamilies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.families ?? []) ? (result.families ?? []) : [result.families]) as any;
     return {
       totalItems: member.length,
@@ -234,7 +234,7 @@ export class ECS {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listTaskDefinitions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTaskDefinitions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTaskDefinitions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.taskDefinitionArns ?? []) ? (result.taskDefinitionArns ?? []) : [result.taskDefinitionArns]) as any;
     return {
       totalItems: member.length,
@@ -249,7 +249,7 @@ export class ECS {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listTasks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTasks' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTasks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.taskArns ?? []) ? (result.taskArns ?? []) : [result.taskArns]) as any;
     return {
       totalItems: member.length,

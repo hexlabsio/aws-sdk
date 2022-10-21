@@ -104,7 +104,7 @@ export class MigrationHubRefactorSpaces {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listApplications({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listApplications' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listApplications' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ApplicationSummaryList ?? []) ? (result.ApplicationSummaryList ?? []) : [result.ApplicationSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -119,7 +119,7 @@ export class MigrationHubRefactorSpaces {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listEnvironmentVpcs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEnvironmentVpcs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEnvironmentVpcs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.EnvironmentVpcList ?? []) ? (result.EnvironmentVpcList ?? []) : [result.EnvironmentVpcList]) as any;
     return {
       totalItems: member.length,
@@ -134,7 +134,7 @@ export class MigrationHubRefactorSpaces {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listEnvironments({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEnvironments' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEnvironments' })).toString('base64') : undefined;
     const member = (Array.isArray(result.EnvironmentSummaryList ?? []) ? (result.EnvironmentSummaryList ?? []) : [result.EnvironmentSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class MigrationHubRefactorSpaces {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listRoutes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRoutes' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRoutes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.RouteSummaryList ?? []) ? (result.RouteSummaryList ?? []) : [result.RouteSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -164,7 +164,7 @@ export class MigrationHubRefactorSpaces {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listServices({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listServices' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listServices' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ServiceSummaryList ?? []) ? (result.ServiceSummaryList ?? []) : [result.ServiceSummaryList]) as any;
     return {
       totalItems: member.length,

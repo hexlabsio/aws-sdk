@@ -34,7 +34,7 @@ export class XRay {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.batchGetTraces({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'batchGetTraces' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'batchGetTraces' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Traces ?? []) ? (result.Traces ?? []) : [result.Traces]) as any;
     return {
       totalItems: member.length,
@@ -79,7 +79,7 @@ export class XRay {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.getGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getGroups' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Groups ?? []) ? (result.Groups ?? []) : [result.Groups]) as any;
     return {
       totalItems: member.length,
@@ -114,7 +114,7 @@ export class XRay {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.getSamplingRules({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getSamplingRules' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getSamplingRules' })).toString('base64') : undefined;
     const member = (Array.isArray(result.SamplingRuleRecords ?? []) ? (result.SamplingRuleRecords ?? []) : [result.SamplingRuleRecords]) as any;
     return {
       totalItems: member.length,
@@ -129,7 +129,7 @@ export class XRay {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.getSamplingStatisticSummaries({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getSamplingStatisticSummaries' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getSamplingStatisticSummaries' })).toString('base64') : undefined;
     const member = (Array.isArray(result.SamplingStatisticSummaries ?? []) ? (result.SamplingStatisticSummaries ?? []) : [result.SamplingStatisticSummaries]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class XRay {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.getServiceGraph({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getServiceGraph' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getServiceGraph' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Services ?? []) ? (result.Services ?? []) : [result.Services]) as any;
     return {
       totalItems: member.length,
@@ -164,7 +164,7 @@ export class XRay {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.getTimeSeriesServiceStatistics({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getTimeSeriesServiceStatistics' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getTimeSeriesServiceStatistics' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TimeSeriesServiceStatistics ?? []) ? (result.TimeSeriesServiceStatistics ?? []) : [result.TimeSeriesServiceStatistics]) as any;
     return {
       totalItems: member.length,
@@ -179,7 +179,7 @@ export class XRay {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.getTraceGraph({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getTraceGraph' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getTraceGraph' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Services ?? []) ? (result.Services ?? []) : [result.Services]) as any;
     return {
       totalItems: member.length,
@@ -194,7 +194,7 @@ export class XRay {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.getTraceSummaries({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getTraceSummaries' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getTraceSummaries' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TraceSummaries ?? []) ? (result.TraceSummaries ?? []) : [result.TraceSummaries]) as any;
     return {
       totalItems: member.length,

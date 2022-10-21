@@ -64,7 +64,7 @@ export class Kinesis {
     const nextTokenPart = next ? { ExclusiveStartShardId: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeStream({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.StreamDescription?.Shards?.[result.StreamDescription?.Shards?.length - 1]?.ShardId, operation: 'describeStream' })).toString('base64');
+    const nextToken = result.StreamDescription?.Shards?.[result.StreamDescription?.Shards?.length - 1]?.ShardId ? Buffer.from(JSON.stringify({ token: result.StreamDescription?.Shards?.[result.StreamDescription?.Shards?.length - 1]?.ShardId, operation: 'describeStream' })).toString('base64') : undefined;
     const member = (Array.isArray(result.StreamDescription?.Shards ?? []) ? (result.StreamDescription?.Shards ?? []) : [result.StreamDescription?.Shards]) as any;
     return {
       totalItems: member.length,
@@ -124,7 +124,7 @@ export class Kinesis {
     const nextTokenPart = next ? { ExclusiveStartStreamName: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listStreams({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.StreamNames?.[result.StreamNames?.length - 1], operation: 'listStreams' })).toString('base64');
+    const nextToken = result.StreamNames?.[result.StreamNames?.length - 1] ? Buffer.from(JSON.stringify({ token: result.StreamNames?.[result.StreamNames?.length - 1], operation: 'listStreams' })).toString('base64') : undefined;
     const member = (Array.isArray(result.StreamNames ?? []) ? (result.StreamNames ?? []) : [result.StreamNames]) as any;
     return {
       totalItems: member.length,

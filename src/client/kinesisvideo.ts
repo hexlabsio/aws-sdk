@@ -84,7 +84,7 @@ export class KinesisVideo {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listSignalingChannels({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSignalingChannels' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSignalingChannels' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ChannelInfoList ?? []) ? (result.ChannelInfoList ?? []) : [result.ChannelInfoList]) as any;
     return {
       totalItems: member.length,
@@ -99,7 +99,7 @@ export class KinesisVideo {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listStreams({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStreams' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStreams' })).toString('base64') : undefined;
     const member = (Array.isArray(result.StreamInfoList ?? []) ? (result.StreamInfoList ?? []) : [result.StreamInfoList]) as any;
     return {
       totalItems: member.length,

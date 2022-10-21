@@ -129,7 +129,7 @@ export class Finspacedata {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listChangesets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listChangesets' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listChangesets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.changesets ?? []) ? (result.changesets ?? []) : [result.changesets]) as any;
     return {
       totalItems: member.length,
@@ -144,7 +144,7 @@ export class Finspacedata {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDataViews({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDataViews' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDataViews' })).toString('base64') : undefined;
     const member = (Array.isArray(result.dataViews ?? []) ? (result.dataViews ?? []) : [result.dataViews]) as any;
     return {
       totalItems: member.length,
@@ -159,7 +159,7 @@ export class Finspacedata {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDatasets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDatasets' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDatasets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.datasets ?? []) ? (result.datasets ?? []) : [result.datasets]) as any;
     return {
       totalItems: member.length,
@@ -174,7 +174,7 @@ export class Finspacedata {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listPermissionGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listPermissionGroups' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listPermissionGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.permissionGroups ?? []) ? (result.permissionGroups ?? []) : [result.permissionGroups]) as any;
     return {
       totalItems: member.length,
@@ -194,7 +194,7 @@ export class Finspacedata {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listUsers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listUsers' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listUsers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.users ?? []) ? (result.users ?? []) : [result.users]) as any;
     return {
       totalItems: member.length,

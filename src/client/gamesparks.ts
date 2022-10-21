@@ -119,7 +119,7 @@ export class GameSparks {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listExtensionVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listExtensionVersions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listExtensionVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ExtensionVersions ?? []) ? (result.ExtensionVersions ?? []) : [result.ExtensionVersions]) as any;
     return {
       totalItems: member.length,
@@ -134,7 +134,7 @@ export class GameSparks {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listExtensions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listExtensions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listExtensions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Extensions ?? []) ? (result.Extensions ?? []) : [result.Extensions]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class GameSparks {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listGames({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGames' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGames' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Games ?? []) ? (result.Games ?? []) : [result.Games]) as any;
     return {
       totalItems: member.length,
@@ -164,7 +164,7 @@ export class GameSparks {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listGeneratedCodeJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGeneratedCodeJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGeneratedCodeJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.GeneratedCodeJobs ?? []) ? (result.GeneratedCodeJobs ?? []) : [result.GeneratedCodeJobs]) as any;
     return {
       totalItems: member.length,
@@ -179,7 +179,7 @@ export class GameSparks {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listSnapshots({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSnapshots' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSnapshots' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Snapshots ?? []) ? (result.Snapshots ?? []) : [result.Snapshots]) as any;
     return {
       totalItems: member.length,
@@ -194,7 +194,7 @@ export class GameSparks {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listStageDeployments({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStageDeployments' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStageDeployments' })).toString('base64') : undefined;
     const member = (Array.isArray(result.StageDeployments ?? []) ? (result.StageDeployments ?? []) : [result.StageDeployments]) as any;
     return {
       totalItems: member.length,
@@ -209,7 +209,7 @@ export class GameSparks {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listStages({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStages' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listStages' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Stages ?? []) ? (result.Stages ?? []) : [result.Stages]) as any;
     return {
       totalItems: member.length,

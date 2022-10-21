@@ -69,7 +69,7 @@ export class AmplifyUIBuilder {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.exportComponents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'exportComponents' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'exportComponents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.entities ?? []) ? (result.entities ?? []) : [result.entities]) as any;
     return {
       totalItems: member.length,
@@ -84,7 +84,7 @@ export class AmplifyUIBuilder {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.exportForms({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'exportForms' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'exportForms' })).toString('base64') : undefined;
     const member = (Array.isArray(result.entities ?? []) ? (result.entities ?? []) : [result.entities]) as any;
     return {
       totalItems: member.length,
@@ -99,7 +99,7 @@ export class AmplifyUIBuilder {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.exportThemes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'exportThemes' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'exportThemes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.entities ?? []) ? (result.entities ?? []) : [result.entities]) as any;
     return {
       totalItems: member.length,
@@ -134,7 +134,7 @@ export class AmplifyUIBuilder {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listComponents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listComponents' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listComponents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.entities ?? []) ? (result.entities ?? []) : [result.entities]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class AmplifyUIBuilder {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listForms({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listForms' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listForms' })).toString('base64') : undefined;
     const member = (Array.isArray(result.entities ?? []) ? (result.entities ?? []) : [result.entities]) as any;
     return {
       totalItems: member.length,
@@ -164,7 +164,7 @@ export class AmplifyUIBuilder {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listThemes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listThemes' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listThemes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.entities ?? []) ? (result.entities ?? []) : [result.entities]) as any;
     return {
       totalItems: member.length,

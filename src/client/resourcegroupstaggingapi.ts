@@ -39,7 +39,7 @@ export class ResourceGroupsTaggingAPI {
     const nextTokenPart = next ? { PaginationToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getComplianceSummary({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.PaginationToken, operation: 'getComplianceSummary' })).toString('base64');
+    const nextToken = result.PaginationToken ? Buffer.from(JSON.stringify({ token: result.PaginationToken, operation: 'getComplianceSummary' })).toString('base64') : undefined;
     const member = (Array.isArray(result.SummaryList ?? []) ? (result.SummaryList ?? []) : [result.SummaryList]) as any;
     return {
       totalItems: member.length,
@@ -54,7 +54,7 @@ export class ResourceGroupsTaggingAPI {
     const nextTokenPart = next ? { PaginationToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { ResourcesPerPage: limit } : {};
     const result = await this.client.getResources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.PaginationToken, operation: 'getResources' })).toString('base64');
+    const nextToken = result.PaginationToken ? Buffer.from(JSON.stringify({ token: result.PaginationToken, operation: 'getResources' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ResourceTagMappingList ?? []) ? (result.ResourceTagMappingList ?? []) : [result.ResourceTagMappingList]) as any;
     return {
       totalItems: member.length,
@@ -69,7 +69,7 @@ export class ResourceGroupsTaggingAPI {
     const nextTokenPart = next ? { PaginationToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.getTagKeys({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.PaginationToken, operation: 'getTagKeys' })).toString('base64');
+    const nextToken = result.PaginationToken ? Buffer.from(JSON.stringify({ token: result.PaginationToken, operation: 'getTagKeys' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TagKeys ?? []) ? (result.TagKeys ?? []) : [result.TagKeys]) as any;
     return {
       totalItems: member.length,
@@ -84,7 +84,7 @@ export class ResourceGroupsTaggingAPI {
     const nextTokenPart = next ? { PaginationToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.getTagValues({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.PaginationToken, operation: 'getTagValues' })).toString('base64');
+    const nextToken = result.PaginationToken ? Buffer.from(JSON.stringify({ token: result.PaginationToken, operation: 'getTagValues' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TagValues ?? []) ? (result.TagValues ?? []) : [result.TagValues]) as any;
     return {
       totalItems: member.length,

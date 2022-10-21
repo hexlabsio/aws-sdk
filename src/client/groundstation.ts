@@ -99,7 +99,7 @@ export class GroundStation {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listConfigs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listConfigs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.configList ?? []) ? (result.configList ?? []) : [result.configList]) as any;
     return {
       totalItems: member.length,
@@ -114,7 +114,7 @@ export class GroundStation {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listContacts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listContacts' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listContacts' })).toString('base64') : undefined;
     const member = (Array.isArray(result.contactList ?? []) ? (result.contactList ?? []) : [result.contactList]) as any;
     return {
       totalItems: member.length,
@@ -129,7 +129,7 @@ export class GroundStation {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDataflowEndpointGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDataflowEndpointGroups' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDataflowEndpointGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.dataflowEndpointGroupList ?? []) ? (result.dataflowEndpointGroupList ?? []) : [result.dataflowEndpointGroupList]) as any;
     return {
       totalItems: member.length,
@@ -144,7 +144,7 @@ export class GroundStation {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listGroundStations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listGroundStations' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listGroundStations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.groundStationList ?? []) ? (result.groundStationList ?? []) : [result.groundStationList]) as any;
     return {
       totalItems: member.length,
@@ -159,7 +159,7 @@ export class GroundStation {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listMissionProfiles({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listMissionProfiles' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listMissionProfiles' })).toString('base64') : undefined;
     const member = (Array.isArray(result.missionProfileList ?? []) ? (result.missionProfileList ?? []) : [result.missionProfileList]) as any;
     return {
       totalItems: member.length,
@@ -174,7 +174,7 @@ export class GroundStation {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listSatellites({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSatellites' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listSatellites' })).toString('base64') : undefined;
     const member = (Array.isArray(result.satellites ?? []) ? (result.satellites ?? []) : [result.satellites]) as any;
     return {
       totalItems: member.length,

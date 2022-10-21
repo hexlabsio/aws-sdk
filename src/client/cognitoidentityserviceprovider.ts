@@ -109,7 +109,7 @@ export class CognitoIdentityServiceProvider {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.adminListGroupsForUser({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'adminListGroupsForUser' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'adminListGroupsForUser' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Groups ?? []) ? (result.Groups ?? []) : [result.Groups]) as any;
     return {
       totalItems: member.length,
@@ -124,7 +124,7 @@ export class CognitoIdentityServiceProvider {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.adminListUserAuthEvents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'adminListUserAuthEvents' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'adminListUserAuthEvents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AuthEvents ?? []) ? (result.AuthEvents ?? []) : [result.AuthEvents]) as any;
     return {
       totalItems: member.length,
@@ -394,7 +394,7 @@ export class CognitoIdentityServiceProvider {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGroups' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Groups ?? []) ? (result.Groups ?? []) : [result.Groups]) as any;
     return {
       totalItems: member.length,
@@ -409,7 +409,7 @@ export class CognitoIdentityServiceProvider {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listIdentityProviders({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listIdentityProviders' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listIdentityProviders' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Providers ?? []) ? (result.Providers ?? []) : [result.Providers]) as any;
     return {
       totalItems: member.length,
@@ -424,7 +424,7 @@ export class CognitoIdentityServiceProvider {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listResourceServers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResourceServers' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResourceServers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ResourceServers ?? []) ? (result.ResourceServers ?? []) : [result.ResourceServers]) as any;
     return {
       totalItems: member.length,
@@ -449,7 +449,7 @@ export class CognitoIdentityServiceProvider {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listUserPoolClients({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listUserPoolClients' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listUserPoolClients' })).toString('base64') : undefined;
     const member = (Array.isArray(result.UserPoolClients ?? []) ? (result.UserPoolClients ?? []) : [result.UserPoolClients]) as any;
     return {
       totalItems: member.length,
@@ -464,7 +464,7 @@ export class CognitoIdentityServiceProvider {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listUserPools({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listUserPools' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listUserPools' })).toString('base64') : undefined;
     const member = (Array.isArray(result.UserPools ?? []) ? (result.UserPools ?? []) : [result.UserPools]) as any;
     return {
       totalItems: member.length,
@@ -479,7 +479,7 @@ export class CognitoIdentityServiceProvider {
     const nextTokenPart = next ? { PaginationToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listUsers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.PaginationToken, operation: 'listUsers' })).toString('base64');
+    const nextToken = result.PaginationToken ? Buffer.from(JSON.stringify({ token: result.PaginationToken, operation: 'listUsers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Users ?? []) ? (result.Users ?? []) : [result.Users]) as any;
     return {
       totalItems: member.length,
@@ -494,7 +494,7 @@ export class CognitoIdentityServiceProvider {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listUsersInGroup({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listUsersInGroup' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listUsersInGroup' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Users ?? []) ? (result.Users ?? []) : [result.Users]) as any;
     return {
       totalItems: member.length,

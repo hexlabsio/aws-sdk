@@ -109,7 +109,7 @@ export class M2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listApplicationVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listApplicationVersions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listApplicationVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.applicationVersions ?? []) ? (result.applicationVersions ?? []) : [result.applicationVersions]) as any;
     return {
       totalItems: member.length,
@@ -124,7 +124,7 @@ export class M2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listApplications({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listApplications' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listApplications' })).toString('base64') : undefined;
     const member = (Array.isArray(result.applications ?? []) ? (result.applications ?? []) : [result.applications]) as any;
     return {
       totalItems: member.length,
@@ -139,7 +139,7 @@ export class M2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listBatchJobDefinitions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listBatchJobDefinitions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listBatchJobDefinitions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.batchJobDefinitions ?? []) ? (result.batchJobDefinitions ?? []) : [result.batchJobDefinitions]) as any;
     return {
       totalItems: member.length,
@@ -154,7 +154,7 @@ export class M2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listBatchJobExecutions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listBatchJobExecutions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listBatchJobExecutions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.batchJobExecutions ?? []) ? (result.batchJobExecutions ?? []) : [result.batchJobExecutions]) as any;
     return {
       totalItems: member.length,
@@ -169,7 +169,7 @@ export class M2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDataSetImportHistory({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDataSetImportHistory' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDataSetImportHistory' })).toString('base64') : undefined;
     const member = (Array.isArray(result.dataSetImportTasks ?? []) ? (result.dataSetImportTasks ?? []) : [result.dataSetImportTasks]) as any;
     return {
       totalItems: member.length,
@@ -184,7 +184,7 @@ export class M2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDataSets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDataSets' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDataSets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.dataSets ?? []) ? (result.dataSets ?? []) : [result.dataSets]) as any;
     return {
       totalItems: member.length,
@@ -199,7 +199,7 @@ export class M2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDeployments({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDeployments' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDeployments' })).toString('base64') : undefined;
     const member = (Array.isArray(result.deployments ?? []) ? (result.deployments ?? []) : [result.deployments]) as any;
     return {
       totalItems: member.length,
@@ -214,7 +214,7 @@ export class M2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listEngineVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEngineVersions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEngineVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.engineVersions ?? []) ? (result.engineVersions ?? []) : [result.engineVersions]) as any;
     return {
       totalItems: member.length,
@@ -229,7 +229,7 @@ export class M2 {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listEnvironments({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEnvironments' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEnvironments' })).toString('base64') : undefined;
     const member = (Array.isArray(result.environments ?? []) ? (result.environments ?? []) : [result.environments]) as any;
     return {
       totalItems: member.length,

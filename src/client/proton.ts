@@ -229,7 +229,7 @@ export class Proton {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listComponentOutputs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listComponentOutputs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listComponentOutputs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.outputs ?? []) ? (result.outputs ?? []) : [result.outputs]) as any;
     return {
       totalItems: member.length,
@@ -244,7 +244,7 @@ export class Proton {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listComponentProvisionedResources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listComponentProvisionedResources' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listComponentProvisionedResources' })).toString('base64') : undefined;
     const member = (Array.isArray(result.provisionedResources ?? []) ? (result.provisionedResources ?? []) : [result.provisionedResources]) as any;
     return {
       totalItems: member.length,
@@ -259,7 +259,7 @@ export class Proton {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listComponents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listComponents' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listComponents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.components ?? []) ? (result.components ?? []) : [result.components]) as any;
     return {
       totalItems: member.length,
@@ -274,7 +274,7 @@ export class Proton {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listEnvironmentAccountConnections({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEnvironmentAccountConnections' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEnvironmentAccountConnections' })).toString('base64') : undefined;
     const member = (Array.isArray(result.environmentAccountConnections ?? []) ? (result.environmentAccountConnections ?? []) : [result.environmentAccountConnections]) as any;
     return {
       totalItems: member.length,
@@ -289,7 +289,7 @@ export class Proton {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listEnvironmentOutputs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEnvironmentOutputs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEnvironmentOutputs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.outputs ?? []) ? (result.outputs ?? []) : [result.outputs]) as any;
     return {
       totalItems: member.length,
@@ -304,7 +304,7 @@ export class Proton {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listEnvironmentProvisionedResources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEnvironmentProvisionedResources' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEnvironmentProvisionedResources' })).toString('base64') : undefined;
     const member = (Array.isArray(result.provisionedResources ?? []) ? (result.provisionedResources ?? []) : [result.provisionedResources]) as any;
     return {
       totalItems: member.length,
@@ -319,7 +319,7 @@ export class Proton {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listEnvironmentTemplateVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEnvironmentTemplateVersions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEnvironmentTemplateVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.templateVersions ?? []) ? (result.templateVersions ?? []) : [result.templateVersions]) as any;
     return {
       totalItems: member.length,
@@ -334,7 +334,7 @@ export class Proton {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listEnvironmentTemplates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEnvironmentTemplates' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEnvironmentTemplates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.templates ?? []) ? (result.templates ?? []) : [result.templates]) as any;
     return {
       totalItems: member.length,
@@ -349,7 +349,7 @@ export class Proton {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listEnvironments({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEnvironments' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEnvironments' })).toString('base64') : undefined;
     const member = (Array.isArray(result.environments ?? []) ? (result.environments ?? []) : [result.environments]) as any;
     return {
       totalItems: member.length,
@@ -364,7 +364,7 @@ export class Proton {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listRepositories({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listRepositories' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listRepositories' })).toString('base64') : undefined;
     const member = (Array.isArray(result.repositories ?? []) ? (result.repositories ?? []) : [result.repositories]) as any;
     return {
       totalItems: member.length,
@@ -379,7 +379,7 @@ export class Proton {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listRepositorySyncDefinitions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listRepositorySyncDefinitions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listRepositorySyncDefinitions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.syncDefinitions ?? []) ? (result.syncDefinitions ?? []) : [result.syncDefinitions]) as any;
     return {
       totalItems: member.length,
@@ -394,7 +394,7 @@ export class Proton {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listServiceInstanceOutputs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServiceInstanceOutputs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServiceInstanceOutputs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.outputs ?? []) ? (result.outputs ?? []) : [result.outputs]) as any;
     return {
       totalItems: member.length,
@@ -409,7 +409,7 @@ export class Proton {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listServiceInstanceProvisionedResources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServiceInstanceProvisionedResources' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServiceInstanceProvisionedResources' })).toString('base64') : undefined;
     const member = (Array.isArray(result.provisionedResources ?? []) ? (result.provisionedResources ?? []) : [result.provisionedResources]) as any;
     return {
       totalItems: member.length,
@@ -424,7 +424,7 @@ export class Proton {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listServiceInstances({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServiceInstances' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServiceInstances' })).toString('base64') : undefined;
     const member = (Array.isArray(result.serviceInstances ?? []) ? (result.serviceInstances ?? []) : [result.serviceInstances]) as any;
     return {
       totalItems: member.length,
@@ -439,7 +439,7 @@ export class Proton {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listServicePipelineOutputs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServicePipelineOutputs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServicePipelineOutputs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.outputs ?? []) ? (result.outputs ?? []) : [result.outputs]) as any;
     return {
       totalItems: member.length,
@@ -454,7 +454,7 @@ export class Proton {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listServicePipelineProvisionedResources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServicePipelineProvisionedResources' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServicePipelineProvisionedResources' })).toString('base64') : undefined;
     const member = (Array.isArray(result.provisionedResources ?? []) ? (result.provisionedResources ?? []) : [result.provisionedResources]) as any;
     return {
       totalItems: member.length,
@@ -469,7 +469,7 @@ export class Proton {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listServiceTemplateVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServiceTemplateVersions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServiceTemplateVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.templateVersions ?? []) ? (result.templateVersions ?? []) : [result.templateVersions]) as any;
     return {
       totalItems: member.length,
@@ -484,7 +484,7 @@ export class Proton {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listServiceTemplates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServiceTemplates' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServiceTemplates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.templates ?? []) ? (result.templates ?? []) : [result.templates]) as any;
     return {
       totalItems: member.length,
@@ -499,7 +499,7 @@ export class Proton {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listServices({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServices' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServices' })).toString('base64') : undefined;
     const member = (Array.isArray(result.services ?? []) ? (result.services ?? []) : [result.services]) as any;
     return {
       totalItems: member.length,
@@ -514,7 +514,7 @@ export class Proton {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listTagsForResource({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTagsForResource' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTagsForResource' })).toString('base64') : undefined;
     const member = (Array.isArray(result.tags ?? []) ? (result.tags ?? []) : [result.tags]) as any;
     return {
       totalItems: member.length,

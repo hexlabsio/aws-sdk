@@ -259,7 +259,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeClusterDbRevisions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeClusterDbRevisions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeClusterDbRevisions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ClusterDbRevisions ?? []) ? (result.ClusterDbRevisions ?? []) : [result.ClusterDbRevisions]) as any;
     return {
       totalItems: member.length,
@@ -274,7 +274,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeClusterParameterGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeClusterParameterGroups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeClusterParameterGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ParameterGroups ?? []) ? (result.ParameterGroups ?? []) : [result.ParameterGroups]) as any;
     return {
       totalItems: member.length,
@@ -289,7 +289,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeClusterParameters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeClusterParameters' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeClusterParameters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Parameters ?? []) ? (result.Parameters ?? []) : [result.Parameters]) as any;
     return {
       totalItems: member.length,
@@ -304,7 +304,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeClusterSecurityGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeClusterSecurityGroups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeClusterSecurityGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ClusterSecurityGroups ?? []) ? (result.ClusterSecurityGroups ?? []) : [result.ClusterSecurityGroups]) as any;
     return {
       totalItems: member.length,
@@ -319,7 +319,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeClusterSnapshots({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeClusterSnapshots' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeClusterSnapshots' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Snapshots ?? []) ? (result.Snapshots ?? []) : [result.Snapshots]) as any;
     return {
       totalItems: member.length,
@@ -334,7 +334,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeClusterSubnetGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeClusterSubnetGroups' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeClusterSubnetGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ClusterSubnetGroups ?? []) ? (result.ClusterSubnetGroups ?? []) : [result.ClusterSubnetGroups]) as any;
     return {
       totalItems: member.length,
@@ -349,7 +349,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeClusterTracks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeClusterTracks' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeClusterTracks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.MaintenanceTracks ?? []) ? (result.MaintenanceTracks ?? []) : [result.MaintenanceTracks]) as any;
     return {
       totalItems: member.length,
@@ -364,7 +364,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeClusterVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeClusterVersions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeClusterVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ClusterVersions ?? []) ? (result.ClusterVersions ?? []) : [result.ClusterVersions]) as any;
     return {
       totalItems: member.length,
@@ -379,7 +379,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeClusters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeClusters' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeClusters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Clusters ?? []) ? (result.Clusters ?? []) : [result.Clusters]) as any;
     return {
       totalItems: member.length,
@@ -394,7 +394,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDataShares({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDataShares' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDataShares' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DataShares ?? []) ? (result.DataShares ?? []) : [result.DataShares]) as any;
     return {
       totalItems: member.length,
@@ -409,7 +409,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDataSharesForConsumer({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDataSharesForConsumer' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDataSharesForConsumer' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DataShares ?? []) ? (result.DataShares ?? []) : [result.DataShares]) as any;
     return {
       totalItems: member.length,
@@ -424,7 +424,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDataSharesForProducer({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDataSharesForProducer' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeDataSharesForProducer' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DataShares ?? []) ? (result.DataShares ?? []) : [result.DataShares]) as any;
     return {
       totalItems: member.length,
@@ -439,7 +439,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeDefaultClusterParameters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.DefaultClusterParameters?.Marker, operation: 'describeDefaultClusterParameters' })).toString('base64');
+    const nextToken = result.DefaultClusterParameters?.Marker ? Buffer.from(JSON.stringify({ token: result.DefaultClusterParameters?.Marker, operation: 'describeDefaultClusterParameters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DefaultClusterParameters?.Parameters ?? []) ? (result.DefaultClusterParameters?.Parameters ?? []) : [result.DefaultClusterParameters?.Parameters]) as any;
     return {
       totalItems: member.length,
@@ -454,7 +454,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeEndpointAccess({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeEndpointAccess' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeEndpointAccess' })).toString('base64') : undefined;
     const member = (Array.isArray(result.EndpointAccessList ?? []) ? (result.EndpointAccessList ?? []) : [result.EndpointAccessList]) as any;
     return {
       totalItems: member.length,
@@ -469,7 +469,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeEndpointAuthorization({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeEndpointAuthorization' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeEndpointAuthorization' })).toString('base64') : undefined;
     const member = (Array.isArray(result.EndpointAuthorizationList ?? []) ? (result.EndpointAuthorizationList ?? []) : [result.EndpointAuthorizationList]) as any;
     return {
       totalItems: member.length,
@@ -489,7 +489,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeEventSubscriptions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeEventSubscriptions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeEventSubscriptions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.EventSubscriptionsList ?? []) ? (result.EventSubscriptionsList ?? []) : [result.EventSubscriptionsList]) as any;
     return {
       totalItems: member.length,
@@ -504,7 +504,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeEvents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeEvents' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeEvents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Events ?? []) ? (result.Events ?? []) : [result.Events]) as any;
     return {
       totalItems: member.length,
@@ -519,7 +519,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeHsmClientCertificates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeHsmClientCertificates' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeHsmClientCertificates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.HsmClientCertificates ?? []) ? (result.HsmClientCertificates ?? []) : [result.HsmClientCertificates]) as any;
     return {
       totalItems: member.length,
@@ -534,7 +534,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeHsmConfigurations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeHsmConfigurations' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeHsmConfigurations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.HsmConfigurations ?? []) ? (result.HsmConfigurations ?? []) : [result.HsmConfigurations]) as any;
     return {
       totalItems: member.length,
@@ -554,7 +554,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeNodeConfigurationOptions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeNodeConfigurationOptions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeNodeConfigurationOptions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.NodeConfigurationOptionList ?? []) ? (result.NodeConfigurationOptionList ?? []) : [result.NodeConfigurationOptionList]) as any;
     return {
       totalItems: member.length,
@@ -569,7 +569,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeOrderableClusterOptions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeOrderableClusterOptions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeOrderableClusterOptions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.OrderableClusterOptions ?? []) ? (result.OrderableClusterOptions ?? []) : [result.OrderableClusterOptions]) as any;
     return {
       totalItems: member.length,
@@ -589,7 +589,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeReservedNodeExchangeStatus({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeReservedNodeExchangeStatus' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeReservedNodeExchangeStatus' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ReservedNodeExchangeStatusDetails ?? []) ? (result.ReservedNodeExchangeStatusDetails ?? []) : [result.ReservedNodeExchangeStatusDetails]) as any;
     return {
       totalItems: member.length,
@@ -604,7 +604,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeReservedNodeOfferings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeReservedNodeOfferings' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeReservedNodeOfferings' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ReservedNodeOfferings ?? []) ? (result.ReservedNodeOfferings ?? []) : [result.ReservedNodeOfferings]) as any;
     return {
       totalItems: member.length,
@@ -619,7 +619,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeReservedNodes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeReservedNodes' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeReservedNodes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ReservedNodes ?? []) ? (result.ReservedNodes ?? []) : [result.ReservedNodes]) as any;
     return {
       totalItems: member.length,
@@ -639,7 +639,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeScheduledActions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeScheduledActions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeScheduledActions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ScheduledActions ?? []) ? (result.ScheduledActions ?? []) : [result.ScheduledActions]) as any;
     return {
       totalItems: member.length,
@@ -654,7 +654,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeSnapshotCopyGrants({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeSnapshotCopyGrants' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeSnapshotCopyGrants' })).toString('base64') : undefined;
     const member = (Array.isArray(result.SnapshotCopyGrants ?? []) ? (result.SnapshotCopyGrants ?? []) : [result.SnapshotCopyGrants]) as any;
     return {
       totalItems: member.length,
@@ -669,7 +669,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeSnapshotSchedules({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeSnapshotSchedules' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeSnapshotSchedules' })).toString('base64') : undefined;
     const member = (Array.isArray(result.SnapshotSchedules ?? []) ? (result.SnapshotSchedules ?? []) : [result.SnapshotSchedules]) as any;
     return {
       totalItems: member.length,
@@ -689,7 +689,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeTableRestoreStatus({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeTableRestoreStatus' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeTableRestoreStatus' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TableRestoreStatusDetails ?? []) ? (result.TableRestoreStatusDetails ?? []) : [result.TableRestoreStatusDetails]) as any;
     return {
       totalItems: member.length,
@@ -704,7 +704,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeTags({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeTags' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeTags' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TaggedResources ?? []) ? (result.TaggedResources ?? []) : [result.TaggedResources]) as any;
     return {
       totalItems: member.length,
@@ -719,7 +719,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeUsageLimits({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeUsageLimits' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeUsageLimits' })).toString('base64') : undefined;
     const member = (Array.isArray(result.UsageLimits ?? []) ? (result.UsageLimits ?? []) : [result.UsageLimits]) as any;
     return {
       totalItems: member.length,
@@ -769,7 +769,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.getReservedNodeExchangeConfigurationOptions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'getReservedNodeExchangeConfigurationOptions' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'getReservedNodeExchangeConfigurationOptions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ReservedNodeConfigurationOptionList ?? []) ? (result.ReservedNodeConfigurationOptionList ?? []) : [result.ReservedNodeConfigurationOptionList]) as any;
     return {
       totalItems: member.length,
@@ -784,7 +784,7 @@ export class Redshift {
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.getReservedNodeExchangeOfferings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.Marker, operation: 'getReservedNodeExchangeOfferings' })).toString('base64');
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'getReservedNodeExchangeOfferings' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ReservedNodeOfferings ?? []) ? (result.ReservedNodeOfferings ?? []) : [result.ReservedNodeOfferings]) as any;
     return {
       totalItems: member.length,

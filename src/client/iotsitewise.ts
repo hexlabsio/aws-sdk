@@ -234,7 +234,7 @@ export class IoTSiteWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.getAssetPropertyAggregates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getAssetPropertyAggregates' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getAssetPropertyAggregates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.aggregatedValues ?? []) ? (result.aggregatedValues ?? []) : [result.aggregatedValues]) as any;
     return {
       totalItems: member.length,
@@ -254,7 +254,7 @@ export class IoTSiteWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.getAssetPropertyValueHistory({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getAssetPropertyValueHistory' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getAssetPropertyValueHistory' })).toString('base64') : undefined;
     const member = (Array.isArray(result.assetPropertyValueHistory ?? []) ? (result.assetPropertyValueHistory ?? []) : [result.assetPropertyValueHistory]) as any;
     return {
       totalItems: member.length,
@@ -269,7 +269,7 @@ export class IoTSiteWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.getInterpolatedAssetPropertyValues({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getInterpolatedAssetPropertyValues' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getInterpolatedAssetPropertyValues' })).toString('base64') : undefined;
     const member = (Array.isArray(result.interpolatedAssetPropertyValues ?? []) ? (result.interpolatedAssetPropertyValues ?? []) : [result.interpolatedAssetPropertyValues]) as any;
     return {
       totalItems: member.length,
@@ -284,7 +284,7 @@ export class IoTSiteWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAccessPolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAccessPolicies' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAccessPolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.accessPolicySummaries ?? []) ? (result.accessPolicySummaries ?? []) : [result.accessPolicySummaries]) as any;
     return {
       totalItems: member.length,
@@ -299,7 +299,7 @@ export class IoTSiteWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAssetModels({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAssetModels' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAssetModels' })).toString('base64') : undefined;
     const member = (Array.isArray(result.assetModelSummaries ?? []) ? (result.assetModelSummaries ?? []) : [result.assetModelSummaries]) as any;
     return {
       totalItems: member.length,
@@ -314,7 +314,7 @@ export class IoTSiteWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAssetRelationships({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAssetRelationships' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAssetRelationships' })).toString('base64') : undefined;
     const member = (Array.isArray(result.assetRelationshipSummaries ?? []) ? (result.assetRelationshipSummaries ?? []) : [result.assetRelationshipSummaries]) as any;
     return {
       totalItems: member.length,
@@ -329,7 +329,7 @@ export class IoTSiteWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAssets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAssets' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAssets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.assetSummaries ?? []) ? (result.assetSummaries ?? []) : [result.assetSummaries]) as any;
     return {
       totalItems: member.length,
@@ -344,7 +344,7 @@ export class IoTSiteWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAssociatedAssets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAssociatedAssets' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAssociatedAssets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.assetSummaries ?? []) ? (result.assetSummaries ?? []) : [result.assetSummaries]) as any;
     return {
       totalItems: member.length,
@@ -359,7 +359,7 @@ export class IoTSiteWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listBulkImportJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listBulkImportJobs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listBulkImportJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.jobSummaries ?? []) ? (result.jobSummaries ?? []) : [result.jobSummaries]) as any;
     return {
       totalItems: member.length,
@@ -374,7 +374,7 @@ export class IoTSiteWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDashboards({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDashboards' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDashboards' })).toString('base64') : undefined;
     const member = (Array.isArray(result.dashboardSummaries ?? []) ? (result.dashboardSummaries ?? []) : [result.dashboardSummaries]) as any;
     return {
       totalItems: member.length,
@@ -389,7 +389,7 @@ export class IoTSiteWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listGateways({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listGateways' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listGateways' })).toString('base64') : undefined;
     const member = (Array.isArray(result.gatewaySummaries ?? []) ? (result.gatewaySummaries ?? []) : [result.gatewaySummaries]) as any;
     return {
       totalItems: member.length,
@@ -404,7 +404,7 @@ export class IoTSiteWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listPortals({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listPortals' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listPortals' })).toString('base64') : undefined;
     const member = (Array.isArray(result.portalSummaries ?? []) ? (result.portalSummaries ?? []) : [result.portalSummaries]) as any;
     return {
       totalItems: member.length,
@@ -419,7 +419,7 @@ export class IoTSiteWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listProjectAssets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listProjectAssets' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listProjectAssets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.assetIds ?? []) ? (result.assetIds ?? []) : [result.assetIds]) as any;
     return {
       totalItems: member.length,
@@ -434,7 +434,7 @@ export class IoTSiteWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listProjects({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listProjects' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listProjects' })).toString('base64') : undefined;
     const member = (Array.isArray(result.projectSummaries ?? []) ? (result.projectSummaries ?? []) : [result.projectSummaries]) as any;
     return {
       totalItems: member.length,
@@ -454,7 +454,7 @@ export class IoTSiteWise {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listTimeSeries({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTimeSeries' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTimeSeries' })).toString('base64') : undefined;
     const member = (Array.isArray(result.TimeSeriesSummaries ?? []) ? (result.TimeSeriesSummaries ?? []) : [result.TimeSeriesSummaries]) as any;
     return {
       totalItems: member.length,

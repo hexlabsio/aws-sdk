@@ -39,7 +39,7 @@ export class SSO {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAccountRoles({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAccountRoles' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAccountRoles' })).toString('base64') : undefined;
     const member = (Array.isArray(result.roleList ?? []) ? (result.roleList ?? []) : [result.roleList]) as any;
     return {
       totalItems: member.length,
@@ -54,7 +54,7 @@ export class SSO {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAccounts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAccounts' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAccounts' })).toString('base64') : undefined;
     const member = (Array.isArray(result.accountList ?? []) ? (result.accountList ?? []) : [result.accountList]) as any;
     return {
       totalItems: member.length,

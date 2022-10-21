@@ -109,7 +109,7 @@ export class PinpointSMSVoiceV2 {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeAccountAttributes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAccountAttributes' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAccountAttributes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AccountAttributes ?? []) ? (result.AccountAttributes ?? []) : [result.AccountAttributes]) as any;
     return {
       totalItems: member.length,
@@ -124,7 +124,7 @@ export class PinpointSMSVoiceV2 {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeAccountLimits({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAccountLimits' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAccountLimits' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AccountLimits ?? []) ? (result.AccountLimits ?? []) : [result.AccountLimits]) as any;
     return {
       totalItems: member.length,
@@ -139,7 +139,7 @@ export class PinpointSMSVoiceV2 {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeConfigurationSets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeConfigurationSets' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeConfigurationSets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ConfigurationSets ?? []) ? (result.ConfigurationSets ?? []) : [result.ConfigurationSets]) as any;
     return {
       totalItems: member.length,
@@ -154,7 +154,7 @@ export class PinpointSMSVoiceV2 {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeKeywords({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeKeywords' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeKeywords' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Keywords ?? []) ? (result.Keywords ?? []) : [result.Keywords]) as any;
     return {
       totalItems: member.length,
@@ -169,7 +169,7 @@ export class PinpointSMSVoiceV2 {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeOptOutLists({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeOptOutLists' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeOptOutLists' })).toString('base64') : undefined;
     const member = (Array.isArray(result.OptOutLists ?? []) ? (result.OptOutLists ?? []) : [result.OptOutLists]) as any;
     return {
       totalItems: member.length,
@@ -184,7 +184,7 @@ export class PinpointSMSVoiceV2 {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeOptedOutNumbers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeOptedOutNumbers' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeOptedOutNumbers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.OptedOutNumbers ?? []) ? (result.OptedOutNumbers ?? []) : [result.OptedOutNumbers]) as any;
     return {
       totalItems: member.length,
@@ -199,7 +199,7 @@ export class PinpointSMSVoiceV2 {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describePhoneNumbers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describePhoneNumbers' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describePhoneNumbers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PhoneNumbers ?? []) ? (result.PhoneNumbers ?? []) : [result.PhoneNumbers]) as any;
     return {
       totalItems: member.length,
@@ -214,7 +214,7 @@ export class PinpointSMSVoiceV2 {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describePools({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describePools' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describePools' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Pools ?? []) ? (result.Pools ?? []) : [result.Pools]) as any;
     return {
       totalItems: member.length,
@@ -229,7 +229,7 @@ export class PinpointSMSVoiceV2 {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeSenderIds({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeSenderIds' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeSenderIds' })).toString('base64') : undefined;
     const member = (Array.isArray(result.SenderIds ?? []) ? (result.SenderIds ?? []) : [result.SenderIds]) as any;
     return {
       totalItems: member.length,
@@ -244,7 +244,7 @@ export class PinpointSMSVoiceV2 {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeSpendLimits({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeSpendLimits' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeSpendLimits' })).toString('base64') : undefined;
     const member = (Array.isArray(result.SpendLimits ?? []) ? (result.SpendLimits ?? []) : [result.SpendLimits]) as any;
     return {
       totalItems: member.length,
@@ -264,7 +264,7 @@ export class PinpointSMSVoiceV2 {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPoolOriginationIdentities({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPoolOriginationIdentities' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPoolOriginationIdentities' })).toString('base64') : undefined;
     const member = (Array.isArray(result.OriginationIdentities ?? []) ? (result.OriginationIdentities ?? []) : [result.OriginationIdentities]) as any;
     return {
       totalItems: member.length,

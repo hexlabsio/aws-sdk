@@ -134,7 +134,7 @@ export class AutoScaling {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeAutoScalingGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAutoScalingGroups' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAutoScalingGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AutoScalingGroups ?? []) ? (result.AutoScalingGroups ?? []) : [result.AutoScalingGroups]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class AutoScaling {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeAutoScalingInstances({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAutoScalingInstances' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAutoScalingInstances' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AutoScalingInstances ?? []) ? (result.AutoScalingInstances ?? []) : [result.AutoScalingInstances]) as any;
     return {
       totalItems: member.length,
@@ -174,7 +174,7 @@ export class AutoScaling {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeLaunchConfigurations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeLaunchConfigurations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeLaunchConfigurations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.LaunchConfigurations ?? []) ? (result.LaunchConfigurations ?? []) : [result.LaunchConfigurations]) as any;
     return {
       totalItems: member.length,
@@ -214,7 +214,7 @@ export class AutoScaling {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeNotificationConfigurations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeNotificationConfigurations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeNotificationConfigurations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.NotificationConfigurations ?? []) ? (result.NotificationConfigurations ?? []) : [result.NotificationConfigurations]) as any;
     return {
       totalItems: member.length,
@@ -229,7 +229,7 @@ export class AutoScaling {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describePolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describePolicies' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describePolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ScalingPolicies ?? []) ? (result.ScalingPolicies ?? []) : [result.ScalingPolicies]) as any;
     return {
       totalItems: member.length,
@@ -244,7 +244,7 @@ export class AutoScaling {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeScalingActivities({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeScalingActivities' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeScalingActivities' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Activities ?? []) ? (result.Activities ?? []) : [result.Activities]) as any;
     return {
       totalItems: member.length,
@@ -264,7 +264,7 @@ export class AutoScaling {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeScheduledActions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeScheduledActions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeScheduledActions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ScheduledUpdateGroupActions ?? []) ? (result.ScheduledUpdateGroupActions ?? []) : [result.ScheduledUpdateGroupActions]) as any;
     return {
       totalItems: member.length,
@@ -279,7 +279,7 @@ export class AutoScaling {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxRecords: limit } : {};
     const result = await this.client.describeTags({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeTags' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeTags' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Tags ?? []) ? (result.Tags ?? []) : [result.Tags]) as any;
     return {
       totalItems: member.length,

@@ -89,7 +89,7 @@ export class ServiceCatalogAppRegistry {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listApplications({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listApplications' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listApplications' })).toString('base64') : undefined;
     const member = (Array.isArray(result.applications ?? []) ? (result.applications ?? []) : [result.applications]) as any;
     return {
       totalItems: member.length,
@@ -104,7 +104,7 @@ export class ServiceCatalogAppRegistry {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAssociatedAttributeGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAssociatedAttributeGroups' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAssociatedAttributeGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.attributeGroups ?? []) ? (result.attributeGroups ?? []) : [result.attributeGroups]) as any;
     return {
       totalItems: member.length,
@@ -119,7 +119,7 @@ export class ServiceCatalogAppRegistry {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAssociatedResources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAssociatedResources' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAssociatedResources' })).toString('base64') : undefined;
     const member = (Array.isArray(result.resources ?? []) ? (result.resources ?? []) : [result.resources]) as any;
     return {
       totalItems: member.length,
@@ -134,7 +134,7 @@ export class ServiceCatalogAppRegistry {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAttributeGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAttributeGroups' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAttributeGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.attributeGroups ?? []) ? (result.attributeGroups ?? []) : [result.attributeGroups]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class ServiceCatalogAppRegistry {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listAttributeGroupsForApplication({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAttributeGroupsForApplication' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAttributeGroupsForApplication' })).toString('base64') : undefined;
     const member = (Array.isArray(result.attributeGroupsDetails ?? []) ? (result.attributeGroupsDetails ?? []) : [result.attributeGroupsDetails]) as any;
     return {
       totalItems: member.length,

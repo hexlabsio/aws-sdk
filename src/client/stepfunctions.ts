@@ -79,7 +79,7 @@ export class StepFunctions {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.getExecutionHistory({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getExecutionHistory' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'getExecutionHistory' })).toString('base64') : undefined;
     const member = (Array.isArray(result.events ?? []) ? (result.events ?? []) : [result.events]) as any;
     return {
       totalItems: member.length,
@@ -94,7 +94,7 @@ export class StepFunctions {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listActivities({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listActivities' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listActivities' })).toString('base64') : undefined;
     const member = (Array.isArray(result.activities ?? []) ? (result.activities ?? []) : [result.activities]) as any;
     return {
       totalItems: member.length,
@@ -109,7 +109,7 @@ export class StepFunctions {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listExecutions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listExecutions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listExecutions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.executions ?? []) ? (result.executions ?? []) : [result.executions]) as any;
     return {
       totalItems: member.length,
@@ -124,7 +124,7 @@ export class StepFunctions {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listStateMachines({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStateMachines' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStateMachines' })).toString('base64') : undefined;
     const member = (Array.isArray(result.stateMachines ?? []) ? (result.stateMachines ?? []) : [result.stateMachines]) as any;
     return {
       totalItems: member.length,

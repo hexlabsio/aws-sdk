@@ -169,7 +169,7 @@ export class CodeDeploy {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listApplicationRevisions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listApplicationRevisions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listApplicationRevisions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.revisions ?? []) ? (result.revisions ?? []) : [result.revisions]) as any;
     return {
       totalItems: member.length,
@@ -184,7 +184,7 @@ export class CodeDeploy {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listApplications({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listApplications' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listApplications' })).toString('base64') : undefined;
     const member = (Array.isArray(result.applications ?? []) ? (result.applications ?? []) : [result.applications]) as any;
     return {
       totalItems: member.length,
@@ -199,7 +199,7 @@ export class CodeDeploy {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listDeploymentConfigs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDeploymentConfigs' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDeploymentConfigs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.deploymentConfigsList ?? []) ? (result.deploymentConfigsList ?? []) : [result.deploymentConfigsList]) as any;
     return {
       totalItems: member.length,
@@ -214,7 +214,7 @@ export class CodeDeploy {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listDeploymentGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDeploymentGroups' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDeploymentGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.deploymentGroups ?? []) ? (result.deploymentGroups ?? []) : [result.deploymentGroups]) as any;
     return {
       totalItems: member.length,
@@ -229,7 +229,7 @@ export class CodeDeploy {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listDeploymentInstances({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDeploymentInstances' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDeploymentInstances' })).toString('base64') : undefined;
     const member = (Array.isArray(result.instancesList ?? []) ? (result.instancesList ?? []) : [result.instancesList]) as any;
     return {
       totalItems: member.length,
@@ -249,7 +249,7 @@ export class CodeDeploy {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listDeployments({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDeployments' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDeployments' })).toString('base64') : undefined;
     const member = (Array.isArray(result.deployments ?? []) ? (result.deployments ?? []) : [result.deployments]) as any;
     return {
       totalItems: member.length,

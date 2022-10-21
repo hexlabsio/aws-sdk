@@ -159,7 +159,7 @@ export class GlobalAccelerator {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listAccelerators({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAccelerators' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAccelerators' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Accelerators ?? []) ? (result.Accelerators ?? []) : [result.Accelerators]) as any;
     return {
       totalItems: member.length,
@@ -174,7 +174,7 @@ export class GlobalAccelerator {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listByoipCidrs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listByoipCidrs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listByoipCidrs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ByoipCidrs ?? []) ? (result.ByoipCidrs ?? []) : [result.ByoipCidrs]) as any;
     return {
       totalItems: member.length,
@@ -189,7 +189,7 @@ export class GlobalAccelerator {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCustomRoutingAccelerators({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCustomRoutingAccelerators' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCustomRoutingAccelerators' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Accelerators ?? []) ? (result.Accelerators ?? []) : [result.Accelerators]) as any;
     return {
       totalItems: member.length,
@@ -209,7 +209,7 @@ export class GlobalAccelerator {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCustomRoutingListeners({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCustomRoutingListeners' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCustomRoutingListeners' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Listeners ?? []) ? (result.Listeners ?? []) : [result.Listeners]) as any;
     return {
       totalItems: member.length,
@@ -224,7 +224,7 @@ export class GlobalAccelerator {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCustomRoutingPortMappings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCustomRoutingPortMappings' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCustomRoutingPortMappings' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PortMappings ?? []) ? (result.PortMappings ?? []) : [result.PortMappings]) as any;
     return {
       totalItems: member.length,
@@ -239,7 +239,7 @@ export class GlobalAccelerator {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCustomRoutingPortMappingsByDestination({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCustomRoutingPortMappingsByDestination' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCustomRoutingPortMappingsByDestination' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DestinationPortMappings ?? []) ? (result.DestinationPortMappings ?? []) : [result.DestinationPortMappings]) as any;
     return {
       totalItems: member.length,
@@ -254,7 +254,7 @@ export class GlobalAccelerator {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listEndpointGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEndpointGroups' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEndpointGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.EndpointGroups ?? []) ? (result.EndpointGroups ?? []) : [result.EndpointGroups]) as any;
     return {
       totalItems: member.length,
@@ -269,7 +269,7 @@ export class GlobalAccelerator {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listListeners({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listListeners' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listListeners' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Listeners ?? []) ? (result.Listeners ?? []) : [result.Listeners]) as any;
     return {
       totalItems: member.length,

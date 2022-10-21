@@ -174,7 +174,7 @@ export class Imagebuilder {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listComponentBuildVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listComponentBuildVersions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listComponentBuildVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.componentSummaryList ?? []) ? (result.componentSummaryList ?? []) : [result.componentSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -189,7 +189,7 @@ export class Imagebuilder {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listComponents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listComponents' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listComponents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.componentVersionList ?? []) ? (result.componentVersionList ?? []) : [result.componentVersionList]) as any;
     return {
       totalItems: member.length,
@@ -204,7 +204,7 @@ export class Imagebuilder {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listContainerRecipes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listContainerRecipes' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listContainerRecipes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.containerRecipeSummaryList ?? []) ? (result.containerRecipeSummaryList ?? []) : [result.containerRecipeSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -219,7 +219,7 @@ export class Imagebuilder {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listDistributionConfigurations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDistributionConfigurations' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDistributionConfigurations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.distributionConfigurationSummaryList ?? []) ? (result.distributionConfigurationSummaryList ?? []) : [result.distributionConfigurationSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -234,7 +234,7 @@ export class Imagebuilder {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listImageBuildVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listImageBuildVersions' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listImageBuildVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.imageSummaryList ?? []) ? (result.imageSummaryList ?? []) : [result.imageSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -249,7 +249,7 @@ export class Imagebuilder {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listImagePackages({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listImagePackages' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listImagePackages' })).toString('base64') : undefined;
     const member = (Array.isArray(result.imagePackageList ?? []) ? (result.imagePackageList ?? []) : [result.imagePackageList]) as any;
     return {
       totalItems: member.length,
@@ -264,7 +264,7 @@ export class Imagebuilder {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listImagePipelineImages({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listImagePipelineImages' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listImagePipelineImages' })).toString('base64') : undefined;
     const member = (Array.isArray(result.imageSummaryList ?? []) ? (result.imageSummaryList ?? []) : [result.imageSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -279,7 +279,7 @@ export class Imagebuilder {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listImagePipelines({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listImagePipelines' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listImagePipelines' })).toString('base64') : undefined;
     const member = (Array.isArray(result.imagePipelineList ?? []) ? (result.imagePipelineList ?? []) : [result.imagePipelineList]) as any;
     return {
       totalItems: member.length,
@@ -294,7 +294,7 @@ export class Imagebuilder {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listImageRecipes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listImageRecipes' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listImageRecipes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.imageRecipeSummaryList ?? []) ? (result.imageRecipeSummaryList ?? []) : [result.imageRecipeSummaryList]) as any;
     return {
       totalItems: member.length,
@@ -309,7 +309,7 @@ export class Imagebuilder {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listImages({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listImages' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listImages' })).toString('base64') : undefined;
     const member = (Array.isArray(result.imageVersionList ?? []) ? (result.imageVersionList ?? []) : [result.imageVersionList]) as any;
     return {
       totalItems: member.length,
@@ -324,7 +324,7 @@ export class Imagebuilder {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listInfrastructureConfigurations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listInfrastructureConfigurations' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listInfrastructureConfigurations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.infrastructureConfigurationSummaryList ?? []) ? (result.infrastructureConfigurationSummaryList ?? []) : [result.infrastructureConfigurationSummaryList]) as any;
     return {
       totalItems: member.length,

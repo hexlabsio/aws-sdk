@@ -104,7 +104,7 @@ export class Billingconductor {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listAccountAssociations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAccountAssociations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAccountAssociations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.LinkedAccounts ?? []) ? (result.LinkedAccounts ?? []) : [result.LinkedAccounts]) as any;
     return {
       totalItems: member.length,
@@ -119,7 +119,7 @@ export class Billingconductor {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listBillingGroupCostReports({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBillingGroupCostReports' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBillingGroupCostReports' })).toString('base64') : undefined;
     const member = (Array.isArray(result.BillingGroupCostReports ?? []) ? (result.BillingGroupCostReports ?? []) : [result.BillingGroupCostReports]) as any;
     return {
       totalItems: member.length,
@@ -134,7 +134,7 @@ export class Billingconductor {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listBillingGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBillingGroups' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBillingGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.BillingGroups ?? []) ? (result.BillingGroups ?? []) : [result.BillingGroups]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class Billingconductor {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCustomLineItems({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCustomLineItems' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCustomLineItems' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CustomLineItems ?? []) ? (result.CustomLineItems ?? []) : [result.CustomLineItems]) as any;
     return {
       totalItems: member.length,
@@ -164,7 +164,7 @@ export class Billingconductor {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPricingPlans({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPricingPlans' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPricingPlans' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PricingPlans ?? []) ? (result.PricingPlans ?? []) : [result.PricingPlans]) as any;
     return {
       totalItems: member.length,
@@ -179,7 +179,7 @@ export class Billingconductor {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPricingPlansAssociatedWithPricingRule({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPricingPlansAssociatedWithPricingRule' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPricingPlansAssociatedWithPricingRule' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PricingPlanArns ?? []) ? (result.PricingPlanArns ?? []) : [result.PricingPlanArns]) as any;
     return {
       totalItems: member.length,
@@ -194,7 +194,7 @@ export class Billingconductor {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPricingRules({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPricingRules' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPricingRules' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PricingRules ?? []) ? (result.PricingRules ?? []) : [result.PricingRules]) as any;
     return {
       totalItems: member.length,
@@ -209,7 +209,7 @@ export class Billingconductor {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPricingRulesAssociatedToPricingPlan({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPricingRulesAssociatedToPricingPlan' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPricingRulesAssociatedToPricingPlan' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PricingRuleArns ?? []) ? (result.PricingRuleArns ?? []) : [result.PricingRuleArns]) as any;
     return {
       totalItems: member.length,
@@ -224,7 +224,7 @@ export class Billingconductor {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listResourcesAssociatedToCustomLineItem({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResourcesAssociatedToCustomLineItem' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResourcesAssociatedToCustomLineItem' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AssociatedResources ?? []) ? (result.AssociatedResources ?? []) : [result.AssociatedResources]) as any;
     return {
       totalItems: member.length,

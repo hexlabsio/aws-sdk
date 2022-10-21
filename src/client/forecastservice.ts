@@ -249,7 +249,7 @@ export class ForecastService {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDatasetGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDatasetGroups' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDatasetGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DatasetGroups ?? []) ? (result.DatasetGroups ?? []) : [result.DatasetGroups]) as any;
     return {
       totalItems: member.length,
@@ -264,7 +264,7 @@ export class ForecastService {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDatasetImportJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDatasetImportJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDatasetImportJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DatasetImportJobs ?? []) ? (result.DatasetImportJobs ?? []) : [result.DatasetImportJobs]) as any;
     return {
       totalItems: member.length,
@@ -279,7 +279,7 @@ export class ForecastService {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDatasets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDatasets' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDatasets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Datasets ?? []) ? (result.Datasets ?? []) : [result.Datasets]) as any;
     return {
       totalItems: member.length,
@@ -294,7 +294,7 @@ export class ForecastService {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listExplainabilities({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listExplainabilities' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listExplainabilities' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Explainabilities ?? []) ? (result.Explainabilities ?? []) : [result.Explainabilities]) as any;
     return {
       totalItems: member.length,
@@ -309,7 +309,7 @@ export class ForecastService {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listExplainabilityExports({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listExplainabilityExports' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listExplainabilityExports' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ExplainabilityExports ?? []) ? (result.ExplainabilityExports ?? []) : [result.ExplainabilityExports]) as any;
     return {
       totalItems: member.length,
@@ -324,7 +324,7 @@ export class ForecastService {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listForecastExportJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listForecastExportJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listForecastExportJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ForecastExportJobs ?? []) ? (result.ForecastExportJobs ?? []) : [result.ForecastExportJobs]) as any;
     return {
       totalItems: member.length,
@@ -339,7 +339,7 @@ export class ForecastService {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listForecasts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listForecasts' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listForecasts' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Forecasts ?? []) ? (result.Forecasts ?? []) : [result.Forecasts]) as any;
     return {
       totalItems: member.length,
@@ -354,7 +354,7 @@ export class ForecastService {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listMonitorEvaluations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMonitorEvaluations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMonitorEvaluations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PredictorMonitorEvaluations ?? []) ? (result.PredictorMonitorEvaluations ?? []) : [result.PredictorMonitorEvaluations]) as any;
     return {
       totalItems: member.length,
@@ -369,7 +369,7 @@ export class ForecastService {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listMonitors({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMonitors' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMonitors' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Monitors ?? []) ? (result.Monitors ?? []) : [result.Monitors]) as any;
     return {
       totalItems: member.length,
@@ -384,7 +384,7 @@ export class ForecastService {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPredictorBacktestExportJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPredictorBacktestExportJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPredictorBacktestExportJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PredictorBacktestExportJobs ?? []) ? (result.PredictorBacktestExportJobs ?? []) : [result.PredictorBacktestExportJobs]) as any;
     return {
       totalItems: member.length,
@@ -399,7 +399,7 @@ export class ForecastService {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listPredictors({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPredictors' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPredictors' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Predictors ?? []) ? (result.Predictors ?? []) : [result.Predictors]) as any;
     return {
       totalItems: member.length,
@@ -419,7 +419,7 @@ export class ForecastService {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listWhatIfAnalyses({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listWhatIfAnalyses' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listWhatIfAnalyses' })).toString('base64') : undefined;
     const member = (Array.isArray(result.WhatIfAnalyses ?? []) ? (result.WhatIfAnalyses ?? []) : [result.WhatIfAnalyses]) as any;
     return {
       totalItems: member.length,
@@ -434,7 +434,7 @@ export class ForecastService {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listWhatIfForecastExports({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listWhatIfForecastExports' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listWhatIfForecastExports' })).toString('base64') : undefined;
     const member = (Array.isArray(result.WhatIfForecastExports ?? []) ? (result.WhatIfForecastExports ?? []) : [result.WhatIfForecastExports]) as any;
     return {
       totalItems: member.length,
@@ -449,7 +449,7 @@ export class ForecastService {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listWhatIfForecasts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listWhatIfForecasts' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listWhatIfForecasts' })).toString('base64') : undefined;
     const member = (Array.isArray(result.WhatIfForecasts ?? []) ? (result.WhatIfForecasts ?? []) : [result.WhatIfForecasts]) as any;
     return {
       totalItems: member.length,

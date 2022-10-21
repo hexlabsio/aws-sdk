@@ -114,7 +114,7 @@ export class Rekognition {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeProjectVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeProjectVersions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeProjectVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ProjectVersionDescriptions ?? []) ? (result.ProjectVersionDescriptions ?? []) : [result.ProjectVersionDescriptions]) as any;
     return {
       totalItems: member.length,
@@ -129,7 +129,7 @@ export class Rekognition {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeProjects({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeProjects' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeProjects' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ProjectDescriptions ?? []) ? (result.ProjectDescriptions ?? []) : [result.ProjectDescriptions]) as any;
     return {
       totalItems: member.length,
@@ -234,7 +234,7 @@ export class Rekognition {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCollections({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCollections' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCollections' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CollectionIds ?? []) ? (result.CollectionIds ?? []) : [result.CollectionIds]) as any;
     return {
       totalItems: member.length,
@@ -249,7 +249,7 @@ export class Rekognition {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDatasetEntries({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDatasetEntries' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDatasetEntries' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DatasetEntries ?? []) ? (result.DatasetEntries ?? []) : [result.DatasetEntries]) as any;
     return {
       totalItems: member.length,
@@ -264,7 +264,7 @@ export class Rekognition {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDatasetLabels({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDatasetLabels' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDatasetLabels' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DatasetLabelDescriptions ?? []) ? (result.DatasetLabelDescriptions ?? []) : [result.DatasetLabelDescriptions]) as any;
     return {
       totalItems: member.length,
@@ -279,7 +279,7 @@ export class Rekognition {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listFaces({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFaces' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFaces' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Faces ?? []) ? (result.Faces ?? []) : [result.Faces]) as any;
     return {
       totalItems: member.length,
@@ -294,7 +294,7 @@ export class Rekognition {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listProjectPolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listProjectPolicies' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listProjectPolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ProjectPolicies ?? []) ? (result.ProjectPolicies ?? []) : [result.ProjectPolicies]) as any;
     return {
       totalItems: member.length,

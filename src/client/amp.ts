@@ -94,7 +94,7 @@ export class Amp {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listRuleGroupsNamespaces({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listRuleGroupsNamespaces' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listRuleGroupsNamespaces' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ruleGroupsNamespaces ?? []) ? (result.ruleGroupsNamespaces ?? []) : [result.ruleGroupsNamespaces]) as any;
     return {
       totalItems: member.length,
@@ -114,7 +114,7 @@ export class Amp {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listWorkspaces({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorkspaces' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listWorkspaces' })).toString('base64') : undefined;
     const member = (Array.isArray(result.workspaces ?? []) ? (result.workspaces ?? []) : [result.workspaces]) as any;
     return {
       totalItems: member.length,

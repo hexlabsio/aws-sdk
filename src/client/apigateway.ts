@@ -239,7 +239,7 @@ export class APIGateway {
     const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getApiKeys({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getApiKeys' })).toString('base64');
+    const nextToken = result.position ? Buffer.from(JSON.stringify({ token: result.position, operation: 'getApiKeys' })).toString('base64') : undefined;
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
@@ -269,7 +269,7 @@ export class APIGateway {
     const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getBasePathMappings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getBasePathMappings' })).toString('base64');
+    const nextToken = result.position ? Buffer.from(JSON.stringify({ token: result.position, operation: 'getBasePathMappings' })).toString('base64') : undefined;
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
@@ -289,7 +289,7 @@ export class APIGateway {
     const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getClientCertificates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getClientCertificates' })).toString('base64');
+    const nextToken = result.position ? Buffer.from(JSON.stringify({ token: result.position, operation: 'getClientCertificates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
@@ -309,7 +309,7 @@ export class APIGateway {
     const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getDeployments({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getDeployments' })).toString('base64');
+    const nextToken = result.position ? Buffer.from(JSON.stringify({ token: result.position, operation: 'getDeployments' })).toString('base64') : undefined;
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
@@ -349,7 +349,7 @@ export class APIGateway {
     const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getDomainNames({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getDomainNames' })).toString('base64');
+    const nextToken = result.position ? Buffer.from(JSON.stringify({ token: result.position, operation: 'getDomainNames' })).toString('base64') : undefined;
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
@@ -409,7 +409,7 @@ export class APIGateway {
     const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getModels({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getModels' })).toString('base64');
+    const nextToken = result.position ? Buffer.from(JSON.stringify({ token: result.position, operation: 'getModels' })).toString('base64') : undefined;
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
@@ -439,7 +439,7 @@ export class APIGateway {
     const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getResources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getResources' })).toString('base64');
+    const nextToken = result.position ? Buffer.from(JSON.stringify({ token: result.position, operation: 'getResources' })).toString('base64') : undefined;
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
@@ -459,7 +459,7 @@ export class APIGateway {
     const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getRestApis({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getRestApis' })).toString('base64');
+    const nextToken = result.position ? Buffer.from(JSON.stringify({ token: result.position, operation: 'getRestApis' })).toString('base64') : undefined;
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
@@ -504,7 +504,7 @@ export class APIGateway {
     const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getUsage({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getUsage' })).toString('base64');
+    const nextToken = result.position ? Buffer.from(JSON.stringify({ token: result.position, operation: 'getUsage' })).toString('base64') : undefined;
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
@@ -529,7 +529,7 @@ export class APIGateway {
     const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getUsagePlanKeys({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getUsagePlanKeys' })).toString('base64');
+    const nextToken = result.position ? Buffer.from(JSON.stringify({ token: result.position, operation: 'getUsagePlanKeys' })).toString('base64') : undefined;
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
@@ -544,7 +544,7 @@ export class APIGateway {
     const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getUsagePlans({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getUsagePlans' })).toString('base64');
+    const nextToken = result.position ? Buffer.from(JSON.stringify({ token: result.position, operation: 'getUsagePlans' })).toString('base64') : undefined;
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,
@@ -564,7 +564,7 @@ export class APIGateway {
     const nextTokenPart = next ? { position: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getVpcLinks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.position, operation: 'getVpcLinks' })).toString('base64');
+    const nextToken = result.position ? Buffer.from(JSON.stringify({ token: result.position, operation: 'getVpcLinks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.items ?? []) ? (result.items ?? []) : [result.items]) as any;
     return {
       totalItems: member.length,

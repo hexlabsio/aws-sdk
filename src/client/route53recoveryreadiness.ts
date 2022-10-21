@@ -94,7 +94,7 @@ export class Route53RecoveryReadiness {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getCellReadinessSummary({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getCellReadinessSummary' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getCellReadinessSummary' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ReadinessChecks ?? []) ? (result.ReadinessChecks ?? []) : [result.ReadinessChecks]) as any;
     return {
       totalItems: member.length,
@@ -114,7 +114,7 @@ export class Route53RecoveryReadiness {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getReadinessCheckResourceStatus({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getReadinessCheckResourceStatus' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getReadinessCheckResourceStatus' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Rules ?? []) ? (result.Rules ?? []) : [result.Rules]) as any;
     return {
       totalItems: member.length,
@@ -129,7 +129,7 @@ export class Route53RecoveryReadiness {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getReadinessCheckStatus({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getReadinessCheckStatus' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getReadinessCheckStatus' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Resources ?? []) ? (result.Resources ?? []) : [result.Resources]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class Route53RecoveryReadiness {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getRecoveryGroupReadinessSummary({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getRecoveryGroupReadinessSummary' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getRecoveryGroupReadinessSummary' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ReadinessChecks ?? []) ? (result.ReadinessChecks ?? []) : [result.ReadinessChecks]) as any;
     return {
       totalItems: member.length,
@@ -169,7 +169,7 @@ export class Route53RecoveryReadiness {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCells({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCells' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCells' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Cells ?? []) ? (result.Cells ?? []) : [result.Cells]) as any;
     return {
       totalItems: member.length,
@@ -184,7 +184,7 @@ export class Route53RecoveryReadiness {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listCrossAccountAuthorizations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCrossAccountAuthorizations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCrossAccountAuthorizations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.CrossAccountAuthorizations ?? []) ? (result.CrossAccountAuthorizations ?? []) : [result.CrossAccountAuthorizations]) as any;
     return {
       totalItems: member.length,
@@ -199,7 +199,7 @@ export class Route53RecoveryReadiness {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listReadinessChecks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listReadinessChecks' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listReadinessChecks' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ReadinessChecks ?? []) ? (result.ReadinessChecks ?? []) : [result.ReadinessChecks]) as any;
     return {
       totalItems: member.length,
@@ -214,7 +214,7 @@ export class Route53RecoveryReadiness {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listRecoveryGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRecoveryGroups' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRecoveryGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.RecoveryGroups ?? []) ? (result.RecoveryGroups ?? []) : [result.RecoveryGroups]) as any;
     return {
       totalItems: member.length,
@@ -229,7 +229,7 @@ export class Route53RecoveryReadiness {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listResourceSets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResourceSets' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResourceSets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ResourceSets ?? []) ? (result.ResourceSets ?? []) : [result.ResourceSets]) as any;
     return {
       totalItems: member.length,
@@ -244,7 +244,7 @@ export class Route53RecoveryReadiness {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listRules({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRules' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRules' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Rules ?? []) ? (result.Rules ?? []) : [result.Rules]) as any;
     return {
       totalItems: member.length,

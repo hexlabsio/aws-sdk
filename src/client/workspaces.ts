@@ -179,7 +179,7 @@ export class WorkSpaces {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.describeWorkspaceBundles({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeWorkspaceBundles' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeWorkspaceBundles' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Bundles ?? []) ? (result.Bundles ?? []) : [result.Bundles]) as any;
     return {
       totalItems: member.length,
@@ -194,7 +194,7 @@ export class WorkSpaces {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.describeWorkspaceDirectories({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeWorkspaceDirectories' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeWorkspaceDirectories' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Directories ?? []) ? (result.Directories ?? []) : [result.Directories]) as any;
     return {
       totalItems: member.length,
@@ -224,7 +224,7 @@ export class WorkSpaces {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeWorkspaces({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeWorkspaces' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeWorkspaces' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Workspaces ?? []) ? (result.Workspaces ?? []) : [result.Workspaces]) as any;
     return {
       totalItems: member.length,

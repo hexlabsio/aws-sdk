@@ -99,7 +99,7 @@ export class CloudWatchLogs {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.describeDestinations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeDestinations' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeDestinations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.destinations ?? []) ? (result.destinations ?? []) : [result.destinations]) as any;
     return {
       totalItems: member.length,
@@ -119,7 +119,7 @@ export class CloudWatchLogs {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.describeLogGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeLogGroups' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeLogGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.logGroups ?? []) ? (result.logGroups ?? []) : [result.logGroups]) as any;
     return {
       totalItems: member.length,
@@ -134,7 +134,7 @@ export class CloudWatchLogs {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.describeLogStreams({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeLogStreams' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeLogStreams' })).toString('base64') : undefined;
     const member = (Array.isArray(result.logStreams ?? []) ? (result.logStreams ?? []) : [result.logStreams]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class CloudWatchLogs {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.describeMetricFilters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeMetricFilters' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeMetricFilters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.metricFilters ?? []) ? (result.metricFilters ?? []) : [result.metricFilters]) as any;
     return {
       totalItems: member.length,
@@ -179,7 +179,7 @@ export class CloudWatchLogs {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.describeSubscriptionFilters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeSubscriptionFilters' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeSubscriptionFilters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.subscriptionFilters ?? []) ? (result.subscriptionFilters ?? []) : [result.subscriptionFilters]) as any;
     return {
       totalItems: member.length,
@@ -204,7 +204,7 @@ export class CloudWatchLogs {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.getLogEvents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextForwardToken, operation: 'getLogEvents' })).toString('base64');
+    const nextToken = result.nextForwardToken ? Buffer.from(JSON.stringify({ token: result.nextForwardToken, operation: 'getLogEvents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.events ?? []) ? (result.events ?? []) : [result.events]) as any;
     return {
       totalItems: member.length,

@@ -74,7 +74,7 @@ export class ResourceGroups {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGroups' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.GroupIdentifiers ?? []) ? (result.GroupIdentifiers ?? []) : [result.GroupIdentifiers]) as any;
     return {
       totalItems: member.length,
@@ -94,7 +94,7 @@ export class ResourceGroups {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.searchResources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchResources' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchResources' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ResourceIdentifiers ?? []) ? (result.ResourceIdentifiers ?? []) : [result.ResourceIdentifiers]) as any;
     return {
       totalItems: member.length,

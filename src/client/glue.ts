@@ -499,7 +499,7 @@ export class Glue {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.getPartitionIndexes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getPartitionIndexes' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getPartitionIndexes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PartitionIndexDescriptorList ?? []) ? (result.PartitionIndexDescriptorList ?? []) : [result.PartitionIndexDescriptorList]) as any;
     return {
       totalItems: member.length,
@@ -529,7 +529,7 @@ export class Glue {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getResourcePolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getResourcePolicies' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getResourcePolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.GetResourcePoliciesResponseList ?? []) ? (result.GetResourcePoliciesResponseList ?? []) : [result.GetResourcePoliciesResponseList]) as any;
     return {
       totalItems: member.length,
@@ -574,7 +574,7 @@ export class Glue {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.getSecurityConfigurations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getSecurityConfigurations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getSecurityConfigurations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.SecurityConfigurations ?? []) ? (result.SecurityConfigurations ?? []) : [result.SecurityConfigurations]) as any;
     return {
       totalItems: member.length,
@@ -719,7 +719,7 @@ export class Glue {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listRegistries({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRegistries' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRegistries' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Registries ?? []) ? (result.Registries ?? []) : [result.Registries]) as any;
     return {
       totalItems: member.length,
@@ -734,7 +734,7 @@ export class Glue {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listSchemaVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSchemaVersions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSchemaVersions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Schemas ?? []) ? (result.Schemas ?? []) : [result.Schemas]) as any;
     return {
       totalItems: member.length,
@@ -749,7 +749,7 @@ export class Glue {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listSchemas({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSchemas' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSchemas' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Schemas ?? []) ? (result.Schemas ?? []) : [result.Schemas]) as any;
     return {
       totalItems: member.length,

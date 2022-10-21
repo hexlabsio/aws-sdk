@@ -194,7 +194,7 @@ export class GameLift {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeFleetAttributes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeFleetAttributes' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeFleetAttributes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.FleetAttributes ?? []) ? (result.FleetAttributes ?? []) : [result.FleetAttributes]) as any;
     return {
       totalItems: member.length,
@@ -209,7 +209,7 @@ export class GameLift {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeFleetCapacity({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeFleetCapacity' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeFleetCapacity' })).toString('base64') : undefined;
     const member = (Array.isArray(result.FleetCapacity ?? []) ? (result.FleetCapacity ?? []) : [result.FleetCapacity]) as any;
     return {
       totalItems: member.length,
@@ -224,7 +224,7 @@ export class GameLift {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeFleetEvents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeFleetEvents' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeFleetEvents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Events ?? []) ? (result.Events ?? []) : [result.Events]) as any;
     return {
       totalItems: member.length,
@@ -259,7 +259,7 @@ export class GameLift {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeFleetUtilization({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeFleetUtilization' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeFleetUtilization' })).toString('base64') : undefined;
     const member = (Array.isArray(result.FleetUtilization ?? []) ? (result.FleetUtilization ?? []) : [result.FleetUtilization]) as any;
     return {
       totalItems: member.length,
@@ -284,7 +284,7 @@ export class GameLift {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeGameServerInstances({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeGameServerInstances' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeGameServerInstances' })).toString('base64') : undefined;
     const member = (Array.isArray(result.GameServerInstances ?? []) ? (result.GameServerInstances ?? []) : [result.GameServerInstances]) as any;
     return {
       totalItems: member.length,
@@ -299,7 +299,7 @@ export class GameLift {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeGameSessionDetails({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeGameSessionDetails' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeGameSessionDetails' })).toString('base64') : undefined;
     const member = (Array.isArray(result.GameSessionDetails ?? []) ? (result.GameSessionDetails ?? []) : [result.GameSessionDetails]) as any;
     return {
       totalItems: member.length,
@@ -319,7 +319,7 @@ export class GameLift {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeGameSessionQueues({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeGameSessionQueues' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeGameSessionQueues' })).toString('base64') : undefined;
     const member = (Array.isArray(result.GameSessionQueues ?? []) ? (result.GameSessionQueues ?? []) : [result.GameSessionQueues]) as any;
     return {
       totalItems: member.length,
@@ -334,7 +334,7 @@ export class GameLift {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeGameSessions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeGameSessions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeGameSessions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.GameSessions ?? []) ? (result.GameSessions ?? []) : [result.GameSessions]) as any;
     return {
       totalItems: member.length,
@@ -349,7 +349,7 @@ export class GameLift {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeInstances({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeInstances' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeInstances' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Instances ?? []) ? (result.Instances ?? []) : [result.Instances]) as any;
     return {
       totalItems: member.length,
@@ -369,7 +369,7 @@ export class GameLift {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeMatchmakingConfigurations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMatchmakingConfigurations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMatchmakingConfigurations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Configurations ?? []) ? (result.Configurations ?? []) : [result.Configurations]) as any;
     return {
       totalItems: member.length,
@@ -384,7 +384,7 @@ export class GameLift {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeMatchmakingRuleSets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMatchmakingRuleSets' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMatchmakingRuleSets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.RuleSets ?? []) ? (result.RuleSets ?? []) : [result.RuleSets]) as any;
     return {
       totalItems: member.length,
@@ -399,7 +399,7 @@ export class GameLift {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describePlayerSessions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describePlayerSessions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describePlayerSessions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PlayerSessions ?? []) ? (result.PlayerSessions ?? []) : [result.PlayerSessions]) as any;
     return {
       totalItems: member.length,
@@ -419,7 +419,7 @@ export class GameLift {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.describeScalingPolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeScalingPolicies' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeScalingPolicies' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ScalingPolicies ?? []) ? (result.ScalingPolicies ?? []) : [result.ScalingPolicies]) as any;
     return {
       totalItems: member.length,
@@ -459,7 +459,7 @@ export class GameLift {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listAliases({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAliases' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAliases' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Aliases ?? []) ? (result.Aliases ?? []) : [result.Aliases]) as any;
     return {
       totalItems: member.length,
@@ -474,7 +474,7 @@ export class GameLift {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listBuilds({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBuilds' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBuilds' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Builds ?? []) ? (result.Builds ?? []) : [result.Builds]) as any;
     return {
       totalItems: member.length,
@@ -489,7 +489,7 @@ export class GameLift {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listFleets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFleets' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFleets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.FleetIds ?? []) ? (result.FleetIds ?? []) : [result.FleetIds]) as any;
     return {
       totalItems: member.length,
@@ -504,7 +504,7 @@ export class GameLift {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listGameServerGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGameServerGroups' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGameServerGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.GameServerGroups ?? []) ? (result.GameServerGroups ?? []) : [result.GameServerGroups]) as any;
     return {
       totalItems: member.length,
@@ -519,7 +519,7 @@ export class GameLift {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listGameServers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGameServers' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGameServers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.GameServers ?? []) ? (result.GameServers ?? []) : [result.GameServers]) as any;
     return {
       totalItems: member.length,
@@ -534,7 +534,7 @@ export class GameLift {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.listScripts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listScripts' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listScripts' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Scripts ?? []) ? (result.Scripts ?? []) : [result.Scripts]) as any;
     return {
       totalItems: member.length,
@@ -579,7 +579,7 @@ export class GameLift {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
     const result = await this.client.searchGameSessions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchGameSessions' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchGameSessions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.GameSessions ?? []) ? (result.GameSessions ?? []) : [result.GameSessions]) as any;
     return {
       totalItems: member.length,

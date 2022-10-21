@@ -34,7 +34,7 @@ export class Health {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeAffectedAccountsForOrganization({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeAffectedAccountsForOrganization' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeAffectedAccountsForOrganization' })).toString('base64') : undefined;
     const member = (Array.isArray(result.affectedAccounts ?? []) ? (result.affectedAccounts ?? []) : [result.affectedAccounts]) as any;
     return {
       totalItems: member.length,
@@ -49,7 +49,7 @@ export class Health {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeAffectedEntities({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeAffectedEntities' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeAffectedEntities' })).toString('base64') : undefined;
     const member = (Array.isArray(result.entities ?? []) ? (result.entities ?? []) : [result.entities]) as any;
     return {
       totalItems: member.length,
@@ -64,7 +64,7 @@ export class Health {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeAffectedEntitiesForOrganization({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeAffectedEntitiesForOrganization' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeAffectedEntitiesForOrganization' })).toString('base64') : undefined;
     const member = (Array.isArray(result.entities ?? []) ? (result.entities ?? []) : [result.entities]) as any;
     return {
       totalItems: member.length,
@@ -94,7 +94,7 @@ export class Health {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeEventAggregates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeEventAggregates' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeEventAggregates' })).toString('base64') : undefined;
     const member = (Array.isArray(result.eventAggregates ?? []) ? (result.eventAggregates ?? []) : [result.eventAggregates]) as any;
     return {
       totalItems: member.length,
@@ -119,7 +119,7 @@ export class Health {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeEventTypes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeEventTypes' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeEventTypes' })).toString('base64') : undefined;
     const member = (Array.isArray(result.eventTypes ?? []) ? (result.eventTypes ?? []) : [result.eventTypes]) as any;
     return {
       totalItems: member.length,
@@ -134,7 +134,7 @@ export class Health {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeEvents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeEvents' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeEvents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.events ?? []) ? (result.events ?? []) : [result.events]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class Health {
     const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.describeEventsForOrganization({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeEventsForOrganization' })).toString('base64');
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'describeEventsForOrganization' })).toString('base64') : undefined;
     const member = (Array.isArray(result.events ?? []) ? (result.events ?? []) : [result.events]) as any;
     return {
       totalItems: member.length,

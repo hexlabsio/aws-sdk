@@ -59,7 +59,7 @@ export class DataPipeline {
     const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.describeObjects({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.marker, operation: 'describeObjects' })).toString('base64');
+    const nextToken = result.marker ? Buffer.from(JSON.stringify({ token: result.marker, operation: 'describeObjects' })).toString('base64') : undefined;
     const member = (Array.isArray(result.pipelineObjects ?? []) ? (result.pipelineObjects ?? []) : [result.pipelineObjects]) as any;
     return {
       totalItems: member.length,
@@ -99,7 +99,7 @@ export class DataPipeline {
     const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listPipelines({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.marker, operation: 'listPipelines' })).toString('base64');
+    const nextToken = result.marker ? Buffer.from(JSON.stringify({ token: result.marker, operation: 'listPipelines' })).toString('base64') : undefined;
     const member = (Array.isArray(result.pipelineIdList ?? []) ? (result.pipelineIdList ?? []) : [result.pipelineIdList]) as any;
     return {
       totalItems: member.length,
@@ -124,7 +124,7 @@ export class DataPipeline {
     const nextTokenPart = next ? { marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { limit: limit } : {};
     const result = await this.client.queryObjects({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.marker, operation: 'queryObjects' })).toString('base64');
+    const nextToken = result.marker ? Buffer.from(JSON.stringify({ token: result.marker, operation: 'queryObjects' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ids ?? []) ? (result.ids ?? []) : [result.ids]) as any;
     return {
       totalItems: member.length,

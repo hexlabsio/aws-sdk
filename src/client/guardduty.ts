@@ -124,7 +124,7 @@ export class GuardDuty {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeMalwareScans({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMalwareScans' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMalwareScans' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Scans ?? []) ? (result.Scans ?? []) : [result.Scans]) as any;
     return {
       totalItems: member.length,
@@ -249,7 +249,7 @@ export class GuardDuty {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listDetectors({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDetectors' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listDetectors' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DetectorIds ?? []) ? (result.DetectorIds ?? []) : [result.DetectorIds]) as any;
     return {
       totalItems: member.length,
@@ -264,7 +264,7 @@ export class GuardDuty {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listFilters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFilters' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFilters' })).toString('base64') : undefined;
     const member = (Array.isArray(result.FilterNames ?? []) ? (result.FilterNames ?? []) : [result.FilterNames]) as any;
     return {
       totalItems: member.length,
@@ -279,7 +279,7 @@ export class GuardDuty {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listFindings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFindings' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listFindings' })).toString('base64') : undefined;
     const member = (Array.isArray(result.FindingIds ?? []) ? (result.FindingIds ?? []) : [result.FindingIds]) as any;
     return {
       totalItems: member.length,
@@ -294,7 +294,7 @@ export class GuardDuty {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listIPSets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listIPSets' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listIPSets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.IpSetIds ?? []) ? (result.IpSetIds ?? []) : [result.IpSetIds]) as any;
     return {
       totalItems: member.length,
@@ -309,7 +309,7 @@ export class GuardDuty {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listInvitations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listInvitations' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listInvitations' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Invitations ?? []) ? (result.Invitations ?? []) : [result.Invitations]) as any;
     return {
       totalItems: member.length,
@@ -324,7 +324,7 @@ export class GuardDuty {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listMembers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMembers' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMembers' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Members ?? []) ? (result.Members ?? []) : [result.Members]) as any;
     return {
       totalItems: member.length,
@@ -339,7 +339,7 @@ export class GuardDuty {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listOrganizationAdminAccounts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listOrganizationAdminAccounts' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listOrganizationAdminAccounts' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AdminAccounts ?? []) ? (result.AdminAccounts ?? []) : [result.AdminAccounts]) as any;
     return {
       totalItems: member.length,
@@ -364,7 +364,7 @@ export class GuardDuty {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listThreatIntelSets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listThreatIntelSets' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listThreatIntelSets' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ThreatIntelSetIds ?? []) ? (result.ThreatIntelSetIds ?? []) : [result.ThreatIntelSetIds]) as any;
     return {
       totalItems: member.length,

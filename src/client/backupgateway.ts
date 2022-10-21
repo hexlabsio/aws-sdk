@@ -74,7 +74,7 @@ export class BackupGateway {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listGateways({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGateways' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listGateways' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Gateways ?? []) ? (result.Gateways ?? []) : [result.Gateways]) as any;
     return {
       totalItems: member.length,
@@ -89,7 +89,7 @@ export class BackupGateway {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listHypervisors({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listHypervisors' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listHypervisors' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Hypervisors ?? []) ? (result.Hypervisors ?? []) : [result.Hypervisors]) as any;
     return {
       totalItems: member.length,
@@ -109,7 +109,7 @@ export class BackupGateway {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listVirtualMachines({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listVirtualMachines' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listVirtualMachines' })).toString('base64') : undefined;
     const member = (Array.isArray(result.VirtualMachines ?? []) ? (result.VirtualMachines ?? []) : [result.VirtualMachines]) as any;
     return {
       totalItems: member.length,

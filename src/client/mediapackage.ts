@@ -79,7 +79,7 @@ export class MediaPackage {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listChannels({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listChannels' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listChannels' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Channels ?? []) ? (result.Channels ?? []) : [result.Channels]) as any;
     return {
       totalItems: member.length,
@@ -94,7 +94,7 @@ export class MediaPackage {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listHarvestJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listHarvestJobs' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listHarvestJobs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.HarvestJobs ?? []) ? (result.HarvestJobs ?? []) : [result.HarvestJobs]) as any;
     return {
       totalItems: member.length,
@@ -109,7 +109,7 @@ export class MediaPackage {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listOriginEndpoints({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listOriginEndpoints' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listOriginEndpoints' })).toString('base64') : undefined;
     const member = (Array.isArray(result.OriginEndpoints ?? []) ? (result.OriginEndpoints ?? []) : [result.OriginEndpoints]) as any;
     return {
       totalItems: member.length,

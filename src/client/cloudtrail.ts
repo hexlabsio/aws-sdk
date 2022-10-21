@@ -134,7 +134,7 @@ export class CloudTrail {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listImportFailures({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listImportFailures' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listImportFailures' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Failures ?? []) ? (result.Failures ?? []) : [result.Failures]) as any;
     return {
       totalItems: member.length,
@@ -149,7 +149,7 @@ export class CloudTrail {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listImports({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listImports' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listImports' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Imports ?? []) ? (result.Imports ?? []) : [result.Imports]) as any;
     return {
       totalItems: member.length,
@@ -164,7 +164,7 @@ export class CloudTrail {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listPublicKeys({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPublicKeys' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPublicKeys' })).toString('base64') : undefined;
     const member = (Array.isArray(result.PublicKeyList ?? []) ? (result.PublicKeyList ?? []) : [result.PublicKeyList]) as any;
     return {
       totalItems: member.length,
@@ -184,7 +184,7 @@ export class CloudTrail {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listTags({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTags' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTags' })).toString('base64') : undefined;
     const member = (Array.isArray(result.ResourceTagList ?? []) ? (result.ResourceTagList ?? []) : [result.ResourceTagList]) as any;
     return {
       totalItems: member.length,
@@ -199,7 +199,7 @@ export class CloudTrail {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = {};
     const result = await this.client.listTrails({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTrails' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTrails' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Trails ?? []) ? (result.Trails ?? []) : [result.Trails]) as any;
     return {
       totalItems: member.length,
@@ -214,7 +214,7 @@ export class CloudTrail {
     const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.lookupEvents({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'lookupEvents' })).toString('base64');
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'lookupEvents' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Events ?? []) ? (result.Events ?? []) : [result.Events]) as any;
     return {
       totalItems: member.length,
