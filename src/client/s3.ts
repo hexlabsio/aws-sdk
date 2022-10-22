@@ -22,9 +22,9 @@ type RawParamsFrom<K extends keyof AWSS3> = AWSS3[K] extends {
 export class S3 {
   private constructor(private readonly client: AWSS3) {}
   
-  public readonly signingRegion = undefined;
+  public readonly signingRegion = 'us-east-1';
   public readonly service = 's3' as const;
-  public readonly global = false as const;
+  public readonly global = true as const;
   public readonly category = 'Storage' as const;
   public readonly topLevelCalls = ["listBuckets"] as const;
   

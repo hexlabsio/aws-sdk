@@ -171,9 +171,9 @@ type RawParamsFrom<K extends keyof AWS${info.serviceKey}> = AWS${info.serviceKey
 export class ${info.serviceKey} {
   private constructor(private readonly client: AWS${info.serviceKey}) {}
   
-  public readonly signingRegion = ${info.signingRegion ? `'${info.signingRegion}'` : undefined};
+  public readonly signingRegion = ${this.serviceFromHost(info.serviceHost) === 's3' ? `'us-east-1'` : info.signingRegion ? `'${info.signingRegion}'` : undefined};
   public readonly service = '${this.serviceFromHost(info.serviceHost)}' as const;
-  public readonly global = ${info.isGlobalEndpoint} as const;
+  public readonly global = ${this.serviceFromHost(info.serviceHost) === 's3' ? 'true' : info.isGlobalEndpoint} as const;
   public readonly category = '${this.categoryfor(this.serviceFromHost(info.serviceHost))}' as const;
   public readonly topLevelCalls = ${JSON.stringify(info.mappedFunctions.filter(it => it.requiredParams?.length === 0).map(it => it.name))} as const;
   
