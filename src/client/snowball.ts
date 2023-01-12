@@ -26,7 +26,7 @@ export class Snowball {
   public readonly service = 'snowball' as const;
   public readonly global = false as const;
   public readonly category = 'Migration and Transfer' as const;
-  public readonly topLevelCalls = ["describeAddresses","listJobs"] as const;
+  public readonly topLevelCalls = ["describeAddresses","listClusters","listCompatibleImages","listJobs","listLongTermPricing"] as const;
   
   cancelCluster: (params: RawParamsFrom<'cancelCluster'>) => Promise<ReturnTypeFrom<'cancelCluster'>>  = async params => {
   // undefined
@@ -118,19 +118,49 @@ export class Snowball {
     return this.client.getSoftwareUpdates(params as any).promise();
   }
 
-  listClusterJobs: (params: RawParamsFrom<'listClusterJobs'>) => Promise<ReturnTypeFrom<'listClusterJobs'>>  = async params => {
-  // undefined
-    return this.client.listClusterJobs(params as any).promise();
+  async listClusterJobs(params: { [K in keyof ParamsFrom<'listClusterJobs', { next?: string, limit?: number }>]: ParamsFrom<'listClusterJobs', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listClusterJobs'>]-?: ReturnTypeFrom<'listClusterJobs'>[K]}['JobListEntries'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"JobListEntries"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listClusterJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listClusterJobs' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.JobListEntries ?? []) ? (result.JobListEntries ?? []) : [result.JobListEntries]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
-  listClusters: (params: RawParamsFrom<'listClusters'>) => Promise<ReturnTypeFrom<'listClusters'>>  = async params => {
-  // undefined
-    return this.client.listClusters(params as any).promise();
+  async listClusters(params: { [K in keyof ParamsFrom<'listClusters', { next?: string, limit?: number }>]: ParamsFrom<'listClusters', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listClusters'>]-?: ReturnTypeFrom<'listClusters'>[K]}['ClusterListEntries'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"ClusterListEntries"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listClusters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listClusters' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.ClusterListEntries ?? []) ? (result.ClusterListEntries ?? []) : [result.ClusterListEntries]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
-  listCompatibleImages: (params: RawParamsFrom<'listCompatibleImages'>) => Promise<ReturnTypeFrom<'listCompatibleImages'>>  = async params => {
-  // undefined
-    return this.client.listCompatibleImages(params as any).promise();
+  async listCompatibleImages(params: { [K in keyof ParamsFrom<'listCompatibleImages', { next?: string, limit?: number }>]: ParamsFrom<'listCompatibleImages', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listCompatibleImages'>]-?: ReturnTypeFrom<'listCompatibleImages'>[K]}['CompatibleImages'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"CompatibleImages"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listCompatibleImages({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCompatibleImages' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.CompatibleImages ?? []) ? (result.CompatibleImages ?? []) : [result.CompatibleImages]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
   async listJobs(params: { [K in keyof ParamsFrom<'listJobs', { next?: string, limit?: number }>]: ParamsFrom<'listJobs', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listJobs'>]-?: ReturnTypeFrom<'listJobs'>[K]}['JobListEntries'], undefined>}> {
@@ -148,9 +178,19 @@ export class Snowball {
     }
   }
 
-  listLongTermPricing: (params: RawParamsFrom<'listLongTermPricing'>) => Promise<ReturnTypeFrom<'listLongTermPricing'>>  = async params => {
-  // undefined
-    return this.client.listLongTermPricing(params as any).promise();
+  async listLongTermPricing(params: { [K in keyof ParamsFrom<'listLongTermPricing', { next?: string, limit?: number }>]: ParamsFrom<'listLongTermPricing', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listLongTermPricing'>]-?: ReturnTypeFrom<'listLongTermPricing'>[K]}['LongTermPricingEntries'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"LongTermPricingEntries"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listLongTermPricing({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listLongTermPricing' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.LongTermPricingEntries ?? []) ? (result.LongTermPricingEntries ?? []) : [result.LongTermPricingEntries]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
   updateCluster: (params: RawParamsFrom<'updateCluster'>) => Promise<ReturnTypeFrom<'updateCluster'>>  = async params => {

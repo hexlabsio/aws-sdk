@@ -26,7 +26,7 @@ export class GameLift {
   public readonly service = 'gamelift' as const;
   public readonly global = false as const;
   public readonly category = 'Game Tech' as const;
-  public readonly topLevelCalls = ["describeFleetAttributes","describeFleetCapacity","describeFleetUtilization","describeGameSessionDetails","describeGameSessionQueues","describeGameSessions","describeMatchmakingConfigurations","describeMatchmakingRuleSets","describePlayerSessions","listAliases","listBuilds","listFleets","listGameServerGroups","listScripts","searchGameSessions"] as const;
+  public readonly topLevelCalls = ["describeFleetAttributes","describeFleetCapacity","describeFleetUtilization","describeGameSessionDetails","describeGameSessionQueues","describeGameSessions","describeMatchmakingConfigurations","describeMatchmakingRuleSets","describePlayerSessions","listAliases","listBuilds","listFleets","listGameServerGroups","listLocations","listScripts","searchGameSessions"] as const;
   
   acceptMatch: (params: RawParamsFrom<'acceptMatch'>) => Promise<ReturnTypeFrom<'acceptMatch'>>  = async params => {
   // undefined
@@ -71,6 +71,11 @@ export class GameLift {
   createGameSessionQueue: (params: RawParamsFrom<'createGameSessionQueue'>) => Promise<ReturnTypeFrom<'createGameSessionQueue'>>  = async params => {
   // undefined
     return this.client.createGameSessionQueue(params as any).promise();
+  }
+
+  createLocation: (params: RawParamsFrom<'createLocation'>) => Promise<ReturnTypeFrom<'createLocation'>>  = async params => {
+  // undefined
+    return this.client.createLocation(params as any).promise();
   }
 
   createMatchmakingConfiguration: (params: RawParamsFrom<'createMatchmakingConfiguration'>) => Promise<ReturnTypeFrom<'createMatchmakingConfiguration'>>  = async params => {
@@ -138,6 +143,11 @@ export class GameLift {
     return this.client.deleteGameSessionQueue(params as any).promise();
   }
 
+  deleteLocation: (params: RawParamsFrom<'deleteLocation'>) => Promise<ReturnTypeFrom<'deleteLocation'>>  = async params => {
+  // undefined
+    return this.client.deleteLocation(params as any).promise();
+  }
+
   deleteMatchmakingConfiguration: (params: RawParamsFrom<'deleteMatchmakingConfiguration'>) => Promise<ReturnTypeFrom<'deleteMatchmakingConfiguration'>>  = async params => {
   // undefined
     return this.client.deleteMatchmakingConfiguration(params as any).promise();
@@ -168,6 +178,11 @@ export class GameLift {
     return this.client.deleteVpcPeeringConnection(params as any).promise();
   }
 
+  deregisterCompute: (params: RawParamsFrom<'deregisterCompute'>) => Promise<ReturnTypeFrom<'deregisterCompute'>>  = async params => {
+  // undefined
+    return this.client.deregisterCompute(params as any).promise();
+  }
+
   deregisterGameServer: (params: RawParamsFrom<'deregisterGameServer'>) => Promise<ReturnTypeFrom<'deregisterGameServer'>>  = async params => {
   // undefined
     return this.client.deregisterGameServer(params as any).promise();
@@ -181,6 +196,11 @@ export class GameLift {
   describeBuild: (params: RawParamsFrom<'describeBuild'>) => Promise<ReturnTypeFrom<'describeBuild'>>  = async params => {
   // undefined
     return this.client.describeBuild(params as any).promise();
+  }
+
+  describeCompute: (params: RawParamsFrom<'describeCompute'>) => Promise<ReturnTypeFrom<'describeCompute'>>  = async params => {
+  // undefined
+    return this.client.describeCompute(params as any).promise();
   }
 
   describeEC2InstanceLimits: (params: RawParamsFrom<'describeEC2InstanceLimits'>) => Promise<ReturnTypeFrom<'describeEC2InstanceLimits'>>  = async params => {
@@ -443,6 +463,16 @@ export class GameLift {
     return this.client.describeVpcPeeringConnections(params as any).promise();
   }
 
+  getComputeAccess: (params: RawParamsFrom<'getComputeAccess'>) => Promise<ReturnTypeFrom<'getComputeAccess'>>  = async params => {
+  // undefined
+    return this.client.getComputeAccess(params as any).promise();
+  }
+
+  getComputeAuthToken: (params: RawParamsFrom<'getComputeAuthToken'>) => Promise<ReturnTypeFrom<'getComputeAuthToken'>>  = async params => {
+  // undefined
+    return this.client.getComputeAuthToken(params as any).promise();
+  }
+
   getGameSessionLogUrl: (params: RawParamsFrom<'getGameSessionLogUrl'>) => Promise<ReturnTypeFrom<'getGameSessionLogUrl'>>  = async params => {
   // undefined
     return this.client.getGameSessionLogUrl(params as any).promise();
@@ -476,6 +506,21 @@ export class GameLift {
     const result = await this.client.listBuilds({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
     const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listBuilds' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Builds ?? []) ? (result.Builds ?? []) : [result.Builds]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async listCompute(params: { [K in keyof ParamsFrom<'listCompute', { next?: string, limit?: number }>]: ParamsFrom<'listCompute', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listCompute'>]-?: ReturnTypeFrom<'listCompute'>[K]}['ComputeList'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"ComputeList"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { Limit: limit } : {};
+    const result = await this.client.listCompute({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCompute' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.ComputeList ?? []) ? (result.ComputeList ?? []) : [result.ComputeList]) as any;
     return {
       totalItems: member.length,
       member,
@@ -528,6 +573,21 @@ export class GameLift {
     }
   }
 
+  async listLocations(params: { [K in keyof ParamsFrom<'listLocations', { next?: string, limit?: number }>]: ParamsFrom<'listLocations', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listLocations'>]-?: ReturnTypeFrom<'listLocations'>[K]}['Locations'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"Locations"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { Limit: limit } : {};
+    const result = await this.client.listLocations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listLocations' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.Locations ?? []) ? (result.Locations ?? []) : [result.Locations]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
   async listScripts(params: { [K in keyof ParamsFrom<'listScripts', { next?: string, limit?: number }>]: ParamsFrom<'listScripts', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listScripts'>]-?: ReturnTypeFrom<'listScripts'>[K]}['Scripts'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"Scripts"}
     const {next, limit,  ...otherParams} = params ?? {};
@@ -551,6 +611,11 @@ export class GameLift {
   putScalingPolicy: (params: RawParamsFrom<'putScalingPolicy'>) => Promise<ReturnTypeFrom<'putScalingPolicy'>>  = async params => {
   // undefined
     return this.client.putScalingPolicy(params as any).promise();
+  }
+
+  registerCompute: (params: RawParamsFrom<'registerCompute'>) => Promise<ReturnTypeFrom<'registerCompute'>>  = async params => {
+  // undefined
+    return this.client.registerCompute(params as any).promise();
   }
 
   registerGameServer: (params: RawParamsFrom<'registerGameServer'>) => Promise<ReturnTypeFrom<'registerGameServer'>>  = async params => {

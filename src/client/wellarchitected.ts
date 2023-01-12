@@ -133,6 +133,16 @@ export class WellArchitected {
     return this.client.listAnswers(params as any).promise();
   }
 
+  listCheckDetails: (params: RawParamsFrom<'listCheckDetails'>) => Promise<ReturnTypeFrom<'listCheckDetails'>>  = async params => {
+  // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
+    return this.client.listCheckDetails(params as any).promise();
+  }
+
+  listCheckSummaries: (params: RawParamsFrom<'listCheckSummaries'>) => Promise<ReturnTypeFrom<'listCheckSummaries'>>  = async params => {
+  // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
+    return this.client.listCheckSummaries(params as any).promise();
+  }
+
   listLensReviewImprovements: (params: RawParamsFrom<'listLensReviewImprovements'>) => Promise<ReturnTypeFrom<'listLensReviewImprovements'>>  = async params => {
   // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
     return this.client.listLensReviewImprovements(params as any).promise();

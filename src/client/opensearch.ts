@@ -43,6 +43,11 @@ export class OpenSearch {
     return this.client.associatePackage(params as any).promise();
   }
 
+  authorizeVpcEndpointAccess: (params: RawParamsFrom<'authorizeVpcEndpointAccess'>) => Promise<ReturnTypeFrom<'authorizeVpcEndpointAccess'>>  = async params => {
+  // undefined
+    return this.client.authorizeVpcEndpointAccess(params as any).promise();
+  }
+
   cancelServiceSoftwareUpdate: (params: RawParamsFrom<'cancelServiceSoftwareUpdate'>) => Promise<ReturnTypeFrom<'cancelServiceSoftwareUpdate'>>  = async params => {
   // undefined
     return this.client.cancelServiceSoftwareUpdate(params as any).promise();
@@ -63,6 +68,11 @@ export class OpenSearch {
     return this.client.createPackage(params as any).promise();
   }
 
+  createVpcEndpoint: (params: RawParamsFrom<'createVpcEndpoint'>) => Promise<ReturnTypeFrom<'createVpcEndpoint'>>  = async params => {
+  // undefined
+    return this.client.createVpcEndpoint(params as any).promise();
+  }
+
   deleteDomain: (params: RawParamsFrom<'deleteDomain'>) => Promise<ReturnTypeFrom<'deleteDomain'>>  = async params => {
   // undefined
     return this.client.deleteDomain(params as any).promise();
@@ -81,6 +91,11 @@ export class OpenSearch {
   deletePackage: (params: RawParamsFrom<'deletePackage'>) => Promise<ReturnTypeFrom<'deletePackage'>>  = async params => {
   // undefined
     return this.client.deletePackage(params as any).promise();
+  }
+
+  deleteVpcEndpoint: (params: RawParamsFrom<'deleteVpcEndpoint'>) => Promise<ReturnTypeFrom<'deleteVpcEndpoint'>>  = async params => {
+  // undefined
+    return this.client.deleteVpcEndpoint(params as any).promise();
   }
 
   describeDomain: (params: RawParamsFrom<'describeDomain'>) => Promise<ReturnTypeFrom<'describeDomain'>>  = async params => {
@@ -138,6 +153,11 @@ export class OpenSearch {
     return this.client.describeReservedInstances(params as any).promise();
   }
 
+  describeVpcEndpoints: (params: RawParamsFrom<'describeVpcEndpoints'>) => Promise<ReturnTypeFrom<'describeVpcEndpoints'>>  = async params => {
+  // undefined
+    return this.client.describeVpcEndpoints(params as any).promise();
+  }
+
   dissociatePackage: (params: RawParamsFrom<'dissociatePackage'>) => Promise<ReturnTypeFrom<'dissociatePackage'>>  = async params => {
   // undefined
     return this.client.dissociatePackage(params as any).promise();
@@ -193,6 +213,21 @@ export class OpenSearch {
     return this.client.listVersions(params as any).promise();
   }
 
+  listVpcEndpointAccess: (params: RawParamsFrom<'listVpcEndpointAccess'>) => Promise<ReturnTypeFrom<'listVpcEndpointAccess'>>  = async params => {
+  // undefined
+    return this.client.listVpcEndpointAccess(params as any).promise();
+  }
+
+  listVpcEndpoints: (params: RawParamsFrom<'listVpcEndpoints'>) => Promise<ReturnTypeFrom<'listVpcEndpoints'>>  = async params => {
+  // undefined
+    return this.client.listVpcEndpoints(params as any).promise();
+  }
+
+  listVpcEndpointsForDomain: (params: RawParamsFrom<'listVpcEndpointsForDomain'>) => Promise<ReturnTypeFrom<'listVpcEndpointsForDomain'>>  = async params => {
+  // undefined
+    return this.client.listVpcEndpointsForDomain(params as any).promise();
+  }
+
   purchaseReservedInstanceOffering: (params: RawParamsFrom<'purchaseReservedInstanceOffering'>) => Promise<ReturnTypeFrom<'purchaseReservedInstanceOffering'>>  = async params => {
   // undefined
     return this.client.purchaseReservedInstanceOffering(params as any).promise();
@@ -208,6 +243,11 @@ export class OpenSearch {
     return this.client.removeTags(params as any).promise();
   }
 
+  revokeVpcEndpointAccess: (params: RawParamsFrom<'revokeVpcEndpointAccess'>) => Promise<ReturnTypeFrom<'revokeVpcEndpointAccess'>>  = async params => {
+  // undefined
+    return this.client.revokeVpcEndpointAccess(params as any).promise();
+  }
+
   startServiceSoftwareUpdate: (params: RawParamsFrom<'startServiceSoftwareUpdate'>) => Promise<ReturnTypeFrom<'startServiceSoftwareUpdate'>>  = async params => {
   // undefined
     return this.client.startServiceSoftwareUpdate(params as any).promise();
@@ -221,6 +261,11 @@ export class OpenSearch {
   updatePackage: (params: RawParamsFrom<'updatePackage'>) => Promise<ReturnTypeFrom<'updatePackage'>>  = async params => {
   // undefined
     return this.client.updatePackage(params as any).promise();
+  }
+
+  updateVpcEndpoint: (params: RawParamsFrom<'updateVpcEndpoint'>) => Promise<ReturnTypeFrom<'updateVpcEndpoint'>>  = async params => {
+  // undefined
+    return this.client.updateVpcEndpoint(params as any).promise();
   }
 
   upgradeDomain: (params: RawParamsFrom<'upgradeDomain'>) => Promise<ReturnTypeFrom<'upgradeDomain'>>  = async params => {

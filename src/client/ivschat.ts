@@ -26,16 +26,26 @@ export class Ivschat {
   public readonly service = 'ivschat' as const;
   public readonly global = false as const;
   public readonly category = 'Other' as const;
-  public readonly topLevelCalls = ["listRooms"] as const;
+  public readonly topLevelCalls = ["listLoggingConfigurations","listRooms"] as const;
   
   createChatToken: (params: RawParamsFrom<'createChatToken'>) => Promise<ReturnTypeFrom<'createChatToken'>>  = async params => {
   // undefined
     return this.client.createChatToken(params as any).promise();
   }
 
+  createLoggingConfiguration: (params: RawParamsFrom<'createLoggingConfiguration'>) => Promise<ReturnTypeFrom<'createLoggingConfiguration'>>  = async params => {
+  // undefined
+    return this.client.createLoggingConfiguration(params as any).promise();
+  }
+
   createRoom: (params: RawParamsFrom<'createRoom'>) => Promise<ReturnTypeFrom<'createRoom'>>  = async params => {
   // undefined
     return this.client.createRoom(params as any).promise();
+  }
+
+  deleteLoggingConfiguration: (params: RawParamsFrom<'deleteLoggingConfiguration'>) => Promise<ReturnTypeFrom<'deleteLoggingConfiguration'>>  = async params => {
+  // undefined
+    return this.client.deleteLoggingConfiguration(params as any).promise();
   }
 
   deleteMessage: (params: RawParamsFrom<'deleteMessage'>) => Promise<ReturnTypeFrom<'deleteMessage'>>  = async params => {
@@ -53,9 +63,19 @@ export class Ivschat {
     return this.client.disconnectUser(params as any).promise();
   }
 
+  getLoggingConfiguration: (params: RawParamsFrom<'getLoggingConfiguration'>) => Promise<ReturnTypeFrom<'getLoggingConfiguration'>>  = async params => {
+  // undefined
+    return this.client.getLoggingConfiguration(params as any).promise();
+  }
+
   getRoom: (params: RawParamsFrom<'getRoom'>) => Promise<ReturnTypeFrom<'getRoom'>>  = async params => {
   // undefined
     return this.client.getRoom(params as any).promise();
+  }
+
+  listLoggingConfigurations: (params: RawParamsFrom<'listLoggingConfigurations'>) => Promise<ReturnTypeFrom<'listLoggingConfigurations'>>  = async params => {
+  // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken"}
+    return this.client.listLoggingConfigurations(params as any).promise();
   }
 
   listRooms: (params: RawParamsFrom<'listRooms'>) => Promise<ReturnTypeFrom<'listRooms'>>  = async params => {
@@ -81,6 +101,11 @@ export class Ivschat {
   untagResource: (params: RawParamsFrom<'untagResource'>) => Promise<ReturnTypeFrom<'untagResource'>>  = async params => {
   // undefined
     return this.client.untagResource(params as any).promise();
+  }
+
+  updateLoggingConfiguration: (params: RawParamsFrom<'updateLoggingConfiguration'>) => Promise<ReturnTypeFrom<'updateLoggingConfiguration'>>  = async params => {
+  // undefined
+    return this.client.updateLoggingConfiguration(params as any).promise();
   }
 
   updateRoom: (params: RawParamsFrom<'updateRoom'>) => Promise<ReturnTypeFrom<'updateRoom'>>  = async params => {

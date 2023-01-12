@@ -26,7 +26,7 @@ export class Personalize {
   public readonly service = 'personalize' as const;
   public readonly global = false as const;
   public readonly category = 'Machine Learning' as const;
-  public readonly topLevelCalls = ["listBatchInferenceJobs","listBatchSegmentJobs","listCampaigns","listDatasetExportJobs","listDatasetGroups","listDatasetImportJobs","listDatasets","listEventTrackers","listFilters","listRecipes","listRecommenders","listSchemas","listSolutionVersions","listSolutions"] as const;
+  public readonly topLevelCalls = ["listBatchInferenceJobs","listBatchSegmentJobs","listCampaigns","listDatasetExportJobs","listDatasetGroups","listDatasetImportJobs","listDatasets","listEventTrackers","listFilters","listMetricAttributionMetrics","listMetricAttributions","listRecipes","listRecommenders","listSchemas","listSolutionVersions","listSolutions"] as const;
   
   createBatchInferenceJob: (params: RawParamsFrom<'createBatchInferenceJob'>) => Promise<ReturnTypeFrom<'createBatchInferenceJob'>>  = async params => {
   // undefined
@@ -73,6 +73,11 @@ export class Personalize {
     return this.client.createFilter(params as any).promise();
   }
 
+  createMetricAttribution: (params: RawParamsFrom<'createMetricAttribution'>) => Promise<ReturnTypeFrom<'createMetricAttribution'>>  = async params => {
+  // undefined
+    return this.client.createMetricAttribution(params as any).promise();
+  }
+
   createRecommender: (params: RawParamsFrom<'createRecommender'>) => Promise<ReturnTypeFrom<'createRecommender'>>  = async params => {
   // undefined
     return this.client.createRecommender(params as any).promise();
@@ -116,6 +121,11 @@ export class Personalize {
   deleteFilter: (params: RawParamsFrom<'deleteFilter'>) => Promise<ReturnTypeFrom<'deleteFilter'>>  = async params => {
   // undefined
     return this.client.deleteFilter(params as any).promise();
+  }
+
+  deleteMetricAttribution: (params: RawParamsFrom<'deleteMetricAttribution'>) => Promise<ReturnTypeFrom<'deleteMetricAttribution'>>  = async params => {
+  // undefined
+    return this.client.deleteMetricAttribution(params as any).promise();
   }
 
   deleteRecommender: (params: RawParamsFrom<'deleteRecommender'>) => Promise<ReturnTypeFrom<'deleteRecommender'>>  = async params => {
@@ -186,6 +196,11 @@ export class Personalize {
   describeFilter: (params: RawParamsFrom<'describeFilter'>) => Promise<ReturnTypeFrom<'describeFilter'>>  = async params => {
   // undefined
     return this.client.describeFilter(params as any).promise();
+  }
+
+  describeMetricAttribution: (params: RawParamsFrom<'describeMetricAttribution'>) => Promise<ReturnTypeFrom<'describeMetricAttribution'>>  = async params => {
+  // undefined
+    return this.client.describeMetricAttribution(params as any).promise();
   }
 
   describeRecipe: (params: RawParamsFrom<'describeRecipe'>) => Promise<ReturnTypeFrom<'describeRecipe'>>  = async params => {
@@ -353,6 +368,36 @@ export class Personalize {
     }
   }
 
+  async listMetricAttributionMetrics(params: { [K in keyof ParamsFrom<'listMetricAttributionMetrics', { next?: string, limit?: number }>]: ParamsFrom<'listMetricAttributionMetrics', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listMetricAttributionMetrics'>]-?: ReturnTypeFrom<'listMetricAttributionMetrics'>[K]}['metrics'], undefined>}> {
+    // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"metrics"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { maxResults: limit } : {};
+    const result = await this.client.listMetricAttributionMetrics({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listMetricAttributionMetrics' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.metrics ?? []) ? (result.metrics ?? []) : [result.metrics]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async listMetricAttributions(params: { [K in keyof ParamsFrom<'listMetricAttributions', { next?: string, limit?: number }>]: ParamsFrom<'listMetricAttributions', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listMetricAttributions'>]-?: ReturnTypeFrom<'listMetricAttributions'>[K]}['metricAttributions'], undefined>}> {
+    // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"metricAttributions"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { maxResults: limit } : {};
+    const result = await this.client.listMetricAttributions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listMetricAttributions' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.metricAttributions ?? []) ? (result.metricAttributions ?? []) : [result.metricAttributions]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
   async listRecipes(params: { [K in keyof ParamsFrom<'listRecipes', { next?: string, limit?: number }>]: ParamsFrom<'listRecipes', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listRecipes'>]-?: ReturnTypeFrom<'listRecipes'>[K]}['recipes'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"recipes"}
     const {next, limit,  ...otherParams} = params ?? {};
@@ -461,6 +506,11 @@ export class Personalize {
   updateCampaign: (params: RawParamsFrom<'updateCampaign'>) => Promise<ReturnTypeFrom<'updateCampaign'>>  = async params => {
   // undefined
     return this.client.updateCampaign(params as any).promise();
+  }
+
+  updateMetricAttribution: (params: RawParamsFrom<'updateMetricAttribution'>) => Promise<ReturnTypeFrom<'updateMetricAttribution'>>  = async params => {
+  // undefined
+    return this.client.updateMetricAttribution(params as any).promise();
   }
 
   updateRecommender: (params: RawParamsFrom<'updateRecommender'>) => Promise<ReturnTypeFrom<'updateRecommender'>>  = async params => {

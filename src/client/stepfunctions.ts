@@ -26,7 +26,7 @@ export class StepFunctions {
   public readonly service = 'states' as const;
   public readonly global = false as const;
   public readonly category = 'Application Integration' as const;
-  public readonly topLevelCalls = ["listActivities","listStateMachines"] as const;
+  public readonly topLevelCalls = ["listActivities","listExecutions","listStateMachines"] as const;
   
   createActivity: (params: RawParamsFrom<'createActivity'>) => Promise<ReturnTypeFrom<'createActivity'>>  = async params => {
   // undefined
@@ -56,6 +56,11 @@ export class StepFunctions {
   describeExecution: (params: RawParamsFrom<'describeExecution'>) => Promise<ReturnTypeFrom<'describeExecution'>>  = async params => {
   // undefined
     return this.client.describeExecution(params as any).promise();
+  }
+
+  describeMapRun: (params: RawParamsFrom<'describeMapRun'>) => Promise<ReturnTypeFrom<'describeMapRun'>>  = async params => {
+  // undefined
+    return this.client.describeMapRun(params as any).promise();
   }
 
   describeStateMachine: (params: RawParamsFrom<'describeStateMachine'>) => Promise<ReturnTypeFrom<'describeStateMachine'>>  = async params => {
@@ -111,6 +116,21 @@ export class StepFunctions {
     const result = await this.client.listExecutions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
     const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listExecutions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.executions ?? []) ? (result.executions ?? []) : [result.executions]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async listMapRuns(params: { [K in keyof ParamsFrom<'listMapRuns', { next?: string, limit?: number }>]: ParamsFrom<'listMapRuns', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listMapRuns'>]-?: ReturnTypeFrom<'listMapRuns'>[K]}['mapRuns'], undefined>}> {
+    // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"mapRuns"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { maxResults: limit } : {};
+    const result = await this.client.listMapRuns({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listMapRuns' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.mapRuns ?? []) ? (result.mapRuns ?? []) : [result.mapRuns]) as any;
     return {
       totalItems: member.length,
       member,
@@ -176,6 +196,11 @@ export class StepFunctions {
   untagResource: (params: RawParamsFrom<'untagResource'>) => Promise<ReturnTypeFrom<'untagResource'>>  = async params => {
   // undefined
     return this.client.untagResource(params as any).promise();
+  }
+
+  updateMapRun: (params: RawParamsFrom<'updateMapRun'>) => Promise<ReturnTypeFrom<'updateMapRun'>>  = async params => {
+  // undefined
+    return this.client.updateMapRun(params as any).promise();
   }
 
   updateStateMachine: (params: RawParamsFrom<'updateStateMachine'>) => Promise<ReturnTypeFrom<'updateStateMachine'>>  = async params => {

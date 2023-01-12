@@ -43,6 +43,11 @@ export class ES {
     return this.client.associatePackage(params as any).promise();
   }
 
+  authorizeVpcEndpointAccess: (params: RawParamsFrom<'authorizeVpcEndpointAccess'>) => Promise<ReturnTypeFrom<'authorizeVpcEndpointAccess'>>  = async params => {
+  // undefined
+    return this.client.authorizeVpcEndpointAccess(params as any).promise();
+  }
+
   cancelElasticsearchServiceSoftwareUpdate: (params: RawParamsFrom<'cancelElasticsearchServiceSoftwareUpdate'>) => Promise<ReturnTypeFrom<'cancelElasticsearchServiceSoftwareUpdate'>>  = async params => {
   // undefined
     return this.client.cancelElasticsearchServiceSoftwareUpdate(params as any).promise();
@@ -61,6 +66,11 @@ export class ES {
   createPackage: (params: RawParamsFrom<'createPackage'>) => Promise<ReturnTypeFrom<'createPackage'>>  = async params => {
   // undefined
     return this.client.createPackage(params as any).promise();
+  }
+
+  createVpcEndpoint: (params: RawParamsFrom<'createVpcEndpoint'>) => Promise<ReturnTypeFrom<'createVpcEndpoint'>>  = async params => {
+  // undefined
+    return this.client.createVpcEndpoint(params as any).promise();
   }
 
   deleteElasticsearchDomain: (params: RawParamsFrom<'deleteElasticsearchDomain'>) => Promise<ReturnTypeFrom<'deleteElasticsearchDomain'>>  = async params => {
@@ -86,6 +96,11 @@ export class ES {
   deletePackage: (params: RawParamsFrom<'deletePackage'>) => Promise<ReturnTypeFrom<'deletePackage'>>  = async params => {
   // undefined
     return this.client.deletePackage(params as any).promise();
+  }
+
+  deleteVpcEndpoint: (params: RawParamsFrom<'deleteVpcEndpoint'>) => Promise<ReturnTypeFrom<'deleteVpcEndpoint'>>  = async params => {
+  // undefined
+    return this.client.deleteVpcEndpoint(params as any).promise();
   }
 
   describeDomainAutoTunes: (params: RawParamsFrom<'describeDomainAutoTunes'>) => Promise<ReturnTypeFrom<'describeDomainAutoTunes'>>  = async params => {
@@ -143,6 +158,11 @@ export class ES {
     return this.client.describeReservedElasticsearchInstances(params as any).promise();
   }
 
+  describeVpcEndpoints: (params: RawParamsFrom<'describeVpcEndpoints'>) => Promise<ReturnTypeFrom<'describeVpcEndpoints'>>  = async params => {
+  // undefined
+    return this.client.describeVpcEndpoints(params as any).promise();
+  }
+
   dissociatePackage: (params: RawParamsFrom<'dissociatePackage'>) => Promise<ReturnTypeFrom<'dissociatePackage'>>  = async params => {
   // undefined
     return this.client.dissociatePackage(params as any).promise();
@@ -198,6 +218,21 @@ export class ES {
     return this.client.listTags(params as any).promise();
   }
 
+  listVpcEndpointAccess: (params: RawParamsFrom<'listVpcEndpointAccess'>) => Promise<ReturnTypeFrom<'listVpcEndpointAccess'>>  = async params => {
+  // undefined
+    return this.client.listVpcEndpointAccess(params as any).promise();
+  }
+
+  listVpcEndpoints: (params: RawParamsFrom<'listVpcEndpoints'>) => Promise<ReturnTypeFrom<'listVpcEndpoints'>>  = async params => {
+  // undefined
+    return this.client.listVpcEndpoints(params as any).promise();
+  }
+
+  listVpcEndpointsForDomain: (params: RawParamsFrom<'listVpcEndpointsForDomain'>) => Promise<ReturnTypeFrom<'listVpcEndpointsForDomain'>>  = async params => {
+  // undefined
+    return this.client.listVpcEndpointsForDomain(params as any).promise();
+  }
+
   purchaseReservedElasticsearchInstanceOffering: (params: RawParamsFrom<'purchaseReservedElasticsearchInstanceOffering'>) => Promise<ReturnTypeFrom<'purchaseReservedElasticsearchInstanceOffering'>>  = async params => {
   // undefined
     return this.client.purchaseReservedElasticsearchInstanceOffering(params as any).promise();
@@ -213,6 +248,11 @@ export class ES {
     return this.client.removeTags(params as any).promise();
   }
 
+  revokeVpcEndpointAccess: (params: RawParamsFrom<'revokeVpcEndpointAccess'>) => Promise<ReturnTypeFrom<'revokeVpcEndpointAccess'>>  = async params => {
+  // undefined
+    return this.client.revokeVpcEndpointAccess(params as any).promise();
+  }
+
   startElasticsearchServiceSoftwareUpdate: (params: RawParamsFrom<'startElasticsearchServiceSoftwareUpdate'>) => Promise<ReturnTypeFrom<'startElasticsearchServiceSoftwareUpdate'>>  = async params => {
   // undefined
     return this.client.startElasticsearchServiceSoftwareUpdate(params as any).promise();
@@ -226,6 +266,11 @@ export class ES {
   updatePackage: (params: RawParamsFrom<'updatePackage'>) => Promise<ReturnTypeFrom<'updatePackage'>>  = async params => {
   // undefined
     return this.client.updatePackage(params as any).promise();
+  }
+
+  updateVpcEndpoint: (params: RawParamsFrom<'updateVpcEndpoint'>) => Promise<ReturnTypeFrom<'updateVpcEndpoint'>>  = async params => {
+  // undefined
+    return this.client.updateVpcEndpoint(params as any).promise();
   }
 
   upgradeElasticsearchDomain: (params: RawParamsFrom<'upgradeElasticsearchDomain'>) => Promise<ReturnTypeFrom<'upgradeElasticsearchDomain'>>  = async params => {

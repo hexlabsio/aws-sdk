@@ -133,6 +133,11 @@ export class Nimble {
     return this.client.getStreamingSession(params as any).promise();
   }
 
+  getStreamingSessionBackup: (params: RawParamsFrom<'getStreamingSessionBackup'>) => Promise<ReturnTypeFrom<'getStreamingSessionBackup'>>  = async params => {
+  // undefined
+    return this.client.getStreamingSessionBackup(params as any).promise();
+  }
+
   getStreamingSessionStream: (params: RawParamsFrom<'getStreamingSessionStream'>) => Promise<ReturnTypeFrom<'getStreamingSessionStream'>>  = async params => {
   // undefined
     return this.client.getStreamingSessionStream(params as any).promise();
@@ -221,6 +226,21 @@ export class Nimble {
     const result = await this.client.listStreamingImages({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
     const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStreamingImages' })).toString('base64') : undefined;
     const member = (Array.isArray(result.streamingImages ?? []) ? (result.streamingImages ?? []) : [result.streamingImages]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async listStreamingSessionBackups(params: { [K in keyof ParamsFrom<'listStreamingSessionBackups', { next?: string }>]: ParamsFrom<'listStreamingSessionBackups', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listStreamingSessionBackups'>]-?: ReturnTypeFrom<'listStreamingSessionBackups'>[K]}['streamingSessionBackups'], undefined>}> {
+    // {"inputToken":"nextToken","outputToken":"nextToken","resultKey":"streamingSessionBackups"}
+    const {next,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = {};
+    const result = await this.client.listStreamingSessionBackups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listStreamingSessionBackups' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.streamingSessionBackups ?? []) ? (result.streamingSessionBackups ?? []) : [result.streamingSessionBackups]) as any;
     return {
       totalItems: member.length,
       member,

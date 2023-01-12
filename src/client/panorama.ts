@@ -178,6 +178,11 @@ export class Panorama {
     return this.client.removeApplicationInstance(params as any).promise();
   }
 
+  signalApplicationInstanceNodeInstances: (params: RawParamsFrom<'signalApplicationInstanceNodeInstances'>) => Promise<ReturnTypeFrom<'signalApplicationInstanceNodeInstances'>>  = async params => {
+  // undefined
+    return this.client.signalApplicationInstanceNodeInstances(params as any).promise();
+  }
+
   tagResource: (params: RawParamsFrom<'tagResource'>) => Promise<ReturnTypeFrom<'tagResource'>>  = async params => {
   // undefined
     return this.client.tagResource(params as any).promise();

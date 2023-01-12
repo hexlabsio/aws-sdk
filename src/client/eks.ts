@@ -88,6 +88,11 @@ export class EKS {
     return this.client.describeAddon(params as any).promise();
   }
 
+  describeAddonConfiguration: (params: RawParamsFrom<'describeAddonConfiguration'>) => Promise<ReturnTypeFrom<'describeAddonConfiguration'>>  = async params => {
+  // undefined
+    return this.client.describeAddonConfiguration(params as any).promise();
+  }
+
   async describeAddonVersions(params: { [K in keyof ParamsFrom<'describeAddonVersions', { next?: string, limit?: number }>]: ParamsFrom<'describeAddonVersions', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeAddonVersions'>]-?: ReturnTypeFrom<'describeAddonVersions'>[K]}['addons'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"addons"}
     const {next, limit,  ...otherParams} = params ?? {};

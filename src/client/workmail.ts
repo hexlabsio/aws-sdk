@@ -38,6 +38,11 @@ export class WorkMail {
     return this.client.associateMemberToGroup(params as any).promise();
   }
 
+  assumeImpersonationRole: (params: RawParamsFrom<'assumeImpersonationRole'>) => Promise<ReturnTypeFrom<'assumeImpersonationRole'>>  = async params => {
+  // undefined
+    return this.client.assumeImpersonationRole(params as any).promise();
+  }
+
   cancelMailboxExportJob: (params: RawParamsFrom<'cancelMailboxExportJob'>) => Promise<ReturnTypeFrom<'cancelMailboxExportJob'>>  = async params => {
   // undefined
     return this.client.cancelMailboxExportJob(params as any).promise();
@@ -56,6 +61,11 @@ export class WorkMail {
   createGroup: (params: RawParamsFrom<'createGroup'>) => Promise<ReturnTypeFrom<'createGroup'>>  = async params => {
   // undefined
     return this.client.createGroup(params as any).promise();
+  }
+
+  createImpersonationRole: (params: RawParamsFrom<'createImpersonationRole'>) => Promise<ReturnTypeFrom<'createImpersonationRole'>>  = async params => {
+  // undefined
+    return this.client.createImpersonationRole(params as any).promise();
   }
 
   createMobileDeviceAccessRule: (params: RawParamsFrom<'createMobileDeviceAccessRule'>) => Promise<ReturnTypeFrom<'createMobileDeviceAccessRule'>>  = async params => {
@@ -101,6 +111,11 @@ export class WorkMail {
   deleteGroup: (params: RawParamsFrom<'deleteGroup'>) => Promise<ReturnTypeFrom<'deleteGroup'>>  = async params => {
   // undefined
     return this.client.deleteGroup(params as any).promise();
+  }
+
+  deleteImpersonationRole: (params: RawParamsFrom<'deleteImpersonationRole'>) => Promise<ReturnTypeFrom<'deleteImpersonationRole'>>  = async params => {
+  // undefined
+    return this.client.deleteImpersonationRole(params as any).promise();
   }
 
   deleteMailboxPermissions: (params: RawParamsFrom<'deleteMailboxPermissions'>) => Promise<ReturnTypeFrom<'deleteMailboxPermissions'>>  = async params => {
@@ -203,6 +218,16 @@ export class WorkMail {
     return this.client.getDefaultRetentionPolicy(params as any).promise();
   }
 
+  getImpersonationRole: (params: RawParamsFrom<'getImpersonationRole'>) => Promise<ReturnTypeFrom<'getImpersonationRole'>>  = async params => {
+  // undefined
+    return this.client.getImpersonationRole(params as any).promise();
+  }
+
+  getImpersonationRoleEffect: (params: RawParamsFrom<'getImpersonationRoleEffect'>) => Promise<ReturnTypeFrom<'getImpersonationRoleEffect'>>  = async params => {
+  // undefined
+    return this.client.getImpersonationRoleEffect(params as any).promise();
+  }
+
   getMailDomain: (params: RawParamsFrom<'getMailDomain'>) => Promise<ReturnTypeFrom<'getMailDomain'>>  = async params => {
   // undefined
     return this.client.getMailDomain(params as any).promise();
@@ -256,6 +281,11 @@ export class WorkMail {
   listGroups: (params: RawParamsFrom<'listGroups'>) => Promise<ReturnTypeFrom<'listGroups'>>  = async params => {
   // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
     return this.client.listGroups(params as any).promise();
+  }
+
+  listImpersonationRoles: (params: RawParamsFrom<'listImpersonationRoles'>) => Promise<ReturnTypeFrom<'listImpersonationRoles'>>  = async params => {
+  // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
+    return this.client.listImpersonationRoles(params as any).promise();
   }
 
   listMailDomains: (params: RawParamsFrom<'listMailDomains'>) => Promise<ReturnTypeFrom<'listMailDomains'>>  = async params => {
@@ -381,6 +411,11 @@ export class WorkMail {
   updateDefaultMailDomain: (params: RawParamsFrom<'updateDefaultMailDomain'>) => Promise<ReturnTypeFrom<'updateDefaultMailDomain'>>  = async params => {
   // undefined
     return this.client.updateDefaultMailDomain(params as any).promise();
+  }
+
+  updateImpersonationRole: (params: RawParamsFrom<'updateImpersonationRole'>) => Promise<ReturnTypeFrom<'updateImpersonationRole'>>  = async params => {
+  // undefined
+    return this.client.updateImpersonationRole(params as any).promise();
   }
 
   updateMailboxQuota: (params: RawParamsFrom<'updateMailboxQuota'>) => Promise<ReturnTypeFrom<'updateMailboxQuota'>>  = async params => {

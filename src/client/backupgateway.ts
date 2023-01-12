@@ -53,9 +53,24 @@ export class BackupGateway {
     return this.client.disassociateGatewayFromServer(params as any).promise();
   }
 
+  getBandwidthRateLimitSchedule: (params: RawParamsFrom<'getBandwidthRateLimitSchedule'>) => Promise<ReturnTypeFrom<'getBandwidthRateLimitSchedule'>>  = async params => {
+  // undefined
+    return this.client.getBandwidthRateLimitSchedule(params as any).promise();
+  }
+
   getGateway: (params: RawParamsFrom<'getGateway'>) => Promise<ReturnTypeFrom<'getGateway'>>  = async params => {
   // undefined
     return this.client.getGateway(params as any).promise();
+  }
+
+  getHypervisor: (params: RawParamsFrom<'getHypervisor'>) => Promise<ReturnTypeFrom<'getHypervisor'>>  = async params => {
+  // undefined
+    return this.client.getHypervisor(params as any).promise();
+  }
+
+  getHypervisorPropertyMappings: (params: RawParamsFrom<'getHypervisorPropertyMappings'>) => Promise<ReturnTypeFrom<'getHypervisorPropertyMappings'>>  = async params => {
+  // undefined
+    return this.client.getHypervisorPropertyMappings(params as any).promise();
   }
 
   getVirtualMachine: (params: RawParamsFrom<'getVirtualMachine'>) => Promise<ReturnTypeFrom<'getVirtualMachine'>>  = async params => {
@@ -118,9 +133,24 @@ export class BackupGateway {
     }
   }
 
+  putBandwidthRateLimitSchedule: (params: RawParamsFrom<'putBandwidthRateLimitSchedule'>) => Promise<ReturnTypeFrom<'putBandwidthRateLimitSchedule'>>  = async params => {
+  // undefined
+    return this.client.putBandwidthRateLimitSchedule(params as any).promise();
+  }
+
+  putHypervisorPropertyMappings: (params: RawParamsFrom<'putHypervisorPropertyMappings'>) => Promise<ReturnTypeFrom<'putHypervisorPropertyMappings'>>  = async params => {
+  // undefined
+    return this.client.putHypervisorPropertyMappings(params as any).promise();
+  }
+
   putMaintenanceStartTime: (params: RawParamsFrom<'putMaintenanceStartTime'>) => Promise<ReturnTypeFrom<'putMaintenanceStartTime'>>  = async params => {
   // undefined
     return this.client.putMaintenanceStartTime(params as any).promise();
+  }
+
+  startVirtualMachinesMetadataSync: (params: RawParamsFrom<'startVirtualMachinesMetadataSync'>) => Promise<ReturnTypeFrom<'startVirtualMachinesMetadataSync'>>  = async params => {
+  // undefined
+    return this.client.startVirtualMachinesMetadataSync(params as any).promise();
   }
 
   tagResource: (params: RawParamsFrom<'tagResource'>) => Promise<ReturnTypeFrom<'tagResource'>>  = async params => {

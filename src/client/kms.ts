@@ -79,7 +79,7 @@ export class KMS {
   }
 
   async describeCustomKeyStores(params: { [K in keyof ParamsFrom<'describeCustomKeyStores', { next?: string, limit?: number }>]: ParamsFrom<'describeCustomKeyStores', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeCustomKeyStores'>]-?: ReturnTypeFrom<'describeCustomKeyStores'>[K]}['CustomKeyStores'], undefined>}> {
-    // {"inputToken":"Marker","limitKey":"Limit","moreResults":"Truncated","outputToken":"NextMarker","resultKey":"CustomKeyStores"}
+    // {"inputToken":"Marker","limitKey":"Limit","outputToken":"NextMarker","resultKey":"CustomKeyStores"}
     const {next, limit,  ...otherParams} = params ?? {};
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
@@ -184,7 +184,7 @@ export class KMS {
   }
 
   async listAliases(params: { [K in keyof ParamsFrom<'listAliases', { next?: string, limit?: number }>]: ParamsFrom<'listAliases', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listAliases'>]-?: ReturnTypeFrom<'listAliases'>[K]}['Aliases'], undefined>}> {
-    // {"inputToken":"Marker","limitKey":"Limit","moreResults":"Truncated","outputToken":"NextMarker","resultKey":"Aliases"}
+    // {"inputToken":"Marker","limitKey":"Limit","outputToken":"NextMarker","resultKey":"Aliases"}
     const {next, limit,  ...otherParams} = params ?? {};
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
@@ -199,7 +199,7 @@ export class KMS {
   }
 
   async listGrants(params: { [K in keyof ParamsFrom<'listGrants', { next?: string, limit?: number }>]: ParamsFrom<'listGrants', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listGrants'>]-?: ReturnTypeFrom<'listGrants'>[K]}['Grants'], undefined>}> {
-    // {"inputToken":"Marker","limitKey":"Limit","moreResults":"Truncated","outputToken":"NextMarker","resultKey":"Grants"}
+    // {"inputToken":"Marker","limitKey":"Limit","outputToken":"NextMarker","resultKey":"Grants"}
     const {next, limit,  ...otherParams} = params ?? {};
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
@@ -214,7 +214,7 @@ export class KMS {
   }
 
   async listKeyPolicies(params: { [K in keyof ParamsFrom<'listKeyPolicies', { next?: string, limit?: number }>]: ParamsFrom<'listKeyPolicies', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listKeyPolicies'>]-?: ReturnTypeFrom<'listKeyPolicies'>[K]}['PolicyNames'], undefined>}> {
-    // {"inputToken":"Marker","limitKey":"Limit","moreResults":"Truncated","outputToken":"NextMarker","resultKey":"PolicyNames"}
+    // {"inputToken":"Marker","limitKey":"Limit","outputToken":"NextMarker","resultKey":"PolicyNames"}
     const {next, limit,  ...otherParams} = params ?? {};
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
@@ -229,7 +229,7 @@ export class KMS {
   }
 
   async listKeys(params: { [K in keyof ParamsFrom<'listKeys', { next?: string, limit?: number }>]: ParamsFrom<'listKeys', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listKeys'>]-?: ReturnTypeFrom<'listKeys'>[K]}['Keys'], undefined>}> {
-    // {"inputToken":"Marker","limitKey":"Limit","moreResults":"Truncated","outputToken":"NextMarker","resultKey":"Keys"}
+    // {"inputToken":"Marker","limitKey":"Limit","outputToken":"NextMarker","resultKey":"Keys"}
     const {next, limit,  ...otherParams} = params ?? {};
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
@@ -244,7 +244,7 @@ export class KMS {
   }
 
   async listResourceTags(params: { [K in keyof ParamsFrom<'listResourceTags', { next?: string, limit?: number }>]: ParamsFrom<'listResourceTags', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listResourceTags'>]-?: ReturnTypeFrom<'listResourceTags'>[K]}['Tags'], undefined>}> {
-    // {"inputToken":"Marker","limitKey":"Limit","moreResults":"Truncated","outputToken":"NextMarker","resultKey":"Tags"}
+    // {"inputToken":"Marker","limitKey":"Limit","outputToken":"NextMarker","resultKey":"Tags"}
     const {next, limit,  ...otherParams} = params ?? {};
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};
@@ -259,7 +259,7 @@ export class KMS {
   }
 
   async listRetirableGrants(params: { [K in keyof ParamsFrom<'listRetirableGrants', { next?: string, limit?: number }>]: ParamsFrom<'listRetirableGrants', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listRetirableGrants'>]-?: ReturnTypeFrom<'listRetirableGrants'>[K]}['Grants'], undefined>}> {
-    // {"inputToken":"Marker","limitKey":"Limit","moreResults":"Truncated","outputToken":"NextMarker","resultKey":"Grants"}
+    // {"inputToken":"Marker","limitKey":"Limit","outputToken":"NextMarker","resultKey":"Grants"}
     const {next, limit,  ...otherParams} = params ?? {};
     const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
     const limitTokenPart = limit ? { Limit: limit } : {};

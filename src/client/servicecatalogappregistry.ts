@@ -83,6 +83,11 @@ export class ServiceCatalogAppRegistry {
     return this.client.getAttributeGroup(params as any).promise();
   }
 
+  getConfiguration: (params: RawParamsFrom<'getConfiguration'>) => Promise<ReturnTypeFrom<'getConfiguration'>>  = async params => {
+  // undefined
+    return this.client.getConfiguration(params as any).promise();
+  }
+
   async listApplications(params: { [K in keyof ParamsFrom<'listApplications', { next?: string, limit?: number }>]: ParamsFrom<'listApplications', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listApplications'>]-?: ReturnTypeFrom<'listApplications'>[K]}['applications'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"applications"}
     const {next, limit,  ...otherParams} = params ?? {};
@@ -161,6 +166,11 @@ export class ServiceCatalogAppRegistry {
   listTagsForResource: (params: RawParamsFrom<'listTagsForResource'>) => Promise<ReturnTypeFrom<'listTagsForResource'>>  = async params => {
   // undefined
     return this.client.listTagsForResource(params as any).promise();
+  }
+
+  putConfiguration: (params: RawParamsFrom<'putConfiguration'>) => Promise<ReturnTypeFrom<'putConfiguration'>>  = async params => {
+  // undefined
+    return this.client.putConfiguration(params as any).promise();
   }
 
   syncResource: (params: RawParamsFrom<'syncResource'>) => Promise<ReturnTypeFrom<'syncResource'>>  = async params => {

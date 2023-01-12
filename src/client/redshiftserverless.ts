@@ -26,7 +26,7 @@ export class RedshiftServerless {
   public readonly service = 'redshift-serverless' as const;
   public readonly global = false as const;
   public readonly category = 'Other' as const;
-  public readonly topLevelCalls = ["listEndpointAccess","listNamespaces","listRecoveryPoints","listSnapshots","listUsageLimits","listWorkgroups"] as const;
+  public readonly topLevelCalls = ["listEndpointAccess","listNamespaces","listRecoveryPoints","listSnapshots","listTableRestoreStatus","listUsageLimits","listWorkgroups"] as const;
   
   convertRecoveryPointToSnapshot: (params: RawParamsFrom<'convertRecoveryPointToSnapshot'>) => Promise<ReturnTypeFrom<'convertRecoveryPointToSnapshot'>>  = async params => {
   // undefined
@@ -118,6 +118,11 @@ export class RedshiftServerless {
     return this.client.getSnapshot(params as any).promise();
   }
 
+  getTableRestoreStatus: (params: RawParamsFrom<'getTableRestoreStatus'>) => Promise<ReturnTypeFrom<'getTableRestoreStatus'>>  = async params => {
+  // undefined
+    return this.client.getTableRestoreStatus(params as any).promise();
+  }
+
   getUsageLimit: (params: RawParamsFrom<'getUsageLimit'>) => Promise<ReturnTypeFrom<'getUsageLimit'>>  = async params => {
   // undefined
     return this.client.getUsageLimit(params as any).promise();
@@ -188,6 +193,21 @@ export class RedshiftServerless {
     }
   }
 
+  async listTableRestoreStatus(params: { [K in keyof ParamsFrom<'listTableRestoreStatus', { next?: string, limit?: number }>]: ParamsFrom<'listTableRestoreStatus', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listTableRestoreStatus'>]-?: ReturnTypeFrom<'listTableRestoreStatus'>[K]}['tableRestoreStatuses'], undefined>}> {
+    // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"tableRestoreStatuses"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { maxResults: limit } : {};
+    const result = await this.client.listTableRestoreStatus({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listTableRestoreStatus' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.tableRestoreStatuses ?? []) ? (result.tableRestoreStatuses ?? []) : [result.tableRestoreStatuses]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
   listTagsForResource: (params: RawParamsFrom<'listTagsForResource'>) => Promise<ReturnTypeFrom<'listTagsForResource'>>  = async params => {
   // undefined
     return this.client.listTagsForResource(params as any).promise();
@@ -236,6 +256,11 @@ export class RedshiftServerless {
   restoreFromSnapshot: (params: RawParamsFrom<'restoreFromSnapshot'>) => Promise<ReturnTypeFrom<'restoreFromSnapshot'>>  = async params => {
   // undefined
     return this.client.restoreFromSnapshot(params as any).promise();
+  }
+
+  restoreTableFromSnapshot: (params: RawParamsFrom<'restoreTableFromSnapshot'>) => Promise<ReturnTypeFrom<'restoreTableFromSnapshot'>>  = async params => {
+  // undefined
+    return this.client.restoreTableFromSnapshot(params as any).promise();
   }
 
   tagResource: (params: RawParamsFrom<'tagResource'>) => Promise<ReturnTypeFrom<'tagResource'>>  = async params => {

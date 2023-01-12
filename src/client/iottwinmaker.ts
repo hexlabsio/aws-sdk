@@ -48,6 +48,11 @@ export class IoTTwinMaker {
     return this.client.createScene(params as any).promise();
   }
 
+  createSyncJob: (params: RawParamsFrom<'createSyncJob'>) => Promise<ReturnTypeFrom<'createSyncJob'>>  = async params => {
+  // undefined
+    return this.client.createSyncJob(params as any).promise();
+  }
+
   createWorkspace: (params: RawParamsFrom<'createWorkspace'>) => Promise<ReturnTypeFrom<'createWorkspace'>>  = async params => {
   // undefined
     return this.client.createWorkspace(params as any).promise();
@@ -68,9 +73,19 @@ export class IoTTwinMaker {
     return this.client.deleteScene(params as any).promise();
   }
 
+  deleteSyncJob: (params: RawParamsFrom<'deleteSyncJob'>) => Promise<ReturnTypeFrom<'deleteSyncJob'>>  = async params => {
+  // undefined
+    return this.client.deleteSyncJob(params as any).promise();
+  }
+
   deleteWorkspace: (params: RawParamsFrom<'deleteWorkspace'>) => Promise<ReturnTypeFrom<'deleteWorkspace'>>  = async params => {
   // undefined
     return this.client.deleteWorkspace(params as any).promise();
+  }
+
+  executeQuery: (params: RawParamsFrom<'executeQuery'>) => Promise<ReturnTypeFrom<'executeQuery'>>  = async params => {
+  // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken"}
+    return this.client.executeQuery(params as any).promise();
   }
 
   getComponentType: (params: RawParamsFrom<'getComponentType'>) => Promise<ReturnTypeFrom<'getComponentType'>>  = async params => {
@@ -83,8 +98,13 @@ export class IoTTwinMaker {
     return this.client.getEntity(params as any).promise();
   }
 
-  getPropertyValue: (params: RawParamsFrom<'getPropertyValue'>) => Promise<ReturnTypeFrom<'getPropertyValue'>>  = async params => {
+  getPricingPlan: (params: RawParamsFrom<'getPricingPlan'>) => Promise<ReturnTypeFrom<'getPricingPlan'>>  = async params => {
   // undefined
+    return this.client.getPricingPlan(params as any).promise();
+  }
+
+  getPropertyValue: (params: RawParamsFrom<'getPropertyValue'>) => Promise<ReturnTypeFrom<'getPropertyValue'>>  = async params => {
+  // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken"}
     return this.client.getPropertyValue(params as any).promise();
   }
 
@@ -96,6 +116,11 @@ export class IoTTwinMaker {
   getScene: (params: RawParamsFrom<'getScene'>) => Promise<ReturnTypeFrom<'getScene'>>  = async params => {
   // undefined
     return this.client.getScene(params as any).promise();
+  }
+
+  getSyncJob: (params: RawParamsFrom<'getSyncJob'>) => Promise<ReturnTypeFrom<'getSyncJob'>>  = async params => {
+  // undefined
+    return this.client.getSyncJob(params as any).promise();
   }
 
   getWorkspace: (params: RawParamsFrom<'getWorkspace'>) => Promise<ReturnTypeFrom<'getWorkspace'>>  = async params => {
@@ -116,6 +141,16 @@ export class IoTTwinMaker {
   listScenes: (params: RawParamsFrom<'listScenes'>) => Promise<ReturnTypeFrom<'listScenes'>>  = async params => {
   // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken"}
     return this.client.listScenes(params as any).promise();
+  }
+
+  listSyncJobs: (params: RawParamsFrom<'listSyncJobs'>) => Promise<ReturnTypeFrom<'listSyncJobs'>>  = async params => {
+  // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken"}
+    return this.client.listSyncJobs(params as any).promise();
+  }
+
+  listSyncResources: (params: RawParamsFrom<'listSyncResources'>) => Promise<ReturnTypeFrom<'listSyncResources'>>  = async params => {
+  // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken"}
+    return this.client.listSyncResources(params as any).promise();
   }
 
   listTagsForResource: (params: RawParamsFrom<'listTagsForResource'>) => Promise<ReturnTypeFrom<'listTagsForResource'>>  = async params => {
@@ -146,6 +181,11 @@ export class IoTTwinMaker {
   updateEntity: (params: RawParamsFrom<'updateEntity'>) => Promise<ReturnTypeFrom<'updateEntity'>>  = async params => {
   // undefined
     return this.client.updateEntity(params as any).promise();
+  }
+
+  updatePricingPlan: (params: RawParamsFrom<'updatePricingPlan'>) => Promise<ReturnTypeFrom<'updatePricingPlan'>>  = async params => {
+  // undefined
+    return this.client.updatePricingPlan(params as any).promise();
   }
 
   updateScene: (params: RawParamsFrom<'updateScene'>) => Promise<ReturnTypeFrom<'updateScene'>>  = async params => {

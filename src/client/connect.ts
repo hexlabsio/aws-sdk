@@ -26,7 +26,7 @@ export class Connect {
   public readonly service = 'connect' as const;
   public readonly global = false as const;
   public readonly category = 'Customer Engagement' as const;
-  public readonly topLevelCalls = ["listInstances","listPhoneNumbersV2","searchUsers"] as const;
+  public readonly topLevelCalls = ["listInstances","listPhoneNumbersV2","listTrafficDistributionGroups","searchUsers"] as const;
   
   associateApprovedOrigin: (params: RawParamsFrom<'associateApprovedOrigin'>) => Promise<ReturnTypeFrom<'associateApprovedOrigin'>>  = async params => {
   // undefined
@@ -128,6 +128,11 @@ export class Connect {
     return this.client.createRoutingProfile(params as any).promise();
   }
 
+  createRule: (params: RawParamsFrom<'createRule'>) => Promise<ReturnTypeFrom<'createRule'>>  = async params => {
+  // undefined
+    return this.client.createRule(params as any).promise();
+  }
+
   createSecurityProfile: (params: RawParamsFrom<'createSecurityProfile'>) => Promise<ReturnTypeFrom<'createSecurityProfile'>>  = async params => {
   // undefined
     return this.client.createSecurityProfile(params as any).promise();
@@ -136,6 +141,11 @@ export class Connect {
   createTaskTemplate: (params: RawParamsFrom<'createTaskTemplate'>) => Promise<ReturnTypeFrom<'createTaskTemplate'>>  = async params => {
   // undefined
     return this.client.createTaskTemplate(params as any).promise();
+  }
+
+  createTrafficDistributionGroup: (params: RawParamsFrom<'createTrafficDistributionGroup'>) => Promise<ReturnTypeFrom<'createTrafficDistributionGroup'>>  = async params => {
+  // undefined
+    return this.client.createTrafficDistributionGroup(params as any).promise();
   }
 
   createUseCase: (params: RawParamsFrom<'createUseCase'>) => Promise<ReturnTypeFrom<'createUseCase'>>  = async params => {
@@ -188,6 +198,11 @@ export class Connect {
     return this.client.deleteQuickConnect(params as any).promise();
   }
 
+  deleteRule: (params: RawParamsFrom<'deleteRule'>) => Promise<ReturnTypeFrom<'deleteRule'>>  = async params => {
+  // undefined
+    return this.client.deleteRule(params as any).promise();
+  }
+
   deleteSecurityProfile: (params: RawParamsFrom<'deleteSecurityProfile'>) => Promise<ReturnTypeFrom<'deleteSecurityProfile'>>  = async params => {
   // undefined
     return this.client.deleteSecurityProfile(params as any).promise();
@@ -196,6 +211,11 @@ export class Connect {
   deleteTaskTemplate: (params: RawParamsFrom<'deleteTaskTemplate'>) => Promise<ReturnTypeFrom<'deleteTaskTemplate'>>  = async params => {
   // undefined
     return this.client.deleteTaskTemplate(params as any).promise();
+  }
+
+  deleteTrafficDistributionGroup: (params: RawParamsFrom<'deleteTrafficDistributionGroup'>) => Promise<ReturnTypeFrom<'deleteTrafficDistributionGroup'>>  = async params => {
+  // undefined
+    return this.client.deleteTrafficDistributionGroup(params as any).promise();
   }
 
   deleteUseCase: (params: RawParamsFrom<'deleteUseCase'>) => Promise<ReturnTypeFrom<'deleteUseCase'>>  = async params => {
@@ -278,9 +298,19 @@ export class Connect {
     return this.client.describeRoutingProfile(params as any).promise();
   }
 
+  describeRule: (params: RawParamsFrom<'describeRule'>) => Promise<ReturnTypeFrom<'describeRule'>>  = async params => {
+  // undefined
+    return this.client.describeRule(params as any).promise();
+  }
+
   describeSecurityProfile: (params: RawParamsFrom<'describeSecurityProfile'>) => Promise<ReturnTypeFrom<'describeSecurityProfile'>>  = async params => {
   // undefined
     return this.client.describeSecurityProfile(params as any).promise();
+  }
+
+  describeTrafficDistributionGroup: (params: RawParamsFrom<'describeTrafficDistributionGroup'>) => Promise<ReturnTypeFrom<'describeTrafficDistributionGroup'>>  = async params => {
+  // undefined
+    return this.client.describeTrafficDistributionGroup(params as any).promise();
   }
 
   describeUser: (params: RawParamsFrom<'describeUser'>) => Promise<ReturnTypeFrom<'describeUser'>>  = async params => {
@@ -348,6 +378,11 @@ export class Connect {
     return this.client.disassociateSecurityKey(params as any).promise();
   }
 
+  dismissUserContact: (params: RawParamsFrom<'dismissUserContact'>) => Promise<ReturnTypeFrom<'dismissUserContact'>>  = async params => {
+  // undefined
+    return this.client.dismissUserContact(params as any).promise();
+  }
+
   getContactAttributes: (params: RawParamsFrom<'getContactAttributes'>) => Promise<ReturnTypeFrom<'getContactAttributes'>>  = async params => {
   // undefined
     return this.client.getContactAttributes(params as any).promise();
@@ -376,6 +411,11 @@ export class Connect {
   getTaskTemplate: (params: RawParamsFrom<'getTaskTemplate'>) => Promise<ReturnTypeFrom<'getTaskTemplate'>>  = async params => {
   // undefined
     return this.client.getTaskTemplate(params as any).promise();
+  }
+
+  getTrafficDistribution: (params: RawParamsFrom<'getTrafficDistribution'>) => Promise<ReturnTypeFrom<'getTrafficDistribution'>>  = async params => {
+  // undefined
+    return this.client.getTrafficDistribution(params as any).promise();
   }
 
   async listAgentStatuses(params: { [K in keyof ParamsFrom<'listAgentStatuses', { next?: string, limit?: number }>]: ParamsFrom<'listAgentStatuses', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listAgentStatuses'>]-?: ReturnTypeFrom<'listAgentStatuses'>[K]}['AgentStatusSummaryList'], undefined>}> {
@@ -708,6 +748,21 @@ export class Connect {
     }
   }
 
+  async listRules(params: { [K in keyof ParamsFrom<'listRules', { next?: string, limit?: number }>]: ParamsFrom<'listRules', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listRules'>]-?: ReturnTypeFrom<'listRules'>[K]}['RuleSummaryList'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"RuleSummaryList"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listRules({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRules' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.RuleSummaryList ?? []) ? (result.RuleSummaryList ?? []) : [result.RuleSummaryList]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
   async listSecurityKeys(params: { [K in keyof ParamsFrom<'listSecurityKeys', { next?: string, limit?: number }>]: ParamsFrom<'listSecurityKeys', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listSecurityKeys'>]-?: ReturnTypeFrom<'listSecurityKeys'>[K]}['SecurityKeys'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"SecurityKeys"}
     const {next, limit,  ...otherParams} = params ?? {};
@@ -773,6 +828,21 @@ export class Connect {
     }
   }
 
+  async listTrafficDistributionGroups(params: { [K in keyof ParamsFrom<'listTrafficDistributionGroups', { next?: string, limit?: number }>]: ParamsFrom<'listTrafficDistributionGroups', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listTrafficDistributionGroups'>]-?: ReturnTypeFrom<'listTrafficDistributionGroups'>[K]}['TrafficDistributionGroupSummaryList'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"TrafficDistributionGroupSummaryList"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listTrafficDistributionGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTrafficDistributionGroups' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.TrafficDistributionGroupSummaryList ?? []) ? (result.TrafficDistributionGroupSummaryList ?? []) : [result.TrafficDistributionGroupSummaryList]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
   async listUseCases(params: { [K in keyof ParamsFrom<'listUseCases', { next?: string, limit?: number }>]: ParamsFrom<'listUseCases', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listUseCases'>]-?: ReturnTypeFrom<'listUseCases'>[K]}['UseCaseSummaryList'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"UseCaseSummaryList"}
     const {next, limit,  ...otherParams} = params ?? {};
@@ -818,6 +888,11 @@ export class Connect {
     }
   }
 
+  monitorContact: (params: RawParamsFrom<'monitorContact'>) => Promise<ReturnTypeFrom<'monitorContact'>>  = async params => {
+  // undefined
+    return this.client.monitorContact(params as any).promise();
+  }
+
   putUserStatus: (params: RawParamsFrom<'putUserStatus'>) => Promise<ReturnTypeFrom<'putUserStatus'>>  = async params => {
   // undefined
     return this.client.putUserStatus(params as any).promise();
@@ -826,6 +901,11 @@ export class Connect {
   releasePhoneNumber: (params: RawParamsFrom<'releasePhoneNumber'>) => Promise<ReturnTypeFrom<'releasePhoneNumber'>>  = async params => {
   // undefined
     return this.client.releasePhoneNumber(params as any).promise();
+  }
+
+  replicateInstance: (params: RawParamsFrom<'replicateInstance'>) => Promise<ReturnTypeFrom<'replicateInstance'>>  = async params => {
+  // undefined
+    return this.client.replicateInstance(params as any).promise();
   }
 
   resumeContactRecording: (params: RawParamsFrom<'resumeContactRecording'>) => Promise<ReturnTypeFrom<'resumeContactRecording'>>  = async params => {
@@ -1043,6 +1123,11 @@ export class Connect {
     return this.client.updateInstanceStorageConfig(params as any).promise();
   }
 
+  updateParticipantRoleConfig: (params: RawParamsFrom<'updateParticipantRoleConfig'>) => Promise<ReturnTypeFrom<'updateParticipantRoleConfig'>>  = async params => {
+  // undefined
+    return this.client.updateParticipantRoleConfig(params as any).promise();
+  }
+
   updatePhoneNumber: (params: RawParamsFrom<'updatePhoneNumber'>) => Promise<ReturnTypeFrom<'updatePhoneNumber'>>  = async params => {
   // undefined
     return this.client.updatePhoneNumber(params as any).promise();
@@ -1103,6 +1188,11 @@ export class Connect {
     return this.client.updateRoutingProfileQueues(params as any).promise();
   }
 
+  updateRule: (params: RawParamsFrom<'updateRule'>) => Promise<ReturnTypeFrom<'updateRule'>>  = async params => {
+  // undefined
+    return this.client.updateRule(params as any).promise();
+  }
+
   updateSecurityProfile: (params: RawParamsFrom<'updateSecurityProfile'>) => Promise<ReturnTypeFrom<'updateSecurityProfile'>>  = async params => {
   // undefined
     return this.client.updateSecurityProfile(params as any).promise();
@@ -1111,6 +1201,11 @@ export class Connect {
   updateTaskTemplate: (params: RawParamsFrom<'updateTaskTemplate'>) => Promise<ReturnTypeFrom<'updateTaskTemplate'>>  = async params => {
   // undefined
     return this.client.updateTaskTemplate(params as any).promise();
+  }
+
+  updateTrafficDistribution: (params: RawParamsFrom<'updateTrafficDistribution'>) => Promise<ReturnTypeFrom<'updateTrafficDistribution'>>  = async params => {
+  // undefined
+    return this.client.updateTrafficDistribution(params as any).promise();
   }
 
   updateUserHierarchy: (params: RawParamsFrom<'updateUserHierarchy'>) => Promise<ReturnTypeFrom<'updateUserHierarchy'>>  = async params => {

@@ -48,6 +48,11 @@ export class MigrationHubStrategy {
     return this.client.getImportFileTask(params as any).promise();
   }
 
+  getLatestAssessmentId: (params: RawParamsFrom<'getLatestAssessmentId'>) => Promise<ReturnTypeFrom<'getLatestAssessmentId'>>  = async params => {
+  // undefined
+    return this.client.getLatestAssessmentId(params as any).promise();
+  }
+
   getPortfolioPreferences: (params: RawParamsFrom<'getPortfolioPreferences'>) => Promise<ReturnTypeFrom<'getPortfolioPreferences'>>  = async params => {
   // undefined
     return this.client.getPortfolioPreferences(params as any).promise();

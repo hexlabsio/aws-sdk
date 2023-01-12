@@ -68,6 +68,11 @@ export class SupportApp {
     return this.client.putAccountAlias(params as any).promise();
   }
 
+  registerSlackWorkspaceForOrganization: (params: RawParamsFrom<'registerSlackWorkspaceForOrganization'>) => Promise<ReturnTypeFrom<'registerSlackWorkspaceForOrganization'>>  = async params => {
+  // undefined
+    return this.client.registerSlackWorkspaceForOrganization(params as any).promise();
+  }
+
   updateSlackChannelConfiguration: (params: RawParamsFrom<'updateSlackChannelConfiguration'>) => Promise<ReturnTypeFrom<'updateSlackChannelConfiguration'>>  = async params => {
   // undefined
     return this.client.updateSlackChannelConfiguration(params as any).promise();

@@ -282,6 +282,11 @@ export class Kafka {
   // undefined
     return this.client.updateSecurity(params as any).promise();
   }
+
+  updateStorage: (params: RawParamsFrom<'updateStorage'>) => Promise<ReturnTypeFrom<'updateStorage'>>  = async params => {
+  // undefined
+    return this.client.updateStorage(params as any).promise();
+  }
   
   static fromClient(client: AWSKafka): Kafka {
     return new Kafka(client) as any;

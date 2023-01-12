@@ -63,6 +63,11 @@ export class WorkSpaces {
     return this.client.createIpGroup(params as any).promise();
   }
 
+  createStandbyWorkspaces: (params: RawParamsFrom<'createStandbyWorkspaces'>) => Promise<ReturnTypeFrom<'createStandbyWorkspaces'>>  = async params => {
+  // undefined
+    return this.client.createStandbyWorkspaces(params as any).promise();
+  }
+
   createTags: (params: RawParamsFrom<'createTags'>) => Promise<ReturnTypeFrom<'createTags'>>  = async params => {
   // undefined
     return this.client.createTags(params as any).promise();
@@ -271,6 +276,11 @@ export class WorkSpaces {
   modifyAccount: (params: RawParamsFrom<'modifyAccount'>) => Promise<ReturnTypeFrom<'modifyAccount'>>  = async params => {
   // undefined
     return this.client.modifyAccount(params as any).promise();
+  }
+
+  modifyCertificateBasedAuthProperties: (params: RawParamsFrom<'modifyCertificateBasedAuthProperties'>) => Promise<ReturnTypeFrom<'modifyCertificateBasedAuthProperties'>>  = async params => {
+  // undefined
+    return this.client.modifyCertificateBasedAuthProperties(params as any).promise();
   }
 
   modifyClientProperties: (params: RawParamsFrom<'modifyClientProperties'>) => Promise<ReturnTypeFrom<'modifyClientProperties'>>  = async params => {

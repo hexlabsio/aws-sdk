@@ -43,6 +43,11 @@ export class AutoScaling {
     return this.client.attachLoadBalancers(params as any).promise();
   }
 
+  attachTrafficSources: (params: RawParamsFrom<'attachTrafficSources'>) => Promise<ReturnTypeFrom<'attachTrafficSources'>>  = async params => {
+  // undefined
+    return this.client.attachTrafficSources(params as any).promise();
+  }
+
   batchDeleteScheduledAction: (params: RawParamsFrom<'batchDeleteScheduledAction'>) => Promise<ReturnTypeFrom<'batchDeleteScheduledAction'>>  = async params => {
   // undefined
     return this.client.batchDeleteScheduledAction(params as any).promise();
@@ -293,6 +298,11 @@ export class AutoScaling {
     return this.client.describeTerminationPolicyTypes(params as any).promise();
   }
 
+  describeTrafficSources: (params: RawParamsFrom<'describeTrafficSources'>) => Promise<ReturnTypeFrom<'describeTrafficSources'>>  = async params => {
+  // undefined
+    return this.client.describeTrafficSources(params as any).promise();
+  }
+
   describeWarmPool: (params: RawParamsFrom<'describeWarmPool'>) => Promise<ReturnTypeFrom<'describeWarmPool'>>  = async params => {
   // undefined
     return this.client.describeWarmPool(params as any).promise();
@@ -311,6 +321,11 @@ export class AutoScaling {
   detachLoadBalancers: (params: RawParamsFrom<'detachLoadBalancers'>) => Promise<ReturnTypeFrom<'detachLoadBalancers'>>  = async params => {
   // undefined
     return this.client.detachLoadBalancers(params as any).promise();
+  }
+
+  detachTrafficSources: (params: RawParamsFrom<'detachTrafficSources'>) => Promise<ReturnTypeFrom<'detachTrafficSources'>>  = async params => {
+  // undefined
+    return this.client.detachTrafficSources(params as any).promise();
   }
 
   disableMetricsCollection: (params: RawParamsFrom<'disableMetricsCollection'>) => Promise<ReturnTypeFrom<'disableMetricsCollection'>>  = async params => {

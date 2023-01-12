@@ -133,6 +133,11 @@ export class Appflow {
     return this.client.updateConnectorProfile(params as any).promise();
   }
 
+  updateConnectorRegistration: (params: RawParamsFrom<'updateConnectorRegistration'>) => Promise<ReturnTypeFrom<'updateConnectorRegistration'>>  = async params => {
+  // undefined
+    return this.client.updateConnectorRegistration(params as any).promise();
+  }
+
   updateFlow: (params: RawParamsFrom<'updateFlow'>) => Promise<ReturnTypeFrom<'updateFlow'>>  = async params => {
   // undefined
     return this.client.updateFlow(params as any).promise();

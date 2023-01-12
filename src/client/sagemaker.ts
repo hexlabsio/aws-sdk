@@ -26,7 +26,7 @@ export class SageMaker {
   public readonly service = 'sagemaker' as const;
   public readonly global = false as const;
   public readonly category = 'Machine Learning' as const;
-  public readonly topLevelCalls = ["listActions","listAlgorithms","listAppImageConfigs","listApps","listArtifacts","listAssociations","listAutoMLJobs","listCodeRepositories","listCompilationJobs","listContexts","listDataQualityJobDefinitions","listDeviceFleets","listDevices","listDomains","listEdgeDeploymentPlans","listEdgePackagingJobs","listEndpointConfigs","listEndpoints","listExperiments","listFeatureGroups","listFlowDefinitions","listHumanTaskUis","listHyperParameterTuningJobs","listImages","listInferenceRecommendationsJobs","listLabelingJobs","listLineageGroups","listModelBiasJobDefinitions","listModelExplainabilityJobDefinitions","listModelMetadata","listModelPackageGroups","listModelPackages","listModelQualityJobDefinitions","listModels","listMonitoringExecutions","listMonitoringSchedules","listNotebookInstanceLifecycleConfigs","listNotebookInstances","listPipelineExecutionSteps","listPipelines","listProcessingJobs","listProjects","listStudioLifecycleConfigs","listSubscribedWorkteams","listTrainingJobs","listTransformJobs","listTrialComponents","listTrials","listUserProfiles","listWorkforces","listWorkteams","queryLineage"] as const;
+  public readonly topLevelCalls = ["listActions","listAlgorithms","listAppImageConfigs","listApps","listArtifacts","listAssociations","listAutoMLJobs","listCodeRepositories","listCompilationJobs","listContexts","listDataQualityJobDefinitions","listDeviceFleets","listDevices","listDomains","listEdgeDeploymentPlans","listEdgePackagingJobs","listEndpointConfigs","listEndpoints","listExperiments","listFeatureGroups","listFlowDefinitions","listHumanTaskUis","listHyperParameterTuningJobs","listImages","listInferenceExperiments","listInferenceRecommendationsJobs","listLabelingJobs","listLineageGroups","listModelBiasJobDefinitions","listModelCards","listModelExplainabilityJobDefinitions","listModelMetadata","listModelPackageGroups","listModelPackages","listModelQualityJobDefinitions","listModels","listMonitoringAlertHistory","listMonitoringExecutions","listMonitoringSchedules","listNotebookInstanceLifecycleConfigs","listNotebookInstances","listPipelineExecutionSteps","listPipelines","listProcessingJobs","listProjects","listSpaces","listStudioLifecycleConfigs","listSubscribedWorkteams","listTrainingJobs","listTransformJobs","listTrialComponents","listTrials","listUserProfiles","listWorkforces","listWorkteams","queryLineage"] as const;
   
   addAssociation: (params: RawParamsFrom<'addAssociation'>) => Promise<ReturnTypeFrom<'addAssociation'>>  = async params => {
   // undefined
@@ -148,6 +148,11 @@ export class SageMaker {
     return this.client.createFlowDefinition(params as any).promise();
   }
 
+  createHub: (params: RawParamsFrom<'createHub'>) => Promise<ReturnTypeFrom<'createHub'>>  = async params => {
+  // undefined
+    return this.client.createHub(params as any).promise();
+  }
+
   createHumanTaskUi: (params: RawParamsFrom<'createHumanTaskUi'>) => Promise<ReturnTypeFrom<'createHumanTaskUi'>>  = async params => {
   // undefined
     return this.client.createHumanTaskUi(params as any).promise();
@@ -168,6 +173,11 @@ export class SageMaker {
     return this.client.createImageVersion(params as any).promise();
   }
 
+  createInferenceExperiment: (params: RawParamsFrom<'createInferenceExperiment'>) => Promise<ReturnTypeFrom<'createInferenceExperiment'>>  = async params => {
+  // undefined
+    return this.client.createInferenceExperiment(params as any).promise();
+  }
+
   createInferenceRecommendationsJob: (params: RawParamsFrom<'createInferenceRecommendationsJob'>) => Promise<ReturnTypeFrom<'createInferenceRecommendationsJob'>>  = async params => {
   // undefined
     return this.client.createInferenceRecommendationsJob(params as any).promise();
@@ -186,6 +196,16 @@ export class SageMaker {
   createModelBiasJobDefinition: (params: RawParamsFrom<'createModelBiasJobDefinition'>) => Promise<ReturnTypeFrom<'createModelBiasJobDefinition'>>  = async params => {
   // undefined
     return this.client.createModelBiasJobDefinition(params as any).promise();
+  }
+
+  createModelCard: (params: RawParamsFrom<'createModelCard'>) => Promise<ReturnTypeFrom<'createModelCard'>>  = async params => {
+  // undefined
+    return this.client.createModelCard(params as any).promise();
+  }
+
+  createModelCardExportJob: (params: RawParamsFrom<'createModelCardExportJob'>) => Promise<ReturnTypeFrom<'createModelCardExportJob'>>  = async params => {
+  // undefined
+    return this.client.createModelCardExportJob(params as any).promise();
   }
 
   createModelExplainabilityJobDefinition: (params: RawParamsFrom<'createModelExplainabilityJobDefinition'>) => Promise<ReturnTypeFrom<'createModelExplainabilityJobDefinition'>>  = async params => {
@@ -246,6 +266,11 @@ export class SageMaker {
   createProject: (params: RawParamsFrom<'createProject'>) => Promise<ReturnTypeFrom<'createProject'>>  = async params => {
   // undefined
     return this.client.createProject(params as any).promise();
+  }
+
+  createSpace: (params: RawParamsFrom<'createSpace'>) => Promise<ReturnTypeFrom<'createSpace'>>  = async params => {
+  // undefined
+    return this.client.createSpace(params as any).promise();
   }
 
   createStudioLifecycleConfig: (params: RawParamsFrom<'createStudioLifecycleConfig'>) => Promise<ReturnTypeFrom<'createStudioLifecycleConfig'>>  = async params => {
@@ -378,6 +403,16 @@ export class SageMaker {
     return this.client.deleteFlowDefinition(params as any).promise();
   }
 
+  deleteHub: (params: RawParamsFrom<'deleteHub'>) => Promise<ReturnTypeFrom<'deleteHub'>>  = async params => {
+  // undefined
+    return this.client.deleteHub(params as any).promise();
+  }
+
+  deleteHubContent: (params: RawParamsFrom<'deleteHubContent'>) => Promise<ReturnTypeFrom<'deleteHubContent'>>  = async params => {
+  // undefined
+    return this.client.deleteHubContent(params as any).promise();
+  }
+
   deleteHumanTaskUi: (params: RawParamsFrom<'deleteHumanTaskUi'>) => Promise<ReturnTypeFrom<'deleteHumanTaskUi'>>  = async params => {
   // undefined
     return this.client.deleteHumanTaskUi(params as any).promise();
@@ -393,6 +428,11 @@ export class SageMaker {
     return this.client.deleteImageVersion(params as any).promise();
   }
 
+  deleteInferenceExperiment: (params: RawParamsFrom<'deleteInferenceExperiment'>) => Promise<ReturnTypeFrom<'deleteInferenceExperiment'>>  = async params => {
+  // undefined
+    return this.client.deleteInferenceExperiment(params as any).promise();
+  }
+
   deleteModel: (params: RawParamsFrom<'deleteModel'>) => Promise<ReturnTypeFrom<'deleteModel'>>  = async params => {
   // undefined
     return this.client.deleteModel(params as any).promise();
@@ -401,6 +441,11 @@ export class SageMaker {
   deleteModelBiasJobDefinition: (params: RawParamsFrom<'deleteModelBiasJobDefinition'>) => Promise<ReturnTypeFrom<'deleteModelBiasJobDefinition'>>  = async params => {
   // undefined
     return this.client.deleteModelBiasJobDefinition(params as any).promise();
+  }
+
+  deleteModelCard: (params: RawParamsFrom<'deleteModelCard'>) => Promise<ReturnTypeFrom<'deleteModelCard'>>  = async params => {
+  // undefined
+    return this.client.deleteModelCard(params as any).promise();
   }
 
   deleteModelExplainabilityJobDefinition: (params: RawParamsFrom<'deleteModelExplainabilityJobDefinition'>) => Promise<ReturnTypeFrom<'deleteModelExplainabilityJobDefinition'>>  = async params => {
@@ -451,6 +496,11 @@ export class SageMaker {
   deleteProject: (params: RawParamsFrom<'deleteProject'>) => Promise<ReturnTypeFrom<'deleteProject'>>  = async params => {
   // undefined
     return this.client.deleteProject(params as any).promise();
+  }
+
+  deleteSpace: (params: RawParamsFrom<'deleteSpace'>) => Promise<ReturnTypeFrom<'deleteSpace'>>  = async params => {
+  // undefined
+    return this.client.deleteSpace(params as any).promise();
   }
 
   deleteStudioLifecycleConfig: (params: RawParamsFrom<'deleteStudioLifecycleConfig'>) => Promise<ReturnTypeFrom<'deleteStudioLifecycleConfig'>>  = async params => {
@@ -598,6 +648,16 @@ export class SageMaker {
     return this.client.describeFlowDefinition(params as any).promise();
   }
 
+  describeHub: (params: RawParamsFrom<'describeHub'>) => Promise<ReturnTypeFrom<'describeHub'>>  = async params => {
+  // undefined
+    return this.client.describeHub(params as any).promise();
+  }
+
+  describeHubContent: (params: RawParamsFrom<'describeHubContent'>) => Promise<ReturnTypeFrom<'describeHubContent'>>  = async params => {
+  // undefined
+    return this.client.describeHubContent(params as any).promise();
+  }
+
   describeHumanTaskUi: (params: RawParamsFrom<'describeHumanTaskUi'>) => Promise<ReturnTypeFrom<'describeHumanTaskUi'>>  = async params => {
   // undefined
     return this.client.describeHumanTaskUi(params as any).promise();
@@ -616,6 +676,11 @@ export class SageMaker {
   describeImageVersion: (params: RawParamsFrom<'describeImageVersion'>) => Promise<ReturnTypeFrom<'describeImageVersion'>>  = async params => {
   // undefined
     return this.client.describeImageVersion(params as any).promise();
+  }
+
+  describeInferenceExperiment: (params: RawParamsFrom<'describeInferenceExperiment'>) => Promise<ReturnTypeFrom<'describeInferenceExperiment'>>  = async params => {
+  // undefined
+    return this.client.describeInferenceExperiment(params as any).promise();
   }
 
   describeInferenceRecommendationsJob: (params: RawParamsFrom<'describeInferenceRecommendationsJob'>) => Promise<ReturnTypeFrom<'describeInferenceRecommendationsJob'>>  = async params => {
@@ -641,6 +706,16 @@ export class SageMaker {
   describeModelBiasJobDefinition: (params: RawParamsFrom<'describeModelBiasJobDefinition'>) => Promise<ReturnTypeFrom<'describeModelBiasJobDefinition'>>  = async params => {
   // undefined
     return this.client.describeModelBiasJobDefinition(params as any).promise();
+  }
+
+  describeModelCard: (params: RawParamsFrom<'describeModelCard'>) => Promise<ReturnTypeFrom<'describeModelCard'>>  = async params => {
+  // undefined
+    return this.client.describeModelCard(params as any).promise();
+  }
+
+  describeModelCardExportJob: (params: RawParamsFrom<'describeModelCardExportJob'>) => Promise<ReturnTypeFrom<'describeModelCardExportJob'>>  = async params => {
+  // undefined
+    return this.client.describeModelCardExportJob(params as any).promise();
   }
 
   describeModelExplainabilityJobDefinition: (params: RawParamsFrom<'describeModelExplainabilityJobDefinition'>) => Promise<ReturnTypeFrom<'describeModelExplainabilityJobDefinition'>>  = async params => {
@@ -701,6 +776,11 @@ export class SageMaker {
   describeProject: (params: RawParamsFrom<'describeProject'>) => Promise<ReturnTypeFrom<'describeProject'>>  = async params => {
   // undefined
     return this.client.describeProject(params as any).promise();
+  }
+
+  describeSpace: (params: RawParamsFrom<'describeSpace'>) => Promise<ReturnTypeFrom<'describeSpace'>>  = async params => {
+  // undefined
+    return this.client.describeSpace(params as any).promise();
   }
 
   describeStudioLifecycleConfig: (params: RawParamsFrom<'describeStudioLifecycleConfig'>) => Promise<ReturnTypeFrom<'describeStudioLifecycleConfig'>>  = async params => {
@@ -788,6 +868,11 @@ export class SageMaker {
     return this.client.getSearchSuggestions(params as any).promise();
   }
 
+  importHubContent: (params: RawParamsFrom<'importHubContent'>) => Promise<ReturnTypeFrom<'importHubContent'>>  = async params => {
+  // undefined
+    return this.client.importHubContent(params as any).promise();
+  }
+
   async listActions(params: { [K in keyof ParamsFrom<'listActions', { next?: string, limit?: number }>]: ParamsFrom<'listActions', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listActions'>]-?: ReturnTypeFrom<'listActions'>[K]}['ActionSummaries'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"ActionSummaries"}
     const {next, limit,  ...otherParams} = params ?? {};
@@ -811,6 +896,21 @@ export class SageMaker {
     const result = await this.client.listAlgorithms({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
     const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAlgorithms' })).toString('base64') : undefined;
     const member = (Array.isArray(result.AlgorithmSummaryList ?? []) ? (result.AlgorithmSummaryList ?? []) : [result.AlgorithmSummaryList]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async listAliases(params: { [K in keyof ParamsFrom<'listAliases', { next?: string, limit?: number }>]: ParamsFrom<'listAliases', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listAliases'>]-?: ReturnTypeFrom<'listAliases'>[K]}['SageMakerImageVersionAliases'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"SageMakerImageVersionAliases"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listAliases({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAliases' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.SageMakerImageVersionAliases ?? []) ? (result.SageMakerImageVersionAliases ?? []) : [result.SageMakerImageVersionAliases]) as any;
     return {
       totalItems: member.length,
       member,
@@ -1118,6 +1218,21 @@ export class SageMaker {
     }
   }
 
+  listHubContentVersions: (params: RawParamsFrom<'listHubContentVersions'>) => Promise<ReturnTypeFrom<'listHubContentVersions'>>  = async params => {
+  // undefined
+    return this.client.listHubContentVersions(params as any).promise();
+  }
+
+  listHubContents: (params: RawParamsFrom<'listHubContents'>) => Promise<ReturnTypeFrom<'listHubContents'>>  = async params => {
+  // undefined
+    return this.client.listHubContents(params as any).promise();
+  }
+
+  listHubs: (params: RawParamsFrom<'listHubs'>) => Promise<ReturnTypeFrom<'listHubs'>>  = async params => {
+  // undefined
+    return this.client.listHubs(params as any).promise();
+  }
+
   async listHumanTaskUis(params: { [K in keyof ParamsFrom<'listHumanTaskUis', { next?: string, limit?: number }>]: ParamsFrom<'listHumanTaskUis', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listHumanTaskUis'>]-?: ReturnTypeFrom<'listHumanTaskUis'>[K]}['HumanTaskUiSummaries'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"HumanTaskUiSummaries"}
     const {next, limit,  ...otherParams} = params ?? {};
@@ -1171,6 +1286,36 @@ export class SageMaker {
     const result = await this.client.listImages({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
     const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listImages' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Images ?? []) ? (result.Images ?? []) : [result.Images]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async listInferenceExperiments(params: { [K in keyof ParamsFrom<'listInferenceExperiments', { next?: string, limit?: number }>]: ParamsFrom<'listInferenceExperiments', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listInferenceExperiments'>]-?: ReturnTypeFrom<'listInferenceExperiments'>[K]}['InferenceExperiments'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"InferenceExperiments"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listInferenceExperiments({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listInferenceExperiments' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.InferenceExperiments ?? []) ? (result.InferenceExperiments ?? []) : [result.InferenceExperiments]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async listInferenceRecommendationsJobSteps(params: { [K in keyof ParamsFrom<'listInferenceRecommendationsJobSteps', { next?: string, limit?: number }>]: ParamsFrom<'listInferenceRecommendationsJobSteps', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listInferenceRecommendationsJobSteps'>]-?: ReturnTypeFrom<'listInferenceRecommendationsJobSteps'>[K]}['Steps'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"Steps"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listInferenceRecommendationsJobSteps({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listInferenceRecommendationsJobSteps' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.Steps ?? []) ? (result.Steps ?? []) : [result.Steps]) as any;
     return {
       totalItems: member.length,
       member,
@@ -1246,6 +1391,51 @@ export class SageMaker {
     const result = await this.client.listModelBiasJobDefinitions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
     const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModelBiasJobDefinitions' })).toString('base64') : undefined;
     const member = (Array.isArray(result.JobDefinitionSummaries ?? []) ? (result.JobDefinitionSummaries ?? []) : [result.JobDefinitionSummaries]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async listModelCardExportJobs(params: { [K in keyof ParamsFrom<'listModelCardExportJobs', { next?: string, limit?: number }>]: ParamsFrom<'listModelCardExportJobs', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listModelCardExportJobs'>]-?: ReturnTypeFrom<'listModelCardExportJobs'>[K]}['ModelCardExportJobSummaries'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"ModelCardExportJobSummaries"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listModelCardExportJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModelCardExportJobs' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.ModelCardExportJobSummaries ?? []) ? (result.ModelCardExportJobSummaries ?? []) : [result.ModelCardExportJobSummaries]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async listModelCardVersions(params: { [K in keyof ParamsFrom<'listModelCardVersions', { next?: string, limit?: number }>]: ParamsFrom<'listModelCardVersions', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listModelCardVersions'>]-?: ReturnTypeFrom<'listModelCardVersions'>[K]}['ModelCardVersionSummaryList'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"ModelCardVersionSummaryList"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listModelCardVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModelCardVersions' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.ModelCardVersionSummaryList ?? []) ? (result.ModelCardVersionSummaryList ?? []) : [result.ModelCardVersionSummaryList]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async listModelCards(params: { [K in keyof ParamsFrom<'listModelCards', { next?: string, limit?: number }>]: ParamsFrom<'listModelCards', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listModelCards'>]-?: ReturnTypeFrom<'listModelCards'>[K]}['ModelCardSummaries'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"ModelCardSummaries"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listModelCards({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModelCards' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.ModelCardSummaries ?? []) ? (result.ModelCardSummaries ?? []) : [result.ModelCardSummaries]) as any;
     return {
       totalItems: member.length,
       member,
@@ -1336,6 +1526,36 @@ export class SageMaker {
     const result = await this.client.listModels({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
     const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listModels' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Models ?? []) ? (result.Models ?? []) : [result.Models]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async listMonitoringAlertHistory(params: { [K in keyof ParamsFrom<'listMonitoringAlertHistory', { next?: string, limit?: number }>]: ParamsFrom<'listMonitoringAlertHistory', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listMonitoringAlertHistory'>]-?: ReturnTypeFrom<'listMonitoringAlertHistory'>[K]}['MonitoringAlertHistory'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"MonitoringAlertHistory"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listMonitoringAlertHistory({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMonitoringAlertHistory' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.MonitoringAlertHistory ?? []) ? (result.MonitoringAlertHistory ?? []) : [result.MonitoringAlertHistory]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async listMonitoringAlerts(params: { [K in keyof ParamsFrom<'listMonitoringAlerts', { next?: string, limit?: number }>]: ParamsFrom<'listMonitoringAlerts', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listMonitoringAlerts'>]-?: ReturnTypeFrom<'listMonitoringAlerts'>[K]}['MonitoringAlertSummaries'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"MonitoringAlertSummaries"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listMonitoringAlerts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMonitoringAlerts' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.MonitoringAlertSummaries ?? []) ? (result.MonitoringAlertSummaries ?? []) : [result.MonitoringAlertSummaries]) as any;
     return {
       totalItems: member.length,
       member,
@@ -1481,6 +1701,21 @@ export class SageMaker {
   listProjects: (params: RawParamsFrom<'listProjects'>) => Promise<ReturnTypeFrom<'listProjects'>>  = async params => {
   // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
     return this.client.listProjects(params as any).promise();
+  }
+
+  async listSpaces(params: { [K in keyof ParamsFrom<'listSpaces', { next?: string, limit?: number }>]: ParamsFrom<'listSpaces', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listSpaces'>]-?: ReturnTypeFrom<'listSpaces'>[K]}['Spaces'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"Spaces"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listSpaces({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSpaces' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.Spaces ?? []) ? (result.Spaces ?? []) : [result.Spaces]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
   async listStageDevices(params: { [K in keyof ParamsFrom<'listStageDevices', { next?: string, limit?: number }>]: ParamsFrom<'listStageDevices', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listStageDevices'>]-?: ReturnTypeFrom<'listStageDevices'>[K]}['DeviceDeploymentSummaries'], undefined>}> {
@@ -1718,6 +1953,11 @@ export class SageMaker {
     return this.client.startEdgeDeploymentStage(params as any).promise();
   }
 
+  startInferenceExperiment: (params: RawParamsFrom<'startInferenceExperiment'>) => Promise<ReturnTypeFrom<'startInferenceExperiment'>>  = async params => {
+  // undefined
+    return this.client.startInferenceExperiment(params as any).promise();
+  }
+
   startMonitoringSchedule: (params: RawParamsFrom<'startMonitoringSchedule'>) => Promise<ReturnTypeFrom<'startMonitoringSchedule'>>  = async params => {
   // undefined
     return this.client.startMonitoringSchedule(params as any).promise();
@@ -1756,6 +1996,11 @@ export class SageMaker {
   stopHyperParameterTuningJob: (params: RawParamsFrom<'stopHyperParameterTuningJob'>) => Promise<ReturnTypeFrom<'stopHyperParameterTuningJob'>>  = async params => {
   // undefined
     return this.client.stopHyperParameterTuningJob(params as any).promise();
+  }
+
+  stopInferenceExperiment: (params: RawParamsFrom<'stopInferenceExperiment'>) => Promise<ReturnTypeFrom<'stopInferenceExperiment'>>  = async params => {
+  // undefined
+    return this.client.stopInferenceExperiment(params as any).promise();
   }
 
   stopInferenceRecommendationsJob: (params: RawParamsFrom<'stopInferenceRecommendationsJob'>) => Promise<ReturnTypeFrom<'stopInferenceRecommendationsJob'>>  = async params => {
@@ -1863,14 +2108,39 @@ export class SageMaker {
     return this.client.updateFeatureMetadata(params as any).promise();
   }
 
+  updateHub: (params: RawParamsFrom<'updateHub'>) => Promise<ReturnTypeFrom<'updateHub'>>  = async params => {
+  // undefined
+    return this.client.updateHub(params as any).promise();
+  }
+
   updateImage: (params: RawParamsFrom<'updateImage'>) => Promise<ReturnTypeFrom<'updateImage'>>  = async params => {
   // undefined
     return this.client.updateImage(params as any).promise();
   }
 
+  updateImageVersion: (params: RawParamsFrom<'updateImageVersion'>) => Promise<ReturnTypeFrom<'updateImageVersion'>>  = async params => {
+  // undefined
+    return this.client.updateImageVersion(params as any).promise();
+  }
+
+  updateInferenceExperiment: (params: RawParamsFrom<'updateInferenceExperiment'>) => Promise<ReturnTypeFrom<'updateInferenceExperiment'>>  = async params => {
+  // undefined
+    return this.client.updateInferenceExperiment(params as any).promise();
+  }
+
+  updateModelCard: (params: RawParamsFrom<'updateModelCard'>) => Promise<ReturnTypeFrom<'updateModelCard'>>  = async params => {
+  // undefined
+    return this.client.updateModelCard(params as any).promise();
+  }
+
   updateModelPackage: (params: RawParamsFrom<'updateModelPackage'>) => Promise<ReturnTypeFrom<'updateModelPackage'>>  = async params => {
   // undefined
     return this.client.updateModelPackage(params as any).promise();
+  }
+
+  updateMonitoringAlert: (params: RawParamsFrom<'updateMonitoringAlert'>) => Promise<ReturnTypeFrom<'updateMonitoringAlert'>>  = async params => {
+  // undefined
+    return this.client.updateMonitoringAlert(params as any).promise();
   }
 
   updateMonitoringSchedule: (params: RawParamsFrom<'updateMonitoringSchedule'>) => Promise<ReturnTypeFrom<'updateMonitoringSchedule'>>  = async params => {
@@ -1901,6 +2171,11 @@ export class SageMaker {
   updateProject: (params: RawParamsFrom<'updateProject'>) => Promise<ReturnTypeFrom<'updateProject'>>  = async params => {
   // undefined
     return this.client.updateProject(params as any).promise();
+  }
+
+  updateSpace: (params: RawParamsFrom<'updateSpace'>) => Promise<ReturnTypeFrom<'updateSpace'>>  = async params => {
+  // undefined
+    return this.client.updateSpace(params as any).promise();
   }
 
   updateTrainingJob: (params: RawParamsFrom<'updateTrainingJob'>) => Promise<ReturnTypeFrom<'updateTrainingJob'>>  = async params => {

@@ -26,7 +26,7 @@ export class XRay {
   public readonly service = 'xray' as const;
   public readonly global = false as const;
   public readonly category = 'Developer Tools' as const;
-  public readonly topLevelCalls = ["getGroups","getSamplingRules","getSamplingStatisticSummaries"] as const;
+  public readonly topLevelCalls = ["getGroups","getSamplingRules","getSamplingStatisticSummaries","listResourcePolicies"] as const;
   
   async batchGetTraces(params: { [K in keyof ParamsFrom<'batchGetTraces', { next?: string }>]: ParamsFrom<'batchGetTraces', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'batchGetTraces'>]-?: ReturnTypeFrom<'batchGetTraces'>[K]}['Traces'], undefined>}> {
     // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"Traces"}
@@ -56,6 +56,11 @@ export class XRay {
   deleteGroup: (params: RawParamsFrom<'deleteGroup'>) => Promise<ReturnTypeFrom<'deleteGroup'>>  = async params => {
   // undefined
     return this.client.deleteGroup(params as any).promise();
+  }
+
+  deleteResourcePolicy: (params: RawParamsFrom<'deleteResourcePolicy'>) => Promise<ReturnTypeFrom<'deleteResourcePolicy'>>  = async params => {
+  // undefined
+    return this.client.deleteResourcePolicy(params as any).promise();
   }
 
   deleteSamplingRule: (params: RawParamsFrom<'deleteSamplingRule'>) => Promise<ReturnTypeFrom<'deleteSamplingRule'>>  = async params => {
@@ -203,14 +208,44 @@ export class XRay {
     }
   }
 
-  listTagsForResource: (params: RawParamsFrom<'listTagsForResource'>) => Promise<ReturnTypeFrom<'listTagsForResource'>>  = async params => {
-  // undefined
-    return this.client.listTagsForResource(params as any).promise();
+  async listResourcePolicies(params: { [K in keyof ParamsFrom<'listResourcePolicies', { next?: string }>]: ParamsFrom<'listResourcePolicies', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listResourcePolicies'>]-?: ReturnTypeFrom<'listResourcePolicies'>[K]}['ResourcePolicies'], undefined>}> {
+    // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"ResourcePolicies"}
+    const {next,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = {};
+    const result = await this.client.listResourcePolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResourcePolicies' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.ResourcePolicies ?? []) ? (result.ResourcePolicies ?? []) : [result.ResourcePolicies]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async listTagsForResource(params: { [K in keyof ParamsFrom<'listTagsForResource', { next?: string }>]: ParamsFrom<'listTagsForResource', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listTagsForResource'>]-?: ReturnTypeFrom<'listTagsForResource'>[K]}['Tags'], undefined>}> {
+    // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"Tags"}
+    const {next,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = {};
+    const result = await this.client.listTagsForResource({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTagsForResource' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.Tags ?? []) ? (result.Tags ?? []) : [result.Tags]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
   putEncryptionConfig: (params: RawParamsFrom<'putEncryptionConfig'>) => Promise<ReturnTypeFrom<'putEncryptionConfig'>>  = async params => {
   // undefined
     return this.client.putEncryptionConfig(params as any).promise();
+  }
+
+  putResourcePolicy: (params: RawParamsFrom<'putResourcePolicy'>) => Promise<ReturnTypeFrom<'putResourcePolicy'>>  = async params => {
+  // undefined
+    return this.client.putResourcePolicy(params as any).promise();
   }
 
   putTelemetryRecords: (params: RawParamsFrom<'putTelemetryRecords'>) => Promise<ReturnTypeFrom<'putTelemetryRecords'>>  = async params => {

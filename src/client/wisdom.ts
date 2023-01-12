@@ -178,11 +178,6 @@ export class Wisdom {
     return this.client.notifyRecommendationsReceived(params as any).promise();
   }
 
-  putFeedback: (params: RawParamsFrom<'putFeedback'>) => Promise<ReturnTypeFrom<'putFeedback'>>  = async params => {
-  // undefined
-    return this.client.putFeedback(params as any).promise();
-  }
-
   async queryAssistant(params: { [K in keyof ParamsFrom<'queryAssistant', { next?: string, limit?: number }>]: ParamsFrom<'queryAssistant', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'queryAssistant'>]-?: ReturnTypeFrom<'queryAssistant'>[K]}['results'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"results"}
     const {next, limit,  ...otherParams} = params ?? {};

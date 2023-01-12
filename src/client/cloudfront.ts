@@ -33,6 +33,11 @@ export class CloudFront {
     return this.client.associateAlias(params as any).promise();
   }
 
+  copyDistribution: (params: RawParamsFrom<'copyDistribution'>) => Promise<ReturnTypeFrom<'copyDistribution'>>  = async params => {
+  // undefined
+    return this.client.copyDistribution(params as any).promise();
+  }
+
   createCachePolicy: (params: RawParamsFrom<'createCachePolicy'>) => Promise<ReturnTypeFrom<'createCachePolicy'>>  = async params => {
   // undefined
     return this.client.createCachePolicy(params as any).promise();
@@ -41,6 +46,11 @@ export class CloudFront {
   createCloudFrontOriginAccessIdentity: (params: RawParamsFrom<'createCloudFrontOriginAccessIdentity'>) => Promise<ReturnTypeFrom<'createCloudFrontOriginAccessIdentity'>>  = async params => {
   // undefined
     return this.client.createCloudFrontOriginAccessIdentity(params as any).promise();
+  }
+
+  createContinuousDeploymentPolicy: (params: RawParamsFrom<'createContinuousDeploymentPolicy'>) => Promise<ReturnTypeFrom<'createContinuousDeploymentPolicy'>>  = async params => {
+  // undefined
+    return this.client.createContinuousDeploymentPolicy(params as any).promise();
   }
 
   createDistribution: (params: RawParamsFrom<'createDistribution'>) => Promise<ReturnTypeFrom<'createDistribution'>>  = async params => {
@@ -128,6 +138,11 @@ export class CloudFront {
     return this.client.deleteCloudFrontOriginAccessIdentity(params as any).promise();
   }
 
+  deleteContinuousDeploymentPolicy: (params: RawParamsFrom<'deleteContinuousDeploymentPolicy'>) => Promise<ReturnTypeFrom<'deleteContinuousDeploymentPolicy'>>  = async params => {
+  // undefined
+    return this.client.deleteContinuousDeploymentPolicy(params as any).promise();
+  }
+
   deleteDistribution: (params: RawParamsFrom<'deleteDistribution'>) => Promise<ReturnTypeFrom<'deleteDistribution'>>  = async params => {
   // undefined
     return this.client.deleteDistribution(params as any).promise();
@@ -211,6 +226,16 @@ export class CloudFront {
   getCloudFrontOriginAccessIdentityConfig: (params: RawParamsFrom<'getCloudFrontOriginAccessIdentityConfig'>) => Promise<ReturnTypeFrom<'getCloudFrontOriginAccessIdentityConfig'>>  = async params => {
   // undefined
     return this.client.getCloudFrontOriginAccessIdentityConfig(params as any).promise();
+  }
+
+  getContinuousDeploymentPolicy: (params: RawParamsFrom<'getContinuousDeploymentPolicy'>) => Promise<ReturnTypeFrom<'getContinuousDeploymentPolicy'>>  = async params => {
+  // undefined
+    return this.client.getContinuousDeploymentPolicy(params as any).promise();
+  }
+
+  getContinuousDeploymentPolicyConfig: (params: RawParamsFrom<'getContinuousDeploymentPolicyConfig'>) => Promise<ReturnTypeFrom<'getContinuousDeploymentPolicyConfig'>>  = async params => {
+  // undefined
+    return this.client.getContinuousDeploymentPolicyConfig(params as any).promise();
   }
 
   getDistribution: (params: RawParamsFrom<'getDistribution'>) => Promise<ReturnTypeFrom<'getDistribution'>>  = async params => {
@@ -346,6 +371,11 @@ export class CloudFront {
   listConflictingAliases: (params: RawParamsFrom<'listConflictingAliases'>) => Promise<ReturnTypeFrom<'listConflictingAliases'>>  = async params => {
   // undefined
     return this.client.listConflictingAliases(params as any).promise();
+  }
+
+  listContinuousDeploymentPolicies: (params: RawParamsFrom<'listContinuousDeploymentPolicies'>) => Promise<ReturnTypeFrom<'listContinuousDeploymentPolicies'>>  = async params => {
+  // undefined
+    return this.client.listContinuousDeploymentPolicies(params as any).promise();
   }
 
   async listDistributions(params: { [K in keyof ParamsFrom<'listDistributions', { next?: string, limit?: number }>]: ParamsFrom<'listDistributions', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listDistributions'>]-?: ReturnTypeFrom<'listDistributions'>[K]}['DistributionList']['Items'], undefined>}> {
@@ -503,9 +533,19 @@ export class CloudFront {
     return this.client.updateCloudFrontOriginAccessIdentity(params as any).promise();
   }
 
+  updateContinuousDeploymentPolicy: (params: RawParamsFrom<'updateContinuousDeploymentPolicy'>) => Promise<ReturnTypeFrom<'updateContinuousDeploymentPolicy'>>  = async params => {
+  // undefined
+    return this.client.updateContinuousDeploymentPolicy(params as any).promise();
+  }
+
   updateDistribution: (params: RawParamsFrom<'updateDistribution'>) => Promise<ReturnTypeFrom<'updateDistribution'>>  = async params => {
   // undefined
     return this.client.updateDistribution(params as any).promise();
+  }
+
+  updateDistributionWithStagingConfig: (params: RawParamsFrom<'updateDistributionWithStagingConfig'>) => Promise<ReturnTypeFrom<'updateDistributionWithStagingConfig'>>  = async params => {
+  // undefined
+    return this.client.updateDistributionWithStagingConfig(params as any).promise();
   }
 
   updateFieldLevelEncryptionConfig: (params: RawParamsFrom<'updateFieldLevelEncryptionConfig'>) => Promise<ReturnTypeFrom<'updateFieldLevelEncryptionConfig'>>  = async params => {

@@ -26,7 +26,7 @@ export class RDS {
   public readonly service = 'rds' as const;
   public readonly global = false as const;
   public readonly category = 'Database' as const;
-  public readonly topLevelCalls = ["describeCertificates","describeDBClusterEndpoints","describeDBClusterParameterGroups","describeDBClusterSnapshots","describeDBClusters","describeDBEngineVersions","describeDBInstanceAutomatedBackups","describeDBInstances","describeDBParameterGroups","describeDBProxies","describeDBProxyEndpoints","describeDBSecurityGroups","describeDBSnapshots","describeDBSubnetGroups","describeEventSubscriptions","describeEvents","describeExportTasks","describeGlobalClusters","describeOptionGroups","describePendingMaintenanceActions","describeReservedDBInstances","describeReservedDBInstancesOfferings","describeSourceRegions"] as const;
+  public readonly topLevelCalls = ["describeBlueGreenDeployments","describeCertificates","describeDBClusterEndpoints","describeDBClusterParameterGroups","describeDBClusterSnapshots","describeDBClusters","describeDBEngineVersions","describeDBInstanceAutomatedBackups","describeDBInstances","describeDBParameterGroups","describeDBProxies","describeDBProxyEndpoints","describeDBSecurityGroups","describeDBSnapshots","describeDBSubnetGroups","describeEventSubscriptions","describeEvents","describeExportTasks","describeGlobalClusters","describeOptionGroups","describePendingMaintenanceActions","describeReservedDBInstances","describeReservedDBInstancesOfferings","describeSourceRegions"] as const;
   
   addRoleToDBCluster: (params: RawParamsFrom<'addRoleToDBCluster'>) => Promise<ReturnTypeFrom<'addRoleToDBCluster'>>  = async params => {
   // undefined
@@ -91,6 +91,11 @@ export class RDS {
   copyOptionGroup: (params: RawParamsFrom<'copyOptionGroup'>) => Promise<ReturnTypeFrom<'copyOptionGroup'>>  = async params => {
   // undefined
     return this.client.copyOptionGroup(params as any).promise();
+  }
+
+  createBlueGreenDeployment: (params: RawParamsFrom<'createBlueGreenDeployment'>) => Promise<ReturnTypeFrom<'createBlueGreenDeployment'>>  = async params => {
+  // undefined
+    return this.client.createBlueGreenDeployment(params as any).promise();
   }
 
   createCustomDBEngineVersion: (params: RawParamsFrom<'createCustomDBEngineVersion'>) => Promise<ReturnTypeFrom<'createCustomDBEngineVersion'>>  = async params => {
@@ -171,6 +176,11 @@ export class RDS {
   createOptionGroup: (params: RawParamsFrom<'createOptionGroup'>) => Promise<ReturnTypeFrom<'createOptionGroup'>>  = async params => {
   // undefined
     return this.client.createOptionGroup(params as any).promise();
+  }
+
+  deleteBlueGreenDeployment: (params: RawParamsFrom<'deleteBlueGreenDeployment'>) => Promise<ReturnTypeFrom<'deleteBlueGreenDeployment'>>  = async params => {
+  // undefined
+    return this.client.deleteBlueGreenDeployment(params as any).promise();
   }
 
   deleteCustomDBEngineVersion: (params: RawParamsFrom<'deleteCustomDBEngineVersion'>) => Promise<ReturnTypeFrom<'deleteCustomDBEngineVersion'>>  = async params => {
@@ -261,6 +271,21 @@ export class RDS {
   describeAccountAttributes: (params: RawParamsFrom<'describeAccountAttributes'>) => Promise<ReturnTypeFrom<'describeAccountAttributes'>>  = async params => {
   // undefined
     return this.client.describeAccountAttributes(params as any).promise();
+  }
+
+  async describeBlueGreenDeployments(params: { [K in keyof ParamsFrom<'describeBlueGreenDeployments', { next?: string, limit?: number }>]: ParamsFrom<'describeBlueGreenDeployments', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeBlueGreenDeployments'>]-?: ReturnTypeFrom<'describeBlueGreenDeployments'>[K]}['BlueGreenDeployments'], undefined>}> {
+    // {"inputToken":"Marker","limitKey":"MaxRecords","outputToken":"Marker","resultKey":"BlueGreenDeployments"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxRecords: limit } : {};
+    const result = await this.client.describeBlueGreenDeployments({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeBlueGreenDeployments' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.BlueGreenDeployments ?? []) ? (result.BlueGreenDeployments ?? []) : [result.BlueGreenDeployments]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
   async describeCertificates(params: { [K in keyof ParamsFrom<'describeCertificates', { next?: string, limit?: number }>]: ParamsFrom<'describeCertificates', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeCertificates'>]-?: ReturnTypeFrom<'describeCertificates'>[K]}['Certificates'], undefined>}> {
@@ -1046,6 +1071,11 @@ export class RDS {
   stopDBInstanceAutomatedBackupsReplication: (params: RawParamsFrom<'stopDBInstanceAutomatedBackupsReplication'>) => Promise<ReturnTypeFrom<'stopDBInstanceAutomatedBackupsReplication'>>  = async params => {
   // undefined
     return this.client.stopDBInstanceAutomatedBackupsReplication(params as any).promise();
+  }
+
+  switchoverBlueGreenDeployment: (params: RawParamsFrom<'switchoverBlueGreenDeployment'>) => Promise<ReturnTypeFrom<'switchoverBlueGreenDeployment'>>  = async params => {
+  // undefined
+    return this.client.switchoverBlueGreenDeployment(params as any).promise();
   }
 
   switchoverReadReplica: (params: RawParamsFrom<'switchoverReadReplica'>) => Promise<ReturnTypeFrom<'switchoverReadReplica'>>  = async params => {

@@ -33,6 +33,11 @@ export class GlobalAccelerator {
     return this.client.addCustomRoutingEndpoints(params as any).promise();
   }
 
+  addEndpoints: (params: RawParamsFrom<'addEndpoints'>) => Promise<ReturnTypeFrom<'addEndpoints'>>  = async params => {
+  // undefined
+    return this.client.addEndpoints(params as any).promise();
+  }
+
   advertiseByoipCidr: (params: RawParamsFrom<'advertiseByoipCidr'>) => Promise<ReturnTypeFrom<'advertiseByoipCidr'>>  = async params => {
   // undefined
     return this.client.advertiseByoipCidr(params as any).promise();
@@ -291,6 +296,11 @@ export class GlobalAccelerator {
   removeCustomRoutingEndpoints: (params: RawParamsFrom<'removeCustomRoutingEndpoints'>) => Promise<ReturnTypeFrom<'removeCustomRoutingEndpoints'>>  = async params => {
   // undefined
     return this.client.removeCustomRoutingEndpoints(params as any).promise();
+  }
+
+  removeEndpoints: (params: RawParamsFrom<'removeEndpoints'>) => Promise<ReturnTypeFrom<'removeEndpoints'>>  = async params => {
+  // undefined
+    return this.client.removeEndpoints(params as any).promise();
   }
 
   tagResource: (params: RawParamsFrom<'tagResource'>) => Promise<ReturnTypeFrom<'tagResource'>>  = async params => {

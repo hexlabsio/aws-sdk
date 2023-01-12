@@ -293,6 +293,21 @@ export class IoTSiteWise {
     }
   }
 
+  async listAssetModelProperties(params: { [K in keyof ParamsFrom<'listAssetModelProperties', { next?: string, limit?: number }>]: ParamsFrom<'listAssetModelProperties', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listAssetModelProperties'>]-?: ReturnTypeFrom<'listAssetModelProperties'>[K]}['assetModelPropertySummaries'], undefined>}> {
+    // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"assetModelPropertySummaries"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { maxResults: limit } : {};
+    const result = await this.client.listAssetModelProperties({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAssetModelProperties' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.assetModelPropertySummaries ?? []) ? (result.assetModelPropertySummaries ?? []) : [result.assetModelPropertySummaries]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
   async listAssetModels(params: { [K in keyof ParamsFrom<'listAssetModels', { next?: string, limit?: number }>]: ParamsFrom<'listAssetModels', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listAssetModels'>]-?: ReturnTypeFrom<'listAssetModels'>[K]}['assetModelSummaries'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"assetModelSummaries"}
     const {next, limit,  ...otherParams} = params ?? {};
@@ -301,6 +316,21 @@ export class IoTSiteWise {
     const result = await this.client.listAssetModels({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
     const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAssetModels' })).toString('base64') : undefined;
     const member = (Array.isArray(result.assetModelSummaries ?? []) ? (result.assetModelSummaries ?? []) : [result.assetModelSummaries]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async listAssetProperties(params: { [K in keyof ParamsFrom<'listAssetProperties', { next?: string, limit?: number }>]: ParamsFrom<'listAssetProperties', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listAssetProperties'>]-?: ReturnTypeFrom<'listAssetProperties'>[K]}['assetPropertySummaries'], undefined>}> {
+    // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"assetPropertySummaries"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { maxResults: limit } : {};
+    const result = await this.client.listAssetProperties({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listAssetProperties' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.assetPropertySummaries ?? []) ? (result.assetPropertySummaries ?? []) : [result.assetPropertySummaries]) as any;
     return {
       totalItems: member.length,
       member,

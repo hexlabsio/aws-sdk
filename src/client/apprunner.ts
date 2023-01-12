@@ -26,7 +26,7 @@ export class AppRunner {
   public readonly service = 'apprunner' as const;
   public readonly global = false as const;
   public readonly category = 'End User Computing' as const;
-  public readonly topLevelCalls = ["listAutoScalingConfigurations","listConnections","listObservabilityConfigurations","listServices","listVpcConnectors"] as const;
+  public readonly topLevelCalls = ["listAutoScalingConfigurations","listConnections","listObservabilityConfigurations","listServices","listVpcConnectors","listVpcIngressConnections"] as const;
   
   associateCustomDomain: (params: RawParamsFrom<'associateCustomDomain'>) => Promise<ReturnTypeFrom<'associateCustomDomain'>>  = async params => {
   // undefined
@@ -58,6 +58,11 @@ export class AppRunner {
     return this.client.createVpcConnector(params as any).promise();
   }
 
+  createVpcIngressConnection: (params: RawParamsFrom<'createVpcIngressConnection'>) => Promise<ReturnTypeFrom<'createVpcIngressConnection'>>  = async params => {
+  // undefined
+    return this.client.createVpcIngressConnection(params as any).promise();
+  }
+
   deleteAutoScalingConfiguration: (params: RawParamsFrom<'deleteAutoScalingConfiguration'>) => Promise<ReturnTypeFrom<'deleteAutoScalingConfiguration'>>  = async params => {
   // undefined
     return this.client.deleteAutoScalingConfiguration(params as any).promise();
@@ -83,6 +88,11 @@ export class AppRunner {
     return this.client.deleteVpcConnector(params as any).promise();
   }
 
+  deleteVpcIngressConnection: (params: RawParamsFrom<'deleteVpcIngressConnection'>) => Promise<ReturnTypeFrom<'deleteVpcIngressConnection'>>  = async params => {
+  // undefined
+    return this.client.deleteVpcIngressConnection(params as any).promise();
+  }
+
   describeAutoScalingConfiguration: (params: RawParamsFrom<'describeAutoScalingConfiguration'>) => Promise<ReturnTypeFrom<'describeAutoScalingConfiguration'>>  = async params => {
   // undefined
     return this.client.describeAutoScalingConfiguration(params as any).promise();
@@ -106,6 +116,11 @@ export class AppRunner {
   describeVpcConnector: (params: RawParamsFrom<'describeVpcConnector'>) => Promise<ReturnTypeFrom<'describeVpcConnector'>>  = async params => {
   // undefined
     return this.client.describeVpcConnector(params as any).promise();
+  }
+
+  describeVpcIngressConnection: (params: RawParamsFrom<'describeVpcIngressConnection'>) => Promise<ReturnTypeFrom<'describeVpcIngressConnection'>>  = async params => {
+  // undefined
+    return this.client.describeVpcIngressConnection(params as any).promise();
   }
 
   disassociateCustomDomain: (params: RawParamsFrom<'disassociateCustomDomain'>) => Promise<ReturnTypeFrom<'disassociateCustomDomain'>>  = async params => {
@@ -148,6 +163,11 @@ export class AppRunner {
     return this.client.listVpcConnectors(params as any).promise();
   }
 
+  listVpcIngressConnections: (params: RawParamsFrom<'listVpcIngressConnections'>) => Promise<ReturnTypeFrom<'listVpcIngressConnections'>>  = async params => {
+  // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
+    return this.client.listVpcIngressConnections(params as any).promise();
+  }
+
   pauseService: (params: RawParamsFrom<'pauseService'>) => Promise<ReturnTypeFrom<'pauseService'>>  = async params => {
   // undefined
     return this.client.pauseService(params as any).promise();
@@ -176,6 +196,11 @@ export class AppRunner {
   updateService: (params: RawParamsFrom<'updateService'>) => Promise<ReturnTypeFrom<'updateService'>>  = async params => {
   // undefined
     return this.client.updateService(params as any).promise();
+  }
+
+  updateVpcIngressConnection: (params: RawParamsFrom<'updateVpcIngressConnection'>) => Promise<ReturnTypeFrom<'updateVpcIngressConnection'>>  = async params => {
+  // undefined
+    return this.client.updateVpcIngressConnection(params as any).promise();
   }
   
   static fromClient(client: AWSAppRunner): AppRunner {

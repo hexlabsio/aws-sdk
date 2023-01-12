@@ -63,6 +63,16 @@ export class Textract {
     return this.client.getExpenseAnalysis(params as any).promise();
   }
 
+  getLendingAnalysis: (params: RawParamsFrom<'getLendingAnalysis'>) => Promise<ReturnTypeFrom<'getLendingAnalysis'>>  = async params => {
+  // undefined
+    return this.client.getLendingAnalysis(params as any).promise();
+  }
+
+  getLendingAnalysisSummary: (params: RawParamsFrom<'getLendingAnalysisSummary'>) => Promise<ReturnTypeFrom<'getLendingAnalysisSummary'>>  = async params => {
+  // undefined
+    return this.client.getLendingAnalysisSummary(params as any).promise();
+  }
+
   startDocumentAnalysis: (params: RawParamsFrom<'startDocumentAnalysis'>) => Promise<ReturnTypeFrom<'startDocumentAnalysis'>>  = async params => {
   // undefined
     return this.client.startDocumentAnalysis(params as any).promise();
@@ -76,6 +86,11 @@ export class Textract {
   startExpenseAnalysis: (params: RawParamsFrom<'startExpenseAnalysis'>) => Promise<ReturnTypeFrom<'startExpenseAnalysis'>>  = async params => {
   // undefined
     return this.client.startExpenseAnalysis(params as any).promise();
+  }
+
+  startLendingAnalysis: (params: RawParamsFrom<'startLendingAnalysis'>) => Promise<ReturnTypeFrom<'startLendingAnalysis'>>  = async params => {
+  // undefined
+    return this.client.startLendingAnalysis(params as any).promise();
   }
   
   static fromClient(client: AWSTextract): Textract {

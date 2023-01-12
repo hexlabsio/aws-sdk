@@ -26,7 +26,7 @@ export class DirectoryService {
   public readonly service = 'ds' as const;
   public readonly global = false as const;
   public readonly category = 'Security, Identity & Compliance' as const;
-  public readonly topLevelCalls = [] as const;
+  public readonly topLevelCalls = ["describeDirectories","describeSnapshots","describeTrusts","listLogSubscriptions"] as const;
   
   acceptSharedDirectory: (params: RawParamsFrom<'acceptSharedDirectory'>) => Promise<ReturnTypeFrom<'acceptSharedDirectory'>>  = async params => {
   // undefined
@@ -138,9 +138,19 @@ export class DirectoryService {
     return this.client.describeCertificate(params as any).promise();
   }
 
-  describeClientAuthenticationSettings: (params: RawParamsFrom<'describeClientAuthenticationSettings'>) => Promise<ReturnTypeFrom<'describeClientAuthenticationSettings'>>  = async params => {
-  // undefined
-    return this.client.describeClientAuthenticationSettings(params as any).promise();
+  async describeClientAuthenticationSettings(params: { [K in keyof ParamsFrom<'describeClientAuthenticationSettings', { next?: string, limit?: number }>]: ParamsFrom<'describeClientAuthenticationSettings', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeClientAuthenticationSettings'>]-?: ReturnTypeFrom<'describeClientAuthenticationSettings'>[K]}['ClientAuthenticationSettingsInfo'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"ClientAuthenticationSettingsInfo"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { Limit: limit } : {};
+    const result = await this.client.describeClientAuthenticationSettings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeClientAuthenticationSettings' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.ClientAuthenticationSettingsInfo ?? []) ? (result.ClientAuthenticationSettingsInfo ?? []) : [result.ClientAuthenticationSettingsInfo]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
   describeConditionalForwarders: (params: RawParamsFrom<'describeConditionalForwarders'>) => Promise<ReturnTypeFrom<'describeConditionalForwarders'>>  = async params => {
@@ -148,9 +158,19 @@ export class DirectoryService {
     return this.client.describeConditionalForwarders(params as any).promise();
   }
 
-  describeDirectories: (params: RawParamsFrom<'describeDirectories'>) => Promise<ReturnTypeFrom<'describeDirectories'>>  = async params => {
-  // undefined
-    return this.client.describeDirectories(params as any).promise();
+  async describeDirectories(params: { [K in keyof ParamsFrom<'describeDirectories', { next?: string, limit?: number }>]: ParamsFrom<'describeDirectories', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeDirectories'>]-?: ReturnTypeFrom<'describeDirectories'>[K]}['DirectoryDescriptions'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"DirectoryDescriptions"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { Limit: limit } : {};
+    const result = await this.client.describeDirectories({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeDirectories' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.DirectoryDescriptions ?? []) ? (result.DirectoryDescriptions ?? []) : [result.DirectoryDescriptions]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
   describeDomainControllers: (params: RawParamsFrom<'describeDomainControllers'>) => Promise<ReturnTypeFrom<'describeDomainControllers'>>  = async params => {
@@ -163,14 +183,34 @@ export class DirectoryService {
     return this.client.describeEventTopics(params as any).promise();
   }
 
-  describeLDAPSSettings: (params: RawParamsFrom<'describeLDAPSSettings'>) => Promise<ReturnTypeFrom<'describeLDAPSSettings'>>  = async params => {
-  // undefined
-    return this.client.describeLDAPSSettings(params as any).promise();
+  async describeLDAPSSettings(params: { [K in keyof ParamsFrom<'describeLDAPSSettings', { next?: string, limit?: number }>]: ParamsFrom<'describeLDAPSSettings', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeLDAPSSettings'>]-?: ReturnTypeFrom<'describeLDAPSSettings'>[K]}['LDAPSSettingsInfo'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"LDAPSSettingsInfo"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { Limit: limit } : {};
+    const result = await this.client.describeLDAPSSettings({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeLDAPSSettings' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.LDAPSSettingsInfo ?? []) ? (result.LDAPSSettingsInfo ?? []) : [result.LDAPSSettingsInfo]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
-  describeRegions: (params: RawParamsFrom<'describeRegions'>) => Promise<ReturnTypeFrom<'describeRegions'>>  = async params => {
-  // undefined
-    return this.client.describeRegions(params as any).promise();
+  async describeRegions(params: { [K in keyof ParamsFrom<'describeRegions', { next?: string }>]: ParamsFrom<'describeRegions', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeRegions'>]-?: ReturnTypeFrom<'describeRegions'>[K]}['RegionsDescription'], undefined>}> {
+    // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"RegionsDescription"}
+    const {next,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = {};
+    const result = await this.client.describeRegions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeRegions' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.RegionsDescription ?? []) ? (result.RegionsDescription ?? []) : [result.RegionsDescription]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
   describeSettings: (params: RawParamsFrom<'describeSettings'>) => Promise<ReturnTypeFrom<'describeSettings'>>  = async params => {
@@ -178,19 +218,64 @@ export class DirectoryService {
     return this.client.describeSettings(params as any).promise();
   }
 
-  describeSharedDirectories: (params: RawParamsFrom<'describeSharedDirectories'>) => Promise<ReturnTypeFrom<'describeSharedDirectories'>>  = async params => {
-  // undefined
-    return this.client.describeSharedDirectories(params as any).promise();
+  async describeSharedDirectories(params: { [K in keyof ParamsFrom<'describeSharedDirectories', { next?: string, limit?: number }>]: ParamsFrom<'describeSharedDirectories', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeSharedDirectories'>]-?: ReturnTypeFrom<'describeSharedDirectories'>[K]}['SharedDirectories'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"SharedDirectories"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { Limit: limit } : {};
+    const result = await this.client.describeSharedDirectories({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeSharedDirectories' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.SharedDirectories ?? []) ? (result.SharedDirectories ?? []) : [result.SharedDirectories]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
-  describeSnapshots: (params: RawParamsFrom<'describeSnapshots'>) => Promise<ReturnTypeFrom<'describeSnapshots'>>  = async params => {
-  // undefined
-    return this.client.describeSnapshots(params as any).promise();
+  async describeSnapshots(params: { [K in keyof ParamsFrom<'describeSnapshots', { next?: string, limit?: number }>]: ParamsFrom<'describeSnapshots', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeSnapshots'>]-?: ReturnTypeFrom<'describeSnapshots'>[K]}['Snapshots'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"Snapshots"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { Limit: limit } : {};
+    const result = await this.client.describeSnapshots({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeSnapshots' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.Snapshots ?? []) ? (result.Snapshots ?? []) : [result.Snapshots]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
-  describeTrusts: (params: RawParamsFrom<'describeTrusts'>) => Promise<ReturnTypeFrom<'describeTrusts'>>  = async params => {
-  // undefined
-    return this.client.describeTrusts(params as any).promise();
+  async describeTrusts(params: { [K in keyof ParamsFrom<'describeTrusts', { next?: string, limit?: number }>]: ParamsFrom<'describeTrusts', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeTrusts'>]-?: ReturnTypeFrom<'describeTrusts'>[K]}['Trusts'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"Trusts"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { Limit: limit } : {};
+    const result = await this.client.describeTrusts({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeTrusts' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.Trusts ?? []) ? (result.Trusts ?? []) : [result.Trusts]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async describeUpdateDirectory(params: { [K in keyof ParamsFrom<'describeUpdateDirectory', { next?: string }>]: ParamsFrom<'describeUpdateDirectory', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeUpdateDirectory'>]-?: ReturnTypeFrom<'describeUpdateDirectory'>[K]}['UpdateActivities'], undefined>}> {
+    // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"UpdateActivities"}
+    const {next,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = {};
+    const result = await this.client.describeUpdateDirectory({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeUpdateDirectory' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.UpdateActivities ?? []) ? (result.UpdateActivities ?? []) : [result.UpdateActivities]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
   disableClientAuthentication: (params: RawParamsFrom<'disableClientAuthentication'>) => Promise<ReturnTypeFrom<'disableClientAuthentication'>>  = async params => {
@@ -243,29 +328,79 @@ export class DirectoryService {
     return this.client.getSnapshotLimits(params as any).promise();
   }
 
-  listCertificates: (params: RawParamsFrom<'listCertificates'>) => Promise<ReturnTypeFrom<'listCertificates'>>  = async params => {
-  // undefined
-    return this.client.listCertificates(params as any).promise();
+  async listCertificates(params: { [K in keyof ParamsFrom<'listCertificates', { next?: string, limit?: number }>]: ParamsFrom<'listCertificates', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listCertificates'>]-?: ReturnTypeFrom<'listCertificates'>[K]}['CertificatesInfo'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"CertificatesInfo"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { Limit: limit } : {};
+    const result = await this.client.listCertificates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCertificates' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.CertificatesInfo ?? []) ? (result.CertificatesInfo ?? []) : [result.CertificatesInfo]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
-  listIpRoutes: (params: RawParamsFrom<'listIpRoutes'>) => Promise<ReturnTypeFrom<'listIpRoutes'>>  = async params => {
-  // undefined
-    return this.client.listIpRoutes(params as any).promise();
+  async listIpRoutes(params: { [K in keyof ParamsFrom<'listIpRoutes', { next?: string, limit?: number }>]: ParamsFrom<'listIpRoutes', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listIpRoutes'>]-?: ReturnTypeFrom<'listIpRoutes'>[K]}['IpRoutesInfo'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"IpRoutesInfo"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { Limit: limit } : {};
+    const result = await this.client.listIpRoutes({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listIpRoutes' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.IpRoutesInfo ?? []) ? (result.IpRoutesInfo ?? []) : [result.IpRoutesInfo]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
-  listLogSubscriptions: (params: RawParamsFrom<'listLogSubscriptions'>) => Promise<ReturnTypeFrom<'listLogSubscriptions'>>  = async params => {
-  // undefined
-    return this.client.listLogSubscriptions(params as any).promise();
+  async listLogSubscriptions(params: { [K in keyof ParamsFrom<'listLogSubscriptions', { next?: string, limit?: number }>]: ParamsFrom<'listLogSubscriptions', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listLogSubscriptions'>]-?: ReturnTypeFrom<'listLogSubscriptions'>[K]}['LogSubscriptions'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"LogSubscriptions"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { Limit: limit } : {};
+    const result = await this.client.listLogSubscriptions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listLogSubscriptions' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.LogSubscriptions ?? []) ? (result.LogSubscriptions ?? []) : [result.LogSubscriptions]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
-  listSchemaExtensions: (params: RawParamsFrom<'listSchemaExtensions'>) => Promise<ReturnTypeFrom<'listSchemaExtensions'>>  = async params => {
-  // undefined
-    return this.client.listSchemaExtensions(params as any).promise();
+  async listSchemaExtensions(params: { [K in keyof ParamsFrom<'listSchemaExtensions', { next?: string, limit?: number }>]: ParamsFrom<'listSchemaExtensions', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listSchemaExtensions'>]-?: ReturnTypeFrom<'listSchemaExtensions'>[K]}['SchemaExtensionsInfo'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"SchemaExtensionsInfo"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { Limit: limit } : {};
+    const result = await this.client.listSchemaExtensions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSchemaExtensions' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.SchemaExtensionsInfo ?? []) ? (result.SchemaExtensionsInfo ?? []) : [result.SchemaExtensionsInfo]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
-  listTagsForResource: (params: RawParamsFrom<'listTagsForResource'>) => Promise<ReturnTypeFrom<'listTagsForResource'>>  = async params => {
-  // undefined
-    return this.client.listTagsForResource(params as any).promise();
+  async listTagsForResource(params: { [K in keyof ParamsFrom<'listTagsForResource', { next?: string, limit?: number }>]: ParamsFrom<'listTagsForResource', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listTagsForResource'>]-?: ReturnTypeFrom<'listTagsForResource'>[K]}['Tags'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"Tags"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { Limit: limit } : {};
+    const result = await this.client.listTagsForResource({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listTagsForResource' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.Tags ?? []) ? (result.Tags ?? []) : [result.Tags]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
   registerCertificate: (params: RawParamsFrom<'registerCertificate'>) => Promise<ReturnTypeFrom<'registerCertificate'>>  = async params => {
@@ -326,6 +461,11 @@ export class DirectoryService {
   updateConditionalForwarder: (params: RawParamsFrom<'updateConditionalForwarder'>) => Promise<ReturnTypeFrom<'updateConditionalForwarder'>>  = async params => {
   // undefined
     return this.client.updateConditionalForwarder(params as any).promise();
+  }
+
+  updateDirectorySetup: (params: RawParamsFrom<'updateDirectorySetup'>) => Promise<ReturnTypeFrom<'updateDirectorySetup'>>  = async params => {
+  // undefined
+    return this.client.updateDirectorySetup(params as any).promise();
   }
 
   updateNumberOfDomainControllers: (params: RawParamsFrom<'updateNumberOfDomainControllers'>) => Promise<ReturnTypeFrom<'updateNumberOfDomainControllers'>>  = async params => {

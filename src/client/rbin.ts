@@ -63,9 +63,19 @@ export class Rbin {
     return this.client.listTagsForResource(params as any).promise();
   }
 
+  lockRule: (params: RawParamsFrom<'lockRule'>) => Promise<ReturnTypeFrom<'lockRule'>>  = async params => {
+  // undefined
+    return this.client.lockRule(params as any).promise();
+  }
+
   tagResource: (params: RawParamsFrom<'tagResource'>) => Promise<ReturnTypeFrom<'tagResource'>>  = async params => {
   // undefined
     return this.client.tagResource(params as any).promise();
+  }
+
+  unlockRule: (params: RawParamsFrom<'unlockRule'>) => Promise<ReturnTypeFrom<'unlockRule'>>  = async params => {
+  // undefined
+    return this.client.unlockRule(params as any).promise();
   }
 
   untagResource: (params: RawParamsFrom<'untagResource'>) => Promise<ReturnTypeFrom<'untagResource'>>  = async params => {

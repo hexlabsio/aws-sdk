@@ -133,6 +133,11 @@ export class ECS {
     return this.client.executeCommand(params as any).promise();
   }
 
+  getTaskProtection: (params: RawParamsFrom<'getTaskProtection'>) => Promise<ReturnTypeFrom<'getTaskProtection'>>  = async params => {
+  // undefined
+    return this.client.getTaskProtection(params as any).promise();
+  }
+
   async listAccountSettings(params: { [K in keyof ParamsFrom<'listAccountSettings', { next?: string, limit?: number }>]: ParamsFrom<'listAccountSettings', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listAccountSettings'>]-?: ReturnTypeFrom<'listAccountSettings'>[K]}['settings'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"settings"}
     const {next, limit,  ...otherParams} = params ?? {};
@@ -200,6 +205,21 @@ export class ECS {
     const limitTokenPart = limit ? { maxResults: limit } : {};
     const result = await this.client.listServices({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
     const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServices' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.serviceArns ?? []) ? (result.serviceArns ?? []) : [result.serviceArns]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async listServicesByNamespace(params: { [K in keyof ParamsFrom<'listServicesByNamespace', { next?: string, limit?: number }>]: ParamsFrom<'listServicesByNamespace', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listServicesByNamespace'>]-?: ReturnTypeFrom<'listServicesByNamespace'>[K]}['serviceArns'], undefined>}> {
+    // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"serviceArns"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { maxResults: limit } : {};
+    const result = await this.client.listServicesByNamespace({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listServicesByNamespace' })).toString('base64') : undefined;
     const member = (Array.isArray(result.serviceArns ?? []) ? (result.serviceArns ?? []) : [result.serviceArns]) as any;
     return {
       totalItems: member.length,
@@ -361,6 +381,11 @@ export class ECS {
   updateServicePrimaryTaskSet: (params: RawParamsFrom<'updateServicePrimaryTaskSet'>) => Promise<ReturnTypeFrom<'updateServicePrimaryTaskSet'>>  = async params => {
   // undefined
     return this.client.updateServicePrimaryTaskSet(params as any).promise();
+  }
+
+  updateTaskProtection: (params: RawParamsFrom<'updateTaskProtection'>) => Promise<ReturnTypeFrom<'updateTaskProtection'>>  = async params => {
+  // undefined
+    return this.client.updateTaskProtection(params as any).promise();
   }
 
   updateTaskSet: (params: RawParamsFrom<'updateTaskSet'>) => Promise<ReturnTypeFrom<'updateTaskSet'>>  = async params => {

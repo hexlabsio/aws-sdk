@@ -143,6 +143,21 @@ export class Billingconductor {
     }
   }
 
+  async listCustomLineItemVersions(params: { [K in keyof ParamsFrom<'listCustomLineItemVersions', { next?: string, limit?: number }>]: ParamsFrom<'listCustomLineItemVersions', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listCustomLineItemVersions'>]-?: ReturnTypeFrom<'listCustomLineItemVersions'>[K]}['CustomLineItemVersions'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"CustomLineItemVersions"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listCustomLineItemVersions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listCustomLineItemVersions' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.CustomLineItemVersions ?? []) ? (result.CustomLineItemVersions ?? []) : [result.CustomLineItemVersions]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
   async listCustomLineItems(params: { [K in keyof ParamsFrom<'listCustomLineItems', { next?: string, limit?: number }>]: ParamsFrom<'listCustomLineItems', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listCustomLineItems'>]-?: ReturnTypeFrom<'listCustomLineItems'>[K]}['CustomLineItems'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"CustomLineItems"}
     const {next, limit,  ...otherParams} = params ?? {};

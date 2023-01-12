@@ -26,7 +26,7 @@ export class WorkSpacesWeb {
   public readonly service = 'workspaces-web' as const;
   public readonly global = false as const;
   public readonly category = 'Other' as const;
-  public readonly topLevelCalls = ["listBrowserSettings","listNetworkSettings","listPortals","listTrustStores","listUserSettings"] as const;
+  public readonly topLevelCalls = ["listBrowserSettings","listNetworkSettings","listPortals","listTrustStores","listUserAccessLoggingSettings","listUserSettings"] as const;
   
   associateBrowserSettings: (params: RawParamsFrom<'associateBrowserSettings'>) => Promise<ReturnTypeFrom<'associateBrowserSettings'>>  = async params => {
   // undefined
@@ -41,6 +41,11 @@ export class WorkSpacesWeb {
   associateTrustStore: (params: RawParamsFrom<'associateTrustStore'>) => Promise<ReturnTypeFrom<'associateTrustStore'>>  = async params => {
   // undefined
     return this.client.associateTrustStore(params as any).promise();
+  }
+
+  associateUserAccessLoggingSettings: (params: RawParamsFrom<'associateUserAccessLoggingSettings'>) => Promise<ReturnTypeFrom<'associateUserAccessLoggingSettings'>>  = async params => {
+  // undefined
+    return this.client.associateUserAccessLoggingSettings(params as any).promise();
   }
 
   associateUserSettings: (params: RawParamsFrom<'associateUserSettings'>) => Promise<ReturnTypeFrom<'associateUserSettings'>>  = async params => {
@@ -73,6 +78,11 @@ export class WorkSpacesWeb {
     return this.client.createTrustStore(params as any).promise();
   }
 
+  createUserAccessLoggingSettings: (params: RawParamsFrom<'createUserAccessLoggingSettings'>) => Promise<ReturnTypeFrom<'createUserAccessLoggingSettings'>>  = async params => {
+  // undefined
+    return this.client.createUserAccessLoggingSettings(params as any).promise();
+  }
+
   createUserSettings: (params: RawParamsFrom<'createUserSettings'>) => Promise<ReturnTypeFrom<'createUserSettings'>>  = async params => {
   // undefined
     return this.client.createUserSettings(params as any).promise();
@@ -103,6 +113,11 @@ export class WorkSpacesWeb {
     return this.client.deleteTrustStore(params as any).promise();
   }
 
+  deleteUserAccessLoggingSettings: (params: RawParamsFrom<'deleteUserAccessLoggingSettings'>) => Promise<ReturnTypeFrom<'deleteUserAccessLoggingSettings'>>  = async params => {
+  // undefined
+    return this.client.deleteUserAccessLoggingSettings(params as any).promise();
+  }
+
   deleteUserSettings: (params: RawParamsFrom<'deleteUserSettings'>) => Promise<ReturnTypeFrom<'deleteUserSettings'>>  = async params => {
   // undefined
     return this.client.deleteUserSettings(params as any).promise();
@@ -121,6 +136,11 @@ export class WorkSpacesWeb {
   disassociateTrustStore: (params: RawParamsFrom<'disassociateTrustStore'>) => Promise<ReturnTypeFrom<'disassociateTrustStore'>>  = async params => {
   // undefined
     return this.client.disassociateTrustStore(params as any).promise();
+  }
+
+  disassociateUserAccessLoggingSettings: (params: RawParamsFrom<'disassociateUserAccessLoggingSettings'>) => Promise<ReturnTypeFrom<'disassociateUserAccessLoggingSettings'>>  = async params => {
+  // undefined
+    return this.client.disassociateUserAccessLoggingSettings(params as any).promise();
   }
 
   disassociateUserSettings: (params: RawParamsFrom<'disassociateUserSettings'>) => Promise<ReturnTypeFrom<'disassociateUserSettings'>>  = async params => {
@@ -163,6 +183,11 @@ export class WorkSpacesWeb {
     return this.client.getTrustStoreCertificate(params as any).promise();
   }
 
+  getUserAccessLoggingSettings: (params: RawParamsFrom<'getUserAccessLoggingSettings'>) => Promise<ReturnTypeFrom<'getUserAccessLoggingSettings'>>  = async params => {
+  // undefined
+    return this.client.getUserAccessLoggingSettings(params as any).promise();
+  }
+
   getUserSettings: (params: RawParamsFrom<'getUserSettings'>) => Promise<ReturnTypeFrom<'getUserSettings'>>  = async params => {
   // undefined
     return this.client.getUserSettings(params as any).promise();
@@ -203,6 +228,11 @@ export class WorkSpacesWeb {
     return this.client.listTrustStores(params as any).promise();
   }
 
+  listUserAccessLoggingSettings: (params: RawParamsFrom<'listUserAccessLoggingSettings'>) => Promise<ReturnTypeFrom<'listUserAccessLoggingSettings'>>  = async params => {
+  // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken"}
+    return this.client.listUserAccessLoggingSettings(params as any).promise();
+  }
+
   listUserSettings: (params: RawParamsFrom<'listUserSettings'>) => Promise<ReturnTypeFrom<'listUserSettings'>>  = async params => {
   // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken"}
     return this.client.listUserSettings(params as any).promise();
@@ -241,6 +271,11 @@ export class WorkSpacesWeb {
   updateTrustStore: (params: RawParamsFrom<'updateTrustStore'>) => Promise<ReturnTypeFrom<'updateTrustStore'>>  = async params => {
   // undefined
     return this.client.updateTrustStore(params as any).promise();
+  }
+
+  updateUserAccessLoggingSettings: (params: RawParamsFrom<'updateUserAccessLoggingSettings'>) => Promise<ReturnTypeFrom<'updateUserAccessLoggingSettings'>>  = async params => {
+  // undefined
+    return this.client.updateUserAccessLoggingSettings(params as any).promise();
   }
 
   updateUserSettings: (params: RawParamsFrom<'updateUserSettings'>) => Promise<ReturnTypeFrom<'updateUserSettings'>>  = async params => {

@@ -63,6 +63,11 @@ export class Grafana {
     return this.client.describeWorkspaceAuthentication(params as any).promise();
   }
 
+  describeWorkspaceConfiguration: (params: RawParamsFrom<'describeWorkspaceConfiguration'>) => Promise<ReturnTypeFrom<'describeWorkspaceConfiguration'>>  = async params => {
+  // undefined
+    return this.client.describeWorkspaceConfiguration(params as any).promise();
+  }
+
   disassociateLicense: (params: RawParamsFrom<'disassociateLicense'>) => Promise<ReturnTypeFrom<'disassociateLicense'>>  = async params => {
   // undefined
     return this.client.disassociateLicense(params as any).promise();
@@ -126,6 +131,11 @@ export class Grafana {
   updateWorkspaceAuthentication: (params: RawParamsFrom<'updateWorkspaceAuthentication'>) => Promise<ReturnTypeFrom<'updateWorkspaceAuthentication'>>  = async params => {
   // undefined
     return this.client.updateWorkspaceAuthentication(params as any).promise();
+  }
+
+  updateWorkspaceConfiguration: (params: RawParamsFrom<'updateWorkspaceConfiguration'>) => Promise<ReturnTypeFrom<'updateWorkspaceConfiguration'>>  = async params => {
+  // undefined
+    return this.client.updateWorkspaceConfiguration(params as any).promise();
   }
   
   static fromClient(client: AWSGrafana): Grafana {

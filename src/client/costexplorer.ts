@@ -163,6 +163,11 @@ export class CostExplorer {
     return this.client.listCostCategoryDefinitions(params as any).promise();
   }
 
+  listSavingsPlansPurchaseRecommendationGeneration: (params: RawParamsFrom<'listSavingsPlansPurchaseRecommendationGeneration'>) => Promise<ReturnTypeFrom<'listSavingsPlansPurchaseRecommendationGeneration'>>  = async params => {
+  // undefined
+    return this.client.listSavingsPlansPurchaseRecommendationGeneration(params as any).promise();
+  }
+
   listTagsForResource: (params: RawParamsFrom<'listTagsForResource'>) => Promise<ReturnTypeFrom<'listTagsForResource'>>  = async params => {
   // undefined
     return this.client.listTagsForResource(params as any).promise();
@@ -171,6 +176,11 @@ export class CostExplorer {
   provideAnomalyFeedback: (params: RawParamsFrom<'provideAnomalyFeedback'>) => Promise<ReturnTypeFrom<'provideAnomalyFeedback'>>  = async params => {
   // undefined
     return this.client.provideAnomalyFeedback(params as any).promise();
+  }
+
+  startSavingsPlansPurchaseRecommendationGeneration: (params: RawParamsFrom<'startSavingsPlansPurchaseRecommendationGeneration'>) => Promise<ReturnTypeFrom<'startSavingsPlansPurchaseRecommendationGeneration'>>  = async params => {
+  // undefined
+    return this.client.startSavingsPlansPurchaseRecommendationGeneration(params as any).promise();
   }
 
   tagResource: (params: RawParamsFrom<'tagResource'>) => Promise<ReturnTypeFrom<'tagResource'>>  = async params => {

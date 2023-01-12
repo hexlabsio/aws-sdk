@@ -117,6 +117,11 @@ export class LicenseManagerUserSubscriptions {
   // undefined
     return this.client.stopProductSubscription(params as any).promise();
   }
+
+  updateIdentityProviderSettings: (params: RawParamsFrom<'updateIdentityProviderSettings'>) => Promise<ReturnTypeFrom<'updateIdentityProviderSettings'>>  = async params => {
+  // undefined
+    return this.client.updateIdentityProviderSettings(params as any).promise();
+  }
   
   static fromClient(client: AWSLicenseManagerUserSubscriptions): LicenseManagerUserSubscriptions {
     return new LicenseManagerUserSubscriptions(client) as any;

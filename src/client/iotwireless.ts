@@ -263,6 +263,11 @@ export class IoTWireless {
     return this.client.getPositionConfiguration(params as any).promise();
   }
 
+  getPositionEstimate: (params: RawParamsFrom<'getPositionEstimate'>) => Promise<ReturnTypeFrom<'getPositionEstimate'>>  = async params => {
+  // undefined
+    return this.client.getPositionEstimate(params as any).promise();
+  }
+
   getResourceEventConfiguration: (params: RawParamsFrom<'getResourceEventConfiguration'>) => Promise<ReturnTypeFrom<'getResourceEventConfiguration'>>  = async params => {
   // undefined
     return this.client.getResourceEventConfiguration(params as any).promise();
@@ -271,6 +276,11 @@ export class IoTWireless {
   getResourceLogLevel: (params: RawParamsFrom<'getResourceLogLevel'>) => Promise<ReturnTypeFrom<'getResourceLogLevel'>>  = async params => {
   // undefined
     return this.client.getResourceLogLevel(params as any).promise();
+  }
+
+  getResourcePosition: (params: RawParamsFrom<'getResourcePosition'>) => Promise<ReturnTypeFrom<'getResourcePosition'>>  = async params => {
+  // undefined
+    return this.client.getResourcePosition(params as any).promise();
   }
 
   getServiceEndpoint: (params: RawParamsFrom<'getServiceEndpoint'>) => Promise<ReturnTypeFrom<'getServiceEndpoint'>>  = async params => {
@@ -506,6 +516,11 @@ export class IoTWireless {
   updateResourceEventConfiguration: (params: RawParamsFrom<'updateResourceEventConfiguration'>) => Promise<ReturnTypeFrom<'updateResourceEventConfiguration'>>  = async params => {
   // undefined
     return this.client.updateResourceEventConfiguration(params as any).promise();
+  }
+
+  updateResourcePosition: (params: RawParamsFrom<'updateResourcePosition'>) => Promise<ReturnTypeFrom<'updateResourcePosition'>>  = async params => {
+  // undefined
+    return this.client.updateResourcePosition(params as any).promise();
   }
 
   updateWirelessDevice: (params: RawParamsFrom<'updateWirelessDevice'>) => Promise<ReturnTypeFrom<'updateWirelessDevice'>>  = async params => {

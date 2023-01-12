@@ -208,6 +208,11 @@ export class S3Control {
     return this.client.getMultiRegionAccessPointPolicyStatus(params as any).promise();
   }
 
+  getMultiRegionAccessPointRoutes: (params: RawParamsFrom<'getMultiRegionAccessPointRoutes'>) => Promise<ReturnTypeFrom<'getMultiRegionAccessPointRoutes'>>  = async params => {
+  // undefined
+    return this.client.getMultiRegionAccessPointRoutes(params as any).promise();
+  }
+
   getPublicAccessBlock: (params: RawParamsFrom<'getPublicAccessBlock'>) => Promise<ReturnTypeFrom<'getPublicAccessBlock'>>  = async params => {
   // undefined
     return this.client.getPublicAccessBlock(params as any).promise();
@@ -321,6 +326,11 @@ export class S3Control {
   putStorageLensConfigurationTagging: (params: RawParamsFrom<'putStorageLensConfigurationTagging'>) => Promise<ReturnTypeFrom<'putStorageLensConfigurationTagging'>>  = async params => {
   // undefined
     return this.client.putStorageLensConfigurationTagging(params as any).promise();
+  }
+
+  submitMultiRegionAccessPointRoutes: (params: RawParamsFrom<'submitMultiRegionAccessPointRoutes'>) => Promise<ReturnTypeFrom<'submitMultiRegionAccessPointRoutes'>>  = async params => {
+  // undefined
+    return this.client.submitMultiRegionAccessPointRoutes(params as any).promise();
   }
 
   updateJobPriority: (params: RawParamsFrom<'updateJobPriority'>) => Promise<ReturnTypeFrom<'updateJobPriority'>>  = async params => {

@@ -26,8 +26,13 @@ export class ManagedBlockchain {
   public readonly service = 'managedblockchain' as const;
   public readonly global = false as const;
   public readonly category = 'Blockchain' as const;
-  public readonly topLevelCalls = ["listInvitations","listNetworks"] as const;
+  public readonly topLevelCalls = ["listAccessors","listInvitations","listNetworks"] as const;
   
+  createAccessor: (params: RawParamsFrom<'createAccessor'>) => Promise<ReturnTypeFrom<'createAccessor'>>  = async params => {
+  // undefined
+    return this.client.createAccessor(params as any).promise();
+  }
+
   createMember: (params: RawParamsFrom<'createMember'>) => Promise<ReturnTypeFrom<'createMember'>>  = async params => {
   // undefined
     return this.client.createMember(params as any).promise();
@@ -48,6 +53,11 @@ export class ManagedBlockchain {
     return this.client.createProposal(params as any).promise();
   }
 
+  deleteAccessor: (params: RawParamsFrom<'deleteAccessor'>) => Promise<ReturnTypeFrom<'deleteAccessor'>>  = async params => {
+  // undefined
+    return this.client.deleteAccessor(params as any).promise();
+  }
+
   deleteMember: (params: RawParamsFrom<'deleteMember'>) => Promise<ReturnTypeFrom<'deleteMember'>>  = async params => {
   // undefined
     return this.client.deleteMember(params as any).promise();
@@ -56,6 +66,11 @@ export class ManagedBlockchain {
   deleteNode: (params: RawParamsFrom<'deleteNode'>) => Promise<ReturnTypeFrom<'deleteNode'>>  = async params => {
   // undefined
     return this.client.deleteNode(params as any).promise();
+  }
+
+  getAccessor: (params: RawParamsFrom<'getAccessor'>) => Promise<ReturnTypeFrom<'getAccessor'>>  = async params => {
+  // undefined
+    return this.client.getAccessor(params as any).promise();
   }
 
   getMember: (params: RawParamsFrom<'getMember'>) => Promise<ReturnTypeFrom<'getMember'>>  = async params => {
@@ -76,6 +91,21 @@ export class ManagedBlockchain {
   getProposal: (params: RawParamsFrom<'getProposal'>) => Promise<ReturnTypeFrom<'getProposal'>>  = async params => {
   // undefined
     return this.client.getProposal(params as any).promise();
+  }
+
+  async listAccessors(params: { [K in keyof ParamsFrom<'listAccessors', { next?: string, limit?: number }>]: ParamsFrom<'listAccessors', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listAccessors'>]-?: ReturnTypeFrom<'listAccessors'>[K]}['Accessors'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"Accessors"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listAccessors({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAccessors' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.Accessors ?? []) ? (result.Accessors ?? []) : [result.Accessors]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
   listInvitations: (params: RawParamsFrom<'listInvitations'>) => Promise<ReturnTypeFrom<'listInvitations'>>  = async params => {

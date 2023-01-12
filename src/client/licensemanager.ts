@@ -208,9 +208,19 @@ export class LicenseManager {
     return this.client.listReceivedGrants(params as any).promise();
   }
 
+  listReceivedGrantsForOrganization: (params: RawParamsFrom<'listReceivedGrantsForOrganization'>) => Promise<ReturnTypeFrom<'listReceivedGrantsForOrganization'>>  = async params => {
+  // undefined
+    return this.client.listReceivedGrantsForOrganization(params as any).promise();
+  }
+
   listReceivedLicenses: (params: RawParamsFrom<'listReceivedLicenses'>) => Promise<ReturnTypeFrom<'listReceivedLicenses'>>  = async params => {
   // undefined
     return this.client.listReceivedLicenses(params as any).promise();
+  }
+
+  listReceivedLicensesForOrganization: (params: RawParamsFrom<'listReceivedLicensesForOrganization'>) => Promise<ReturnTypeFrom<'listReceivedLicensesForOrganization'>>  = async params => {
+  // undefined
+    return this.client.listReceivedLicensesForOrganization(params as any).promise();
   }
 
   listResourceInventory: (params: RawParamsFrom<'listResourceInventory'>) => Promise<ReturnTypeFrom<'listResourceInventory'>>  = async params => {

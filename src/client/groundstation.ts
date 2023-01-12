@@ -43,6 +43,11 @@ export class GroundStation {
     return this.client.createDataflowEndpointGroup(params as any).promise();
   }
 
+  createEphemeris: (params: RawParamsFrom<'createEphemeris'>) => Promise<ReturnTypeFrom<'createEphemeris'>>  = async params => {
+  // undefined
+    return this.client.createEphemeris(params as any).promise();
+  }
+
   createMissionProfile: (params: RawParamsFrom<'createMissionProfile'>) => Promise<ReturnTypeFrom<'createMissionProfile'>>  = async params => {
   // undefined
     return this.client.createMissionProfile(params as any).promise();
@@ -58,6 +63,11 @@ export class GroundStation {
     return this.client.deleteDataflowEndpointGroup(params as any).promise();
   }
 
+  deleteEphemeris: (params: RawParamsFrom<'deleteEphemeris'>) => Promise<ReturnTypeFrom<'deleteEphemeris'>>  = async params => {
+  // undefined
+    return this.client.deleteEphemeris(params as any).promise();
+  }
+
   deleteMissionProfile: (params: RawParamsFrom<'deleteMissionProfile'>) => Promise<ReturnTypeFrom<'deleteMissionProfile'>>  = async params => {
   // undefined
     return this.client.deleteMissionProfile(params as any).promise();
@@ -66,6 +76,11 @@ export class GroundStation {
   describeContact: (params: RawParamsFrom<'describeContact'>) => Promise<ReturnTypeFrom<'describeContact'>>  = async params => {
   // undefined
     return this.client.describeContact(params as any).promise();
+  }
+
+  describeEphemeris: (params: RawParamsFrom<'describeEphemeris'>) => Promise<ReturnTypeFrom<'describeEphemeris'>>  = async params => {
+  // undefined
+    return this.client.describeEphemeris(params as any).promise();
   }
 
   getConfig: (params: RawParamsFrom<'getConfig'>) => Promise<ReturnTypeFrom<'getConfig'>>  = async params => {
@@ -131,6 +146,21 @@ export class GroundStation {
     const result = await this.client.listDataflowEndpointGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
     const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDataflowEndpointGroups' })).toString('base64') : undefined;
     const member = (Array.isArray(result.dataflowEndpointGroupList ?? []) ? (result.dataflowEndpointGroupList ?? []) : [result.dataflowEndpointGroupList]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async listEphemerides(params: { [K in keyof ParamsFrom<'listEphemerides', { next?: string, limit?: number }>]: ParamsFrom<'listEphemerides', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listEphemerides'>]-?: ReturnTypeFrom<'listEphemerides'>[K]}['ephemerides'], undefined>}> {
+    // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"ephemerides"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { maxResults: limit } : {};
+    const result = await this.client.listEphemerides({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listEphemerides' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.ephemerides ?? []) ? (result.ephemerides ?? []) : [result.ephemerides]) as any;
     return {
       totalItems: member.length,
       member,
@@ -206,6 +236,11 @@ export class GroundStation {
   updateConfig: (params: RawParamsFrom<'updateConfig'>) => Promise<ReturnTypeFrom<'updateConfig'>>  = async params => {
   // undefined
     return this.client.updateConfig(params as any).promise();
+  }
+
+  updateEphemeris: (params: RawParamsFrom<'updateEphemeris'>) => Promise<ReturnTypeFrom<'updateEphemeris'>>  = async params => {
+  // undefined
+    return this.client.updateEphemeris(params as any).promise();
   }
 
   updateMissionProfile: (params: RawParamsFrom<'updateMissionProfile'>) => Promise<ReturnTypeFrom<'updateMissionProfile'>>  = async params => {

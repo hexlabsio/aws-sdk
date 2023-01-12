@@ -26,8 +26,13 @@ export class Backup {
   public readonly service = 'backup' as const;
   public readonly global = false as const;
   public readonly category = 'Storage' as const;
-  public readonly topLevelCalls = ["listBackupJobs","listBackupPlanTemplates","listBackupPlans","listBackupVaults","listCopyJobs","listFrameworks","listProtectedResources","listReportJobs","listReportPlans","listRestoreJobs"] as const;
+  public readonly topLevelCalls = ["listBackupJobs","listBackupPlanTemplates","listBackupPlans","listBackupVaults","listCopyJobs","listFrameworks","listLegalHolds","listProtectedResources","listReportJobs","listReportPlans","listRestoreJobs"] as const;
   
+  cancelLegalHold: (params: RawParamsFrom<'cancelLegalHold'>) => Promise<ReturnTypeFrom<'cancelLegalHold'>>  = async params => {
+  // undefined
+    return this.client.cancelLegalHold(params as any).promise();
+  }
+
   createBackupPlan: (params: RawParamsFrom<'createBackupPlan'>) => Promise<ReturnTypeFrom<'createBackupPlan'>>  = async params => {
   // undefined
     return this.client.createBackupPlan(params as any).promise();
@@ -46,6 +51,11 @@ export class Backup {
   createFramework: (params: RawParamsFrom<'createFramework'>) => Promise<ReturnTypeFrom<'createFramework'>>  = async params => {
   // undefined
     return this.client.createFramework(params as any).promise();
+  }
+
+  createLegalHold: (params: RawParamsFrom<'createLegalHold'>) => Promise<ReturnTypeFrom<'createLegalHold'>>  = async params => {
+  // undefined
+    return this.client.createLegalHold(params as any).promise();
   }
 
   createReportPlan: (params: RawParamsFrom<'createReportPlan'>) => Promise<ReturnTypeFrom<'createReportPlan'>>  = async params => {
@@ -158,6 +168,11 @@ export class Backup {
     return this.client.disassociateRecoveryPoint(params as any).promise();
   }
 
+  disassociateRecoveryPointFromParent: (params: RawParamsFrom<'disassociateRecoveryPointFromParent'>) => Promise<ReturnTypeFrom<'disassociateRecoveryPointFromParent'>>  = async params => {
+  // undefined
+    return this.client.disassociateRecoveryPointFromParent(params as any).promise();
+  }
+
   exportBackupPlanTemplate: (params: RawParamsFrom<'exportBackupPlanTemplate'>) => Promise<ReturnTypeFrom<'exportBackupPlanTemplate'>>  = async params => {
   // undefined
     return this.client.exportBackupPlanTemplate(params as any).promise();
@@ -191,6 +206,11 @@ export class Backup {
   getBackupVaultNotifications: (params: RawParamsFrom<'getBackupVaultNotifications'>) => Promise<ReturnTypeFrom<'getBackupVaultNotifications'>>  = async params => {
   // undefined
     return this.client.getBackupVaultNotifications(params as any).promise();
+  }
+
+  getLegalHold: (params: RawParamsFrom<'getLegalHold'>) => Promise<ReturnTypeFrom<'getLegalHold'>>  = async params => {
+  // undefined
+    return this.client.getLegalHold(params as any).promise();
   }
 
   getRecoveryPointRestoreMetadata: (params: RawParamsFrom<'getRecoveryPointRestoreMetadata'>) => Promise<ReturnTypeFrom<'getRecoveryPointRestoreMetadata'>>  = async params => {
@@ -313,6 +333,21 @@ export class Backup {
     return this.client.listFrameworks(params as any).promise();
   }
 
+  async listLegalHolds(params: { [K in keyof ParamsFrom<'listLegalHolds', { next?: string, limit?: number }>]: ParamsFrom<'listLegalHolds', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listLegalHolds'>]-?: ReturnTypeFrom<'listLegalHolds'>[K]}['LegalHolds'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"LegalHolds"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listLegalHolds({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listLegalHolds' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.LegalHolds ?? []) ? (result.LegalHolds ?? []) : [result.LegalHolds]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
   async listProtectedResources(params: { [K in keyof ParamsFrom<'listProtectedResources', { next?: string, limit?: number }>]: ParamsFrom<'listProtectedResources', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listProtectedResources'>]-?: ReturnTypeFrom<'listProtectedResources'>[K]}['Results'], undefined>}> {
     // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"Results"}
     const {next, limit,  ...otherParams} = params ?? {};
@@ -335,6 +370,21 @@ export class Backup {
     const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.listRecoveryPointsByBackupVault({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
     const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRecoveryPointsByBackupVault' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.RecoveryPoints ?? []) ? (result.RecoveryPoints ?? []) : [result.RecoveryPoints]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async listRecoveryPointsByLegalHold(params: { [K in keyof ParamsFrom<'listRecoveryPointsByLegalHold', { next?: string, limit?: number }>]: ParamsFrom<'listRecoveryPointsByLegalHold', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listRecoveryPointsByLegalHold'>]-?: ReturnTypeFrom<'listRecoveryPointsByLegalHold'>[K]}['RecoveryPoints'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"RecoveryPoints"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listRecoveryPointsByLegalHold({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRecoveryPointsByLegalHold' })).toString('base64') : undefined;
     const member = (Array.isArray(result.RecoveryPoints ?? []) ? (result.RecoveryPoints ?? []) : [result.RecoveryPoints]) as any;
     return {
       totalItems: member.length,

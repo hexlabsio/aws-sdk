@@ -123,6 +123,11 @@ export class QuickSight {
     return this.client.deleteAccountCustomization(params as any).promise();
   }
 
+  deleteAccountSubscription: (params: RawParamsFrom<'deleteAccountSubscription'>) => Promise<ReturnTypeFrom<'deleteAccountSubscription'>>  = async params => {
+  // undefined
+    return this.client.deleteAccountSubscription(params as any).promise();
+  }
+
   deleteAnalysis: (params: RawParamsFrom<'deleteAnalysis'>) => Promise<ReturnTypeFrom<'deleteAnalysis'>>  = async params => {
   // undefined
     return this.client.deleteAnalysis(params as any).promise();
@@ -223,6 +228,11 @@ export class QuickSight {
     return this.client.describeAnalysis(params as any).promise();
   }
 
+  describeAnalysisDefinition: (params: RawParamsFrom<'describeAnalysisDefinition'>) => Promise<ReturnTypeFrom<'describeAnalysisDefinition'>>  = async params => {
+  // undefined
+    return this.client.describeAnalysisDefinition(params as any).promise();
+  }
+
   describeAnalysisPermissions: (params: RawParamsFrom<'describeAnalysisPermissions'>) => Promise<ReturnTypeFrom<'describeAnalysisPermissions'>>  = async params => {
   // undefined
     return this.client.describeAnalysisPermissions(params as any).promise();
@@ -231,6 +241,11 @@ export class QuickSight {
   describeDashboard: (params: RawParamsFrom<'describeDashboard'>) => Promise<ReturnTypeFrom<'describeDashboard'>>  = async params => {
   // undefined
     return this.client.describeDashboard(params as any).promise();
+  }
+
+  describeDashboardDefinition: (params: RawParamsFrom<'describeDashboardDefinition'>) => Promise<ReturnTypeFrom<'describeDashboardDefinition'>>  = async params => {
+  // undefined
+    return this.client.describeDashboardDefinition(params as any).promise();
   }
 
   describeDashboardPermissions: (params: RawParamsFrom<'describeDashboardPermissions'>) => Promise<ReturnTypeFrom<'describeDashboardPermissions'>>  = async params => {
@@ -311,6 +326,11 @@ export class QuickSight {
   describeTemplateAlias: (params: RawParamsFrom<'describeTemplateAlias'>) => Promise<ReturnTypeFrom<'describeTemplateAlias'>>  = async params => {
   // undefined
     return this.client.describeTemplateAlias(params as any).promise();
+  }
+
+  describeTemplateDefinition: (params: RawParamsFrom<'describeTemplateDefinition'>) => Promise<ReturnTypeFrom<'describeTemplateDefinition'>>  = async params => {
+  // undefined
+    return this.client.describeTemplateDefinition(params as any).promise();
   }
 
   describeTemplatePermissions: (params: RawParamsFrom<'describeTemplatePermissions'>) => Promise<ReturnTypeFrom<'describeTemplatePermissions'>>  = async params => {
@@ -621,6 +641,36 @@ export class QuickSight {
     const result = await this.client.searchDashboards({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
     const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchDashboards' })).toString('base64') : undefined;
     const member = (Array.isArray(result.DashboardSummaryList ?? []) ? (result.DashboardSummaryList ?? []) : [result.DashboardSummaryList]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async searchDataSets(params: { [K in keyof ParamsFrom<'searchDataSets', { next?: string, limit?: number }>]: ParamsFrom<'searchDataSets', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'searchDataSets'>]-?: ReturnTypeFrom<'searchDataSets'>[K]}['DataSetSummaries'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"DataSetSummaries"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.searchDataSets({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchDataSets' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.DataSetSummaries ?? []) ? (result.DataSetSummaries ?? []) : [result.DataSetSummaries]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async searchDataSources(params: { [K in keyof ParamsFrom<'searchDataSources', { next?: string, limit?: number }>]: ParamsFrom<'searchDataSources', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'searchDataSources'>]-?: ReturnTypeFrom<'searchDataSources'>[K]}['DataSourceSummaries'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"DataSourceSummaries"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.searchDataSources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'searchDataSources' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.DataSourceSummaries ?? []) ? (result.DataSourceSummaries ?? []) : [result.DataSourceSummaries]) as any;
     return {
       totalItems: member.length,
       member,

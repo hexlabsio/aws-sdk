@@ -26,7 +26,7 @@ export class Glue {
   public readonly service = 'glue' as const;
   public readonly global = false as const;
   public readonly category = 'Database' as const;
-  public readonly topLevelCalls = ["getClassifiers","getConnections","getCrawlerMetrics","getCrawlers","getDatabases","getDevEndpoints","getJobs","getMLTransforms","getResourcePolicies","getSecurityConfigurations","getTriggers","listBlueprints","listCrawlers","listCustomEntityTypes","listDevEndpoints","listJobs","listMLTransforms","listRegistries","listSchemas","listSessions","listTriggers","listWorkflows","searchTables"] as const;
+  public readonly topLevelCalls = ["getClassifiers","getConnections","getCrawlerMetrics","getCrawlers","getDatabases","getDevEndpoints","getJobs","getMLTransforms","getResourcePolicies","getSecurityConfigurations","getTriggers","listBlueprints","listCrawlers","listCustomEntityTypes","listDataQualityResults","listDataQualityRuleRecommendationRuns","listDataQualityRulesetEvaluationRuns","listDataQualityRulesets","listDevEndpoints","listJobs","listMLTransforms","listRegistries","listSchemas","listSessions","listTriggers","listWorkflows","searchTables"] as const;
   
   batchCreatePartition: (params: RawParamsFrom<'batchCreatePartition'>) => Promise<ReturnTypeFrom<'batchCreatePartition'>>  = async params => {
   // undefined
@@ -68,6 +68,11 @@ export class Glue {
     return this.client.batchGetCustomEntityTypes(params as any).promise();
   }
 
+  batchGetDataQualityResult: (params: RawParamsFrom<'batchGetDataQualityResult'>) => Promise<ReturnTypeFrom<'batchGetDataQualityResult'>>  = async params => {
+  // undefined
+    return this.client.batchGetDataQualityResult(params as any).promise();
+  }
+
   batchGetDevEndpoints: (params: RawParamsFrom<'batchGetDevEndpoints'>) => Promise<ReturnTypeFrom<'batchGetDevEndpoints'>>  = async params => {
   // undefined
     return this.client.batchGetDevEndpoints(params as any).promise();
@@ -101,6 +106,16 @@ export class Glue {
   batchUpdatePartition: (params: RawParamsFrom<'batchUpdatePartition'>) => Promise<ReturnTypeFrom<'batchUpdatePartition'>>  = async params => {
   // undefined
     return this.client.batchUpdatePartition(params as any).promise();
+  }
+
+  cancelDataQualityRuleRecommendationRun: (params: RawParamsFrom<'cancelDataQualityRuleRecommendationRun'>) => Promise<ReturnTypeFrom<'cancelDataQualityRuleRecommendationRun'>>  = async params => {
+  // undefined
+    return this.client.cancelDataQualityRuleRecommendationRun(params as any).promise();
+  }
+
+  cancelDataQualityRulesetEvaluationRun: (params: RawParamsFrom<'cancelDataQualityRulesetEvaluationRun'>) => Promise<ReturnTypeFrom<'cancelDataQualityRulesetEvaluationRun'>>  = async params => {
+  // undefined
+    return this.client.cancelDataQualityRulesetEvaluationRun(params as any).promise();
   }
 
   cancelMLTaskRun: (params: RawParamsFrom<'cancelMLTaskRun'>) => Promise<ReturnTypeFrom<'cancelMLTaskRun'>>  = async params => {
@@ -141,6 +156,11 @@ export class Glue {
   createCustomEntityType: (params: RawParamsFrom<'createCustomEntityType'>) => Promise<ReturnTypeFrom<'createCustomEntityType'>>  = async params => {
   // undefined
     return this.client.createCustomEntityType(params as any).promise();
+  }
+
+  createDataQualityRuleset: (params: RawParamsFrom<'createDataQualityRuleset'>) => Promise<ReturnTypeFrom<'createDataQualityRuleset'>>  = async params => {
+  // undefined
+    return this.client.createDataQualityRuleset(params as any).promise();
   }
 
   createDatabase: (params: RawParamsFrom<'createDatabase'>) => Promise<ReturnTypeFrom<'createDatabase'>>  = async params => {
@@ -251,6 +271,11 @@ export class Glue {
   deleteCustomEntityType: (params: RawParamsFrom<'deleteCustomEntityType'>) => Promise<ReturnTypeFrom<'deleteCustomEntityType'>>  = async params => {
   // undefined
     return this.client.deleteCustomEntityType(params as any).promise();
+  }
+
+  deleteDataQualityRuleset: (params: RawParamsFrom<'deleteDataQualityRuleset'>) => Promise<ReturnTypeFrom<'deleteDataQualityRuleset'>>  = async params => {
+  // undefined
+    return this.client.deleteDataQualityRuleset(params as any).promise();
   }
 
   deleteDatabase: (params: RawParamsFrom<'deleteDatabase'>) => Promise<ReturnTypeFrom<'deleteDatabase'>>  = async params => {
@@ -411,6 +436,26 @@ export class Glue {
   getDataCatalogEncryptionSettings: (params: RawParamsFrom<'getDataCatalogEncryptionSettings'>) => Promise<ReturnTypeFrom<'getDataCatalogEncryptionSettings'>>  = async params => {
   // undefined
     return this.client.getDataCatalogEncryptionSettings(params as any).promise();
+  }
+
+  getDataQualityResult: (params: RawParamsFrom<'getDataQualityResult'>) => Promise<ReturnTypeFrom<'getDataQualityResult'>>  = async params => {
+  // undefined
+    return this.client.getDataQualityResult(params as any).promise();
+  }
+
+  getDataQualityRuleRecommendationRun: (params: RawParamsFrom<'getDataQualityRuleRecommendationRun'>) => Promise<ReturnTypeFrom<'getDataQualityRuleRecommendationRun'>>  = async params => {
+  // undefined
+    return this.client.getDataQualityRuleRecommendationRun(params as any).promise();
+  }
+
+  getDataQualityRuleset: (params: RawParamsFrom<'getDataQualityRuleset'>) => Promise<ReturnTypeFrom<'getDataQualityRuleset'>>  = async params => {
+  // undefined
+    return this.client.getDataQualityRuleset(params as any).promise();
+  }
+
+  getDataQualityRulesetEvaluationRun: (params: RawParamsFrom<'getDataQualityRulesetEvaluationRun'>) => Promise<ReturnTypeFrom<'getDataQualityRulesetEvaluationRun'>>  = async params => {
+  // undefined
+    return this.client.getDataQualityRulesetEvaluationRun(params as any).promise();
   }
 
   getDatabase: (params: RawParamsFrom<'getDatabase'>) => Promise<ReturnTypeFrom<'getDatabase'>>  = async params => {
@@ -698,6 +743,26 @@ export class Glue {
     return this.client.listCustomEntityTypes(params as any).promise();
   }
 
+  listDataQualityResults: (params: RawParamsFrom<'listDataQualityResults'>) => Promise<ReturnTypeFrom<'listDataQualityResults'>>  = async params => {
+  // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
+    return this.client.listDataQualityResults(params as any).promise();
+  }
+
+  listDataQualityRuleRecommendationRuns: (params: RawParamsFrom<'listDataQualityRuleRecommendationRuns'>) => Promise<ReturnTypeFrom<'listDataQualityRuleRecommendationRuns'>>  = async params => {
+  // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
+    return this.client.listDataQualityRuleRecommendationRuns(params as any).promise();
+  }
+
+  listDataQualityRulesetEvaluationRuns: (params: RawParamsFrom<'listDataQualityRulesetEvaluationRuns'>) => Promise<ReturnTypeFrom<'listDataQualityRulesetEvaluationRuns'>>  = async params => {
+  // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
+    return this.client.listDataQualityRulesetEvaluationRuns(params as any).promise();
+  }
+
+  listDataQualityRulesets: (params: RawParamsFrom<'listDataQualityRulesets'>) => Promise<ReturnTypeFrom<'listDataQualityRulesets'>>  = async params => {
+  // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
+    return this.client.listDataQualityRulesets(params as any).promise();
+  }
+
   listDevEndpoints: (params: RawParamsFrom<'listDevEndpoints'>) => Promise<ReturnTypeFrom<'listDevEndpoints'>>  = async params => {
   // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
     return this.client.listDevEndpoints(params as any).promise();
@@ -848,6 +913,16 @@ export class Glue {
     return this.client.startCrawlerSchedule(params as any).promise();
   }
 
+  startDataQualityRuleRecommendationRun: (params: RawParamsFrom<'startDataQualityRuleRecommendationRun'>) => Promise<ReturnTypeFrom<'startDataQualityRuleRecommendationRun'>>  = async params => {
+  // undefined
+    return this.client.startDataQualityRuleRecommendationRun(params as any).promise();
+  }
+
+  startDataQualityRulesetEvaluationRun: (params: RawParamsFrom<'startDataQualityRulesetEvaluationRun'>) => Promise<ReturnTypeFrom<'startDataQualityRulesetEvaluationRun'>>  = async params => {
+  // undefined
+    return this.client.startDataQualityRulesetEvaluationRun(params as any).promise();
+  }
+
   startExportLabelsTaskRun: (params: RawParamsFrom<'startExportLabelsTaskRun'>) => Promise<ReturnTypeFrom<'startExportLabelsTaskRun'>>  = async params => {
   // undefined
     return this.client.startExportLabelsTaskRun(params as any).promise();
@@ -953,6 +1028,11 @@ export class Glue {
     return this.client.updateCrawlerSchedule(params as any).promise();
   }
 
+  updateDataQualityRuleset: (params: RawParamsFrom<'updateDataQualityRuleset'>) => Promise<ReturnTypeFrom<'updateDataQualityRuleset'>>  = async params => {
+  // undefined
+    return this.client.updateDataQualityRuleset(params as any).promise();
+  }
+
   updateDatabase: (params: RawParamsFrom<'updateDatabase'>) => Promise<ReturnTypeFrom<'updateDatabase'>>  = async params => {
   // undefined
     return this.client.updateDatabase(params as any).promise();
@@ -966,6 +1046,11 @@ export class Glue {
   updateJob: (params: RawParamsFrom<'updateJob'>) => Promise<ReturnTypeFrom<'updateJob'>>  = async params => {
   // undefined
     return this.client.updateJob(params as any).promise();
+  }
+
+  updateJobFromSourceControl: (params: RawParamsFrom<'updateJobFromSourceControl'>) => Promise<ReturnTypeFrom<'updateJobFromSourceControl'>>  = async params => {
+  // undefined
+    return this.client.updateJobFromSourceControl(params as any).promise();
   }
 
   updateMLTransform: (params: RawParamsFrom<'updateMLTransform'>) => Promise<ReturnTypeFrom<'updateMLTransform'>>  = async params => {
@@ -986,6 +1071,11 @@ export class Glue {
   updateSchema: (params: RawParamsFrom<'updateSchema'>) => Promise<ReturnTypeFrom<'updateSchema'>>  = async params => {
   // undefined
     return this.client.updateSchema(params as any).promise();
+  }
+
+  updateSourceControlFromJob: (params: RawParamsFrom<'updateSourceControlFromJob'>) => Promise<ReturnTypeFrom<'updateSourceControlFromJob'>>  = async params => {
+  // undefined
+    return this.client.updateSourceControlFromJob(params as any).promise();
   }
 
   updateTable: (params: RawParamsFrom<'updateTable'>) => Promise<ReturnTypeFrom<'updateTable'>>  = async params => {

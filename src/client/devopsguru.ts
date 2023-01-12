@@ -26,7 +26,7 @@ export class DevOpsGuru {
   public readonly service = 'devops-guru' as const;
   public readonly global = false as const;
   public readonly category = 'Other' as const;
-  public readonly topLevelCalls = ["getCostEstimation","listNotificationChannels"] as const;
+  public readonly topLevelCalls = ["getCostEstimation","listMonitoredResources","listNotificationChannels"] as const;
   
   addNotificationChannel: (params: RawParamsFrom<'addNotificationChannel'>) => Promise<ReturnTypeFrom<'addNotificationChannel'>>  = async params => {
   // undefined

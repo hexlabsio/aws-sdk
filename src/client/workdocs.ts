@@ -93,6 +93,11 @@ export class WorkDocs {
     return this.client.deleteDocument(params as any).promise();
   }
 
+  deleteDocumentVersion: (params: RawParamsFrom<'deleteDocumentVersion'>) => Promise<ReturnTypeFrom<'deleteDocumentVersion'>>  = async params => {
+  // undefined
+    return this.client.deleteDocumentVersion(params as any).promise();
+  }
+
   deleteFolder: (params: RawParamsFrom<'deleteFolder'>) => Promise<ReturnTypeFrom<'deleteFolder'>>  = async params => {
   // undefined
     return this.client.deleteFolder(params as any).promise();
@@ -231,6 +236,11 @@ export class WorkDocs {
   removeResourcePermission: (params: RawParamsFrom<'removeResourcePermission'>) => Promise<ReturnTypeFrom<'removeResourcePermission'>>  = async params => {
   // undefined
     return this.client.removeResourcePermission(params as any).promise();
+  }
+
+  restoreDocumentVersions: (params: RawParamsFrom<'restoreDocumentVersions'>) => Promise<ReturnTypeFrom<'restoreDocumentVersions'>>  = async params => {
+  // undefined
+    return this.client.restoreDocumentVersions(params as any).promise();
   }
 
   updateDocument: (params: RawParamsFrom<'updateDocument'>) => Promise<ReturnTypeFrom<'updateDocument'>>  = async params => {

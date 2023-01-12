@@ -33,6 +33,11 @@ export class Route53Domains {
     return this.client.acceptDomainTransferFromAnotherAwsAccount(params as any).promise();
   }
 
+  associateDelegationSignerToDomain: (params: RawParamsFrom<'associateDelegationSignerToDomain'>) => Promise<ReturnTypeFrom<'associateDelegationSignerToDomain'>>  = async params => {
+  // undefined
+    return this.client.associateDelegationSignerToDomain(params as any).promise();
+  }
+
   cancelDomainTransferToAnotherAwsAccount: (params: RawParamsFrom<'cancelDomainTransferToAnotherAwsAccount'>) => Promise<ReturnTypeFrom<'cancelDomainTransferToAnotherAwsAccount'>>  = async params => {
   // undefined
     return this.client.cancelDomainTransferToAnotherAwsAccount(params as any).promise();
@@ -66,6 +71,11 @@ export class Route53Domains {
   disableDomainTransferLock: (params: RawParamsFrom<'disableDomainTransferLock'>) => Promise<ReturnTypeFrom<'disableDomainTransferLock'>>  = async params => {
   // undefined
     return this.client.disableDomainTransferLock(params as any).promise();
+  }
+
+  disassociateDelegationSignerFromDomain: (params: RawParamsFrom<'disassociateDelegationSignerFromDomain'>) => Promise<ReturnTypeFrom<'disassociateDelegationSignerFromDomain'>>  = async params => {
+  // undefined
+    return this.client.disassociateDelegationSignerFromDomain(params as any).promise();
   }
 
   enableDomainAutoRenew: (params: RawParamsFrom<'enableDomainAutoRenew'>) => Promise<ReturnTypeFrom<'enableDomainAutoRenew'>>  = async params => {
@@ -148,6 +158,11 @@ export class Route53Domains {
     return this.client.listTagsForDomain(params as any).promise();
   }
 
+  pushDomain: (params: RawParamsFrom<'pushDomain'>) => Promise<ReturnTypeFrom<'pushDomain'>>  = async params => {
+  // undefined
+    return this.client.pushDomain(params as any).promise();
+  }
+
   registerDomain: (params: RawParamsFrom<'registerDomain'>) => Promise<ReturnTypeFrom<'registerDomain'>>  = async params => {
   // undefined
     return this.client.registerDomain(params as any).promise();
@@ -166,6 +181,11 @@ export class Route53Domains {
   resendContactReachabilityEmail: (params: RawParamsFrom<'resendContactReachabilityEmail'>) => Promise<ReturnTypeFrom<'resendContactReachabilityEmail'>>  = async params => {
   // undefined
     return this.client.resendContactReachabilityEmail(params as any).promise();
+  }
+
+  resendOperationAuthorization: (params: RawParamsFrom<'resendOperationAuthorization'>) => Promise<ReturnTypeFrom<'resendOperationAuthorization'>>  = async params => {
+  // undefined
+    return this.client.resendOperationAuthorization(params as any).promise();
   }
 
   retrieveDomainAuthCode: (params: RawParamsFrom<'retrieveDomainAuthCode'>) => Promise<ReturnTypeFrom<'retrieveDomainAuthCode'>>  = async params => {

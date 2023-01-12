@@ -53,9 +53,24 @@ export class MarketplaceCatalog {
     return this.client.listEntities(params as any).promise();
   }
 
+  listTagsForResource: (params: RawParamsFrom<'listTagsForResource'>) => Promise<ReturnTypeFrom<'listTagsForResource'>>  = async params => {
+  // undefined
+    return this.client.listTagsForResource(params as any).promise();
+  }
+
   startChangeSet: (params: RawParamsFrom<'startChangeSet'>) => Promise<ReturnTypeFrom<'startChangeSet'>>  = async params => {
   // undefined
     return this.client.startChangeSet(params as any).promise();
+  }
+
+  tagResource: (params: RawParamsFrom<'tagResource'>) => Promise<ReturnTypeFrom<'tagResource'>>  = async params => {
+  // undefined
+    return this.client.tagResource(params as any).promise();
+  }
+
+  untagResource: (params: RawParamsFrom<'untagResource'>) => Promise<ReturnTypeFrom<'untagResource'>>  = async params => {
+  // undefined
+    return this.client.untagResource(params as any).promise();
   }
   
   static fromClient(client: AWSMarketplaceCatalog): MarketplaceCatalog {

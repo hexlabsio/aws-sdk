@@ -26,7 +26,7 @@ export class KinesisVideo {
   public readonly service = 'kinesisvideo' as const;
   public readonly global = false as const;
   public readonly category = 'Media Services' as const;
-  public readonly topLevelCalls = ["listSignalingChannels","listStreams"] as const;
+  public readonly topLevelCalls = ["describeMappedResourceConfiguration","listSignalingChannels","listStreams"] as const;
   
   createSignalingChannel: (params: RawParamsFrom<'createSignalingChannel'>) => Promise<ReturnTypeFrom<'createSignalingChannel'>>  = async params => {
   // undefined
@@ -48,9 +48,34 @@ export class KinesisVideo {
     return this.client.deleteStream(params as any).promise();
   }
 
+  describeEdgeConfiguration: (params: RawParamsFrom<'describeEdgeConfiguration'>) => Promise<ReturnTypeFrom<'describeEdgeConfiguration'>>  = async params => {
+  // undefined
+    return this.client.describeEdgeConfiguration(params as any).promise();
+  }
+
   describeImageGenerationConfiguration: (params: RawParamsFrom<'describeImageGenerationConfiguration'>) => Promise<ReturnTypeFrom<'describeImageGenerationConfiguration'>>  = async params => {
   // undefined
     return this.client.describeImageGenerationConfiguration(params as any).promise();
+  }
+
+  async describeMappedResourceConfiguration(params: { [K in keyof ParamsFrom<'describeMappedResourceConfiguration', { next?: string, limit?: number }>]: ParamsFrom<'describeMappedResourceConfiguration', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeMappedResourceConfiguration'>]-?: ReturnTypeFrom<'describeMappedResourceConfiguration'>[K]}['MappedResourceConfigurationList'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"MappedResourceConfigurationList"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.describeMappedResourceConfiguration({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeMappedResourceConfiguration' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.MappedResourceConfigurationList ?? []) ? (result.MappedResourceConfigurationList ?? []) : [result.MappedResourceConfigurationList]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  describeMediaStorageConfiguration: (params: RawParamsFrom<'describeMediaStorageConfiguration'>) => Promise<ReturnTypeFrom<'describeMediaStorageConfiguration'>>  = async params => {
+  // undefined
+    return this.client.describeMediaStorageConfiguration(params as any).promise();
   }
 
   describeNotificationConfiguration: (params: RawParamsFrom<'describeNotificationConfiguration'>) => Promise<ReturnTypeFrom<'describeNotificationConfiguration'>>  = async params => {
@@ -118,6 +143,11 @@ export class KinesisVideo {
     return this.client.listTagsForStream(params as any).promise();
   }
 
+  startEdgeConfigurationUpdate: (params: RawParamsFrom<'startEdgeConfigurationUpdate'>) => Promise<ReturnTypeFrom<'startEdgeConfigurationUpdate'>>  = async params => {
+  // undefined
+    return this.client.startEdgeConfigurationUpdate(params as any).promise();
+  }
+
   tagResource: (params: RawParamsFrom<'tagResource'>) => Promise<ReturnTypeFrom<'tagResource'>>  = async params => {
   // undefined
     return this.client.tagResource(params as any).promise();
@@ -146,6 +176,11 @@ export class KinesisVideo {
   updateImageGenerationConfiguration: (params: RawParamsFrom<'updateImageGenerationConfiguration'>) => Promise<ReturnTypeFrom<'updateImageGenerationConfiguration'>>  = async params => {
   // undefined
     return this.client.updateImageGenerationConfiguration(params as any).promise();
+  }
+
+  updateMediaStorageConfiguration: (params: RawParamsFrom<'updateMediaStorageConfiguration'>) => Promise<ReturnTypeFrom<'updateMediaStorageConfiguration'>>  = async params => {
+  // undefined
+    return this.client.updateMediaStorageConfiguration(params as any).promise();
   }
 
   updateNotificationConfiguration: (params: RawParamsFrom<'updateNotificationConfiguration'>) => Promise<ReturnTypeFrom<'updateNotificationConfiguration'>>  = async params => {

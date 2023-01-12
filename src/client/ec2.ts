@@ -26,8 +26,13 @@ export class EC2 {
   public readonly service = 'ec2' as const;
   public readonly global = false as const;
   public readonly category = 'Compute' as const;
-  public readonly topLevelCalls = ["describeAccountAttributes","describeAddresses","describeAddressesAttribute","describeAvailabilityZones","describeBundleTasks","describeCapacityReservationFleets","describeCapacityReservations","describeCarrierGateways","describeClassicLinkInstances","describeClientVpnEndpoints","describeCoipPools","describeConversionTasks","describeCustomerGateways","describeDhcpOptions","describeEgressOnlyInternetGateways","describeExportImageTasks","describeExportTasks","describeFastLaunchImages","describeFastSnapshotRestores","describeFleets","describeFlowLogs","describeFpgaImages","describeHostReservationOfferings","describeHostReservations","describeHosts","describeIamInstanceProfileAssociations","describeImages","describeImportImageTasks","describeImportSnapshotTasks","describeInstanceCreditSpecifications","describeInstanceEventWindows","describeInstanceStatus","describeInstanceTypeOfferings","describeInstanceTypes","describeInstances","describeInternetGateways","describeIpamPools","describeIpamScopes","describeIpams","describeIpv6Pools","describeKeyPairs","describeLaunchTemplateVersions","describeLaunchTemplates","describeLocalGatewayRouteTableVirtualInterfaceGroupAssociations","describeLocalGatewayRouteTableVpcAssociations","describeLocalGatewayRouteTables","describeLocalGatewayVirtualInterfaceGroups","describeLocalGatewayVirtualInterfaces","describeLocalGateways","describeManagedPrefixLists","describeMovingAddresses","describeNatGateways","describeNetworkAcls","describeNetworkInsightsAccessScopeAnalyses","describeNetworkInsightsAccessScopes","describeNetworkInsightsAnalyses","describeNetworkInsightsPaths","describeNetworkInterfacePermissions","describeNetworkInterfaces","describePlacementGroups","describePrefixLists","describePrincipalIdFormat","describePublicIpv4Pools","describeRegions","describeReplaceRootVolumeTasks","describeReservedInstances","describeReservedInstancesListings","describeReservedInstancesModifications","describeReservedInstancesOfferings","describeRouteTables","describeScheduledInstances","describeSecurityGroupRules","describeSecurityGroups","describeSnapshotTierStatus","describeSnapshots","describeSpotFleetRequests","describeSpotInstanceRequests","describeSpotPriceHistory","describeStoreImageTasks","describeSubnets","describeTags","describeTrafficMirrorFilters","describeTrafficMirrorSessions","describeTrafficMirrorTargets","describeTransitGatewayAttachments","describeTransitGatewayConnectPeers","describeTransitGatewayConnects","describeTransitGatewayMulticastDomains","describeTransitGatewayPeeringAttachments","describeTransitGatewayPolicyTables","describeTransitGatewayRouteTableAnnouncements","describeTransitGatewayRouteTables","describeTransitGatewayVpcAttachments","describeTransitGateways","describeTrunkInterfaceAssociations","describeVolumeStatus","describeVolumes","describeVolumesModifications","describeVpcClassicLinkDnsSupport","describeVpcEndpointConnectionNotifications","describeVpcEndpointConnections","describeVpcEndpointServiceConfigurations","describeVpcEndpoints","describeVpcPeeringConnections","describeVpcs","describeVpnConnections","describeVpnGateways","getTransitGatewayMulticastDomainAssociations","getVpnConnectionDeviceTypes","listImagesInRecycleBin","listSnapshotsInRecycleBin","searchTransitGatewayMulticastGroups"] as const;
+  public readonly topLevelCalls = ["describeAccountAttributes","describeAddressTransfers","describeAddresses","describeAddressesAttribute","describeAvailabilityZones","describeAwsNetworkPerformanceMetricSubscriptions","describeBundleTasks","describeCapacityReservationFleets","describeCapacityReservations","describeCarrierGateways","describeClassicLinkInstances","describeClientVpnEndpoints","describeCoipPools","describeConversionTasks","describeCustomerGateways","describeDhcpOptions","describeEgressOnlyInternetGateways","describeExportImageTasks","describeExportTasks","describeFastLaunchImages","describeFastSnapshotRestores","describeFleets","describeFlowLogs","describeFpgaImages","describeHostReservationOfferings","describeHostReservations","describeHosts","describeIamInstanceProfileAssociations","describeImages","describeImportImageTasks","describeImportSnapshotTasks","describeInstanceCreditSpecifications","describeInstanceEventWindows","describeInstanceStatus","describeInstanceTypeOfferings","describeInstanceTypes","describeInstances","describeInternetGateways","describeIpamPools","describeIpamScopes","describeIpams","describeIpv6Pools","describeKeyPairs","describeLaunchTemplateVersions","describeLaunchTemplates","describeLocalGatewayRouteTableVirtualInterfaceGroupAssociations","describeLocalGatewayRouteTableVpcAssociations","describeLocalGatewayRouteTables","describeLocalGatewayVirtualInterfaceGroups","describeLocalGatewayVirtualInterfaces","describeLocalGateways","describeManagedPrefixLists","describeMovingAddresses","describeNatGateways","describeNetworkAcls","describeNetworkInsightsAccessScopeAnalyses","describeNetworkInsightsAccessScopes","describeNetworkInsightsAnalyses","describeNetworkInsightsPaths","describeNetworkInterfacePermissions","describeNetworkInterfaces","describePlacementGroups","describePrefixLists","describePrincipalIdFormat","describePublicIpv4Pools","describeRegions","describeReplaceRootVolumeTasks","describeReservedInstances","describeReservedInstancesListings","describeReservedInstancesModifications","describeReservedInstancesOfferings","describeRouteTables","describeScheduledInstances","describeSecurityGroupRules","describeSecurityGroups","describeSnapshotTierStatus","describeSnapshots","describeSpotFleetRequests","describeSpotInstanceRequests","describeSpotPriceHistory","describeStoreImageTasks","describeSubnets","describeTags","describeTrafficMirrorFilters","describeTrafficMirrorSessions","describeTrafficMirrorTargets","describeTransitGatewayAttachments","describeTransitGatewayConnectPeers","describeTransitGatewayConnects","describeTransitGatewayMulticastDomains","describeTransitGatewayPeeringAttachments","describeTransitGatewayPolicyTables","describeTransitGatewayRouteTableAnnouncements","describeTransitGatewayRouteTables","describeTransitGatewayVpcAttachments","describeTransitGateways","describeTrunkInterfaceAssociations","describeVerifiedAccessEndpoints","describeVerifiedAccessGroups","describeVerifiedAccessInstanceLoggingConfigurations","describeVerifiedAccessInstances","describeVerifiedAccessTrustProviders","describeVolumeStatus","describeVolumes","describeVolumesModifications","describeVpcClassicLinkDnsSupport","describeVpcEndpointConnectionNotifications","describeVpcEndpointConnections","describeVpcEndpointServiceConfigurations","describeVpcEndpoints","describeVpcPeeringConnections","describeVpcs","describeVpnConnections","describeVpnGateways","getAwsNetworkPerformanceData","getTransitGatewayMulticastDomainAssociations","getVpnConnectionDeviceTypes","listImagesInRecycleBin","listSnapshotsInRecycleBin","searchTransitGatewayMulticastGroups"] as const;
   
+  acceptAddressTransfer: (params: RawParamsFrom<'acceptAddressTransfer'>) => Promise<ReturnTypeFrom<'acceptAddressTransfer'>>  = async params => {
+  // undefined
+    return this.client.acceptAddressTransfer(params as any).promise();
+  }
+
   acceptReservedInstancesExchangeQuote: (params: RawParamsFrom<'acceptReservedInstancesExchangeQuote'>) => Promise<ReturnTypeFrom<'acceptReservedInstancesExchangeQuote'>>  = async params => {
   // undefined
     return this.client.acceptReservedInstancesExchangeQuote(params as any).promise();
@@ -173,6 +178,11 @@ export class EC2 {
     return this.client.attachNetworkInterface(params as any).promise();
   }
 
+  attachVerifiedAccessTrustProvider: (params: RawParamsFrom<'attachVerifiedAccessTrustProvider'>) => Promise<ReturnTypeFrom<'attachVerifiedAccessTrustProvider'>>  = async params => {
+  // undefined
+    return this.client.attachVerifiedAccessTrustProvider(params as any).promise();
+  }
+
   attachVolume: (params: RawParamsFrom<'attachVolume'>) => Promise<ReturnTypeFrom<'attachVolume'>>  = async params => {
   // undefined
     return this.client.attachVolume(params as any).promise();
@@ -226,6 +236,11 @@ export class EC2 {
   cancelExportTask: (params: RawParamsFrom<'cancelExportTask'>) => Promise<ReturnTypeFrom<'cancelExportTask'>>  = async params => {
   // undefined
     return this.client.cancelExportTask(params as any).promise();
+  }
+
+  cancelImageLaunchPermission: (params: RawParamsFrom<'cancelImageLaunchPermission'>) => Promise<ReturnTypeFrom<'cancelImageLaunchPermission'>>  = async params => {
+  // undefined
+    return this.client.cancelImageLaunchPermission(params as any).promise();
   }
 
   cancelImportTask: (params: RawParamsFrom<'cancelImportTask'>) => Promise<ReturnTypeFrom<'cancelImportTask'>>  = async params => {
@@ -603,6 +618,26 @@ export class EC2 {
     return this.client.createTransitGatewayVpcAttachment(params as any).promise();
   }
 
+  createVerifiedAccessEndpoint: (params: RawParamsFrom<'createVerifiedAccessEndpoint'>) => Promise<ReturnTypeFrom<'createVerifiedAccessEndpoint'>>  = async params => {
+  // undefined
+    return this.client.createVerifiedAccessEndpoint(params as any).promise();
+  }
+
+  createVerifiedAccessGroup: (params: RawParamsFrom<'createVerifiedAccessGroup'>) => Promise<ReturnTypeFrom<'createVerifiedAccessGroup'>>  = async params => {
+  // undefined
+    return this.client.createVerifiedAccessGroup(params as any).promise();
+  }
+
+  createVerifiedAccessInstance: (params: RawParamsFrom<'createVerifiedAccessInstance'>) => Promise<ReturnTypeFrom<'createVerifiedAccessInstance'>>  = async params => {
+  // undefined
+    return this.client.createVerifiedAccessInstance(params as any).promise();
+  }
+
+  createVerifiedAccessTrustProvider: (params: RawParamsFrom<'createVerifiedAccessTrustProvider'>) => Promise<ReturnTypeFrom<'createVerifiedAccessTrustProvider'>>  = async params => {
+  // undefined
+    return this.client.createVerifiedAccessTrustProvider(params as any).promise();
+  }
+
   createVolume: (params: RawParamsFrom<'createVolume'>) => Promise<ReturnTypeFrom<'createVolume'>>  = async params => {
   // undefined
     return this.client.createVolume(params as any).promise();
@@ -943,6 +978,26 @@ export class EC2 {
     return this.client.deleteTransitGatewayVpcAttachment(params as any).promise();
   }
 
+  deleteVerifiedAccessEndpoint: (params: RawParamsFrom<'deleteVerifiedAccessEndpoint'>) => Promise<ReturnTypeFrom<'deleteVerifiedAccessEndpoint'>>  = async params => {
+  // undefined
+    return this.client.deleteVerifiedAccessEndpoint(params as any).promise();
+  }
+
+  deleteVerifiedAccessGroup: (params: RawParamsFrom<'deleteVerifiedAccessGroup'>) => Promise<ReturnTypeFrom<'deleteVerifiedAccessGroup'>>  = async params => {
+  // undefined
+    return this.client.deleteVerifiedAccessGroup(params as any).promise();
+  }
+
+  deleteVerifiedAccessInstance: (params: RawParamsFrom<'deleteVerifiedAccessInstance'>) => Promise<ReturnTypeFrom<'deleteVerifiedAccessInstance'>>  = async params => {
+  // undefined
+    return this.client.deleteVerifiedAccessInstance(params as any).promise();
+  }
+
+  deleteVerifiedAccessTrustProvider: (params: RawParamsFrom<'deleteVerifiedAccessTrustProvider'>) => Promise<ReturnTypeFrom<'deleteVerifiedAccessTrustProvider'>>  = async params => {
+  // undefined
+    return this.client.deleteVerifiedAccessTrustProvider(params as any).promise();
+  }
+
   deleteVolume: (params: RawParamsFrom<'deleteVolume'>) => Promise<ReturnTypeFrom<'deleteVolume'>>  = async params => {
   // undefined
     return this.client.deleteVolume(params as any).promise();
@@ -1038,6 +1093,21 @@ export class EC2 {
     }
   }
 
+  async describeAddressTransfers(params: { [K in keyof ParamsFrom<'describeAddressTransfers', { next?: string, limit?: number }>]: ParamsFrom<'describeAddressTransfers', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeAddressTransfers'>]-?: ReturnTypeFrom<'describeAddressTransfers'>[K]}['AddressTransfers'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"AddressTransfers"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.describeAddressTransfers({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAddressTransfers' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.AddressTransfers ?? []) ? (result.AddressTransfers ?? []) : [result.AddressTransfers]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
   async describeAddresses(params: { [K in keyof ParamsFrom<'describeAddresses', {}>]: ParamsFrom<'describeAddresses', {}>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeAddresses'>]-?: ReturnTypeFrom<'describeAddresses'>[K]}['Addresses'], undefined>}> {
     // {"resultKey":"Addresses"}
     const { ...otherParams} = params ?? {};
@@ -1081,6 +1151,21 @@ export class EC2 {
     const result = await this.client.describeAvailabilityZones({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
     const nextToken = undefined;
     const member = (Array.isArray(result.AvailabilityZones ?? []) ? (result.AvailabilityZones ?? []) : [result.AvailabilityZones]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async describeAwsNetworkPerformanceMetricSubscriptions(params: { [K in keyof ParamsFrom<'describeAwsNetworkPerformanceMetricSubscriptions', { next?: string, limit?: number }>]: ParamsFrom<'describeAwsNetworkPerformanceMetricSubscriptions', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeAwsNetworkPerformanceMetricSubscriptions'>]-?: ReturnTypeFrom<'describeAwsNetworkPerformanceMetricSubscriptions'>[K]}['Subscriptions'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"Subscriptions"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.describeAwsNetworkPerformanceMetricSubscriptions({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeAwsNetworkPerformanceMetricSubscriptions' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.Subscriptions ?? []) ? (result.Subscriptions ?? []) : [result.Subscriptions]) as any;
     return {
       totalItems: member.length,
       member,
@@ -1528,13 +1613,13 @@ export class EC2 {
     return this.client.describeImageAttribute(params as any).promise();
   }
 
-  async describeImages(params: { [K in keyof ParamsFrom<'describeImages', {}>]: ParamsFrom<'describeImages', {}>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeImages'>]-?: ReturnTypeFrom<'describeImages'>[K]}['Images'], undefined>}> {
-    // {"resultKey":"Images"}
-    const { ...otherParams} = params ?? {};
-    const nextTokenPart = {};
-    const limitTokenPart = {};
+  async describeImages(params: { [K in keyof ParamsFrom<'describeImages', { next?: string, limit?: number }>]: ParamsFrom<'describeImages', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeImages'>]-?: ReturnTypeFrom<'describeImages'>[K]}['Images'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"Images"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
     const result = await this.client.describeImages({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = undefined;
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeImages' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Images ?? []) ? (result.Images ?? []) : [result.Images]) as any;
     return {
       totalItems: member.length,
@@ -2633,6 +2718,81 @@ export class EC2 {
     }
   }
 
+  async describeVerifiedAccessEndpoints(params: { [K in keyof ParamsFrom<'describeVerifiedAccessEndpoints', { next?: string, limit?: number }>]: ParamsFrom<'describeVerifiedAccessEndpoints', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeVerifiedAccessEndpoints'>]-?: ReturnTypeFrom<'describeVerifiedAccessEndpoints'>[K]}['VerifiedAccessEndpoints'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"VerifiedAccessEndpoints"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.describeVerifiedAccessEndpoints({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeVerifiedAccessEndpoints' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.VerifiedAccessEndpoints ?? []) ? (result.VerifiedAccessEndpoints ?? []) : [result.VerifiedAccessEndpoints]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async describeVerifiedAccessGroups(params: { [K in keyof ParamsFrom<'describeVerifiedAccessGroups', { next?: string, limit?: number }>]: ParamsFrom<'describeVerifiedAccessGroups', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeVerifiedAccessGroups'>]-?: ReturnTypeFrom<'describeVerifiedAccessGroups'>[K]}['VerifiedAccessGroups'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"VerifiedAccessGroups"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.describeVerifiedAccessGroups({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeVerifiedAccessGroups' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.VerifiedAccessGroups ?? []) ? (result.VerifiedAccessGroups ?? []) : [result.VerifiedAccessGroups]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async describeVerifiedAccessInstanceLoggingConfigurations(params: { [K in keyof ParamsFrom<'describeVerifiedAccessInstanceLoggingConfigurations', { next?: string, limit?: number }>]: ParamsFrom<'describeVerifiedAccessInstanceLoggingConfigurations', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeVerifiedAccessInstanceLoggingConfigurations'>]-?: ReturnTypeFrom<'describeVerifiedAccessInstanceLoggingConfigurations'>[K]}['LoggingConfigurations'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"LoggingConfigurations"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.describeVerifiedAccessInstanceLoggingConfigurations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeVerifiedAccessInstanceLoggingConfigurations' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.LoggingConfigurations ?? []) ? (result.LoggingConfigurations ?? []) : [result.LoggingConfigurations]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async describeVerifiedAccessInstances(params: { [K in keyof ParamsFrom<'describeVerifiedAccessInstances', { next?: string, limit?: number }>]: ParamsFrom<'describeVerifiedAccessInstances', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeVerifiedAccessInstances'>]-?: ReturnTypeFrom<'describeVerifiedAccessInstances'>[K]}['VerifiedAccessInstances'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"VerifiedAccessInstances"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.describeVerifiedAccessInstances({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeVerifiedAccessInstances' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.VerifiedAccessInstances ?? []) ? (result.VerifiedAccessInstances ?? []) : [result.VerifiedAccessInstances]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async describeVerifiedAccessTrustProviders(params: { [K in keyof ParamsFrom<'describeVerifiedAccessTrustProviders', { next?: string, limit?: number }>]: ParamsFrom<'describeVerifiedAccessTrustProviders', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeVerifiedAccessTrustProviders'>]-?: ReturnTypeFrom<'describeVerifiedAccessTrustProviders'>[K]}['VerifiedAccessTrustProviders'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"VerifiedAccessTrustProviders"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.describeVerifiedAccessTrustProviders({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'describeVerifiedAccessTrustProviders' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.VerifiedAccessTrustProviders ?? []) ? (result.VerifiedAccessTrustProviders ?? []) : [result.VerifiedAccessTrustProviders]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
   describeVolumeAttribute: (params: RawParamsFrom<'describeVolumeAttribute'>) => Promise<ReturnTypeFrom<'describeVolumeAttribute'>>  = async params => {
   // undefined
     return this.client.describeVolumeAttribute(params as any).promise();
@@ -2863,6 +3023,11 @@ export class EC2 {
     return this.client.detachNetworkInterface(params as any).promise();
   }
 
+  detachVerifiedAccessTrustProvider: (params: RawParamsFrom<'detachVerifiedAccessTrustProvider'>) => Promise<ReturnTypeFrom<'detachVerifiedAccessTrustProvider'>>  = async params => {
+  // undefined
+    return this.client.detachVerifiedAccessTrustProvider(params as any).promise();
+  }
+
   detachVolume: (params: RawParamsFrom<'detachVolume'>) => Promise<ReturnTypeFrom<'detachVolume'>>  = async params => {
   // undefined
     return this.client.detachVolume(params as any).promise();
@@ -2871,6 +3036,16 @@ export class EC2 {
   detachVpnGateway: (params: RawParamsFrom<'detachVpnGateway'>) => Promise<ReturnTypeFrom<'detachVpnGateway'>>  = async params => {
   // undefined
     return this.client.detachVpnGateway(params as any).promise();
+  }
+
+  disableAddressTransfer: (params: RawParamsFrom<'disableAddressTransfer'>) => Promise<ReturnTypeFrom<'disableAddressTransfer'>>  = async params => {
+  // undefined
+    return this.client.disableAddressTransfer(params as any).promise();
+  }
+
+  disableAwsNetworkPerformanceMetricSubscription: (params: RawParamsFrom<'disableAwsNetworkPerformanceMetricSubscription'>) => Promise<ReturnTypeFrom<'disableAwsNetworkPerformanceMetricSubscription'>>  = async params => {
+  // undefined
+    return this.client.disableAwsNetworkPerformanceMetricSubscription(params as any).promise();
   }
 
   disableEbsEncryptionByDefault: (params: RawParamsFrom<'disableEbsEncryptionByDefault'>) => Promise<ReturnTypeFrom<'disableEbsEncryptionByDefault'>>  = async params => {
@@ -2983,6 +3158,16 @@ export class EC2 {
     return this.client.disassociateVpcCidrBlock(params as any).promise();
   }
 
+  enableAddressTransfer: (params: RawParamsFrom<'enableAddressTransfer'>) => Promise<ReturnTypeFrom<'enableAddressTransfer'>>  = async params => {
+  // undefined
+    return this.client.enableAddressTransfer(params as any).promise();
+  }
+
+  enableAwsNetworkPerformanceMetricSubscription: (params: RawParamsFrom<'enableAwsNetworkPerformanceMetricSubscription'>) => Promise<ReturnTypeFrom<'enableAwsNetworkPerformanceMetricSubscription'>>  = async params => {
+  // undefined
+    return this.client.enableAwsNetworkPerformanceMetricSubscription(params as any).promise();
+  }
+
   enableEbsEncryptionByDefault: (params: RawParamsFrom<'enableEbsEncryptionByDefault'>) => Promise<ReturnTypeFrom<'enableEbsEncryptionByDefault'>>  = async params => {
   // undefined
     return this.client.enableEbsEncryptionByDefault(params as any).promise();
@@ -3006,6 +3191,11 @@ export class EC2 {
   enableIpamOrganizationAdminAccount: (params: RawParamsFrom<'enableIpamOrganizationAdminAccount'>) => Promise<ReturnTypeFrom<'enableIpamOrganizationAdminAccount'>>  = async params => {
   // undefined
     return this.client.enableIpamOrganizationAdminAccount(params as any).promise();
+  }
+
+  enableReachabilityAnalyzerOrganizationSharing: (params: RawParamsFrom<'enableReachabilityAnalyzerOrganizationSharing'>) => Promise<ReturnTypeFrom<'enableReachabilityAnalyzerOrganizationSharing'>>  = async params => {
+  // undefined
+    return this.client.enableReachabilityAnalyzerOrganizationSharing(params as any).promise();
   }
 
   enableSerialConsoleAccess: (params: RawParamsFrom<'enableSerialConsoleAccess'>) => Promise<ReturnTypeFrom<'enableSerialConsoleAccess'>>  = async params => {
@@ -3071,6 +3261,21 @@ export class EC2 {
     const result = await this.client.getAssociatedIpv6PoolCidrs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
     const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getAssociatedIpv6PoolCidrs' })).toString('base64') : undefined;
     const member = (Array.isArray(result.Ipv6CidrAssociations ?? []) ? (result.Ipv6CidrAssociations ?? []) : [result.Ipv6CidrAssociations]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async getAwsNetworkPerformanceData(params: { [K in keyof ParamsFrom<'getAwsNetworkPerformanceData', { next?: string, limit?: number }>]: ParamsFrom<'getAwsNetworkPerformanceData', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getAwsNetworkPerformanceData'>]-?: ReturnTypeFrom<'getAwsNetworkPerformanceData'>[K]}['DataResponses'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"DataResponses"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.getAwsNetworkPerformanceData({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getAwsNetworkPerformanceData' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.DataResponses ?? []) ? (result.DataResponses ?? []) : [result.DataResponses]) as any;
     return {
       totalItems: member.length,
       member,
@@ -3393,6 +3598,16 @@ export class EC2 {
     }
   }
 
+  getVerifiedAccessEndpointPolicy: (params: RawParamsFrom<'getVerifiedAccessEndpointPolicy'>) => Promise<ReturnTypeFrom<'getVerifiedAccessEndpointPolicy'>>  = async params => {
+  // undefined
+    return this.client.getVerifiedAccessEndpointPolicy(params as any).promise();
+  }
+
+  getVerifiedAccessGroupPolicy: (params: RawParamsFrom<'getVerifiedAccessGroupPolicy'>) => Promise<ReturnTypeFrom<'getVerifiedAccessGroupPolicy'>>  = async params => {
+  // undefined
+    return this.client.getVerifiedAccessGroupPolicy(params as any).promise();
+  }
+
   getVpnConnectionDeviceSampleConfiguration: (params: RawParamsFrom<'getVpnConnectionDeviceSampleConfiguration'>) => Promise<ReturnTypeFrom<'getVpnConnectionDeviceSampleConfiguration'>>  = async params => {
   // undefined
     return this.client.getVpnConnectionDeviceSampleConfiguration(params as any).promise();
@@ -3681,6 +3896,41 @@ export class EC2 {
   modifyTransitGatewayVpcAttachment: (params: RawParamsFrom<'modifyTransitGatewayVpcAttachment'>) => Promise<ReturnTypeFrom<'modifyTransitGatewayVpcAttachment'>>  = async params => {
   // undefined
     return this.client.modifyTransitGatewayVpcAttachment(params as any).promise();
+  }
+
+  modifyVerifiedAccessEndpoint: (params: RawParamsFrom<'modifyVerifiedAccessEndpoint'>) => Promise<ReturnTypeFrom<'modifyVerifiedAccessEndpoint'>>  = async params => {
+  // undefined
+    return this.client.modifyVerifiedAccessEndpoint(params as any).promise();
+  }
+
+  modifyVerifiedAccessEndpointPolicy: (params: RawParamsFrom<'modifyVerifiedAccessEndpointPolicy'>) => Promise<ReturnTypeFrom<'modifyVerifiedAccessEndpointPolicy'>>  = async params => {
+  // undefined
+    return this.client.modifyVerifiedAccessEndpointPolicy(params as any).promise();
+  }
+
+  modifyVerifiedAccessGroup: (params: RawParamsFrom<'modifyVerifiedAccessGroup'>) => Promise<ReturnTypeFrom<'modifyVerifiedAccessGroup'>>  = async params => {
+  // undefined
+    return this.client.modifyVerifiedAccessGroup(params as any).promise();
+  }
+
+  modifyVerifiedAccessGroupPolicy: (params: RawParamsFrom<'modifyVerifiedAccessGroupPolicy'>) => Promise<ReturnTypeFrom<'modifyVerifiedAccessGroupPolicy'>>  = async params => {
+  // undefined
+    return this.client.modifyVerifiedAccessGroupPolicy(params as any).promise();
+  }
+
+  modifyVerifiedAccessInstance: (params: RawParamsFrom<'modifyVerifiedAccessInstance'>) => Promise<ReturnTypeFrom<'modifyVerifiedAccessInstance'>>  = async params => {
+  // undefined
+    return this.client.modifyVerifiedAccessInstance(params as any).promise();
+  }
+
+  modifyVerifiedAccessInstanceLoggingConfiguration: (params: RawParamsFrom<'modifyVerifiedAccessInstanceLoggingConfiguration'>) => Promise<ReturnTypeFrom<'modifyVerifiedAccessInstanceLoggingConfiguration'>>  = async params => {
+  // undefined
+    return this.client.modifyVerifiedAccessInstanceLoggingConfiguration(params as any).promise();
+  }
+
+  modifyVerifiedAccessTrustProvider: (params: RawParamsFrom<'modifyVerifiedAccessTrustProvider'>) => Promise<ReturnTypeFrom<'modifyVerifiedAccessTrustProvider'>>  = async params => {
+  // undefined
+    return this.client.modifyVerifiedAccessTrustProvider(params as any).promise();
   }
 
   modifyVolume: (params: RawParamsFrom<'modifyVolume'>) => Promise<ReturnTypeFrom<'modifyVolume'>>  = async params => {

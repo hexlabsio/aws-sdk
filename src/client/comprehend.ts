@@ -26,7 +26,7 @@ export class Comprehend {
   public readonly service = 'comprehend' as const;
   public readonly global = false as const;
   public readonly category = 'Machine Learning' as const;
-  public readonly topLevelCalls = ["listDocumentClassificationJobs","listDocumentClassifierSummaries","listDocumentClassifiers","listDominantLanguageDetectionJobs","listEntitiesDetectionJobs","listEntityRecognizerSummaries","listEntityRecognizers","listEventsDetectionJobs","listKeyPhrasesDetectionJobs","listSentimentDetectionJobs","listTargetedSentimentDetectionJobs","listTopicsDetectionJobs"] as const;
+  public readonly topLevelCalls = ["listDocumentClassificationJobs","listDocumentClassifierSummaries","listDocumentClassifiers","listDominantLanguageDetectionJobs","listEndpoints","listEntitiesDetectionJobs","listEntityRecognizerSummaries","listEntityRecognizers","listEventsDetectionJobs","listKeyPhrasesDetectionJobs","listPiiEntitiesDetectionJobs","listSentimentDetectionJobs","listTargetedSentimentDetectionJobs","listTopicsDetectionJobs"] as const;
   
   batchDetectDominantLanguage: (params: RawParamsFrom<'batchDetectDominantLanguage'>) => Promise<ReturnTypeFrom<'batchDetectDominantLanguage'>>  = async params => {
   // undefined
@@ -228,9 +228,19 @@ export class Comprehend {
     return this.client.listDominantLanguageDetectionJobs(params as any).promise();
   }
 
-  listEndpoints: (params: RawParamsFrom<'listEndpoints'>) => Promise<ReturnTypeFrom<'listEndpoints'>>  = async params => {
-  // undefined
-    return this.client.listEndpoints(params as any).promise();
+  async listEndpoints(params: { [K in keyof ParamsFrom<'listEndpoints', { next?: string, limit?: number }>]: ParamsFrom<'listEndpoints', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listEndpoints'>]-?: ReturnTypeFrom<'listEndpoints'>[K]}['EndpointPropertiesList'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"EndpointPropertiesList"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listEndpoints({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listEndpoints' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.EndpointPropertiesList ?? []) ? (result.EndpointPropertiesList ?? []) : [result.EndpointPropertiesList]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
   listEntitiesDetectionJobs: (params: RawParamsFrom<'listEntitiesDetectionJobs'>) => Promise<ReturnTypeFrom<'listEntitiesDetectionJobs'>>  = async params => {
@@ -258,9 +268,19 @@ export class Comprehend {
     return this.client.listKeyPhrasesDetectionJobs(params as any).promise();
   }
 
-  listPiiEntitiesDetectionJobs: (params: RawParamsFrom<'listPiiEntitiesDetectionJobs'>) => Promise<ReturnTypeFrom<'listPiiEntitiesDetectionJobs'>>  = async params => {
-  // undefined
-    return this.client.listPiiEntitiesDetectionJobs(params as any).promise();
+  async listPiiEntitiesDetectionJobs(params: { [K in keyof ParamsFrom<'listPiiEntitiesDetectionJobs', { next?: string, limit?: number }>]: ParamsFrom<'listPiiEntitiesDetectionJobs', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listPiiEntitiesDetectionJobs'>]-?: ReturnTypeFrom<'listPiiEntitiesDetectionJobs'>[K]}['PiiEntitiesDetectionJobPropertiesList'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"PiiEntitiesDetectionJobPropertiesList"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listPiiEntitiesDetectionJobs({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listPiiEntitiesDetectionJobs' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.PiiEntitiesDetectionJobPropertiesList ?? []) ? (result.PiiEntitiesDetectionJobPropertiesList ?? []) : [result.PiiEntitiesDetectionJobPropertiesList]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
   listSentimentDetectionJobs: (params: RawParamsFrom<'listSentimentDetectionJobs'>) => Promise<ReturnTypeFrom<'listSentimentDetectionJobs'>>  = async params => {

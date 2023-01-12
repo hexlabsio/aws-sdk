@@ -26,7 +26,7 @@ export class ConfigService {
   public readonly service = 'config' as const;
   public readonly global = false as const;
   public readonly category = 'Management and Governance' as const;
-  public readonly topLevelCalls = ["describeAggregationAuthorizations","describeComplianceByConfigRule","describeComplianceByResource","describeConfigRuleEvaluationStatus","describeConfigRules","describeConfigurationAggregators","describeConformancePackStatus","describeConformancePacks","describeOrganizationConfigRuleStatuses","describeOrganizationConfigRules","describeOrganizationConformancePackStatuses","describeOrganizationConformancePacks","describePendingAggregationRequests","describeRetentionConfigurations","getDiscoveredResourceCounts","listConformancePackComplianceScores","listStoredQueries"] as const;
+  public readonly topLevelCalls = ["describeAggregationAuthorizations","describeComplianceByConfigRule","describeComplianceByResource","describeConfigRuleEvaluationStatus","describeConfigRules","describeConfigurationAggregators","describeConformancePackStatus","describeConformancePacks","describeOrganizationConfigRuleStatuses","describeOrganizationConfigRules","describeOrganizationConformancePackStatuses","describeOrganizationConformancePacks","describePendingAggregationRequests","describeRetentionConfigurations","getComplianceDetailsByResource","getDiscoveredResourceCounts","listConformancePackComplianceScores","listResourceEvaluations","listStoredQueries"] as const;
   
   batchGetAggregateResourceConfig: (params: RawParamsFrom<'batchGetAggregateResourceConfig'>) => Promise<ReturnTypeFrom<'batchGetAggregateResourceConfig'>>  = async params => {
   // undefined
@@ -568,6 +568,11 @@ export class ConfigService {
     }
   }
 
+  getResourceEvaluationSummary: (params: RawParamsFrom<'getResourceEvaluationSummary'>) => Promise<ReturnTypeFrom<'getResourceEvaluationSummary'>>  = async params => {
+  // undefined
+    return this.client.getResourceEvaluationSummary(params as any).promise();
+  }
+
   getStoredQuery: (params: RawParamsFrom<'getStoredQuery'>) => Promise<ReturnTypeFrom<'getStoredQuery'>>  = async params => {
   // undefined
     return this.client.getStoredQuery(params as any).promise();
@@ -601,6 +606,21 @@ export class ConfigService {
     const result = await this.client.listDiscoveredResources({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
     const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listDiscoveredResources' })).toString('base64') : undefined;
     const member = (Array.isArray(result.resourceIdentifiers ?? []) ? (result.resourceIdentifiers ?? []) : [result.resourceIdentifiers]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async listResourceEvaluations(params: { [K in keyof ParamsFrom<'listResourceEvaluations', { next?: string, limit?: number }>]: ParamsFrom<'listResourceEvaluations', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listResourceEvaluations'>]-?: ReturnTypeFrom<'listResourceEvaluations'>[K]}['ResourceEvaluations'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"Limit","outputToken":"NextToken","resultKey":"ResourceEvaluations"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { Limit: limit } : {};
+    const result = await this.client.listResourceEvaluations({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listResourceEvaluations' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.ResourceEvaluations ?? []) ? (result.ResourceEvaluations ?? []) : [result.ResourceEvaluations]) as any;
     return {
       totalItems: member.length,
       member,
@@ -746,6 +766,11 @@ export class ConfigService {
   startRemediationExecution: (params: RawParamsFrom<'startRemediationExecution'>) => Promise<ReturnTypeFrom<'startRemediationExecution'>>  = async params => {
   // undefined
     return this.client.startRemediationExecution(params as any).promise();
+  }
+
+  startResourceEvaluation: (params: RawParamsFrom<'startResourceEvaluation'>) => Promise<ReturnTypeFrom<'startResourceEvaluation'>>  = async params => {
+  // undefined
+    return this.client.startResourceEvaluation(params as any).promise();
   }
 
   stopConfigurationRecorder: (params: RawParamsFrom<'stopConfigurationRecorder'>) => Promise<ReturnTypeFrom<'stopConfigurationRecorder'>>  = async params => {

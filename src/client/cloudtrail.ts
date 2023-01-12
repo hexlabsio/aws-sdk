@@ -58,6 +58,11 @@ export class CloudTrail {
     return this.client.deleteTrail(params as any).promise();
   }
 
+  deregisterOrganizationDelegatedAdmin: (params: RawParamsFrom<'deregisterOrganizationDelegatedAdmin'>) => Promise<ReturnTypeFrom<'deregisterOrganizationDelegatedAdmin'>>  = async params => {
+  // undefined
+    return this.client.deregisterOrganizationDelegatedAdmin(params as any).promise();
+  }
+
   describeQuery: (params: RawParamsFrom<'describeQuery'>) => Promise<ReturnTypeFrom<'describeQuery'>>  = async params => {
   // undefined
     return this.client.describeQuery(params as any).promise();
@@ -231,6 +236,11 @@ export class CloudTrail {
   putInsightSelectors: (params: RawParamsFrom<'putInsightSelectors'>) => Promise<ReturnTypeFrom<'putInsightSelectors'>>  = async params => {
   // undefined
     return this.client.putInsightSelectors(params as any).promise();
+  }
+
+  registerOrganizationDelegatedAdmin: (params: RawParamsFrom<'registerOrganizationDelegatedAdmin'>) => Promise<ReturnTypeFrom<'registerOrganizationDelegatedAdmin'>>  = async params => {
+  // undefined
+    return this.client.registerOrganizationDelegatedAdmin(params as any).promise();
   }
 
   removeTags: (params: RawParamsFrom<'removeTags'>) => Promise<ReturnTypeFrom<'removeTags'>>  = async params => {

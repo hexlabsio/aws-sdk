@@ -93,6 +93,11 @@ export class Organizations {
     return this.client.deletePolicy(params as any).promise();
   }
 
+  deleteResourcePolicy: (params: RawParamsFrom<'deleteResourcePolicy'>) => Promise<ReturnTypeFrom<'deleteResourcePolicy'>>  = async params => {
+  // undefined
+    return this.client.deleteResourcePolicy(params as any).promise();
+  }
+
   deregisterDelegatedAdministrator: (params: RawParamsFrom<'deregisterDelegatedAdministrator'>) => Promise<ReturnTypeFrom<'deregisterDelegatedAdministrator'>>  = async params => {
   // undefined
     return this.client.deregisterDelegatedAdministrator(params as any).promise();
@@ -131,6 +136,11 @@ export class Organizations {
   describePolicy: (params: RawParamsFrom<'describePolicy'>) => Promise<ReturnTypeFrom<'describePolicy'>>  = async params => {
   // undefined
     return this.client.describePolicy(params as any).promise();
+  }
+
+  describeResourcePolicy: (params: RawParamsFrom<'describeResourcePolicy'>) => Promise<ReturnTypeFrom<'describeResourcePolicy'>>  = async params => {
+  // undefined
+    return this.client.describeResourcePolicy(params as any).promise();
   }
 
   detachPolicy: (params: RawParamsFrom<'detachPolicy'>) => Promise<ReturnTypeFrom<'detachPolicy'>>  = async params => {
@@ -286,6 +296,11 @@ export class Organizations {
   moveAccount: (params: RawParamsFrom<'moveAccount'>) => Promise<ReturnTypeFrom<'moveAccount'>>  = async params => {
   // undefined
     return this.client.moveAccount(params as any).promise();
+  }
+
+  putResourcePolicy: (params: RawParamsFrom<'putResourcePolicy'>) => Promise<ReturnTypeFrom<'putResourcePolicy'>>  = async params => {
+  // undefined
+    return this.client.putResourcePolicy(params as any).promise();
   }
 
   registerDelegatedAdministrator: (params: RawParamsFrom<'registerDelegatedAdministrator'>) => Promise<ReturnTypeFrom<'registerDelegatedAdministrator'>>  = async params => {

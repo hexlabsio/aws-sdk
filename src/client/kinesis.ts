@@ -26,7 +26,7 @@ export class Kinesis {
   public readonly service = 'kinesis' as const;
   public readonly global = false as const;
   public readonly category = 'Analytics' as const;
-  public readonly topLevelCalls = ["listStreams"] as const;
+  public readonly topLevelCalls = ["describeStream","listStreams"] as const;
   
   addTagsToStream: (params: RawParamsFrom<'addTagsToStream'>) => Promise<ReturnTypeFrom<'addTagsToStream'>>  = async params => {
   // undefined
@@ -118,19 +118,9 @@ export class Kinesis {
     return this.client.listStreamConsumers(params as any).promise();
   }
 
-  async listStreams(params: { [K in keyof ParamsFrom<'listStreams', { next?: string, limit?: number }>]: ParamsFrom<'listStreams', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listStreams'>]-?: ReturnTypeFrom<'listStreams'>[K]}['StreamNames'], undefined>}> {
-    // {"inputToken":"ExclusiveStartStreamName","limitKey":"Limit","moreResults":"HasMoreStreams","outputToken":"StreamNames[-1]","resultKey":"StreamNames"}
-    const {next, limit,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { ExclusiveStartStreamName: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
-    const limitTokenPart = limit ? { Limit: limit } : {};
-    const result = await this.client.listStreams({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.StreamNames?.[result.StreamNames?.length - 1] ? Buffer.from(JSON.stringify({ token: result.StreamNames?.[result.StreamNames?.length - 1], operation: 'listStreams' })).toString('base64') : undefined;
-    const member = (Array.isArray(result.StreamNames ?? []) ? (result.StreamNames ?? []) : [result.StreamNames]) as any;
-    return {
-      totalItems: member.length,
-      member,
-      next: nextToken
-    }
+  listStreams: (params: RawParamsFrom<'listStreams'>) => Promise<ReturnTypeFrom<'listStreams'>>  = async params => {
+  // {"inputToken":"NextToken","limitKey":"Limit","moreResults":"HasMoreStreams","outputToken":"NextToken","resultKey":["StreamNames","StreamSummaries"]}
+    return this.client.listStreams(params as any).promise();
   }
 
   listTagsForStream: (params: RawParamsFrom<'listTagsForStream'>) => Promise<ReturnTypeFrom<'listTagsForStream'>>  = async params => {

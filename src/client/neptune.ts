@@ -26,7 +26,7 @@ export class Neptune {
   public readonly service = 'rds' as const;
   public readonly global = false as const;
   public readonly category = 'Database' as const;
-  public readonly topLevelCalls = ["describeDBClusterEndpoints","describeDBClusterParameterGroups","describeDBClusterSnapshots","describeDBClusters","describeDBEngineVersions","describeDBInstances","describeDBParameterGroups","describeDBSubnetGroups","describeEventSubscriptions","describeEvents","describePendingMaintenanceActions"] as const;
+  public readonly topLevelCalls = ["describeDBClusterEndpoints","describeDBClusterParameterGroups","describeDBClusterSnapshots","describeDBClusters","describeDBEngineVersions","describeDBInstances","describeDBParameterGroups","describeDBSubnetGroups","describeEventSubscriptions","describeEvents","describeGlobalClusters","describePendingMaintenanceActions"] as const;
   
   addRoleToDBCluster: (params: RawParamsFrom<'addRoleToDBCluster'>) => Promise<ReturnTypeFrom<'addRoleToDBCluster'>>  = async params => {
   // undefined
@@ -363,9 +363,19 @@ export class Neptune {
     }
   }
 
-  describeGlobalClusters: (params: RawParamsFrom<'describeGlobalClusters'>) => Promise<ReturnTypeFrom<'describeGlobalClusters'>>  = async params => {
-  // undefined
-    return this.client.describeGlobalClusters(params as any).promise();
+  async describeGlobalClusters(params: { [K in keyof ParamsFrom<'describeGlobalClusters', { next?: string, limit?: number }>]: ParamsFrom<'describeGlobalClusters', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeGlobalClusters'>]-?: ReturnTypeFrom<'describeGlobalClusters'>[K]}['GlobalClusters'], undefined>}> {
+    // {"inputToken":"Marker","limitKey":"MaxRecords","outputToken":"Marker","resultKey":"GlobalClusters"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { Marker: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxRecords: limit } : {};
+    const result = await this.client.describeGlobalClusters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.Marker ? Buffer.from(JSON.stringify({ token: result.Marker, operation: 'describeGlobalClusters' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.GlobalClusters ?? []) ? (result.GlobalClusters ?? []) : [result.GlobalClusters]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
   async describeOrderableDBInstanceOptions(params: { [K in keyof ParamsFrom<'describeOrderableDBInstanceOptions', { next?: string, limit?: number }>]: ParamsFrom<'describeOrderableDBInstanceOptions', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'describeOrderableDBInstanceOptions'>]-?: ReturnTypeFrom<'describeOrderableDBInstanceOptions'>[K]}['OrderableDBInstanceOptions'], undefined>}> {

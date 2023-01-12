@@ -88,29 +88,79 @@ export class Route53RecoveryControlConfig {
     return this.client.describeSafetyRule(params as any).promise();
   }
 
-  listAssociatedRoute53HealthChecks: (params: RawParamsFrom<'listAssociatedRoute53HealthChecks'>) => Promise<ReturnTypeFrom<'listAssociatedRoute53HealthChecks'>>  = async params => {
-  // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
-    return this.client.listAssociatedRoute53HealthChecks(params as any).promise();
+  async listAssociatedRoute53HealthChecks(params: { [K in keyof ParamsFrom<'listAssociatedRoute53HealthChecks', { next?: string, limit?: number }>]: ParamsFrom<'listAssociatedRoute53HealthChecks', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listAssociatedRoute53HealthChecks'>]-?: ReturnTypeFrom<'listAssociatedRoute53HealthChecks'>[K]}['HealthCheckIds'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"HealthCheckIds"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listAssociatedRoute53HealthChecks({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listAssociatedRoute53HealthChecks' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.HealthCheckIds ?? []) ? (result.HealthCheckIds ?? []) : [result.HealthCheckIds]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
-  listClusters: (params: RawParamsFrom<'listClusters'>) => Promise<ReturnTypeFrom<'listClusters'>>  = async params => {
-  // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
-    return this.client.listClusters(params as any).promise();
+  async listClusters(params: { [K in keyof ParamsFrom<'listClusters', { next?: string, limit?: number }>]: ParamsFrom<'listClusters', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listClusters'>]-?: ReturnTypeFrom<'listClusters'>[K]}['Clusters'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"Clusters"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listClusters({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listClusters' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.Clusters ?? []) ? (result.Clusters ?? []) : [result.Clusters]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
-  listControlPanels: (params: RawParamsFrom<'listControlPanels'>) => Promise<ReturnTypeFrom<'listControlPanels'>>  = async params => {
-  // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
-    return this.client.listControlPanels(params as any).promise();
+  async listControlPanels(params: { [K in keyof ParamsFrom<'listControlPanels', { next?: string, limit?: number }>]: ParamsFrom<'listControlPanels', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listControlPanels'>]-?: ReturnTypeFrom<'listControlPanels'>[K]}['ControlPanels'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"ControlPanels"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listControlPanels({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listControlPanels' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.ControlPanels ?? []) ? (result.ControlPanels ?? []) : [result.ControlPanels]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
-  listRoutingControls: (params: RawParamsFrom<'listRoutingControls'>) => Promise<ReturnTypeFrom<'listRoutingControls'>>  = async params => {
-  // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
-    return this.client.listRoutingControls(params as any).promise();
+  async listRoutingControls(params: { [K in keyof ParamsFrom<'listRoutingControls', { next?: string, limit?: number }>]: ParamsFrom<'listRoutingControls', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listRoutingControls'>]-?: ReturnTypeFrom<'listRoutingControls'>[K]}['RoutingControls'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"RoutingControls"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listRoutingControls({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listRoutingControls' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.RoutingControls ?? []) ? (result.RoutingControls ?? []) : [result.RoutingControls]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
-  listSafetyRules: (params: RawParamsFrom<'listSafetyRules'>) => Promise<ReturnTypeFrom<'listSafetyRules'>>  = async params => {
-  // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
-    return this.client.listSafetyRules(params as any).promise();
+  async listSafetyRules(params: { [K in keyof ParamsFrom<'listSafetyRules', { next?: string, limit?: number }>]: ParamsFrom<'listSafetyRules', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listSafetyRules'>]-?: ReturnTypeFrom<'listSafetyRules'>[K]}['SafetyRules'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"SafetyRules"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.listSafetyRules({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listSafetyRules' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.SafetyRules ?? []) ? (result.SafetyRules ?? []) : [result.SafetyRules]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
   }
 
   listTagsForResource: (params: RawParamsFrom<'listTagsForResource'>) => Promise<ReturnTypeFrom<'listTagsForResource'>>  = async params => {

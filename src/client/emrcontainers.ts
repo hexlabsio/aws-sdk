@@ -26,11 +26,16 @@ export class EMRcontainers {
   public readonly service = 'emr-containers' as const;
   public readonly global = false as const;
   public readonly category = 'Analytics' as const;
-  public readonly topLevelCalls = ["listVirtualClusters"] as const;
+  public readonly topLevelCalls = ["listJobTemplates","listVirtualClusters"] as const;
   
   cancelJobRun: (params: RawParamsFrom<'cancelJobRun'>) => Promise<ReturnTypeFrom<'cancelJobRun'>>  = async params => {
   // undefined
     return this.client.cancelJobRun(params as any).promise();
+  }
+
+  createJobTemplate: (params: RawParamsFrom<'createJobTemplate'>) => Promise<ReturnTypeFrom<'createJobTemplate'>>  = async params => {
+  // undefined
+    return this.client.createJobTemplate(params as any).promise();
   }
 
   createManagedEndpoint: (params: RawParamsFrom<'createManagedEndpoint'>) => Promise<ReturnTypeFrom<'createManagedEndpoint'>>  = async params => {
@@ -41,6 +46,11 @@ export class EMRcontainers {
   createVirtualCluster: (params: RawParamsFrom<'createVirtualCluster'>) => Promise<ReturnTypeFrom<'createVirtualCluster'>>  = async params => {
   // undefined
     return this.client.createVirtualCluster(params as any).promise();
+  }
+
+  deleteJobTemplate: (params: RawParamsFrom<'deleteJobTemplate'>) => Promise<ReturnTypeFrom<'deleteJobTemplate'>>  = async params => {
+  // undefined
+    return this.client.deleteJobTemplate(params as any).promise();
   }
 
   deleteManagedEndpoint: (params: RawParamsFrom<'deleteManagedEndpoint'>) => Promise<ReturnTypeFrom<'deleteManagedEndpoint'>>  = async params => {
@@ -56,6 +66,11 @@ export class EMRcontainers {
   describeJobRun: (params: RawParamsFrom<'describeJobRun'>) => Promise<ReturnTypeFrom<'describeJobRun'>>  = async params => {
   // undefined
     return this.client.describeJobRun(params as any).promise();
+  }
+
+  describeJobTemplate: (params: RawParamsFrom<'describeJobTemplate'>) => Promise<ReturnTypeFrom<'describeJobTemplate'>>  = async params => {
+  // undefined
+    return this.client.describeJobTemplate(params as any).promise();
   }
 
   describeManagedEndpoint: (params: RawParamsFrom<'describeManagedEndpoint'>) => Promise<ReturnTypeFrom<'describeManagedEndpoint'>>  = async params => {
@@ -76,6 +91,21 @@ export class EMRcontainers {
     const result = await this.client.listJobRuns({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
     const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listJobRuns' })).toString('base64') : undefined;
     const member = (Array.isArray(result.jobRuns ?? []) ? (result.jobRuns ?? []) : [result.jobRuns]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
+  async listJobTemplates(params: { [K in keyof ParamsFrom<'listJobTemplates', { next?: string, limit?: number }>]: ParamsFrom<'listJobTemplates', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listJobTemplates'>]-?: ReturnTypeFrom<'listJobTemplates'>[K]}['templates'], undefined>}> {
+    // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken","resultKey":"templates"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { nextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { maxResults: limit } : {};
+    const result = await this.client.listJobTemplates({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.nextToken ? Buffer.from(JSON.stringify({ token: result.nextToken, operation: 'listJobTemplates' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.templates ?? []) ? (result.templates ?? []) : [result.templates]) as any;
     return {
       totalItems: member.length,
       member,

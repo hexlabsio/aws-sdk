@@ -118,6 +118,11 @@ export class AppSync {
     return this.client.disassociateApi(params as any).promise();
   }
 
+  evaluateCode: (params: RawParamsFrom<'evaluateCode'>) => Promise<ReturnTypeFrom<'evaluateCode'>>  = async params => {
+  // undefined
+    return this.client.evaluateCode(params as any).promise();
+  }
+
   evaluateMappingTemplate: (params: RawParamsFrom<'evaluateMappingTemplate'>) => Promise<ReturnTypeFrom<'evaluateMappingTemplate'>>  = async params => {
   // undefined
     return this.client.evaluateMappingTemplate(params as any).promise();

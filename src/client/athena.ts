@@ -26,7 +26,7 @@ export class Athena {
   public readonly service = 'athena' as const;
   public readonly global = false as const;
   public readonly category = 'Analytics' as const;
-  public readonly topLevelCalls = ["listDataCatalogs","listEngineVersions","listNamedQueries","listQueryExecutions","listWorkGroups"] as const;
+  public readonly topLevelCalls = ["listApplicationDPUSizes","listDataCatalogs","listEngineVersions","listNamedQueries","listQueryExecutions","listWorkGroups"] as const;
   
   batchGetNamedQuery: (params: RawParamsFrom<'batchGetNamedQuery'>) => Promise<ReturnTypeFrom<'batchGetNamedQuery'>>  = async params => {
   // undefined
@@ -53,9 +53,19 @@ export class Athena {
     return this.client.createNamedQuery(params as any).promise();
   }
 
+  createNotebook: (params: RawParamsFrom<'createNotebook'>) => Promise<ReturnTypeFrom<'createNotebook'>>  = async params => {
+  // undefined
+    return this.client.createNotebook(params as any).promise();
+  }
+
   createPreparedStatement: (params: RawParamsFrom<'createPreparedStatement'>) => Promise<ReturnTypeFrom<'createPreparedStatement'>>  = async params => {
   // undefined
     return this.client.createPreparedStatement(params as any).promise();
+  }
+
+  createPresignedNotebookUrl: (params: RawParamsFrom<'createPresignedNotebookUrl'>) => Promise<ReturnTypeFrom<'createPresignedNotebookUrl'>>  = async params => {
+  // undefined
+    return this.client.createPresignedNotebookUrl(params as any).promise();
   }
 
   createWorkGroup: (params: RawParamsFrom<'createWorkGroup'>) => Promise<ReturnTypeFrom<'createWorkGroup'>>  = async params => {
@@ -73,6 +83,11 @@ export class Athena {
     return this.client.deleteNamedQuery(params as any).promise();
   }
 
+  deleteNotebook: (params: RawParamsFrom<'deleteNotebook'>) => Promise<ReturnTypeFrom<'deleteNotebook'>>  = async params => {
+  // undefined
+    return this.client.deleteNotebook(params as any).promise();
+  }
+
   deletePreparedStatement: (params: RawParamsFrom<'deletePreparedStatement'>) => Promise<ReturnTypeFrom<'deletePreparedStatement'>>  = async params => {
   // undefined
     return this.client.deletePreparedStatement(params as any).promise();
@@ -81,6 +96,26 @@ export class Athena {
   deleteWorkGroup: (params: RawParamsFrom<'deleteWorkGroup'>) => Promise<ReturnTypeFrom<'deleteWorkGroup'>>  = async params => {
   // undefined
     return this.client.deleteWorkGroup(params as any).promise();
+  }
+
+  exportNotebook: (params: RawParamsFrom<'exportNotebook'>) => Promise<ReturnTypeFrom<'exportNotebook'>>  = async params => {
+  // undefined
+    return this.client.exportNotebook(params as any).promise();
+  }
+
+  getCalculationExecution: (params: RawParamsFrom<'getCalculationExecution'>) => Promise<ReturnTypeFrom<'getCalculationExecution'>>  = async params => {
+  // undefined
+    return this.client.getCalculationExecution(params as any).promise();
+  }
+
+  getCalculationExecutionCode: (params: RawParamsFrom<'getCalculationExecutionCode'>) => Promise<ReturnTypeFrom<'getCalculationExecutionCode'>>  = async params => {
+  // undefined
+    return this.client.getCalculationExecutionCode(params as any).promise();
+  }
+
+  getCalculationExecutionStatus: (params: RawParamsFrom<'getCalculationExecutionStatus'>) => Promise<ReturnTypeFrom<'getCalculationExecutionStatus'>>  = async params => {
+  // undefined
+    return this.client.getCalculationExecutionStatus(params as any).promise();
   }
 
   getDataCatalog: (params: RawParamsFrom<'getDataCatalog'>) => Promise<ReturnTypeFrom<'getDataCatalog'>>  = async params => {
@@ -96,6 +131,11 @@ export class Athena {
   getNamedQuery: (params: RawParamsFrom<'getNamedQuery'>) => Promise<ReturnTypeFrom<'getNamedQuery'>>  = async params => {
   // undefined
     return this.client.getNamedQuery(params as any).promise();
+  }
+
+  getNotebookMetadata: (params: RawParamsFrom<'getNotebookMetadata'>) => Promise<ReturnTypeFrom<'getNotebookMetadata'>>  = async params => {
+  // undefined
+    return this.client.getNotebookMetadata(params as any).promise();
   }
 
   getPreparedStatement: (params: RawParamsFrom<'getPreparedStatement'>) => Promise<ReturnTypeFrom<'getPreparedStatement'>>  = async params => {
@@ -118,6 +158,16 @@ export class Athena {
     return this.client.getQueryRuntimeStatistics(params as any).promise();
   }
 
+  getSession: (params: RawParamsFrom<'getSession'>) => Promise<ReturnTypeFrom<'getSession'>>  = async params => {
+  // undefined
+    return this.client.getSession(params as any).promise();
+  }
+
+  getSessionStatus: (params: RawParamsFrom<'getSessionStatus'>) => Promise<ReturnTypeFrom<'getSessionStatus'>>  = async params => {
+  // undefined
+    return this.client.getSessionStatus(params as any).promise();
+  }
+
   getTableMetadata: (params: RawParamsFrom<'getTableMetadata'>) => Promise<ReturnTypeFrom<'getTableMetadata'>>  = async params => {
   // undefined
     return this.client.getTableMetadata(params as any).promise();
@@ -126,6 +176,21 @@ export class Athena {
   getWorkGroup: (params: RawParamsFrom<'getWorkGroup'>) => Promise<ReturnTypeFrom<'getWorkGroup'>>  = async params => {
   // undefined
     return this.client.getWorkGroup(params as any).promise();
+  }
+
+  importNotebook: (params: RawParamsFrom<'importNotebook'>) => Promise<ReturnTypeFrom<'importNotebook'>>  = async params => {
+  // undefined
+    return this.client.importNotebook(params as any).promise();
+  }
+
+  listApplicationDPUSizes: (params: RawParamsFrom<'listApplicationDPUSizes'>) => Promise<ReturnTypeFrom<'listApplicationDPUSizes'>>  = async params => {
+  // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
+    return this.client.listApplicationDPUSizes(params as any).promise();
+  }
+
+  listCalculationExecutions: (params: RawParamsFrom<'listCalculationExecutions'>) => Promise<ReturnTypeFrom<'listCalculationExecutions'>>  = async params => {
+  // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
+    return this.client.listCalculationExecutions(params as any).promise();
   }
 
   async listDataCatalogs(params: { [K in keyof ParamsFrom<'listDataCatalogs', { next?: string, limit?: number }>]: ParamsFrom<'listDataCatalogs', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listDataCatalogs'>]-?: ReturnTypeFrom<'listDataCatalogs'>[K]}['DataCatalogsSummary'], undefined>}> {
@@ -163,9 +228,24 @@ export class Athena {
     return this.client.listEngineVersions(params as any).promise();
   }
 
+  listExecutors: (params: RawParamsFrom<'listExecutors'>) => Promise<ReturnTypeFrom<'listExecutors'>>  = async params => {
+  // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
+    return this.client.listExecutors(params as any).promise();
+  }
+
   listNamedQueries: (params: RawParamsFrom<'listNamedQueries'>) => Promise<ReturnTypeFrom<'listNamedQueries'>>  = async params => {
   // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
     return this.client.listNamedQueries(params as any).promise();
+  }
+
+  listNotebookMetadata: (params: RawParamsFrom<'listNotebookMetadata'>) => Promise<ReturnTypeFrom<'listNotebookMetadata'>>  = async params => {
+  // undefined
+    return this.client.listNotebookMetadata(params as any).promise();
+  }
+
+  listNotebookSessions: (params: RawParamsFrom<'listNotebookSessions'>) => Promise<ReturnTypeFrom<'listNotebookSessions'>>  = async params => {
+  // undefined
+    return this.client.listNotebookSessions(params as any).promise();
   }
 
   listPreparedStatements: (params: RawParamsFrom<'listPreparedStatements'>) => Promise<ReturnTypeFrom<'listPreparedStatements'>>  = async params => {
@@ -176,6 +256,11 @@ export class Athena {
   listQueryExecutions: (params: RawParamsFrom<'listQueryExecutions'>) => Promise<ReturnTypeFrom<'listQueryExecutions'>>  = async params => {
   // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
     return this.client.listQueryExecutions(params as any).promise();
+  }
+
+  listSessions: (params: RawParamsFrom<'listSessions'>) => Promise<ReturnTypeFrom<'listSessions'>>  = async params => {
+  // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken"}
+    return this.client.listSessions(params as any).promise();
   }
 
   async listTableMetadata(params: { [K in keyof ParamsFrom<'listTableMetadata', { next?: string, limit?: number }>]: ParamsFrom<'listTableMetadata', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listTableMetadata'>]-?: ReturnTypeFrom<'listTableMetadata'>[K]}['TableMetadataList'], undefined>}> {
@@ -213,9 +298,24 @@ export class Athena {
     return this.client.listWorkGroups(params as any).promise();
   }
 
+  startCalculationExecution: (params: RawParamsFrom<'startCalculationExecution'>) => Promise<ReturnTypeFrom<'startCalculationExecution'>>  = async params => {
+  // undefined
+    return this.client.startCalculationExecution(params as any).promise();
+  }
+
   startQueryExecution: (params: RawParamsFrom<'startQueryExecution'>) => Promise<ReturnTypeFrom<'startQueryExecution'>>  = async params => {
   // undefined
     return this.client.startQueryExecution(params as any).promise();
+  }
+
+  startSession: (params: RawParamsFrom<'startSession'>) => Promise<ReturnTypeFrom<'startSession'>>  = async params => {
+  // undefined
+    return this.client.startSession(params as any).promise();
+  }
+
+  stopCalculationExecution: (params: RawParamsFrom<'stopCalculationExecution'>) => Promise<ReturnTypeFrom<'stopCalculationExecution'>>  = async params => {
+  // undefined
+    return this.client.stopCalculationExecution(params as any).promise();
   }
 
   stopQueryExecution: (params: RawParamsFrom<'stopQueryExecution'>) => Promise<ReturnTypeFrom<'stopQueryExecution'>>  = async params => {
@@ -226,6 +326,11 @@ export class Athena {
   tagResource: (params: RawParamsFrom<'tagResource'>) => Promise<ReturnTypeFrom<'tagResource'>>  = async params => {
   // undefined
     return this.client.tagResource(params as any).promise();
+  }
+
+  terminateSession: (params: RawParamsFrom<'terminateSession'>) => Promise<ReturnTypeFrom<'terminateSession'>>  = async params => {
+  // undefined
+    return this.client.terminateSession(params as any).promise();
   }
 
   untagResource: (params: RawParamsFrom<'untagResource'>) => Promise<ReturnTypeFrom<'untagResource'>>  = async params => {
@@ -241,6 +346,16 @@ export class Athena {
   updateNamedQuery: (params: RawParamsFrom<'updateNamedQuery'>) => Promise<ReturnTypeFrom<'updateNamedQuery'>>  = async params => {
   // undefined
     return this.client.updateNamedQuery(params as any).promise();
+  }
+
+  updateNotebook: (params: RawParamsFrom<'updateNotebook'>) => Promise<ReturnTypeFrom<'updateNotebook'>>  = async params => {
+  // undefined
+    return this.client.updateNotebook(params as any).promise();
+  }
+
+  updateNotebookMetadata: (params: RawParamsFrom<'updateNotebookMetadata'>) => Promise<ReturnTypeFrom<'updateNotebookMetadata'>>  = async params => {
+  // undefined
+    return this.client.updateNotebookMetadata(params as any).promise();
   }
 
   updatePreparedStatement: (params: RawParamsFrom<'updatePreparedStatement'>) => Promise<ReturnTypeFrom<'updatePreparedStatement'>>  = async params => {

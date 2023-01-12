@@ -1198,6 +1198,11 @@ export class Iot {
     }
   }
 
+  listRelatedResourcesForAuditFinding: (params: RawParamsFrom<'listRelatedResourcesForAuditFinding'>) => Promise<ReturnTypeFrom<'listRelatedResourcesForAuditFinding'>>  = async params => {
+  // undefined
+    return this.client.listRelatedResourcesForAuditFinding(params as any).promise();
+  }
+
   async listRoleAliases(params: { [K in keyof ParamsFrom<'listRoleAliases', { next?: string, limit?: number }>]: ParamsFrom<'listRoleAliases', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listRoleAliases'>]-?: ReturnTypeFrom<'listRoleAliases'>[K]}['roleAliases'], undefined>}> {
     // {"inputToken":"marker","limitKey":"pageSize","outputToken":"nextMarker","resultKey":"roleAliases"}
     const {next, limit,  ...otherParams} = params ?? {};

@@ -218,6 +218,11 @@ export class Drs {
     return this.client.retryDataReplication(params as any).promise();
   }
 
+  reverseReplication: (params: RawParamsFrom<'reverseReplication'>) => Promise<ReturnTypeFrom<'reverseReplication'>>  = async params => {
+  // undefined
+    return this.client.reverseReplication(params as any).promise();
+  }
+
   startFailbackLaunch: (params: RawParamsFrom<'startFailbackLaunch'>) => Promise<ReturnTypeFrom<'startFailbackLaunch'>>  = async params => {
   // undefined
     return this.client.startFailbackLaunch(params as any).promise();
@@ -228,9 +233,19 @@ export class Drs {
     return this.client.startRecovery(params as any).promise();
   }
 
+  startReplication: (params: RawParamsFrom<'startReplication'>) => Promise<ReturnTypeFrom<'startReplication'>>  = async params => {
+  // undefined
+    return this.client.startReplication(params as any).promise();
+  }
+
   stopFailback: (params: RawParamsFrom<'stopFailback'>) => Promise<ReturnTypeFrom<'stopFailback'>>  = async params => {
   // undefined
     return this.client.stopFailback(params as any).promise();
+  }
+
+  stopReplication: (params: RawParamsFrom<'stopReplication'>) => Promise<ReturnTypeFrom<'stopReplication'>>  = async params => {
+  // undefined
+    return this.client.stopReplication(params as any).promise();
   }
 
   tagResource: (params: RawParamsFrom<'tagResource'>) => Promise<ReturnTypeFrom<'tagResource'>>  = async params => {

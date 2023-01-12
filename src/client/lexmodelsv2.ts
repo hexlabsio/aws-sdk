@@ -28,6 +28,21 @@ export class LexModelsV2 {
   public readonly category = 'Machine Learning' as const;
   public readonly topLevelCalls = ["listBots","listExports","listImports"] as const;
   
+  batchCreateCustomVocabularyItem: (params: RawParamsFrom<'batchCreateCustomVocabularyItem'>) => Promise<ReturnTypeFrom<'batchCreateCustomVocabularyItem'>>  = async params => {
+  // undefined
+    return this.client.batchCreateCustomVocabularyItem(params as any).promise();
+  }
+
+  batchDeleteCustomVocabularyItem: (params: RawParamsFrom<'batchDeleteCustomVocabularyItem'>) => Promise<ReturnTypeFrom<'batchDeleteCustomVocabularyItem'>>  = async params => {
+  // undefined
+    return this.client.batchDeleteCustomVocabularyItem(params as any).promise();
+  }
+
+  batchUpdateCustomVocabularyItem: (params: RawParamsFrom<'batchUpdateCustomVocabularyItem'>) => Promise<ReturnTypeFrom<'batchUpdateCustomVocabularyItem'>>  = async params => {
+  // undefined
+    return this.client.batchUpdateCustomVocabularyItem(params as any).promise();
+  }
+
   buildBotLocale: (params: RawParamsFrom<'buildBotLocale'>) => Promise<ReturnTypeFrom<'buildBotLocale'>>  = async params => {
   // undefined
     return this.client.buildBotLocale(params as any).promise();
@@ -251,6 +266,11 @@ export class LexModelsV2 {
   listBuiltInSlotTypes: (params: RawParamsFrom<'listBuiltInSlotTypes'>) => Promise<ReturnTypeFrom<'listBuiltInSlotTypes'>>  = async params => {
   // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken"}
     return this.client.listBuiltInSlotTypes(params as any).promise();
+  }
+
+  listCustomVocabularyItems: (params: RawParamsFrom<'listCustomVocabularyItems'>) => Promise<ReturnTypeFrom<'listCustomVocabularyItems'>>  = async params => {
+  // {"inputToken":"nextToken","limitKey":"maxResults","outputToken":"nextToken"}
+    return this.client.listCustomVocabularyItems(params as any).promise();
   }
 
   listExports: (params: RawParamsFrom<'listExports'>) => Promise<ReturnTypeFrom<'listExports'>>  = async params => {

@@ -183,19 +183,9 @@ export class CloudWatch {
     return this.client.listMetricStreams(params as any).promise();
   }
 
-  async listMetrics(params: { [K in keyof ParamsFrom<'listMetrics', { next?: string }>]: ParamsFrom<'listMetrics', { next?: string }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listMetrics'>]-?: ReturnTypeFrom<'listMetrics'>[K]}['Metrics'], undefined>}> {
-    // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":"Metrics"}
-    const {next,  ...otherParams} = params ?? {};
-    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
-    const limitTokenPart = {};
-    const result = await this.client.listMetrics({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
-    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'listMetrics' })).toString('base64') : undefined;
-    const member = (Array.isArray(result.Metrics ?? []) ? (result.Metrics ?? []) : [result.Metrics]) as any;
-    return {
-      totalItems: member.length,
-      member,
-      next: nextToken
-    }
+  listMetrics: (params: RawParamsFrom<'listMetrics'>) => Promise<ReturnTypeFrom<'listMetrics'>>  = async params => {
+  // {"inputToken":"NextToken","outputToken":"NextToken","resultKey":["Metrics","OwningAccounts"]}
+    return this.client.listMetrics(params as any).promise();
   }
 
   listTagsForResource: (params: RawParamsFrom<'listTagsForResource'>) => Promise<ReturnTypeFrom<'listTagsForResource'>>  = async params => {

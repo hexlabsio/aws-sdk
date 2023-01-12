@@ -38,6 +38,16 @@ export class FMS {
     return this.client.associateThirdPartyFirewall(params as any).promise();
   }
 
+  batchAssociateResource: (params: RawParamsFrom<'batchAssociateResource'>) => Promise<ReturnTypeFrom<'batchAssociateResource'>>  = async params => {
+  // undefined
+    return this.client.batchAssociateResource(params as any).promise();
+  }
+
+  batchDisassociateResource: (params: RawParamsFrom<'batchDisassociateResource'>) => Promise<ReturnTypeFrom<'batchDisassociateResource'>>  = async params => {
+  // undefined
+    return this.client.batchDisassociateResource(params as any).promise();
+  }
+
   deleteAppsList: (params: RawParamsFrom<'deleteAppsList'>) => Promise<ReturnTypeFrom<'deleteAppsList'>>  = async params => {
   // undefined
     return this.client.deleteAppsList(params as any).promise();
@@ -56,6 +66,11 @@ export class FMS {
   deleteProtocolsList: (params: RawParamsFrom<'deleteProtocolsList'>) => Promise<ReturnTypeFrom<'deleteProtocolsList'>>  = async params => {
   // undefined
     return this.client.deleteProtocolsList(params as any).promise();
+  }
+
+  deleteResourceSet: (params: RawParamsFrom<'deleteResourceSet'>) => Promise<ReturnTypeFrom<'deleteResourceSet'>>  = async params => {
+  // undefined
+    return this.client.deleteResourceSet(params as any).promise();
   }
 
   disassociateAdminAccount: (params: RawParamsFrom<'disassociateAdminAccount'>) => Promise<ReturnTypeFrom<'disassociateAdminAccount'>>  = async params => {
@@ -103,6 +118,11 @@ export class FMS {
     return this.client.getProtocolsList(params as any).promise();
   }
 
+  getResourceSet: (params: RawParamsFrom<'getResourceSet'>) => Promise<ReturnTypeFrom<'getResourceSet'>>  = async params => {
+  // undefined
+    return this.client.getResourceSet(params as any).promise();
+  }
+
   getThirdPartyFirewallAssociationStatus: (params: RawParamsFrom<'getThirdPartyFirewallAssociationStatus'>) => Promise<ReturnTypeFrom<'getThirdPartyFirewallAssociationStatus'>>  = async params => {
   // undefined
     return this.client.getThirdPartyFirewallAssociationStatus(params as any).promise();
@@ -141,6 +161,11 @@ export class FMS {
       member,
       next: nextToken
     }
+  }
+
+  listDiscoveredResources: (params: RawParamsFrom<'listDiscoveredResources'>) => Promise<ReturnTypeFrom<'listDiscoveredResources'>>  = async params => {
+  // undefined
+    return this.client.listDiscoveredResources(params as any).promise();
   }
 
   async listMemberAccounts(params: { [K in keyof ParamsFrom<'listMemberAccounts', { next?: string, limit?: number }>]: ParamsFrom<'listMemberAccounts', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'listMemberAccounts'>]-?: ReturnTypeFrom<'listMemberAccounts'>[K]}['MemberAccounts'], undefined>}> {
@@ -188,6 +213,16 @@ export class FMS {
     }
   }
 
+  listResourceSetResources: (params: RawParamsFrom<'listResourceSetResources'>) => Promise<ReturnTypeFrom<'listResourceSetResources'>>  = async params => {
+  // undefined
+    return this.client.listResourceSetResources(params as any).promise();
+  }
+
+  listResourceSets: (params: RawParamsFrom<'listResourceSets'>) => Promise<ReturnTypeFrom<'listResourceSets'>>  = async params => {
+  // undefined
+    return this.client.listResourceSets(params as any).promise();
+  }
+
   listTagsForResource: (params: RawParamsFrom<'listTagsForResource'>) => Promise<ReturnTypeFrom<'listTagsForResource'>>  = async params => {
   // undefined
     return this.client.listTagsForResource(params as any).promise();
@@ -226,6 +261,11 @@ export class FMS {
   putProtocolsList: (params: RawParamsFrom<'putProtocolsList'>) => Promise<ReturnTypeFrom<'putProtocolsList'>>  = async params => {
   // undefined
     return this.client.putProtocolsList(params as any).promise();
+  }
+
+  putResourceSet: (params: RawParamsFrom<'putResourceSet'>) => Promise<ReturnTypeFrom<'putResourceSet'>>  = async params => {
+  // undefined
+    return this.client.putResourceSet(params as any).promise();
   }
 
   tagResource: (params: RawParamsFrom<'tagResource'>) => Promise<ReturnTypeFrom<'tagResource'>>  = async params => {

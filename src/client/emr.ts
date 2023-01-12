@@ -138,6 +138,11 @@ export class EMR {
     return this.client.getBlockPublicAccessConfiguration(params as any).promise();
   }
 
+  getClusterSessionCredentials: (params: RawParamsFrom<'getClusterSessionCredentials'>) => Promise<ReturnTypeFrom<'getClusterSessionCredentials'>>  = async params => {
+  // undefined
+    return this.client.getClusterSessionCredentials(params as any).promise();
+  }
+
   getManagedScalingPolicy: (params: RawParamsFrom<'getManagedScalingPolicy'>) => Promise<ReturnTypeFrom<'getManagedScalingPolicy'>>  = async params => {
   // undefined
     return this.client.getManagedScalingPolicy(params as any).promise();

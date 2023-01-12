@@ -143,6 +143,11 @@ export class SSM {
     return this.client.deleteResourceDataSync(params as any).promise();
   }
 
+  deleteResourcePolicy: (params: RawParamsFrom<'deleteResourcePolicy'>) => Promise<ReturnTypeFrom<'deleteResourcePolicy'>>  = async params => {
+  // undefined
+    return this.client.deleteResourcePolicy(params as any).promise();
+  }
+
   deregisterManagedInstance: (params: RawParamsFrom<'deregisterManagedInstance'>) => Promise<ReturnTypeFrom<'deregisterManagedInstance'>>  = async params => {
   // undefined
     return this.client.deregisterManagedInstance(params as any).promise();
@@ -743,6 +748,21 @@ export class SSM {
     return this.client.getPatchBaselineForPatchGroup(params as any).promise();
   }
 
+  async getResourcePolicies(params: { [K in keyof ParamsFrom<'getResourcePolicies', { next?: string, limit?: number }>]: ParamsFrom<'getResourcePolicies', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getResourcePolicies'>]-?: ReturnTypeFrom<'getResourcePolicies'>[K]}['Policies'], undefined>}> {
+    // {"inputToken":"NextToken","limitKey":"MaxResults","outputToken":"NextToken","resultKey":"Policies"}
+    const {next, limit,  ...otherParams} = params ?? {};
+    const nextTokenPart = next ? { NextToken: JSON.parse(Buffer.from(next, 'base64').toString('ascii')).token } : {};
+    const limitTokenPart = limit ? { MaxResults: limit } : {};
+    const result = await this.client.getResourcePolicies({...nextTokenPart, ...limitTokenPart, ...otherParams} as any).promise();
+    const nextToken = result.NextToken ? Buffer.from(JSON.stringify({ token: result.NextToken, operation: 'getResourcePolicies' })).toString('base64') : undefined;
+    const member = (Array.isArray(result.Policies ?? []) ? (result.Policies ?? []) : [result.Policies]) as any;
+    return {
+      totalItems: member.length,
+      member,
+      next: nextToken
+    }
+  }
+
   getServiceSetting: (params: RawParamsFrom<'getServiceSetting'>) => Promise<ReturnTypeFrom<'getServiceSetting'>>  = async params => {
   // undefined
     return this.client.getServiceSetting(params as any).promise();
@@ -981,6 +1001,11 @@ export class SSM {
   putParameter: (params: RawParamsFrom<'putParameter'>) => Promise<ReturnTypeFrom<'putParameter'>>  = async params => {
   // undefined
     return this.client.putParameter(params as any).promise();
+  }
+
+  putResourcePolicy: (params: RawParamsFrom<'putResourcePolicy'>) => Promise<ReturnTypeFrom<'putResourcePolicy'>>  = async params => {
+  // undefined
+    return this.client.putResourcePolicy(params as any).promise();
   }
 
   registerDefaultPatchBaseline: (params: RawParamsFrom<'registerDefaultPatchBaseline'>) => Promise<ReturnTypeFrom<'registerDefaultPatchBaseline'>>  = async params => {

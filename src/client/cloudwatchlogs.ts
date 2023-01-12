@@ -53,6 +53,11 @@ export class CloudWatchLogs {
     return this.client.createLogStream(params as any).promise();
   }
 
+  deleteDataProtectionPolicy: (params: RawParamsFrom<'deleteDataProtectionPolicy'>) => Promise<ReturnTypeFrom<'deleteDataProtectionPolicy'>>  = async params => {
+  // undefined
+    return this.client.deleteDataProtectionPolicy(params as any).promise();
+  }
+
   deleteDestination: (params: RawParamsFrom<'deleteDestination'>) => Promise<ReturnTypeFrom<'deleteDestination'>>  = async params => {
   // undefined
     return this.client.deleteDestination(params as any).promise();
@@ -198,6 +203,11 @@ export class CloudWatchLogs {
     return this.client.filterLogEvents(params as any).promise();
   }
 
+  getDataProtectionPolicy: (params: RawParamsFrom<'getDataProtectionPolicy'>) => Promise<ReturnTypeFrom<'getDataProtectionPolicy'>>  = async params => {
+  // undefined
+    return this.client.getDataProtectionPolicy(params as any).promise();
+  }
+
   async getLogEvents(params: { [K in keyof ParamsFrom<'getLogEvents', { next?: string, limit?: number }>]: ParamsFrom<'getLogEvents', { next?: string, limit?: number }>[K]}): Promise<{ next?: string | number; totalItems: number; member: Exclude<{ [K in keyof ReturnTypeFrom<'getLogEvents'>]-?: ReturnTypeFrom<'getLogEvents'>[K]}['events'], undefined>}> {
     // {"inputToken":"nextToken","limitKey":"limit","outputToken":"nextForwardToken","resultKey":"events"}
     const {next, limit,  ...otherParams} = params ?? {};
@@ -228,9 +238,19 @@ export class CloudWatchLogs {
     return this.client.getQueryResults(params as any).promise();
   }
 
+  listTagsForResource: (params: RawParamsFrom<'listTagsForResource'>) => Promise<ReturnTypeFrom<'listTagsForResource'>>  = async params => {
+  // undefined
+    return this.client.listTagsForResource(params as any).promise();
+  }
+
   listTagsLogGroup: (params: RawParamsFrom<'listTagsLogGroup'>) => Promise<ReturnTypeFrom<'listTagsLogGroup'>>  = async params => {
   // undefined
     return this.client.listTagsLogGroup(params as any).promise();
+  }
+
+  putDataProtectionPolicy: (params: RawParamsFrom<'putDataProtectionPolicy'>) => Promise<ReturnTypeFrom<'putDataProtectionPolicy'>>  = async params => {
+  // undefined
+    return this.client.putDataProtectionPolicy(params as any).promise();
   }
 
   putDestination: (params: RawParamsFrom<'putDestination'>) => Promise<ReturnTypeFrom<'putDestination'>>  = async params => {
@@ -288,6 +308,11 @@ export class CloudWatchLogs {
     return this.client.tagLogGroup(params as any).promise();
   }
 
+  tagResource: (params: RawParamsFrom<'tagResource'>) => Promise<ReturnTypeFrom<'tagResource'>>  = async params => {
+  // undefined
+    return this.client.tagResource(params as any).promise();
+  }
+
   testMetricFilter: (params: RawParamsFrom<'testMetricFilter'>) => Promise<ReturnTypeFrom<'testMetricFilter'>>  = async params => {
   // undefined
     return this.client.testMetricFilter(params as any).promise();
@@ -296,6 +321,11 @@ export class CloudWatchLogs {
   untagLogGroup: (params: RawParamsFrom<'untagLogGroup'>) => Promise<ReturnTypeFrom<'untagLogGroup'>>  = async params => {
   // undefined
     return this.client.untagLogGroup(params as any).promise();
+  }
+
+  untagResource: (params: RawParamsFrom<'untagResource'>) => Promise<ReturnTypeFrom<'untagResource'>>  = async params => {
+  // undefined
+    return this.client.untagResource(params as any).promise();
   }
   
   static fromClient(client: AWSCloudWatchLogs): CloudWatchLogs {

@@ -26,8 +26,13 @@ export class SESV2 {
   public readonly service = 'email' as const;
   public readonly global = false as const;
   public readonly category = 'Customer Engagement' as const;
-  public readonly topLevelCalls = ["getDedicatedIps","listConfigurationSets","listContactLists","listCustomVerificationEmailTemplates","listDedicatedIpPools","listDeliverabilityTestReports","listEmailIdentities","listEmailTemplates","listImportJobs","listSuppressedDestinations"] as const;
+  public readonly topLevelCalls = ["getDedicatedIps","listConfigurationSets","listContactLists","listCustomVerificationEmailTemplates","listDedicatedIpPools","listDeliverabilityTestReports","listEmailIdentities","listEmailTemplates","listImportJobs","listRecommendations","listSuppressedDestinations"] as const;
   
+  batchGetMetricData: (params: RawParamsFrom<'batchGetMetricData'>) => Promise<ReturnTypeFrom<'batchGetMetricData'>>  = async params => {
+  // undefined
+    return this.client.batchGetMetricData(params as any).promise();
+  }
+
   createConfigurationSet: (params: RawParamsFrom<'createConfigurationSet'>) => Promise<ReturnTypeFrom<'createConfigurationSet'>>  = async params => {
   // undefined
     return this.client.createConfigurationSet(params as any).promise();
@@ -173,6 +178,11 @@ export class SESV2 {
     return this.client.getDedicatedIp(params as any).promise();
   }
 
+  getDedicatedIpPool: (params: RawParamsFrom<'getDedicatedIpPool'>) => Promise<ReturnTypeFrom<'getDedicatedIpPool'>>  = async params => {
+  // undefined
+    return this.client.getDedicatedIpPool(params as any).promise();
+  }
+
   getDedicatedIps: (params: RawParamsFrom<'getDedicatedIps'>) => Promise<ReturnTypeFrom<'getDedicatedIps'>>  = async params => {
   // {"inputToken":"NextToken","limitKey":"PageSize","outputToken":"NextToken"}
     return this.client.getDedicatedIps(params as any).promise();
@@ -273,6 +283,11 @@ export class SESV2 {
     return this.client.listImportJobs(params as any).promise();
   }
 
+  listRecommendations: (params: RawParamsFrom<'listRecommendations'>) => Promise<ReturnTypeFrom<'listRecommendations'>>  = async params => {
+  // {"inputToken":"NextToken","limitKey":"PageSize","outputToken":"NextToken"}
+    return this.client.listRecommendations(params as any).promise();
+  }
+
   listSuppressedDestinations: (params: RawParamsFrom<'listSuppressedDestinations'>) => Promise<ReturnTypeFrom<'listSuppressedDestinations'>>  = async params => {
   // {"inputToken":"NextToken","limitKey":"PageSize","outputToken":"NextToken"}
     return this.client.listSuppressedDestinations(params as any).promise();
@@ -303,6 +318,11 @@ export class SESV2 {
     return this.client.putAccountSuppressionAttributes(params as any).promise();
   }
 
+  putAccountVdmAttributes: (params: RawParamsFrom<'putAccountVdmAttributes'>) => Promise<ReturnTypeFrom<'putAccountVdmAttributes'>>  = async params => {
+  // undefined
+    return this.client.putAccountVdmAttributes(params as any).promise();
+  }
+
   putConfigurationSetDeliveryOptions: (params: RawParamsFrom<'putConfigurationSetDeliveryOptions'>) => Promise<ReturnTypeFrom<'putConfigurationSetDeliveryOptions'>>  = async params => {
   // undefined
     return this.client.putConfigurationSetDeliveryOptions(params as any).promise();
@@ -326,6 +346,11 @@ export class SESV2 {
   putConfigurationSetTrackingOptions: (params: RawParamsFrom<'putConfigurationSetTrackingOptions'>) => Promise<ReturnTypeFrom<'putConfigurationSetTrackingOptions'>>  = async params => {
   // undefined
     return this.client.putConfigurationSetTrackingOptions(params as any).promise();
+  }
+
+  putConfigurationSetVdmOptions: (params: RawParamsFrom<'putConfigurationSetVdmOptions'>) => Promise<ReturnTypeFrom<'putConfigurationSetVdmOptions'>>  = async params => {
+  // undefined
+    return this.client.putConfigurationSetVdmOptions(params as any).promise();
   }
 
   putDedicatedIpInPool: (params: RawParamsFrom<'putDedicatedIpInPool'>) => Promise<ReturnTypeFrom<'putDedicatedIpInPool'>>  = async params => {
